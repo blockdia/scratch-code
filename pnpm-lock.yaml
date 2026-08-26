@@ -23,6 +23,15 @@ importers:
         specifier: workspace:^
         version: link:../ast
 
+  packages/turbowarp-blocks:
+    dependencies:
+      '@scratch-code/ast':
+        specifier: workspace:^
+        version: link:../ast
+      '@scratch-code/block-spec':
+        specifier: workspace:^
+        version: link:../block-spec
+
 packages:
 
   '@jridgewell/sourcemap-codec@1.5.5':

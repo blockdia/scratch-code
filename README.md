@@ -6,6 +6,7 @@ TypeScript packages for working with semantic Scratch code.
 
 - [`@scratch-code/ast`](./packages/ast): a tree-shaped, JSON-serializable AST for Scratch blocks.
 - [`@scratch-code/block-spec`](./packages/block-spec): semantic block specifications and an extensible registry.
+- [`@scratch-code/turbowarp-blocks`](./packages/turbowarp-blocks): GPL-3.0 TurboWarp block specs derived from the pinned `scratch-blocks` source.
 
 ## Development
 

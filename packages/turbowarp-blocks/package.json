@@ -1,0 +1,39 @@
+{
+  "name": "@scratch-code/turbowarp-blocks",
+  "version": "0.1.0",
+  "description": "TurboWarp-compatible Scratch block specifications",
+  "license": "GPL-3.0-only",
+  "type": "module",
+  "sideEffects": false,
+  "engines": {
+    "node": ">=22"
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE",
+    "source-manifest.json"
+  ],
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json",
+    "typecheck": "tsc -p tsconfig.json",
+    "test": "vitest run",
+    "test:smoke": "node test/smoke.mjs",
+    "audit:scratch-blocks": "node scripts/audit-scratch-blocks.mjs"
+  },
+  "dependencies": {
+    "@scratch-code/ast": "workspace:^",
+    "@scratch-code/block-spec": "workspace:^"
+  },
+  "keywords": [
+    "scratch",
+    "turbowarp",
+    "blocks"
+  ]
+}

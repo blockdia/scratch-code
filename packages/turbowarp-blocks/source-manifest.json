@@ -1,0 +1,1513 @@
+[
+  {
+    "opcode": "argument_reporter_boolean",
+    "sourceFile": "blocks_vertical/procedures.js",
+    "inputs": {},
+    "fields": {
+      "VALUE": "field_label_serializable"
+    },
+    "dynamic": false
+  },
+  {
+    "opcode": "argument_reporter_string_number",
+    "sourceFile": "blocks_vertical/procedures.js",
+    "inputs": {},
+    "fields": {
+      "VALUE": "field_label_serializable"
+    },
+    "dynamic": false
+  },
+  {
+    "opcode": "colour_picker",
+    "sourceFile": "blocks_common/colour.js",
+    "inputs": {},
+    "fields": {
+      "COLOUR": "field_colour_slider"
+    },
+    "dynamic": false
+  },
+  {
+    "opcode": "control_all_at_once",
+    "sourceFile": "blocks_vertical/control.js",
+    "inputs": {
+      "SUBSTACK": "statement"
+    },
+    "fields": {},
+    "dynamic": false
+  },
+  {
+    "opcode": "control_clear_counter",
+    "sourceFile": "blocks_vertical/control.js",
+    "inputs": {},
+    "fields": {},
+    "dynamic": false
+  },
+  {
+    "opcode": "control_create_clone_of",
+    "sourceFile": "blocks_vertical/control.js",
+    "inputs": {
+      "CLONE_OPTION": "value"
+    },
+    "fields": {},
+    "dynamic": false
+  },
+  {
+    "opcode": "control_create_clone_of_menu",
+    "sourceFile": "blocks_vertical/control.js",
+    "inputs": {},
+    "fields": {
+      "CLONE_OPTION": "field_dropdown"
+    },
+    "dynamic": false
+  },
+  {
+    "opcode": "control_delete_this_clone",
+    "sourceFile": "blocks_vertical/control.js",
+    "inputs": {},
+    "fields": {},
+    "dynamic": false
+  },
+  {
+    "opcode": "control_for_each",
+    "sourceFile": "blocks_vertical/control.js",
+    "inputs": {
+      "VALUE": "value",
+      "SUBSTACK": "statement"
+    },
+    "fields": {
+      "VARIABLE": "field_variable"
+    },
+    "dynamic": false
+  },
+  {
+    "opcode": "control_forever",
+    "sourceFile": "blocks_vertical/control.js",
+    "inputs": {
+      "SUBSTACK": "statement"
+    },
+    "fields": {},
+    "dynamic": false
+  },
+  {
+    "opcode": "control_get_counter",
+    "sourceFile": "blocks_vertical/control.js",
+    "inputs": {},
+    "fields": {},
+    "dynamic": false
+  },
+  {
+    "opcode": "control_if",
+    "sourceFile": "blocks_vertical/control.js",
+    "inputs": {
+      "CONDITION": "value",
+      "SUBSTACK": "statement"
+    },
+    "fields": {},
+    "dynamic": false
+  },
+  {
+    "opcode": "control_if_else",
+    "sourceFile": "blocks_vertical/control.js",
+    "inputs": {
+      "CONDITION": "value",
+      "SUBSTACK": "statement",
+      "SUBSTACK2": "statement"
+    },
+    "fields": {},
+    "dynamic": false
+  },
+  {
+    "opcode": "control_incr_counter",
+    "sourceFile": "blocks_vertical/control.js",
+    "inputs": {},
+    "fields": {},
+    "dynamic": false
+  },
+  {
+    "opcode": "control_repeat",
+    "sourceFile": "blocks_vertical/control.js",
+    "inputs": {
+      "TIMES": "value",
+      "SUBSTACK": "statement"
+    },
+    "fields": {},
+    "dynamic": false
+  },
+  {
+    "opcode": "control_repeat_until",
+    "sourceFile": "blocks_vertical/control.js",
+    "inputs": {
+      "CONDITION": "value",
+      "SUBSTACK": "statement"
+    },
+    "fields": {},
+    "dynamic": false
+  },
+  {
+    "opcode": "control_start_as_clone",
+    "sourceFile": "blocks_vertical/control.js",
+    "inputs": {},
+    "fields": {},
+    "dynamic": false
+  },
+  {
+    "opcode": "control_stop",
+    "sourceFile": "blocks_vertical/control.js",
+    "inputs": {},
+    "fields": {
+      "STOP_OPTION": "field_dropdown"
+    },
+    "dynamic": true
+  },
+  {
+    "opcode": "control_wait",
+    "sourceFile": "blocks_vertical/control.js",
+    "inputs": {
+      "DURATION": "value"
+    },
+    "fields": {},
+    "dynamic": false
+  },
+  {
+    "opcode": "control_wait_until",
+    "sourceFile": "blocks_vertical/control.js",
+    "inputs": {
+      "CONDITION": "value"
+    },
+    "fields": {},
+    "dynamic": false
+  },
+  {
+    "opcode": "control_while",
+    "sourceFile": "blocks_vertical/control.js",
+    "inputs": {
+      "CONDITION": "value",
+      "SUBSTACK": "statement"
+    },
+    "fields": {},
+    "dynamic": false
+  },
+  {
+    "opcode": "data_addtolist",
+    "sourceFile": "blocks_vertical/data.js",
+    "inputs": {
+      "ITEM": "value"
+    },
+    "fields": {
+      "LIST": "field_variable"
+    },
+    "dynamic": false
+  },
+  {
+    "opcode": "data_changevariableby",
+    "sourceFile": "blocks_vertical/data.js",
+    "inputs": {
+      "VALUE": "value"
+    },
+    "fields": {
+      "VARIABLE": "field_variable"
+    },
+    "dynamic": false
+  },
+  {
+    "opcode": "data_deletealloflist",
+    "sourceFile": "blocks_vertical/data.js",
+    "inputs": {},
+    "fields": {
+      "LIST": "field_variable"
+    },
+    "dynamic": false
+  },
+  {
+    "opcode": "data_deleteoflist",
+    "sourceFile": "blocks_vertical/data.js",
+    "inputs": {
+      "INDEX": "value"
+    },
+    "fields": {
+      "LIST": "field_variable"
+    },
+    "dynamic": false
+  },
+  {
+    "opcode": "data_hidelist",
+    "sourceFile": "blocks_vertical/data.js",
+    "inputs": {},
+    "fields": {
+      "LIST": "field_variable"
+    },
+    "dynamic": false
+  },
+  {
+    "opcode": "data_hidevariable",
+    "sourceFile": "blocks_vertical/data.js",
+    "inputs": {},
+    "fields": {
+      "VARIABLE": "field_variable"
+    },
+    "dynamic": false
+  },
+  {
+    "opcode": "data_insertatlist",
+    "sourceFile": "blocks_vertical/data.js",
+    "inputs": {
+      "ITEM": "value",
+      "INDEX": "value"
+    },
+    "fields": {
+      "LIST": "field_variable"
+    },
+    "dynamic": false
+  },
+  {
+    "opcode": "data_itemnumoflist",
+    "sourceFile": "blocks_vertical/data.js",
+    "inputs": {
+      "ITEM": "value"
+    },
+    "fields": {
+      "LIST": "field_variable"
+    },
+    "dynamic": false
+  },
+  {
+    "opcode": "data_itemoflist",
+    "sourceFile": "blocks_vertical/data.js",
+    "inputs": {
+      "INDEX": "value"
+    },
+    "fields": {
+      "LIST": "field_variable"
+    },
+    "dynamic": false
+  },
+  {
+    "opcode": "data_lengthoflist",
+    "sourceFile": "blocks_vertical/data.js",
+    "inputs": {},
+    "fields": {
+      "LIST": "field_variable"
+    },
+    "dynamic": false
+  },
+  {
+    "opcode": "data_listcontainsitem",
+    "sourceFile": "blocks_vertical/data.js",
+    "inputs": {
+      "ITEM": "value"
+    },
+    "fields": {
+      "LIST": "field_variable"
+    },
+    "dynamic": false
+  },
+  {
+    "opcode": "data_listcontents",
+    "sourceFile": "blocks_vertical/data.js",
+    "inputs": {},
+    "fields": {
+      "LIST": "field_variable_getter"
+    },
+    "dynamic": false
+  },
+  {
+    "opcode": "data_listindexall",
+    "sourceFile": "blocks_vertical/data.js",
+    "inputs": {},
+    "fields": {
+      "INDEX": "field_numberdropdown"
+    },
+    "dynamic": false
+  },
+  {
+    "opcode": "data_listindexrandom",
+    "sourceFile": "blocks_vertical/data.js",
+    "inputs": {},
+    "fields": {
+      "INDEX": "field_numberdropdown"
+    },
+    "dynamic": false
+  },
+  {
+    "opcode": "data_replaceitemoflist",
+    "sourceFile": "blocks_vertical/data.js",
+    "inputs": {
+      "INDEX": "value",
+      "ITEM": "value"
+    },
+    "fields": {
+      "LIST": "field_variable"
+    },
+    "dynamic": false
+  },
+  {
+    "opcode": "data_setvariableto",
+    "sourceFile": "blocks_vertical/data.js",
+    "inputs": {
+      "VALUE": "value"
+    },
+    "fields": {
+      "VARIABLE": "field_variable"
+    },
+    "dynamic": false
+  },
+  {
+    "opcode": "data_showlist",
+    "sourceFile": "blocks_vertical/data.js",
+    "inputs": {},
+    "fields": {
+      "LIST": "field_variable"
+    },
+    "dynamic": false
+  },
+  {
+    "opcode": "data_showvariable",
+    "sourceFile": "blocks_vertical/data.js",
+    "inputs": {},
+    "fields": {
+      "VARIABLE": "field_variable"
+    },
+    "dynamic": false
+  },
+  {
+    "opcode": "data_variable",
+    "sourceFile": "blocks_vertical/data.js",
+    "inputs": {},
+    "fields": {
+      "VARIABLE": "field_variable_getter"
+    },
+    "dynamic": false
+  },
+  {
+    "opcode": "event_broadcast",
+    "sourceFile": "blocks_vertical/event.js",
+    "inputs": {
+      "BROADCAST_INPUT": "value"
+    },
+    "fields": {},
+    "dynamic": false
+  },
+  {
+    "opcode": "event_broadcast_menu",
+    "sourceFile": "blocks_vertical/event.js",
+    "inputs": {},
+    "fields": {
+      "BROADCAST_OPTION": "field_variable"
+    },
+    "dynamic": false
+  },
+  {
+    "opcode": "event_broadcastandwait",
+    "sourceFile": "blocks_vertical/event.js",
+    "inputs": {
+      "BROADCAST_INPUT": "value"
+    },
+    "fields": {},
+    "dynamic": false
+  },
+  {
+    "opcode": "event_touchingobjectmenu",
+    "sourceFile": "blocks_vertical/event.js",
+    "inputs": {},
+    "fields": {
+      "TOUCHINGOBJECTMENU": "field_dropdown"
+    },
+    "dynamic": false
+  },
+  {
+    "opcode": "event_whenbackdropswitchesto",
+    "sourceFile": "blocks_vertical/event.js",
+    "inputs": {},
+    "fields": {
+      "BACKDROP": "field_dropdown"
+    },
+    "dynamic": false
+  },
+  {
+    "opcode": "event_whenbroadcastreceived",
+    "sourceFile": "blocks_vertical/event.js",
+    "inputs": {},
+    "fields": {
+      "BROADCAST_OPTION": "field_variable"
+    },
+    "dynamic": false
+  },
+  {
+    "opcode": "event_whenflagclicked",
+    "sourceFile": "blocks_vertical/event.js",
+    "inputs": {},
+    "fields": {},
+    "dynamic": false
+  },
+  {
+    "opcode": "event_whengreaterthan",
+    "sourceFile": "blocks_vertical/event.js",
+    "inputs": {
+      "VALUE": "value"
+    },
+    "fields": {
+      "WHENGREATERTHANMENU": "field_dropdown"
+    },
+    "dynamic": false
+  },
+  {
+    "opcode": "event_whenkeypressed",
+    "sourceFile": "blocks_vertical/event.js",
+    "inputs": {},
+    "fields": {
+      "KEY_OPTION": "field_dropdown"
+    },
+    "dynamic": false
+  },
+  {
+    "opcode": "event_whenstageclicked",
+    "sourceFile": "blocks_vertical/event.js",
+    "inputs": {},
+    "fields": {},
+    "dynamic": false
+  },
+  {
+    "opcode": "event_whenthisspriteclicked",
+    "sourceFile": "blocks_vertical/event.js",
+    "inputs": {},
+    "fields": {},
+    "dynamic": false
+  },
+  {
+    "opcode": "event_whentouchingobject",
+    "sourceFile": "blocks_vertical/event.js",
+    "inputs": {
+      "TOUCHINGOBJECTMENU": "value"
+    },
+    "fields": {},
+    "dynamic": false
+  },
+  {
+    "opcode": "looks_backdropnumbername",
+    "sourceFile": "blocks_vertical/looks.js",
+    "inputs": {},
+    "fields": {
+      "NUMBER_NAME": "field_dropdown"
+    },
+    "dynamic": false
+  },
+  {
+    "opcode": "looks_backdrops",
+    "sourceFile": "blocks_vertical/looks.js",
+    "inputs": {},
+    "fields": {
+      "BACKDROP": "field_dropdown"
+    },
+    "dynamic": false
+  },
+  {
+    "opcode": "looks_changeeffectby",
+    "sourceFile": "blocks_vertical/looks.js",
+    "inputs": {
+      "CHANGE": "value"
+    },
+    "fields": {
+      "EFFECT": "field_dropdown"
+    },
+    "dynamic": false
+  },
+  {
+    "opcode": "looks_changesizeby",
+    "sourceFile": "blocks_vertical/looks.js",
+    "inputs": {
+      "CHANGE": "value"
+    },
+    "fields": {},
+    "dynamic": false
+  },
+  {
+    "opcode": "looks_changestretchby",
+    "sourceFile": "blocks_vertical/looks.js",
+    "inputs": {
+      "CHANGE": "value"
+    },
+    "fields": {},
+    "dynamic": false
+  },
+  {
+    "opcode": "looks_cleargraphiceffects",
+    "sourceFile": "blocks_vertical/looks.js",
+    "inputs": {},
+    "fields": {},
+    "dynamic": false
+  },
+  {
+    "opcode": "looks_costume",
+    "sourceFile": "blocks_vertical/looks.js",
+    "inputs": {},
+    "fields": {
+      "COSTUME": "field_dropdown"
+    },
+    "dynamic": false
+  },
+  {
+    "opcode": "looks_costumenumbername",
+    "sourceFile": "blocks_vertical/looks.js",
+    "inputs": {},
+    "fields": {
+      "NUMBER_NAME": "field_dropdown"
+    },
+    "dynamic": false
+  },
+  {
+    "opcode": "looks_goforwardbackwardlayers",
+    "sourceFile": "blocks_vertical/looks.js",
+    "inputs": {
+      "NUM": "value"
+    },
+    "fields": {
+      "FORWARD_BACKWARD": "field_dropdown"
+    },
+    "dynamic": false
+  },
+  {
+    "opcode": "looks_gotofrontback",
+    "sourceFile": "blocks_vertical/looks.js",
+    "inputs": {},
+    "fields": {
+      "FRONT_BACK": "field_dropdown"
+    },
+    "dynamic": false
+  },
+  {
+    "opcode": "looks_hide",
+    "sourceFile": "blocks_vertical/looks.js",
+    "inputs": {},
+    "fields": {},
+    "dynamic": false
+  },
+  {
+    "opcode": "looks_hideallsprites",
+    "sourceFile": "blocks_vertical/looks.js",
+    "inputs": {},
+    "fields": {},
+    "dynamic": false
+  },
+  {
+    "opcode": "looks_nextbackdrop",
+    "sourceFile": "blocks_vertical/looks.js",
+    "inputs": {},
+    "fields": {},
+    "dynamic": false
+  },
+  {
+    "opcode": "looks_nextcostume",
+    "sourceFile": "blocks_vertical/looks.js",
+    "inputs": {},
+    "fields": {},
+    "dynamic": false
+  },
+  {
+    "opcode": "looks_say",
+    "sourceFile": "blocks_vertical/looks.js",
+    "inputs": {
+      "MESSAGE": "value"
+    },
+    "fields": {},
+    "dynamic": false
+  },
+  {
+    "opcode": "looks_sayforsecs",
+    "sourceFile": "blocks_vertical/looks.js",
+    "inputs": {
+      "MESSAGE": "value",
+      "SECS": "value"
+    },
+    "fields": {},
+    "dynamic": false
+  },
+  {
+    "opcode": "looks_seteffectto",
+    "sourceFile": "blocks_vertical/looks.js",
+    "inputs": {
+      "VALUE": "value"
+    },
+    "fields": {
+      "EFFECT": "field_dropdown"
+    },
+    "dynamic": false
+  },
+  {
+    "opcode": "looks_setsizeto",
+    "sourceFile": "blocks_vertical/looks.js",
+    "inputs": {
+      "SIZE": "value"
+    },
+    "fields": {},
+    "dynamic": false
+  },
+  {
+    "opcode": "looks_setstretchto",
+    "sourceFile": "blocks_vertical/looks.js",
+    "inputs": {
+      "STRETCH": "value"
+    },
+    "fields": {},
+    "dynamic": false
+  },
+  {
+    "opcode": "looks_show",
+    "sourceFile": "blocks_vertical/looks.js",
+    "inputs": {},
+    "fields": {},
+    "dynamic": false
+  },
+  {
+    "opcode": "looks_size",
+    "sourceFile": "blocks_vertical/looks.js",
+    "inputs": {},
+    "fields": {},
+    "dynamic": false
+  },
+  {
+    "opcode": "looks_switchbackdropto",
+    "sourceFile": "blocks_vertical/looks.js",
+    "inputs": {
+      "BACKDROP": "value"
+    },
+    "fields": {},
+    "dynamic": false
+  },
+  {
+    "opcode": "looks_switchbackdroptoandwait",
+    "sourceFile": "blocks_vertical/looks.js",
+    "inputs": {
+      "BACKDROP": "value"
+    },
+    "fields": {},
+    "dynamic": false
+  },
+  {
+    "opcode": "looks_switchcostumeto",
+    "sourceFile": "blocks_vertical/looks.js",
+    "inputs": {
+      "COSTUME": "value"
+    },
+    "fields": {},
+    "dynamic": false
+  },
+  {
+    "opcode": "looks_think",
+    "sourceFile": "blocks_vertical/looks.js",
+    "inputs": {
+      "MESSAGE": "value"
+    },
+    "fields": {},
+    "dynamic": false
+  },
+  {
+    "opcode": "looks_thinkforsecs",
+    "sourceFile": "blocks_vertical/looks.js",
+    "inputs": {
+      "MESSAGE": "value",
+      "SECS": "value"
+    },
+    "fields": {},
+    "dynamic": false
+  },
+  {
+    "opcode": "math_angle",
+    "sourceFile": "blocks_common/math.js",
+    "inputs": {},
+    "fields": {
+      "NUM": "field_angle"
+    },
+    "dynamic": false
+  },
+  {
+    "opcode": "math_integer",
+    "sourceFile": "blocks_common/math.js",
+    "inputs": {},
+    "fields": {
+      "NUM": "field_number"
+    },
+    "dynamic": false
+  },
+  {
+    "opcode": "math_number",
+    "sourceFile": "blocks_common/math.js",
+    "inputs": {},
+    "fields": {
+      "NUM": "field_number"
+    },
+    "dynamic": false
+  },
+  {
+    "opcode": "math_positive_number",
+    "sourceFile": "blocks_common/math.js",
+    "inputs": {},
+    "fields": {
+      "NUM": "field_number"
+    },
+    "dynamic": false
+  },
+  {
+    "opcode": "math_whole_number",
+    "sourceFile": "blocks_common/math.js",
+    "inputs": {},
+    "fields": {
+      "NUM": "field_number"
+    },
+    "dynamic": false
+  },
+  {
+    "opcode": "matrix",
+    "sourceFile": "blocks_common/matrix.js",
+    "inputs": {},
+    "fields": {
+      "MATRIX": "field_matrix"
+    },
+    "dynamic": false
+  },
+  {
+    "opcode": "motion_align_scene",
+    "sourceFile": "blocks_vertical/motion.js",
+    "inputs": {},
+    "fields": {
+      "ALIGNMENT": "field_dropdown"
+    },
+    "dynamic": false
+  },
+  {
+    "opcode": "motion_changexby",
+    "sourceFile": "blocks_vertical/motion.js",
+    "inputs": {
+      "DX": "value"
+    },
+    "fields": {},
+    "dynamic": false
+  },
+  {
+    "opcode": "motion_changeyby",
+    "sourceFile": "blocks_vertical/motion.js",
+    "inputs": {
+      "DY": "value"
+    },
+    "fields": {},
+    "dynamic": false
+  },
+  {
+    "opcode": "motion_direction",
+    "sourceFile": "blocks_vertical/motion.js",
+    "inputs": {},
+    "fields": {},
+    "dynamic": false
+  },
+  {
+    "opcode": "motion_glidesecstoxy",
+    "sourceFile": "blocks_vertical/motion.js",
+    "inputs": {
+      "SECS": "value",
+      "X": "value",
+      "Y": "value"
+    },
+    "fields": {},
+    "dynamic": false
+  },
+  {
+    "opcode": "motion_glideto",
+    "sourceFile": "blocks_vertical/motion.js",
+    "inputs": {
+      "SECS": "value",
+      "TO": "value"
+    },
+    "fields": {},
+    "dynamic": false
+  },
+  {
+    "opcode": "motion_glideto_menu",
+    "sourceFile": "blocks_vertical/motion.js",
+    "inputs": {},
+    "fields": {
+      "TO": "field_dropdown"
+    },
+    "dynamic": false
+  },
+  {
+    "opcode": "motion_goto",
+    "sourceFile": "blocks_vertical/motion.js",
+    "inputs": {
+      "TO": "value"
+    },
+    "fields": {},
+    "dynamic": false
+  },
+  {
+    "opcode": "motion_goto_menu",
+    "sourceFile": "blocks_vertical/motion.js",
+    "inputs": {},
+    "fields": {
+      "TO": "field_dropdown"
+    },
+    "dynamic": false
+  },
+  {
+    "opcode": "motion_gotoxy",
+    "sourceFile": "blocks_vertical/motion.js",
+    "inputs": {
+      "X": "value",
+      "Y": "value"
+    },
+    "fields": {},
+    "dynamic": false
+  },
+  {
+    "opcode": "motion_ifonedgebounce",
+    "sourceFile": "blocks_vertical/motion.js",
+    "inputs": {},
+    "fields": {},
+    "dynamic": false
+  },
+  {
+    "opcode": "motion_movesteps",
+    "sourceFile": "blocks_vertical/motion.js",
+    "inputs": {
+      "STEPS": "value"
+    },
+    "fields": {},
+    "dynamic": false
+  },
+  {
+    "opcode": "motion_pointindirection",
+    "sourceFile": "blocks_vertical/motion.js",
+    "inputs": {
+      "DIRECTION": "value"
+    },
+    "fields": {},
+    "dynamic": false
+  },
+  {
+    "opcode": "motion_pointtowards",
+    "sourceFile": "blocks_vertical/motion.js",
+    "inputs": {
+      "TOWARDS": "value"
+    },
+    "fields": {},
+    "dynamic": false
+  },
+  {
+    "opcode": "motion_pointtowards_menu",
+    "sourceFile": "blocks_vertical/motion.js",
+    "inputs": {},
+    "fields": {
+      "TOWARDS": "field_dropdown"
+    },
+    "dynamic": false
+  },
+  {
+    "opcode": "motion_scroll_right",
+    "sourceFile": "blocks_vertical/motion.js",
+    "inputs": {
+      "DISTANCE": "value"
+    },
+    "fields": {},
+    "dynamic": false
+  },
+  {
+    "opcode": "motion_scroll_up",
+    "sourceFile": "blocks_vertical/motion.js",
+    "inputs": {
+      "DISTANCE": "value"
+    },
+    "fields": {},
+    "dynamic": false
+  },
+  {
+    "opcode": "motion_setrotationstyle",
+    "sourceFile": "blocks_vertical/motion.js",
+    "inputs": {},
+    "fields": {
+      "STYLE": "field_dropdown"
+    },
+    "dynamic": false
+  },
+  {
+    "opcode": "motion_setx",
+    "sourceFile": "blocks_vertical/motion.js",
+    "inputs": {
+      "X": "value"
+    },
+    "fields": {},
+    "dynamic": false
+  },
+  {
+    "opcode": "motion_sety",
+    "sourceFile": "blocks_vertical/motion.js",
+    "inputs": {
+      "Y": "value"
+    },
+    "fields": {},
+    "dynamic": false
+  },
+  {
+    "opcode": "motion_turnleft",
+    "sourceFile": "blocks_vertical/motion.js",
+    "inputs": {
+      "DEGREES": "value"
+    },
+    "fields": {},
+    "dynamic": false
+  },
+  {
+    "opcode": "motion_turnright",
+    "sourceFile": "blocks_vertical/motion.js",
+    "inputs": {
+      "DEGREES": "value"
+    },
+    "fields": {},
+    "dynamic": false
+  },
+  {
+    "opcode": "motion_xposition",
+    "sourceFile": "blocks_vertical/motion.js",
+    "inputs": {},
+    "fields": {},
+    "dynamic": false
+  },
+  {
+    "opcode": "motion_xscroll",
+    "sourceFile": "blocks_vertical/motion.js",
+    "inputs": {},
+    "fields": {},
+    "dynamic": false
+  },
+  {
+    "opcode": "motion_yposition",
+    "sourceFile": "blocks_vertical/motion.js",
+    "inputs": {},
+    "fields": {},
+    "dynamic": false
+  },
+  {
+    "opcode": "motion_yscroll",
+    "sourceFile": "blocks_vertical/motion.js",
+    "inputs": {},
+    "fields": {},
+    "dynamic": false
+  },
+  {
+    "opcode": "note",
+    "sourceFile": "blocks_common/note.js",
+    "inputs": {},
+    "fields": {
+      "NOTE": "field_note"
+    },
+    "dynamic": false
+  },
+  {
+    "opcode": "operator_add",
+    "sourceFile": "blocks_vertical/operators.js",
+    "inputs": {
+      "NUM1": "value",
+      "NUM2": "value"
+    },
+    "fields": {},
+    "dynamic": false
+  },
+  {
+    "opcode": "operator_and",
+    "sourceFile": "blocks_vertical/operators.js",
+    "inputs": {
+      "OPERAND1": "value",
+      "OPERAND2": "value"
+    },
+    "fields": {},
+    "dynamic": false
+  },
+  {
+    "opcode": "operator_contains",
+    "sourceFile": "blocks_vertical/operators.js",
+    "inputs": {
+      "STRING1": "value",
+      "STRING2": "value"
+    },
+    "fields": {},
+    "dynamic": false
+  },
+  {
+    "opcode": "operator_divide",
+    "sourceFile": "blocks_vertical/operators.js",
+    "inputs": {
+      "NUM1": "value",
+      "NUM2": "value"
+    },
+    "fields": {},
+    "dynamic": false
+  },
+  {
+    "opcode": "operator_equals",
+    "sourceFile": "blocks_vertical/operators.js",
+    "inputs": {
+      "OPERAND1": "value",
+      "OPERAND2": "value"
+    },
+    "fields": {},
+    "dynamic": false
+  },
+  {
+    "opcode": "operator_gt",
+    "sourceFile": "blocks_vertical/operators.js",
+    "inputs": {
+      "OPERAND1": "value",
+      "OPERAND2": "value"
+    },
+    "fields": {},
+    "dynamic": false
+  },
+  {
+    "opcode": "operator_join",
+    "sourceFile": "blocks_vertical/operators.js",
+    "inputs": {
+      "STRING1": "value",
+      "STRING2": "value"
+    },
+    "fields": {},
+    "dynamic": false
+  },
+  {
+    "opcode": "operator_length",
+    "sourceFile": "blocks_vertical/operators.js",
+    "inputs": {
+      "STRING": "value"
+    },
+    "fields": {},
+    "dynamic": false
+  },
+  {
+    "opcode": "operator_letter_of",
+    "sourceFile": "blocks_vertical/operators.js",
+    "inputs": {
+      "LETTER": "value",
+      "STRING": "value"
+    },
+    "fields": {},
+    "dynamic": false
+  },
+  {
+    "opcode": "operator_lt",
+    "sourceFile": "blocks_vertical/operators.js",
+    "inputs": {
+      "OPERAND1": "value",
+      "OPERAND2": "value"
+    },
+    "fields": {},
+    "dynamic": false
+  },
+  {
+    "opcode": "operator_mathop",
+    "sourceFile": "blocks_vertical/operators.js",
+    "inputs": {
+      "NUM": "value"
+    },
+    "fields": {
+      "OPERATOR": "field_dropdown"
+    },
+    "dynamic": false
+  },
+  {
+    "opcode": "operator_mod",
+    "sourceFile": "blocks_vertical/operators.js",
+    "inputs": {
+      "NUM1": "value",
+      "NUM2": "value"
+    },
+    "fields": {},
+    "dynamic": false
+  },
+  {
+    "opcode": "operator_multiply",
+    "sourceFile": "blocks_vertical/operators.js",
+    "inputs": {
+      "NUM1": "value",
+      "NUM2": "value"
+    },
+    "fields": {},
+    "dynamic": false
+  },
+  {
+    "opcode": "operator_not",
+    "sourceFile": "blocks_vertical/operators.js",
+    "inputs": {
+      "OPERAND": "value"
+    },
+    "fields": {},
+    "dynamic": false
+  },
+  {
+    "opcode": "operator_or",
+    "sourceFile": "blocks_vertical/operators.js",
+    "inputs": {
+      "OPERAND1": "value",
+      "OPERAND2": "value"
+    },
+    "fields": {},
+    "dynamic": false
+  },
+  {
+    "opcode": "operator_random",
+    "sourceFile": "blocks_vertical/operators.js",
+    "inputs": {
+      "FROM": "value",
+      "TO": "value"
+    },
+    "fields": {},
+    "dynamic": false
+  },
+  {
+    "opcode": "operator_round",
+    "sourceFile": "blocks_vertical/operators.js",
+    "inputs": {
+      "NUM": "value"
+    },
+    "fields": {},
+    "dynamic": false
+  },
+  {
+    "opcode": "operator_subtract",
+    "sourceFile": "blocks_vertical/operators.js",
+    "inputs": {
+      "NUM1": "value",
+      "NUM2": "value"
+    },
+    "fields": {},
+    "dynamic": false
+  },
+  {
+    "opcode": "procedures_call",
+    "sourceFile": "blocks_vertical/procedures.js",
+    "inputs": {},
+    "fields": {},
+    "dynamic": true
+  },
+  {
+    "opcode": "procedures_definition",
+    "sourceFile": "blocks_vertical/procedures.js",
+    "inputs": {
+      "custom_block": "statement"
+    },
+    "fields": {},
+    "dynamic": false
+  },
+  {
+    "opcode": "procedures_prototype",
+    "sourceFile": "blocks_vertical/procedures.js",
+    "inputs": {},
+    "fields": {},
+    "dynamic": true
+  },
+  {
+    "opcode": "procedures_return",
+    "sourceFile": "blocks_vertical/procedures.js",
+    "inputs": {
+      "VALUE": "value"
+    },
+    "fields": {},
+    "dynamic": false
+  },
+  {
+    "opcode": "sensing_answer",
+    "sourceFile": "blocks_vertical/sensing.js",
+    "inputs": {},
+    "fields": {},
+    "dynamic": false
+  },
+  {
+    "opcode": "sensing_askandwait",
+    "sourceFile": "blocks_vertical/sensing.js",
+    "inputs": {
+      "QUESTION": "value"
+    },
+    "fields": {},
+    "dynamic": false
+  },
+  {
+    "opcode": "sensing_coloristouchingcolor",
+    "sourceFile": "blocks_vertical/sensing.js",
+    "inputs": {
+      "COLOR": "value",
+      "COLOR2": "value"
+    },
+    "fields": {},
+    "dynamic": false
+  },
+  {
+    "opcode": "sensing_current",
+    "sourceFile": "blocks_vertical/sensing.js",
+    "inputs": {},
+    "fields": {
+      "CURRENTMENU": "field_dropdown"
+    },
+    "dynamic": false
+  },
+  {
+    "opcode": "sensing_dayssince2000",
+    "sourceFile": "blocks_vertical/sensing.js",
+    "inputs": {},
+    "fields": {},
+    "dynamic": false
+  },
+  {
+    "opcode": "sensing_distanceto",
+    "sourceFile": "blocks_vertical/sensing.js",
+    "inputs": {
+      "DISTANCETOMENU": "value"
+    },
+    "fields": {},
+    "dynamic": false
+  },
+  {
+    "opcode": "sensing_distancetomenu",
+    "sourceFile": "blocks_vertical/sensing.js",
+    "inputs": {},
+    "fields": {
+      "DISTANCETOMENU": "field_dropdown"
+    },
+    "dynamic": false
+  },
+  {
+    "opcode": "sensing_keyoptions",
+    "sourceFile": "blocks_vertical/sensing.js",
+    "inputs": {},
+    "fields": {
+      "KEY_OPTION": "field_dropdown"
+    },
+    "dynamic": false
+  },
+  {
+    "opcode": "sensing_keypressed",
+    "sourceFile": "blocks_vertical/sensing.js",
+    "inputs": {
+      "KEY_OPTION": "value"
+    },
+    "fields": {},
+    "dynamic": false
+  },
+  {
+    "opcode": "sensing_loud",
+    "sourceFile": "blocks_vertical/sensing.js",
+    "inputs": {},
+    "fields": {},
+    "dynamic": false
+  },
+  {
+    "opcode": "sensing_loudness",
+    "sourceFile": "blocks_vertical/sensing.js",
+    "inputs": {},
+    "fields": {},
+    "dynamic": false
+  },
+  {
+    "opcode": "sensing_mousedown",
+    "sourceFile": "blocks_vertical/sensing.js",
+    "inputs": {},
+    "fields": {},
+    "dynamic": false
+  },
+  {
+    "opcode": "sensing_mousex",
+    "sourceFile": "blocks_vertical/sensing.js",
+    "inputs": {},
+    "fields": {},
+    "dynamic": false
+  },
+  {
+    "opcode": "sensing_mousey",
+    "sourceFile": "blocks_vertical/sensing.js",
+    "inputs": {},
+    "fields": {},
+    "dynamic": false
+  },
+  {
+    "opcode": "sensing_of",
+    "sourceFile": "blocks_vertical/sensing.js",
+    "inputs": {
+      "OBJECT": "value"
+    },
+    "fields": {
+      "PROPERTY": "field_dropdown"
+    },
+    "dynamic": false
+  },
+  {
+    "opcode": "sensing_of_object_menu",
+    "sourceFile": "blocks_vertical/sensing.js",
+    "inputs": {},
+    "fields": {
+      "OBJECT": "field_dropdown"
+    },
+    "dynamic": false
+  },
+  {
+    "opcode": "sensing_online",
+    "sourceFile": "blocks_vertical/sensing.js",
+    "inputs": {},
+    "fields": {},
+    "dynamic": false
+  },
+  {
+    "opcode": "sensing_resettimer",
+    "sourceFile": "blocks_vertical/sensing.js",
+    "inputs": {},
+    "fields": {},
+    "dynamic": false
+  },
+  {
+    "opcode": "sensing_setdragmode",
+    "sourceFile": "blocks_vertical/sensing.js",
+    "inputs": {},
+    "fields": {
+      "DRAG_MODE": "field_dropdown"
+    },
+    "dynamic": false
+  },
+  {
+    "opcode": "sensing_timer",
+    "sourceFile": "blocks_vertical/sensing.js",
+    "inputs": {},
+    "fields": {},
+    "dynamic": false
+  },
+  {
+    "opcode": "sensing_touchingcolor",
+    "sourceFile": "blocks_vertical/sensing.js",
+    "inputs": {
+      "COLOR": "value"
+    },
+    "fields": {},
+    "dynamic": false
+  },
+  {
+    "opcode": "sensing_touchingobject",
+    "sourceFile": "blocks_vertical/sensing.js",
+    "inputs": {
+      "TOUCHINGOBJECTMENU": "value"
+    },
+    "fields": {},
+    "dynamic": false
+  },
+  {
+    "opcode": "sensing_touchingobjectmenu",
+    "sourceFile": "blocks_vertical/sensing.js",
+    "inputs": {},
+    "fields": {
+      "TOUCHINGOBJECTMENU": "field_dropdown"
+    },
+    "dynamic": false
+  },
+  {
+    "opcode": "sensing_userid",
+    "sourceFile": "blocks_vertical/sensing.js",
+    "inputs": {},
+    "fields": {},
+    "dynamic": false
+  },
+  {
+    "opcode": "sensing_username",
+    "sourceFile": "blocks_vertical/sensing.js",
+    "inputs": {},
+    "fields": {},
+    "dynamic": false
+  },
+  {
+    "opcode": "sound_changeeffectby",
+    "sourceFile": "blocks_vertical/sound.js",
+    "inputs": {
+      "VALUE": "value"
+    },
+    "fields": {
+      "EFFECT": "field_dropdown"
+    },
+    "dynamic": false
+  },
+  {
+    "opcode": "sound_changevolumeby",
+    "sourceFile": "blocks_vertical/sound.js",
+    "inputs": {
+      "VOLUME": "value"
+    },
+    "fields": {},
+    "dynamic": false
+  },
+  {
+    "opcode": "sound_cleareffects",
+    "sourceFile": "blocks_vertical/sound.js",
+    "inputs": {},
+    "fields": {},
+    "dynamic": false
+  },
+  {
+    "opcode": "sound_play",
+    "sourceFile": "blocks_vertical/sound.js",
+    "inputs": {
+      "SOUND_MENU": "value"
+    },
+    "fields": {},
+    "dynamic": false
+  },
+  {
+    "opcode": "sound_playuntildone",
+    "sourceFile": "blocks_vertical/sound.js",
+    "inputs": {
+      "SOUND_MENU": "value"
+    },
+    "fields": {},
+    "dynamic": false
+  },
+  {
+    "opcode": "sound_seteffectto",
+    "sourceFile": "blocks_vertical/sound.js",
+    "inputs": {
+      "VALUE": "value"
+    },
+    "fields": {
+      "EFFECT": "field_dropdown"
+    },
+    "dynamic": false
+  },
+  {
+    "opcode": "sound_setvolumeto",
+    "sourceFile": "blocks_vertical/sound.js",
+    "inputs": {
+      "VOLUME": "value"
+    },
+    "fields": {},
+    "dynamic": false
+  },
+  {
+    "opcode": "sound_sounds_menu",
+    "sourceFile": "blocks_vertical/sound.js",
+    "inputs": {},
+    "fields": {
+      "SOUND_MENU": "field_dropdown"
+    },
+    "dynamic": false
+  },
+  {
+    "opcode": "sound_stopallsounds",
+    "sourceFile": "blocks_vertical/sound.js",
+    "inputs": {},
+    "fields": {},
+    "dynamic": false
+  },
+  {
+    "opcode": "sound_volume",
+    "sourceFile": "blocks_vertical/sound.js",
+    "inputs": {},
+    "fields": {},
+    "dynamic": false
+  },
+  {
+    "opcode": "text",
+    "sourceFile": "blocks_common/text.js",
+    "inputs": {},
+    "fields": {
+      "TEXT": "field_input"
+    },
+    "dynamic": false
+  }
+]

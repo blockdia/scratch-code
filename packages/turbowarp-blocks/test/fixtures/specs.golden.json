@@ -1,0 +1,3364 @@
+[
+  {
+    "opcode": "motion_align_scene",
+    "shape": "command",
+    "inputs": {},
+    "fields": {
+      "ALIGNMENT": {
+        "type": "dropdown",
+        "default": {
+          "kind": "field",
+          "type": "dropdown",
+          "value": "bottom-left"
+        },
+        "metadata": {
+          "scratchBlocks": {
+            "blockJson": {
+              "type": "field_dropdown"
+            }
+          }
+        }
+      }
+    }
+  },
+  {
+    "opcode": "motion_changexby",
+    "shape": "command",
+    "inputs": {
+      "DX": {
+        "connection": "value",
+        "accepts": "number",
+        "default": {
+          "kind": "input",
+          "type": "number",
+          "value": "10",
+          "metadata": {
+            "scratch": {
+              "numericKind": "number"
+            }
+          }
+        }
+      }
+    },
+    "fields": {}
+  },
+  {
+    "opcode": "motion_changeyby",
+    "shape": "command",
+    "inputs": {
+      "DY": {
+        "connection": "value",
+        "accepts": "number",
+        "default": {
+          "kind": "input",
+          "type": "number",
+          "value": "10",
+          "metadata": {
+            "scratch": {
+              "numericKind": "number"
+            }
+          }
+        }
+      }
+    },
+    "fields": {}
+  },
+  {
+    "opcode": "motion_direction",
+    "shape": "reporter",
+    "outputType": "number",
+    "inputs": {},
+    "fields": {}
+  },
+  {
+    "opcode": "motion_glidesecstoxy",
+    "shape": "command",
+    "inputs": {
+      "SECS": {
+        "connection": "value",
+        "accepts": "number",
+        "default": {
+          "kind": "input",
+          "type": "number",
+          "value": "1",
+          "metadata": {
+            "scratch": {
+              "numericKind": "number"
+            }
+          }
+        }
+      },
+      "X": {
+        "connection": "value",
+        "accepts": "number",
+        "default": {
+          "kind": "input",
+          "type": "number",
+          "value": "0",
+          "metadata": {
+            "scratch": {
+              "numericKind": "number"
+            }
+          }
+        }
+      },
+      "Y": {
+        "connection": "value",
+        "accepts": "number",
+        "default": {
+          "kind": "input",
+          "type": "number",
+          "value": "0",
+          "metadata": {
+            "scratch": {
+              "numericKind": "number"
+            }
+          }
+        }
+      }
+    },
+    "fields": {}
+  },
+  {
+    "opcode": "motion_glideto",
+    "shape": "command",
+    "inputs": {
+      "SECS": {
+        "connection": "value",
+        "accepts": "number",
+        "default": {
+          "kind": "input",
+          "type": "number",
+          "value": "1",
+          "metadata": {
+            "scratch": {
+              "numericKind": "number"
+            }
+          }
+        }
+      },
+      "TO": {
+        "connection": "value",
+        "accepts": "string",
+        "default": {
+          "kind": "input",
+          "type": "block",
+          "value": {
+            "kind": "block",
+            "opcode": "motion_glideto_menu",
+            "inputs": {},
+            "fields": {
+              "TO": {
+                "kind": "field",
+                "type": "dropdown",
+                "value": "_mouse_"
+              }
+            }
+          }
+        }
+      }
+    },
+    "fields": {}
+  },
+  {
+    "opcode": "motion_glideto_menu",
+    "shape": "reporter",
+    "outputType": "string",
+    "inputs": {},
+    "fields": {
+      "TO": {
+        "type": "dropdown",
+        "default": {
+          "kind": "field",
+          "type": "dropdown",
+          "value": "_mouse_"
+        },
+        "metadata": {
+          "scratchBlocks": {
+            "blockJson": {
+              "type": "field_dropdown"
+            }
+          }
+        }
+      }
+    }
+  },
+  {
+    "opcode": "motion_goto",
+    "shape": "command",
+    "inputs": {
+      "TO": {
+        "connection": "value",
+        "accepts": "string",
+        "default": {
+          "kind": "input",
+          "type": "block",
+          "value": {
+            "kind": "block",
+            "opcode": "motion_goto_menu",
+            "inputs": {},
+            "fields": {
+              "TO": {
+                "kind": "field",
+                "type": "dropdown",
+                "value": "_mouse_"
+              }
+            }
+          }
+        }
+      }
+    },
+    "fields": {}
+  },
+  {
+    "opcode": "motion_goto_menu",
+    "shape": "reporter",
+    "outputType": "string",
+    "inputs": {},
+    "fields": {
+      "TO": {
+        "type": "dropdown",
+        "default": {
+          "kind": "field",
+          "type": "dropdown",
+          "value": "_mouse_"
+        },
+        "metadata": {
+          "scratchBlocks": {
+            "blockJson": {
+              "type": "field_dropdown"
+            }
+          }
+        }
+      }
+    }
+  },
+  {
+    "opcode": "motion_gotoxy",
+    "shape": "command",
+    "inputs": {
+      "X": {
+        "connection": "value",
+        "accepts": "number",
+        "default": {
+          "kind": "input",
+          "type": "number",
+          "value": "0",
+          "metadata": {
+            "scratch": {
+              "numericKind": "number"
+            }
+          }
+        }
+      },
+      "Y": {
+        "connection": "value",
+        "accepts": "number",
+        "default": {
+          "kind": "input",
+          "type": "number",
+          "value": "0",
+          "metadata": {
+            "scratch": {
+              "numericKind": "number"
+            }
+          }
+        }
+      }
+    },
+    "fields": {}
+  },
+  {
+    "opcode": "motion_ifonedgebounce",
+    "shape": "command",
+    "inputs": {},
+    "fields": {}
+  },
+  {
+    "opcode": "motion_movesteps",
+    "shape": "command",
+    "inputs": {
+      "STEPS": {
+        "connection": "value",
+        "accepts": "number",
+        "default": {
+          "kind": "input",
+          "type": "number",
+          "value": "10",
+          "metadata": {
+            "scratch": {
+              "numericKind": "number"
+            }
+          }
+        }
+      }
+    },
+    "fields": {}
+  },
+  {
+    "opcode": "motion_pointindirection",
+    "shape": "command",
+    "inputs": {
+      "DIRECTION": {
+        "connection": "value",
+        "accepts": "number",
+        "default": {
+          "kind": "input",
+          "type": "number",
+          "value": "90",
+          "metadata": {
+            "scratch": {
+              "numericKind": "angle"
+            }
+          }
+        }
+      }
+    },
+    "fields": {}
+  },
+  {
+    "opcode": "motion_pointtowards",
+    "shape": "command",
+    "inputs": {
+      "TOWARDS": {
+        "connection": "value",
+        "accepts": "string",
+        "default": {
+          "kind": "input",
+          "type": "block",
+          "value": {
+            "kind": "block",
+            "opcode": "motion_pointtowards_menu",
+            "inputs": {},
+            "fields": {
+              "TOWARDS": {
+                "kind": "field",
+                "type": "dropdown",
+                "value": "_mouse_"
+              }
+            }
+          }
+        }
+      }
+    },
+    "fields": {}
+  },
+  {
+    "opcode": "motion_pointtowards_menu",
+    "shape": "reporter",
+    "outputType": "string",
+    "inputs": {},
+    "fields": {
+      "TOWARDS": {
+        "type": "dropdown",
+        "default": {
+          "kind": "field",
+          "type": "dropdown",
+          "value": "_mouse_"
+        },
+        "metadata": {
+          "scratchBlocks": {
+            "blockJson": {
+              "type": "field_dropdown"
+            }
+          }
+        }
+      }
+    }
+  },
+  {
+    "opcode": "motion_scroll_right",
+    "shape": "command",
+    "inputs": {
+      "DISTANCE": {
+        "connection": "value",
+        "accepts": "any"
+      }
+    },
+    "fields": {}
+  },
+  {
+    "opcode": "motion_scroll_up",
+    "shape": "command",
+    "inputs": {
+      "DISTANCE": {
+        "connection": "value",
+        "accepts": "any"
+      }
+    },
+    "fields": {}
+  },
+  {
+    "opcode": "motion_setrotationstyle",
+    "shape": "command",
+    "inputs": {},
+    "fields": {
+      "STYLE": {
+        "type": "dropdown",
+        "default": {
+          "kind": "field",
+          "type": "dropdown",
+          "value": "left-right"
+        },
+        "metadata": {
+          "scratchBlocks": {
+            "blockJson": {
+              "type": "field_dropdown"
+            }
+          }
+        }
+      }
+    }
+  },
+  {
+    "opcode": "motion_setx",
+    "shape": "command",
+    "inputs": {
+      "X": {
+        "connection": "value",
+        "accepts": "number",
+        "default": {
+          "kind": "input",
+          "type": "number",
+          "value": "0",
+          "metadata": {
+            "scratch": {
+              "numericKind": "number"
+            }
+          }
+        }
+      }
+    },
+    "fields": {}
+  },
+  {
+    "opcode": "motion_sety",
+    "shape": "command",
+    "inputs": {
+      "Y": {
+        "connection": "value",
+        "accepts": "number",
+        "default": {
+          "kind": "input",
+          "type": "number",
+          "value": "0",
+          "metadata": {
+            "scratch": {
+              "numericKind": "number"
+            }
+          }
+        }
+      }
+    },
+    "fields": {}
+  },
+  {
+    "opcode": "motion_turnleft",
+    "shape": "command",
+    "inputs": {
+      "DEGREES": {
+        "connection": "value",
+        "accepts": "number",
+        "default": {
+          "kind": "input",
+          "type": "number",
+          "value": "15",
+          "metadata": {
+            "scratch": {
+              "numericKind": "number"
+            }
+          }
+        }
+      }
+    },
+    "fields": {}
+  },
+  {
+    "opcode": "motion_turnright",
+    "shape": "command",
+    "inputs": {
+      "DEGREES": {
+        "connection": "value",
+        "accepts": "number",
+        "default": {
+          "kind": "input",
+          "type": "number",
+          "value": "15",
+          "metadata": {
+            "scratch": {
+              "numericKind": "number"
+            }
+          }
+        }
+      }
+    },
+    "fields": {}
+  },
+  {
+    "opcode": "motion_xposition",
+    "shape": "reporter",
+    "outputType": "number",
+    "inputs": {},
+    "fields": {}
+  },
+  {
+    "opcode": "motion_xscroll",
+    "shape": "reporter",
+    "outputType": "number",
+    "inputs": {},
+    "fields": {}
+  },
+  {
+    "opcode": "motion_yposition",
+    "shape": "reporter",
+    "outputType": "number",
+    "inputs": {},
+    "fields": {}
+  },
+  {
+    "opcode": "motion_yscroll",
+    "shape": "reporter",
+    "outputType": "number",
+    "inputs": {},
+    "fields": {}
+  },
+  {
+    "opcode": "looks_backdropnumbername",
+    "shape": "reporter",
+    "outputType": "number",
+    "inputs": {},
+    "fields": {
+      "NUMBER_NAME": {
+        "type": "dropdown",
+        "default": {
+          "kind": "field",
+          "type": "dropdown",
+          "value": "number"
+        },
+        "metadata": {
+          "scratchBlocks": {
+            "blockJson": {
+              "type": "field_dropdown"
+            }
+          }
+        }
+      }
+    }
+  },
+  {
+    "opcode": "looks_backdrops",
+    "shape": "reporter",
+    "outputType": "string",
+    "inputs": {},
+    "fields": {
+      "BACKDROP": {
+        "type": "dropdown",
+        "default": {
+          "kind": "field",
+          "type": "dropdown",
+          "value": "BACKDROP1"
+        },
+        "metadata": {
+          "scratchBlocks": {
+            "blockJson": {
+              "type": "field_dropdown"
+            }
+          }
+        }
+      }
+    }
+  },
+  {
+    "opcode": "looks_changeeffectby",
+    "shape": "command",
+    "inputs": {
+      "CHANGE": {
+        "connection": "value",
+        "accepts": "number",
+        "default": {
+          "kind": "input",
+          "type": "number",
+          "value": "10",
+          "metadata": {
+            "scratch": {
+              "numericKind": "number"
+            }
+          }
+        }
+      }
+    },
+    "fields": {
+      "EFFECT": {
+        "type": "dropdown",
+        "default": {
+          "kind": "field",
+          "type": "dropdown",
+          "value": "COLOR"
+        },
+        "metadata": {
+          "scratchBlocks": {
+            "blockJson": {
+              "type": "field_dropdown"
+            }
+          }
+        }
+      }
+    }
+  },
+  {
+    "opcode": "looks_changesizeby",
+    "shape": "command",
+    "inputs": {
+      "CHANGE": {
+        "connection": "value",
+        "accepts": "number",
+        "default": {
+          "kind": "input",
+          "type": "number",
+          "value": "10",
+          "metadata": {
+            "scratch": {
+              "numericKind": "number"
+            }
+          }
+        }
+      }
+    },
+    "fields": {}
+  },
+  {
+    "opcode": "looks_changestretchby",
+    "shape": "command",
+    "inputs": {
+      "CHANGE": {
+        "connection": "value",
+        "accepts": "number"
+      }
+    },
+    "fields": {}
+  },
+  {
+    "opcode": "looks_cleargraphiceffects",
+    "shape": "command",
+    "inputs": {},
+    "fields": {}
+  },
+  {
+    "opcode": "looks_costume",
+    "shape": "reporter",
+    "outputType": "string",
+    "inputs": {},
+    "fields": {
+      "COSTUME": {
+        "type": "dropdown",
+        "default": {
+          "kind": "field",
+          "type": "dropdown",
+          "value": "COSTUME1"
+        },
+        "metadata": {
+          "scratchBlocks": {
+            "blockJson": {
+              "type": "field_dropdown"
+            }
+          }
+        }
+      }
+    }
+  },
+  {
+    "opcode": "looks_costumenumbername",
+    "shape": "reporter",
+    "outputType": "number",
+    "inputs": {},
+    "fields": {
+      "NUMBER_NAME": {
+        "type": "dropdown",
+        "default": {
+          "kind": "field",
+          "type": "dropdown",
+          "value": "number"
+        },
+        "metadata": {
+          "scratchBlocks": {
+            "blockJson": {
+              "type": "field_dropdown"
+            }
+          }
+        }
+      }
+    }
+  },
+  {
+    "opcode": "looks_goforwardbackwardlayers",
+    "shape": "command",
+    "inputs": {
+      "NUM": {
+        "connection": "value",
+        "accepts": "number",
+        "default": {
+          "kind": "input",
+          "type": "number",
+          "value": "1",
+          "metadata": {
+            "scratch": {
+              "numericKind": "integer"
+            }
+          }
+        }
+      }
+    },
+    "fields": {
+      "FORWARD_BACKWARD": {
+        "type": "dropdown",
+        "default": {
+          "kind": "field",
+          "type": "dropdown",
+          "value": "forward"
+        },
+        "metadata": {
+          "scratchBlocks": {
+            "blockJson": {
+              "type": "field_dropdown"
+            }
+          }
+        }
+      }
+    }
+  },
+  {
+    "opcode": "looks_gotofrontback",
+    "shape": "command",
+    "inputs": {},
+    "fields": {
+      "FRONT_BACK": {
+        "type": "dropdown",
+        "default": {
+          "kind": "field",
+          "type": "dropdown",
+          "value": "front"
+        },
+        "metadata": {
+          "scratchBlocks": {
+            "blockJson": {
+              "type": "field_dropdown"
+            }
+          }
+        }
+      }
+    }
+  },
+  {
+    "opcode": "looks_hide",
+    "shape": "command",
+    "inputs": {},
+    "fields": {}
+  },
+  {
+    "opcode": "looks_hideallsprites",
+    "shape": "command",
+    "inputs": {},
+    "fields": {}
+  },
+  {
+    "opcode": "looks_nextbackdrop",
+    "shape": "command",
+    "inputs": {},
+    "fields": {}
+  },
+  {
+    "opcode": "looks_nextcostume",
+    "shape": "command",
+    "inputs": {},
+    "fields": {}
+  },
+  {
+    "opcode": "looks_say",
+    "shape": "command",
+    "inputs": {
+      "MESSAGE": {
+        "connection": "value",
+        "accepts": "string"
+      }
+    },
+    "fields": {}
+  },
+  {
+    "opcode": "looks_sayforsecs",
+    "shape": "command",
+    "inputs": {
+      "MESSAGE": {
+        "connection": "value",
+        "accepts": "string"
+      },
+      "SECS": {
+        "connection": "value",
+        "accepts": "number"
+      }
+    },
+    "fields": {}
+  },
+  {
+    "opcode": "looks_seteffectto",
+    "shape": "command",
+    "inputs": {
+      "VALUE": {
+        "connection": "value",
+        "accepts": "number",
+        "default": {
+          "kind": "input",
+          "type": "number",
+          "value": "10",
+          "metadata": {
+            "scratch": {
+              "numericKind": "number"
+            }
+          }
+        }
+      }
+    },
+    "fields": {
+      "EFFECT": {
+        "type": "dropdown",
+        "default": {
+          "kind": "field",
+          "type": "dropdown",
+          "value": "COLOR"
+        },
+        "metadata": {
+          "scratchBlocks": {
+            "blockJson": {
+              "type": "field_dropdown"
+            }
+          }
+        }
+      }
+    }
+  },
+  {
+    "opcode": "looks_setsizeto",
+    "shape": "command",
+    "inputs": {
+      "SIZE": {
+        "connection": "value",
+        "accepts": "number",
+        "default": {
+          "kind": "input",
+          "type": "number",
+          "value": "100",
+          "metadata": {
+            "scratch": {
+              "numericKind": "number"
+            }
+          }
+        }
+      }
+    },
+    "fields": {}
+  },
+  {
+    "opcode": "looks_setstretchto",
+    "shape": "command",
+    "inputs": {
+      "STRETCH": {
+        "connection": "value",
+        "accepts": "number"
+      }
+    },
+    "fields": {}
+  },
+  {
+    "opcode": "looks_show",
+    "shape": "command",
+    "inputs": {},
+    "fields": {}
+  },
+  {
+    "opcode": "looks_size",
+    "shape": "reporter",
+    "outputType": "number",
+    "inputs": {},
+    "fields": {}
+  },
+  {
+    "opcode": "looks_switchbackdropto",
+    "shape": "command",
+    "inputs": {
+      "BACKDROP": {
+        "connection": "value",
+        "accepts": "string",
+        "default": {
+          "kind": "input",
+          "type": "block",
+          "value": {
+            "kind": "block",
+            "opcode": "looks_backdrops",
+            "inputs": {},
+            "fields": {
+              "BACKDROP": {
+                "kind": "field",
+                "type": "dropdown",
+                "value": "BACKDROP1"
+              }
+            }
+          }
+        }
+      }
+    },
+    "fields": {}
+  },
+  {
+    "opcode": "looks_switchbackdroptoandwait",
+    "shape": "command",
+    "inputs": {
+      "BACKDROP": {
+        "connection": "value",
+        "accepts": "string",
+        "default": {
+          "kind": "input",
+          "type": "block",
+          "value": {
+            "kind": "block",
+            "opcode": "looks_backdrops",
+            "inputs": {},
+            "fields": {
+              "BACKDROP": {
+                "kind": "field",
+                "type": "dropdown",
+                "value": "BACKDROP1"
+              }
+            }
+          }
+        }
+      }
+    },
+    "fields": {}
+  },
+  {
+    "opcode": "looks_switchcostumeto",
+    "shape": "command",
+    "inputs": {
+      "COSTUME": {
+        "connection": "value",
+        "accepts": "string",
+        "default": {
+          "kind": "input",
+          "type": "block",
+          "value": {
+            "kind": "block",
+            "opcode": "looks_costume",
+            "inputs": {},
+            "fields": {
+              "COSTUME": {
+                "kind": "field",
+                "type": "dropdown",
+                "value": "COSTUME1"
+              }
+            }
+          }
+        }
+      }
+    },
+    "fields": {}
+  },
+  {
+    "opcode": "looks_think",
+    "shape": "command",
+    "inputs": {
+      "MESSAGE": {
+        "connection": "value",
+        "accepts": "string"
+      }
+    },
+    "fields": {}
+  },
+  {
+    "opcode": "looks_thinkforsecs",
+    "shape": "command",
+    "inputs": {
+      "MESSAGE": {
+        "connection": "value",
+        "accepts": "string"
+      },
+      "SECS": {
+        "connection": "value",
+        "accepts": "number"
+      }
+    },
+    "fields": {}
+  },
+  {
+    "opcode": "sound_changeeffectby",
+    "shape": "command",
+    "inputs": {
+      "VALUE": {
+        "connection": "value",
+        "accepts": "number",
+        "default": {
+          "kind": "input",
+          "type": "number",
+          "value": "10",
+          "metadata": {
+            "scratch": {
+              "numericKind": "number"
+            }
+          }
+        }
+      }
+    },
+    "fields": {
+      "EFFECT": {
+        "type": "dropdown",
+        "default": {
+          "kind": "field",
+          "type": "dropdown",
+          "value": "PITCH"
+        },
+        "metadata": {
+          "scratchBlocks": {
+            "blockJson": {
+              "type": "field_dropdown"
+            }
+          }
+        }
+      }
+    }
+  },
+  {
+    "opcode": "sound_changevolumeby",
+    "shape": "command",
+    "inputs": {
+      "VOLUME": {
+        "connection": "value",
+        "accepts": "number",
+        "default": {
+          "kind": "input",
+          "type": "number",
+          "value": "-10",
+          "metadata": {
+            "scratch": {
+              "numericKind": "number"
+            }
+          }
+        }
+      }
+    },
+    "fields": {}
+  },
+  {
+    "opcode": "sound_cleareffects",
+    "shape": "command",
+    "inputs": {},
+    "fields": {}
+  },
+  {
+    "opcode": "sound_play",
+    "shape": "command",
+    "inputs": {
+      "SOUND_MENU": {
+        "connection": "value",
+        "accepts": "string",
+        "default": {
+          "kind": "input",
+          "type": "block",
+          "value": {
+            "kind": "block",
+            "opcode": "sound_sounds_menu",
+            "inputs": {},
+            "fields": {
+              "SOUND_MENU": {
+                "kind": "field",
+                "type": "dropdown",
+                "value": "0"
+              }
+            }
+          }
+        }
+      }
+    },
+    "fields": {}
+  },
+  {
+    "opcode": "sound_playuntildone",
+    "shape": "command",
+    "inputs": {
+      "SOUND_MENU": {
+        "connection": "value",
+        "accepts": "string",
+        "default": {
+          "kind": "input",
+          "type": "block",
+          "value": {
+            "kind": "block",
+            "opcode": "sound_sounds_menu",
+            "inputs": {},
+            "fields": {
+              "SOUND_MENU": {
+                "kind": "field",
+                "type": "dropdown",
+                "value": "0"
+              }
+            }
+          }
+        }
+      }
+    },
+    "fields": {}
+  },
+  {
+    "opcode": "sound_seteffectto",
+    "shape": "command",
+    "inputs": {
+      "VALUE": {
+        "connection": "value",
+        "accepts": "number",
+        "default": {
+          "kind": "input",
+          "type": "number",
+          "value": "100",
+          "metadata": {
+            "scratch": {
+              "numericKind": "number"
+            }
+          }
+        }
+      }
+    },
+    "fields": {
+      "EFFECT": {
+        "type": "dropdown",
+        "default": {
+          "kind": "field",
+          "type": "dropdown",
+          "value": "PITCH"
+        },
+        "metadata": {
+          "scratchBlocks": {
+            "blockJson": {
+              "type": "field_dropdown"
+            }
+          }
+        }
+      }
+    }
+  },
+  {
+    "opcode": "sound_setvolumeto",
+    "shape": "command",
+    "inputs": {
+      "VOLUME": {
+        "connection": "value",
+        "accepts": "number",
+        "default": {
+          "kind": "input",
+          "type": "number",
+          "value": "100",
+          "metadata": {
+            "scratch": {
+              "numericKind": "number"
+            }
+          }
+        }
+      }
+    },
+    "fields": {}
+  },
+  {
+    "opcode": "sound_sounds_menu",
+    "shape": "reporter",
+    "outputType": "string",
+    "inputs": {},
+    "fields": {
+      "SOUND_MENU": {
+        "type": "dropdown",
+        "default": {
+          "kind": "field",
+          "type": "dropdown",
+          "value": "0"
+        },
+        "metadata": {
+          "scratchBlocks": {
+            "blockJson": {
+              "type": "field_dropdown"
+            }
+          }
+        }
+      }
+    }
+  },
+  {
+    "opcode": "sound_stopallsounds",
+    "shape": "command",
+    "inputs": {},
+    "fields": {}
+  },
+  {
+    "opcode": "sound_volume",
+    "shape": "reporter",
+    "outputType": "number",
+    "inputs": {},
+    "fields": {}
+  },
+  {
+    "opcode": "event_broadcast",
+    "shape": "command",
+    "inputs": {
+      "BROADCAST_INPUT": {
+        "connection": "value",
+        "accepts": "string",
+        "default": {
+          "kind": "input",
+          "type": "block",
+          "value": {
+            "kind": "block",
+            "opcode": "event_broadcast_menu",
+            "inputs": {},
+            "fields": {
+              "BROADCAST_OPTION": {
+                "kind": "field",
+                "type": "broadcast",
+                "value": ""
+              }
+            }
+          }
+        }
+      }
+    },
+    "fields": {}
+  },
+  {
+    "opcode": "event_broadcast_menu",
+    "shape": "reporter",
+    "outputType": "string",
+    "inputs": {},
+    "fields": {
+      "BROADCAST_OPTION": {
+        "type": "broadcast",
+        "default": {
+          "kind": "field",
+          "type": "broadcast",
+          "value": ""
+        },
+        "metadata": {
+          "scratchBlocks": {
+            "blockJson": {
+              "type": "field_variable"
+            }
+          }
+        }
+      }
+    }
+  },
+  {
+    "opcode": "event_broadcastandwait",
+    "shape": "command",
+    "inputs": {
+      "BROADCAST_INPUT": {
+        "connection": "value",
+        "accepts": "string",
+        "default": {
+          "kind": "input",
+          "type": "block",
+          "value": {
+            "kind": "block",
+            "opcode": "event_broadcast_menu",
+            "inputs": {},
+            "fields": {
+              "BROADCAST_OPTION": {
+                "kind": "field",
+                "type": "broadcast",
+                "value": ""
+              }
+            }
+          }
+        }
+      }
+    },
+    "fields": {}
+  },
+  {
+    "opcode": "event_touchingobjectmenu",
+    "shape": "reporter",
+    "outputType": "string",
+    "inputs": {},
+    "fields": {
+      "TOUCHINGOBJECTMENU": {
+        "type": "dropdown",
+        "default": {
+          "kind": "field",
+          "type": "dropdown",
+          "value": "_mouse_"
+        },
+        "metadata": {
+          "scratchBlocks": {
+            "blockJson": {
+              "type": "field_dropdown"
+            }
+          }
+        }
+      }
+    }
+  },
+  {
+    "opcode": "event_whenbackdropswitchesto",
+    "shape": "hat",
+    "hatStyle": "standard",
+    "inputs": {},
+    "fields": {
+      "BACKDROP": {
+        "type": "dropdown",
+        "default": {
+          "kind": "field",
+          "type": "dropdown",
+          "value": "BACKDROP1"
+        },
+        "metadata": {
+          "scratchBlocks": {
+            "blockJson": {
+              "type": "field_dropdown"
+            }
+          }
+        }
+      }
+    }
+  },
+  {
+    "opcode": "event_whenbroadcastreceived",
+    "shape": "hat",
+    "hatStyle": "standard",
+    "inputs": {},
+    "fields": {
+      "BROADCAST_OPTION": {
+        "type": "broadcast",
+        "default": {
+          "kind": "field",
+          "type": "broadcast",
+          "value": ""
+        },
+        "metadata": {
+          "scratchBlocks": {
+            "blockJson": {
+              "type": "field_variable"
+            }
+          }
+        }
+      }
+    }
+  },
+  {
+    "opcode": "event_whenflagclicked",
+    "shape": "hat",
+    "hatStyle": "standard",
+    "inputs": {},
+    "fields": {}
+  },
+  {
+    "opcode": "event_whengreaterthan",
+    "shape": "hat",
+    "hatStyle": "standard",
+    "inputs": {
+      "VALUE": {
+        "connection": "value",
+        "accepts": "number",
+        "default": {
+          "kind": "input",
+          "type": "number",
+          "value": "10",
+          "metadata": {
+            "scratch": {
+              "numericKind": "number"
+            }
+          }
+        }
+      }
+    },
+    "fields": {
+      "WHENGREATERTHANMENU": {
+        "type": "dropdown",
+        "default": {
+          "kind": "field",
+          "type": "dropdown",
+          "value": "LOUDNESS"
+        },
+        "metadata": {
+          "scratchBlocks": {
+            "blockJson": {
+              "type": "field_dropdown"
+            }
+          }
+        }
+      }
+    }
+  },
+  {
+    "opcode": "event_whenkeypressed",
+    "shape": "hat",
+    "hatStyle": "standard",
+    "inputs": {},
+    "fields": {
+      "KEY_OPTION": {
+        "type": "dropdown",
+        "default": {
+          "kind": "field",
+          "type": "dropdown",
+          "value": "space"
+        },
+        "metadata": {
+          "scratchBlocks": {
+            "blockJson": {
+              "type": "field_dropdown"
+            }
+          }
+        }
+      }
+    }
+  },
+  {
+    "opcode": "event_whenstageclicked",
+    "shape": "hat",
+    "hatStyle": "standard",
+    "inputs": {},
+    "fields": {}
+  },
+  {
+    "opcode": "event_whenthisspriteclicked",
+    "shape": "hat",
+    "hatStyle": "standard",
+    "inputs": {},
+    "fields": {}
+  },
+  {
+    "opcode": "event_whentouchingobject",
+    "shape": "hat",
+    "hatStyle": "standard",
+    "inputs": {
+      "TOUCHINGOBJECTMENU": {
+        "connection": "value",
+        "accepts": "string"
+      }
+    },
+    "fields": {}
+  },
+  {
+    "opcode": "control_all_at_once",
+    "shape": "command",
+    "inputs": {
+      "SUBSTACK": {
+        "connection": "statement"
+      }
+    },
+    "fields": {}
+  },
+  {
+    "opcode": "control_clear_counter",
+    "shape": "command",
+    "inputs": {},
+    "fields": {}
+  },
+  {
+    "opcode": "control_create_clone_of",
+    "shape": "command",
+    "inputs": {
+      "CLONE_OPTION": {
+        "connection": "value",
+        "accepts": "string",
+        "default": {
+          "kind": "input",
+          "type": "block",
+          "value": {
+            "kind": "block",
+            "opcode": "control_create_clone_of_menu",
+            "inputs": {},
+            "fields": {
+              "CLONE_OPTION": {
+                "kind": "field",
+                "type": "dropdown",
+                "value": "_myself_"
+              }
+            }
+          }
+        }
+      }
+    },
+    "fields": {}
+  },
+  {
+    "opcode": "control_create_clone_of_menu",
+    "shape": "reporter",
+    "outputType": "string",
+    "inputs": {},
+    "fields": {
+      "CLONE_OPTION": {
+        "type": "dropdown",
+        "default": {
+          "kind": "field",
+          "type": "dropdown",
+          "value": "_myself_"
+        },
+        "metadata": {
+          "scratchBlocks": {
+            "blockJson": {
+              "type": "field_dropdown"
+            }
+          }
+        }
+      }
+    }
+  },
+  {
+    "opcode": "control_delete_this_clone",
+    "shape": "terminal",
+    "inputs": {},
+    "fields": {}
+  },
+  {
+    "opcode": "control_for_each",
+    "shape": "command",
+    "inputs": {
+      "VALUE": {
+        "connection": "value",
+        "accepts": "number"
+      },
+      "SUBSTACK": {
+        "connection": "statement"
+      }
+    },
+    "fields": {
+      "VARIABLE": {
+        "type": "variable",
+        "default": {
+          "kind": "field",
+          "type": "variable",
+          "value": ""
+        },
+        "metadata": {
+          "scratchBlocks": {
+            "blockJson": {
+              "type": "field_variable"
+            }
+          }
+        }
+      }
+    }
+  },
+  {
+    "opcode": "control_forever",
+    "shape": "terminal",
+    "inputs": {
+      "SUBSTACK": {
+        "connection": "statement"
+      }
+    },
+    "fields": {}
+  },
+  {
+    "opcode": "control_get_counter",
+    "shape": "reporter",
+    "outputType": "number",
+    "inputs": {},
+    "fields": {}
+  },
+  {
+    "opcode": "control_if",
+    "shape": "command",
+    "inputs": {
+      "CONDITION": {
+        "connection": "value",
+        "accepts": "boolean"
+      },
+      "SUBSTACK": {
+        "connection": "statement"
+      }
+    },
+    "fields": {}
+  },
+  {
+    "opcode": "control_if_else",
+    "shape": "command",
+    "inputs": {
+      "CONDITION": {
+        "connection": "value",
+        "accepts": "boolean"
+      },
+      "SUBSTACK": {
+        "connection": "statement"
+      },
+      "SUBSTACK2": {
+        "connection": "statement"
+      }
+    },
+    "fields": {}
+  },
+  {
+    "opcode": "control_incr_counter",
+    "shape": "command",
+    "inputs": {},
+    "fields": {}
+  },
+  {
+    "opcode": "control_repeat",
+    "shape": "command",
+    "inputs": {
+      "TIMES": {
+        "connection": "value",
+        "accepts": "number",
+        "default": {
+          "kind": "input",
+          "type": "number",
+          "value": "10",
+          "metadata": {
+            "scratch": {
+              "numericKind": "whole-number"
+            }
+          }
+        }
+      },
+      "SUBSTACK": {
+        "connection": "statement"
+      }
+    },
+    "fields": {}
+  },
+  {
+    "opcode": "control_repeat_until",
+    "shape": "command",
+    "inputs": {
+      "CONDITION": {
+        "connection": "value",
+        "accepts": "boolean"
+      },
+      "SUBSTACK": {
+        "connection": "statement"
+      }
+    },
+    "fields": {}
+  },
+  {
+    "opcode": "control_start_as_clone",
+    "shape": "hat",
+    "hatStyle": "standard",
+    "inputs": {},
+    "fields": {}
+  },
+  {
+    "opcode": "control_stop",
+    "shape": "terminal",
+    "inputs": {},
+    "fields": {
+      "STOP_OPTION": {
+        "type": "dropdown",
+        "default": {
+          "kind": "field",
+          "type": "dropdown",
+          "value": "all"
+        }
+      }
+    }
+  },
+  {
+    "opcode": "control_wait",
+    "shape": "command",
+    "inputs": {
+      "DURATION": {
+        "connection": "value",
+        "accepts": "number",
+        "default": {
+          "kind": "input",
+          "type": "number",
+          "value": "1",
+          "metadata": {
+            "scratch": {
+              "numericKind": "positive-number"
+            }
+          }
+        }
+      }
+    },
+    "fields": {}
+  },
+  {
+    "opcode": "control_wait_until",
+    "shape": "command",
+    "inputs": {
+      "CONDITION": {
+        "connection": "value",
+        "accepts": "boolean"
+      }
+    },
+    "fields": {}
+  },
+  {
+    "opcode": "control_while",
+    "shape": "command",
+    "inputs": {
+      "CONDITION": {
+        "connection": "value",
+        "accepts": "boolean"
+      },
+      "SUBSTACK": {
+        "connection": "statement"
+      }
+    },
+    "fields": {}
+  },
+  {
+    "opcode": "sensing_answer",
+    "shape": "reporter",
+    "outputType": "number",
+    "inputs": {},
+    "fields": {}
+  },
+  {
+    "opcode": "sensing_askandwait",
+    "shape": "command",
+    "inputs": {
+      "QUESTION": {
+        "connection": "value",
+        "accepts": "string"
+      }
+    },
+    "fields": {}
+  },
+  {
+    "opcode": "sensing_coloristouchingcolor",
+    "shape": "boolean",
+    "inputs": {
+      "COLOR": {
+        "connection": "value",
+        "accepts": "color",
+        "default": {
+          "kind": "input",
+          "type": "color",
+          "value": "#7dcc8a"
+        }
+      },
+      "COLOR2": {
+        "connection": "value",
+        "accepts": "color",
+        "default": {
+          "kind": "input",
+          "type": "color",
+          "value": "#7dcc8a"
+        }
+      }
+    },
+    "fields": {}
+  },
+  {
+    "opcode": "sensing_current",
+    "shape": "reporter",
+    "outputType": "number",
+    "inputs": {},
+    "fields": {
+      "CURRENTMENU": {
+        "type": "dropdown",
+        "default": {
+          "kind": "field",
+          "type": "dropdown",
+          "value": "YEAR"
+        },
+        "metadata": {
+          "scratchBlocks": {
+            "blockJson": {
+              "type": "field_dropdown"
+            }
+          }
+        }
+      }
+    }
+  },
+  {
+    "opcode": "sensing_dayssince2000",
+    "shape": "reporter",
+    "outputType": "number",
+    "inputs": {},
+    "fields": {}
+  },
+  {
+    "opcode": "sensing_distanceto",
+    "shape": "reporter",
+    "outputType": "number",
+    "inputs": {
+      "DISTANCETOMENU": {
+        "connection": "value",
+        "accepts": "string",
+        "default": {
+          "kind": "input",
+          "type": "block",
+          "value": {
+            "kind": "block",
+            "opcode": "sensing_distancetomenu",
+            "inputs": {},
+            "fields": {
+              "DISTANCETOMENU": {
+                "kind": "field",
+                "type": "dropdown",
+                "value": "_mouse_"
+              }
+            }
+          }
+        }
+      }
+    },
+    "fields": {}
+  },
+  {
+    "opcode": "sensing_distancetomenu",
+    "shape": "reporter",
+    "outputType": "string",
+    "inputs": {},
+    "fields": {
+      "DISTANCETOMENU": {
+        "type": "dropdown",
+        "default": {
+          "kind": "field",
+          "type": "dropdown",
+          "value": "_mouse_"
+        },
+        "metadata": {
+          "scratchBlocks": {
+            "blockJson": {
+              "type": "field_dropdown"
+            }
+          }
+        }
+      }
+    }
+  },
+  {
+    "opcode": "sensing_keyoptions",
+    "shape": "reporter",
+    "outputType": "string",
+    "inputs": {},
+    "fields": {
+      "KEY_OPTION": {
+        "type": "dropdown",
+        "default": {
+          "kind": "field",
+          "type": "dropdown",
+          "value": "space"
+        },
+        "metadata": {
+          "scratchBlocks": {
+            "blockJson": {
+              "type": "field_dropdown"
+            }
+          }
+        }
+      }
+    }
+  },
+  {
+    "opcode": "sensing_keypressed",
+    "shape": "boolean",
+    "inputs": {
+      "KEY_OPTION": {
+        "connection": "value",
+        "accepts": "string",
+        "default": {
+          "kind": "input",
+          "type": "block",
+          "value": {
+            "kind": "block",
+            "opcode": "sensing_keyoptions",
+            "inputs": {},
+            "fields": {
+              "KEY_OPTION": {
+                "kind": "field",
+                "type": "dropdown",
+                "value": "space"
+              }
+            }
+          }
+        }
+      }
+    },
+    "fields": {}
+  },
+  {
+    "opcode": "sensing_loud",
+    "shape": "boolean",
+    "inputs": {},
+    "fields": {}
+  },
+  {
+    "opcode": "sensing_loudness",
+    "shape": "reporter",
+    "outputType": "number",
+    "inputs": {},
+    "fields": {}
+  },
+  {
+    "opcode": "sensing_mousedown",
+    "shape": "boolean",
+    "inputs": {},
+    "fields": {}
+  },
+  {
+    "opcode": "sensing_mousex",
+    "shape": "reporter",
+    "outputType": "number",
+    "inputs": {},
+    "fields": {}
+  },
+  {
+    "opcode": "sensing_mousey",
+    "shape": "reporter",
+    "outputType": "number",
+    "inputs": {},
+    "fields": {}
+  },
+  {
+    "opcode": "sensing_of",
+    "shape": "reporter",
+    "outputType": "any",
+    "inputs": {
+      "OBJECT": {
+        "connection": "value",
+        "accepts": "string",
+        "default": {
+          "kind": "input",
+          "type": "block",
+          "value": {
+            "kind": "block",
+            "opcode": "sensing_of_object_menu",
+            "inputs": {},
+            "fields": {
+              "OBJECT": {
+                "kind": "field",
+                "type": "dropdown",
+                "value": "Sprite1"
+              }
+            }
+          }
+        }
+      }
+    },
+    "fields": {
+      "PROPERTY": {
+        "type": "dropdown",
+        "default": {
+          "kind": "field",
+          "type": "dropdown",
+          "value": "x position"
+        },
+        "metadata": {
+          "scratchBlocks": {
+            "blockJson": {
+              "type": "field_dropdown"
+            }
+          }
+        }
+      }
+    }
+  },
+  {
+    "opcode": "sensing_of_object_menu",
+    "shape": "reporter",
+    "outputType": "string",
+    "inputs": {},
+    "fields": {
+      "OBJECT": {
+        "type": "dropdown",
+        "default": {
+          "kind": "field",
+          "type": "dropdown",
+          "value": "Sprite1"
+        },
+        "metadata": {
+          "scratchBlocks": {
+            "blockJson": {
+              "type": "field_dropdown"
+            }
+          }
+        }
+      }
+    }
+  },
+  {
+    "opcode": "sensing_online",
+    "shape": "boolean",
+    "inputs": {},
+    "fields": {}
+  },
+  {
+    "opcode": "sensing_resettimer",
+    "shape": "command",
+    "inputs": {},
+    "fields": {}
+  },
+  {
+    "opcode": "sensing_setdragmode",
+    "shape": "command",
+    "inputs": {},
+    "fields": {
+      "DRAG_MODE": {
+        "type": "dropdown",
+        "default": {
+          "kind": "field",
+          "type": "dropdown",
+          "value": "draggable"
+        },
+        "metadata": {
+          "scratchBlocks": {
+            "blockJson": {
+              "type": "field_dropdown"
+            }
+          }
+        }
+      }
+    }
+  },
+  {
+    "opcode": "sensing_timer",
+    "shape": "reporter",
+    "outputType": "number",
+    "inputs": {},
+    "fields": {}
+  },
+  {
+    "opcode": "sensing_touchingcolor",
+    "shape": "boolean",
+    "inputs": {
+      "COLOR": {
+        "connection": "value",
+        "accepts": "color",
+        "default": {
+          "kind": "input",
+          "type": "color",
+          "value": "#7dcc8a"
+        }
+      }
+    },
+    "fields": {}
+  },
+  {
+    "opcode": "sensing_touchingobject",
+    "shape": "boolean",
+    "inputs": {
+      "TOUCHINGOBJECTMENU": {
+        "connection": "value",
+        "accepts": "string",
+        "default": {
+          "kind": "input",
+          "type": "block",
+          "value": {
+            "kind": "block",
+            "opcode": "sensing_touchingobjectmenu",
+            "inputs": {},
+            "fields": {
+              "TOUCHINGOBJECTMENU": {
+                "kind": "field",
+                "type": "dropdown",
+                "value": "_mouse_"
+              }
+            }
+          }
+        }
+      }
+    },
+    "fields": {}
+  },
+  {
+    "opcode": "sensing_touchingobjectmenu",
+    "shape": "reporter",
+    "outputType": "string",
+    "inputs": {},
+    "fields": {
+      "TOUCHINGOBJECTMENU": {
+        "type": "dropdown",
+        "default": {
+          "kind": "field",
+          "type": "dropdown",
+          "value": "_mouse_"
+        },
+        "metadata": {
+          "scratchBlocks": {
+            "blockJson": {
+              "type": "field_dropdown"
+            }
+          }
+        }
+      }
+    }
+  },
+  {
+    "opcode": "sensing_userid",
+    "shape": "reporter",
+    "outputType": "number",
+    "inputs": {},
+    "fields": {}
+  },
+  {
+    "opcode": "sensing_username",
+    "shape": "reporter",
+    "outputType": "number",
+    "inputs": {},
+    "fields": {}
+  },
+  {
+    "opcode": "operator_add",
+    "shape": "reporter",
+    "outputType": "number",
+    "inputs": {
+      "NUM1": {
+        "connection": "value",
+        "accepts": "number",
+        "default": {
+          "kind": "input",
+          "type": "number",
+          "value": "",
+          "metadata": {
+            "scratch": {
+              "numericKind": "number"
+            }
+          }
+        }
+      },
+      "NUM2": {
+        "connection": "value",
+        "accepts": "number",
+        "default": {
+          "kind": "input",
+          "type": "number",
+          "value": "",
+          "metadata": {
+            "scratch": {
+              "numericKind": "number"
+            }
+          }
+        }
+      }
+    },
+    "fields": {}
+  },
+  {
+    "opcode": "operator_and",
+    "shape": "boolean",
+    "inputs": {
+      "OPERAND1": {
+        "connection": "value",
+        "accepts": "boolean"
+      },
+      "OPERAND2": {
+        "connection": "value",
+        "accepts": "boolean"
+      }
+    },
+    "fields": {}
+  },
+  {
+    "opcode": "operator_contains",
+    "shape": "boolean",
+    "inputs": {
+      "STRING1": {
+        "connection": "value",
+        "accepts": "string",
+        "default": {
+          "kind": "input",
+          "type": "string",
+          "value": "hello"
+        }
+      },
+      "STRING2": {
+        "connection": "value",
+        "accepts": "string",
+        "default": {
+          "kind": "input",
+          "type": "string",
+          "value": "world"
+        }
+      }
+    },
+    "fields": {}
+  },
+  {
+    "opcode": "operator_divide",
+    "shape": "reporter",
+    "outputType": "number",
+    "inputs": {
+      "NUM1": {
+        "connection": "value",
+        "accepts": "number",
+        "default": {
+          "kind": "input",
+          "type": "number",
+          "value": "",
+          "metadata": {
+            "scratch": {
+              "numericKind": "number"
+            }
+          }
+        }
+      },
+      "NUM2": {
+        "connection": "value",
+        "accepts": "number",
+        "default": {
+          "kind": "input",
+          "type": "number",
+          "value": "",
+          "metadata": {
+            "scratch": {
+              "numericKind": "number"
+            }
+          }
+        }
+      }
+    },
+    "fields": {}
+  },
+  {
+    "opcode": "operator_equals",
+    "shape": "boolean",
+    "inputs": {
+      "OPERAND1": {
+        "connection": "value",
+        "accepts": "string",
+        "default": {
+          "kind": "input",
+          "type": "string",
+          "value": ""
+        }
+      },
+      "OPERAND2": {
+        "connection": "value",
+        "accepts": "string",
+        "default": {
+          "kind": "input",
+          "type": "string",
+          "value": ""
+        }
+      }
+    },
+    "fields": {}
+  },
+  {
+    "opcode": "operator_gt",
+    "shape": "boolean",
+    "inputs": {
+      "OPERAND1": {
+        "connection": "value",
+        "accepts": "string",
+        "default": {
+          "kind": "input",
+          "type": "string",
+          "value": ""
+        }
+      },
+      "OPERAND2": {
+        "connection": "value",
+        "accepts": "string",
+        "default": {
+          "kind": "input",
+          "type": "string",
+          "value": ""
+        }
+      }
+    },
+    "fields": {}
+  },
+  {
+    "opcode": "operator_join",
+    "shape": "reporter",
+    "outputType": "string",
+    "inputs": {
+      "STRING1": {
+        "connection": "value",
+        "accepts": "string",
+        "default": {
+          "kind": "input",
+          "type": "string",
+          "value": "hello"
+        }
+      },
+      "STRING2": {
+        "connection": "value",
+        "accepts": "string",
+        "default": {
+          "kind": "input",
+          "type": "string",
+          "value": "world"
+        }
+      }
+    },
+    "fields": {}
+  },
+  {
+    "opcode": "operator_length",
+    "shape": "reporter",
+    "outputType": "string",
+    "inputs": {
+      "STRING": {
+        "connection": "value",
+        "accepts": "string",
+        "default": {
+          "kind": "input",
+          "type": "string",
+          "value": "world"
+        }
+      }
+    },
+    "fields": {}
+  },
+  {
+    "opcode": "operator_letter_of",
+    "shape": "reporter",
+    "outputType": "string",
+    "inputs": {
+      "LETTER": {
+        "connection": "value",
+        "accepts": "number",
+        "default": {
+          "kind": "input",
+          "type": "number",
+          "value": "1",
+          "metadata": {
+            "scratch": {
+              "numericKind": "whole-number"
+            }
+          }
+        }
+      },
+      "STRING": {
+        "connection": "value",
+        "accepts": "string",
+        "default": {
+          "kind": "input",
+          "type": "string",
+          "value": "world"
+        }
+      }
+    },
+    "fields": {}
+  },
+  {
+    "opcode": "operator_lt",
+    "shape": "boolean",
+    "inputs": {
+      "OPERAND1": {
+        "connection": "value",
+        "accepts": "string",
+        "default": {
+          "kind": "input",
+          "type": "string",
+          "value": ""
+        }
+      },
+      "OPERAND2": {
+        "connection": "value",
+        "accepts": "string",
+        "default": {
+          "kind": "input",
+          "type": "string",
+          "value": ""
+        }
+      }
+    },
+    "fields": {}
+  },
+  {
+    "opcode": "operator_mathop",
+    "shape": "reporter",
+    "outputType": "number",
+    "inputs": {
+      "NUM": {
+        "connection": "value",
+        "accepts": "number",
+        "default": {
+          "kind": "input",
+          "type": "number",
+          "value": "",
+          "metadata": {
+            "scratch": {
+              "numericKind": "number"
+            }
+          }
+        }
+      }
+    },
+    "fields": {
+      "OPERATOR": {
+        "type": "dropdown",
+        "default": {
+          "kind": "field",
+          "type": "dropdown",
+          "value": "abs"
+        },
+        "metadata": {
+          "scratchBlocks": {
+            "blockJson": {
+              "type": "field_dropdown"
+            }
+          }
+        }
+      }
+    }
+  },
+  {
+    "opcode": "operator_mod",
+    "shape": "reporter",
+    "outputType": "number",
+    "inputs": {
+      "NUM1": {
+        "connection": "value",
+        "accepts": "number",
+        "default": {
+          "kind": "input",
+          "type": "number",
+          "value": "",
+          "metadata": {
+            "scratch": {
+              "numericKind": "number"
+            }
+          }
+        }
+      },
+      "NUM2": {
+        "connection": "value",
+        "accepts": "number",
+        "default": {
+          "kind": "input",
+          "type": "number",
+          "value": "",
+          "metadata": {
+            "scratch": {
+              "numericKind": "number"
+            }
+          }
+        }
+      }
+    },
+    "fields": {}
+  },
+  {
+    "opcode": "operator_multiply",
+    "shape": "reporter",
+    "outputType": "number",
+    "inputs": {
+      "NUM1": {
+        "connection": "value",
+        "accepts": "number",
+        "default": {
+          "kind": "input",
+          "type": "number",
+          "value": "",
+          "metadata": {
+            "scratch": {
+              "numericKind": "number"
+            }
+          }
+        }
+      },
+      "NUM2": {
+        "connection": "value",
+        "accepts": "number",
+        "default": {
+          "kind": "input",
+          "type": "number",
+          "value": "",
+          "metadata": {
+            "scratch": {
+              "numericKind": "number"
+            }
+          }
+        }
+      }
+    },
+    "fields": {}
+  },
+  {
+    "opcode": "operator_not",
+    "shape": "boolean",
+    "inputs": {
+      "OPERAND": {
+        "connection": "value",
+        "accepts": "boolean"
+      }
+    },
+    "fields": {}
+  },
+  {
+    "opcode": "operator_or",
+    "shape": "boolean",
+    "inputs": {
+      "OPERAND1": {
+        "connection": "value",
+        "accepts": "boolean"
+      },
+      "OPERAND2": {
+        "connection": "value",
+        "accepts": "boolean"
+      }
+    },
+    "fields": {}
+  },
+  {
+    "opcode": "operator_random",
+    "shape": "reporter",
+    "outputType": "number",
+    "inputs": {
+      "FROM": {
+        "connection": "value",
+        "accepts": "number",
+        "default": {
+          "kind": "input",
+          "type": "number",
+          "value": "1",
+          "metadata": {
+            "scratch": {
+              "numericKind": "number"
+            }
+          }
+        }
+      },
+      "TO": {
+        "connection": "value",
+        "accepts": "number",
+        "default": {
+          "kind": "input",
+          "type": "number",
+          "value": "10",
+          "metadata": {
+            "scratch": {
+              "numericKind": "number"
+            }
+          }
+        }
+      }
+    },
+    "fields": {}
+  },
+  {
+    "opcode": "operator_round",
+    "shape": "reporter",
+    "outputType": "number",
+    "inputs": {
+      "NUM": {
+        "connection": "value",
+        "accepts": "number",
+        "default": {
+          "kind": "input",
+          "type": "number",
+          "value": "",
+          "metadata": {
+            "scratch": {
+              "numericKind": "number"
+            }
+          }
+        }
+      }
+    },
+    "fields": {}
+  },
+  {
+    "opcode": "operator_subtract",
+    "shape": "reporter",
+    "outputType": "number",
+    "inputs": {
+      "NUM1": {
+        "connection": "value",
+        "accepts": "number",
+        "default": {
+          "kind": "input",
+          "type": "number",
+          "value": "",
+          "metadata": {
+            "scratch": {
+              "numericKind": "number"
+            }
+          }
+        }
+      },
+      "NUM2": {
+        "connection": "value",
+        "accepts": "number",
+        "default": {
+          "kind": "input",
+          "type": "number",
+          "value": "",
+          "metadata": {
+            "scratch": {
+              "numericKind": "number"
+            }
+          }
+        }
+      }
+    },
+    "fields": {}
+  },
+  {
+    "opcode": "data_addtolist",
+    "shape": "command",
+    "inputs": {
+      "ITEM": {
+        "connection": "value",
+        "accepts": "any"
+      }
+    },
+    "fields": {
+      "LIST": {
+        "type": "list",
+        "default": {
+          "kind": "field",
+          "type": "list",
+          "value": ""
+        },
+        "metadata": {
+          "scratchBlocks": {
+            "blockJson": {
+              "type": "field_variable"
+            }
+          }
+        }
+      }
+    }
+  },
+  {
+    "opcode": "data_changevariableby",
+    "shape": "command",
+    "inputs": {
+      "VALUE": {
+        "connection": "value",
+        "accepts": "number"
+      }
+    },
+    "fields": {
+      "VARIABLE": {
+        "type": "variable",
+        "default": {
+          "kind": "field",
+          "type": "variable",
+          "value": ""
+        },
+        "metadata": {
+          "scratchBlocks": {
+            "blockJson": {
+              "type": "field_variable"
+            }
+          }
+        }
+      }
+    }
+  },
+  {
+    "opcode": "data_deletealloflist",
+    "shape": "command",
+    "inputs": {},
+    "fields": {
+      "LIST": {
+        "type": "list",
+        "default": {
+          "kind": "field",
+          "type": "list",
+          "value": ""
+        },
+        "metadata": {
+          "scratchBlocks": {
+            "blockJson": {
+              "type": "field_variable"
+            }
+          }
+        }
+      }
+    }
+  },
+  {
+    "opcode": "data_deleteoflist",
+    "shape": "command",
+    "inputs": {
+      "INDEX": {
+        "connection": "value",
+        "accepts": "any"
+      }
+    },
+    "fields": {
+      "LIST": {
+        "type": "list",
+        "default": {
+          "kind": "field",
+          "type": "list",
+          "value": ""
+        },
+        "metadata": {
+          "scratchBlocks": {
+            "blockJson": {
+              "type": "field_variable"
+            }
+          }
+        }
+      }
+    }
+  },
+  {
+    "opcode": "data_hidelist",
+    "shape": "command",
+    "inputs": {},
+    "fields": {
+      "LIST": {
+        "type": "list",
+        "default": {
+          "kind": "field",
+          "type": "list",
+          "value": ""
+        },
+        "metadata": {
+          "scratchBlocks": {
+            "blockJson": {
+              "type": "field_variable"
+            }
+          }
+        }
+      }
+    }
+  },
+  {
+    "opcode": "data_hidevariable",
+    "shape": "command",
+    "inputs": {},
+    "fields": {
+      "VARIABLE": {
+        "type": "variable",
+        "default": {
+          "kind": "field",
+          "type": "variable",
+          "value": ""
+        },
+        "metadata": {
+          "scratchBlocks": {
+            "blockJson": {
+              "type": "field_variable"
+            }
+          }
+        }
+      }
+    }
+  },
+  {
+    "opcode": "data_insertatlist",
+    "shape": "command",
+    "inputs": {
+      "ITEM": {
+        "connection": "value",
+        "accepts": "any"
+      },
+      "INDEX": {
+        "connection": "value",
+        "accepts": "any"
+      }
+    },
+    "fields": {
+      "LIST": {
+        "type": "list",
+        "default": {
+          "kind": "field",
+          "type": "list",
+          "value": ""
+        },
+        "metadata": {
+          "scratchBlocks": {
+            "blockJson": {
+              "type": "field_variable"
+            }
+          }
+        }
+      }
+    }
+  },
+  {
+    "opcode": "data_itemnumoflist",
+    "shape": "reporter",
+    "outputType": "any",
+    "inputs": {
+      "ITEM": {
+        "connection": "value",
+        "accepts": "any"
+      }
+    },
+    "fields": {
+      "LIST": {
+        "type": "list",
+        "default": {
+          "kind": "field",
+          "type": "list",
+          "value": ""
+        },
+        "metadata": {
+          "scratchBlocks": {
+            "blockJson": {
+              "type": "field_variable"
+            }
+          }
+        }
+      }
+    }
+  },
+  {
+    "opcode": "data_itemoflist",
+    "shape": "reporter",
+    "outputType": "any",
+    "inputs": {
+      "INDEX": {
+        "connection": "value",
+        "accepts": "any"
+      }
+    },
+    "fields": {
+      "LIST": {
+        "type": "list",
+        "default": {
+          "kind": "field",
+          "type": "list",
+          "value": ""
+        },
+        "metadata": {
+          "scratchBlocks": {
+            "blockJson": {
+              "type": "field_variable"
+            }
+          }
+        }
+      }
+    }
+  },
+  {
+    "opcode": "data_lengthoflist",
+    "shape": "reporter",
+    "outputType": "number",
+    "inputs": {},
+    "fields": {
+      "LIST": {
+        "type": "list",
+        "default": {
+          "kind": "field",
+          "type": "list",
+          "value": ""
+        },
+        "metadata": {
+          "scratchBlocks": {
+            "blockJson": {
+              "type": "field_variable"
+            }
+          }
+        }
+      }
+    }
+  },
+  {
+    "opcode": "data_listcontainsitem",
+    "shape": "boolean",
+    "inputs": {
+      "ITEM": {
+        "connection": "value",
+        "accepts": "any"
+      }
+    },
+    "fields": {
+      "LIST": {
+        "type": "list",
+        "default": {
+          "kind": "field",
+          "type": "list",
+          "value": ""
+        },
+        "metadata": {
+          "scratchBlocks": {
+            "blockJson": {
+              "type": "field_variable"
+            }
+          }
+        }
+      }
+    }
+  },
+  {
+    "opcode": "data_listcontents",
+    "shape": "reporter",
+    "outputType": "string",
+    "inputs": {},
+    "fields": {
+      "LIST": {
+        "type": "list",
+        "default": {
+          "kind": "field",
+          "type": "list",
+          "value": ""
+        },
+        "metadata": {
+          "scratchBlocks": {
+            "blockJson": {
+              "type": "field_variable_getter"
+            }
+          }
+        }
+      }
+    }
+  },
+  {
+    "opcode": "data_listindexall",
+    "shape": "reporter",
+    "outputType": "string",
+    "inputs": {},
+    "fields": {
+      "INDEX": {
+        "type": "dropdown",
+        "default": {
+          "kind": "field",
+          "type": "dropdown",
+          "value": "1"
+        },
+        "metadata": {
+          "scratchBlocks": {
+            "blockJson": {
+              "type": "field_numberdropdown"
+            }
+          }
+        }
+      }
+    }
+  },
+  {
+    "opcode": "data_listindexrandom",
+    "shape": "reporter",
+    "outputType": "string",
+    "inputs": {},
+    "fields": {
+      "INDEX": {
+        "type": "dropdown",
+        "default": {
+          "kind": "field",
+          "type": "dropdown",
+          "value": "1"
+        },
+        "metadata": {
+          "scratchBlocks": {
+            "blockJson": {
+              "type": "field_numberdropdown"
+            }
+          }
+        }
+      }
+    }
+  },
+  {
+    "opcode": "data_replaceitemoflist",
+    "shape": "command",
+    "inputs": {
+      "INDEX": {
+        "connection": "value",
+        "accepts": "any"
+      },
+      "ITEM": {
+        "connection": "value",
+        "accepts": "any"
+      }
+    },
+    "fields": {
+      "LIST": {
+        "type": "list",
+        "default": {
+          "kind": "field",
+          "type": "list",
+          "value": ""
+        },
+        "metadata": {
+          "scratchBlocks": {
+            "blockJson": {
+              "type": "field_variable"
+            }
+          }
+        }
+      }
+    }
+  },
+  {
+    "opcode": "data_setvariableto",
+    "shape": "command",
+    "inputs": {
+      "VALUE": {
+        "connection": "value",
+        "accepts": "any"
+      }
+    },
+    "fields": {
+      "VARIABLE": {
+        "type": "variable",
+        "default": {
+          "kind": "field",
+          "type": "variable",
+          "value": ""
+        },
+        "metadata": {
+          "scratchBlocks": {
+            "blockJson": {
+              "type": "field_variable"
+            }
+          }
+        }
+      }
+    }
+  },
+  {
+    "opcode": "data_showlist",
+    "shape": "command",
+    "inputs": {},
+    "fields": {
+      "LIST": {
+        "type": "list",
+        "default": {
+          "kind": "field",
+          "type": "list",
+          "value": ""
+        },
+        "metadata": {
+          "scratchBlocks": {
+            "blockJson": {
+              "type": "field_variable"
+            }
+          }
+        }
+      }
+    }
+  },
+  {
+    "opcode": "data_showvariable",
+    "shape": "command",
+    "inputs": {},
+    "fields": {
+      "VARIABLE": {
+        "type": "variable",
+        "default": {
+          "kind": "field",
+          "type": "variable",
+          "value": ""
+        },
+        "metadata": {
+          "scratchBlocks": {
+            "blockJson": {
+              "type": "field_variable"
+            }
+          }
+        }
+      }
+    }
+  },
+  {
+    "opcode": "data_variable",
+    "shape": "reporter",
+    "outputType": "string",
+    "inputs": {},
+    "fields": {
+      "VARIABLE": {
+        "type": "variable",
+        "default": {
+          "kind": "field",
+          "type": "variable",
+          "value": ""
+        },
+        "metadata": {
+          "scratchBlocks": {
+            "blockJson": {
+              "type": "field_variable_getter"
+            }
+          }
+        }
+      }
+    }
+  },
+  {
+    "opcode": "argument_reporter_boolean",
+    "shape": "boolean",
+    "inputs": {},
+    "fields": {
+      "VALUE": {
+        "type": "text",
+        "default": {
+          "kind": "field",
+          "type": "text",
+          "value": ""
+        },
+        "metadata": {
+          "scratchBlocks": {
+            "blockJson": {
+              "type": "field_label_serializable"
+            }
+          }
+        }
+      }
+    }
+  },
+  {
+    "opcode": "argument_reporter_string_number",
+    "shape": "reporter",
+    "outputType": "any",
+    "inputs": {},
+    "fields": {
+      "VALUE": {
+        "type": "text",
+        "default": {
+          "kind": "field",
+          "type": "text",
+          "value": ""
+        },
+        "metadata": {
+          "scratchBlocks": {
+            "blockJson": {
+              "type": "field_label_serializable"
+            }
+          }
+        }
+      }
+    }
+  },
+  {
+    "opcode": "procedures_call",
+    "shape": "command",
+    "inputs": {},
+    "fields": {}
+  },
+  {
+    "opcode": "procedures_definition",
+    "shape": "hat",
+    "hatStyle": "define",
+    "inputs": {
+      "custom_block": {
+        "connection": "statement",
+        "default": {
+          "kind": "input",
+          "type": "block",
+          "value": {
+            "kind": "block",
+            "opcode": "procedures_prototype",
+            "inputs": {},
+            "fields": {}
+          }
+        }
+      }
+    },
+    "fields": {}
+  },
+  {
+    "opcode": "procedures_prototype",
+    "shape": "command",
+    "inputs": {},
+    "fields": {}
+  },
+  {
+    "opcode": "procedures_return",
+    "shape": "terminal",
+    "inputs": {
+      "VALUE": {
+        "connection": "value",
+        "accepts": "any"
+      }
+    },
+    "fields": {}
+  },
+  {
+    "opcode": "math_angle",
+    "shape": "reporter",
+    "outputType": "number",
+    "inputs": {},
+    "fields": {
+      "NUM": {
+        "type": "text",
+        "default": {
+          "kind": "field",
+          "type": "text",
+          "value": "90"
+        },
+        "metadata": {
+          "scratchBlocks": {
+            "blockJson": {
+              "type": "field_angle"
+            }
+          }
+        }
+      }
+    }
+  },
+  {
+    "opcode": "math_integer",
+    "shape": "reporter",
+    "outputType": "number",
+    "inputs": {},
+    "fields": {
+      "NUM": {
+        "type": "text",
+        "default": {
+          "kind": "field",
+          "type": "text",
+          "value": ""
+        },
+        "metadata": {
+          "scratchBlocks": {
+            "blockJson": {
+              "type": "field_number"
+            }
+          }
+        }
+      }
+    }
+  },
+  {
+    "opcode": "math_number",
+    "shape": "reporter",
+    "outputType": "number",
+    "inputs": {},
+    "fields": {
+      "NUM": {
+        "type": "text",
+        "default": {
+          "kind": "field",
+          "type": "text",
+          "value": "0"
+        },
+        "metadata": {
+          "scratchBlocks": {
+            "blockJson": {
+              "type": "field_number"
+            }
+          }
+        }
+      }
+    }
+  },
+  {
+    "opcode": "math_positive_number",
+    "shape": "reporter",
+    "outputType": "number",
+    "inputs": {},
+    "fields": {
+      "NUM": {
+        "type": "text",
+        "default": {
+          "kind": "field",
+          "type": "text",
+          "value": ""
+        },
+        "metadata": {
+          "scratchBlocks": {
+            "blockJson": {
+              "type": "field_number"
+            }
+          }
+        }
+      }
+    }
+  },
+  {
+    "opcode": "math_whole_number",
+    "shape": "reporter",
+    "outputType": "number",
+    "inputs": {},
+    "fields": {
+      "NUM": {
+        "type": "text",
+        "default": {
+          "kind": "field",
+          "type": "text",
+          "value": ""
+        },
+        "metadata": {
+          "scratchBlocks": {
+            "blockJson": {
+              "type": "field_number"
+            }
+          }
+        }
+      }
+    }
+  },
+  {
+    "opcode": "text",
+    "shape": "reporter",
+    "outputType": "string",
+    "inputs": {},
+    "fields": {
+      "TEXT": {
+        "type": "text",
+        "default": {
+          "kind": "field",
+          "type": "text",
+          "value": ""
+        },
+        "metadata": {
+          "scratchBlocks": {
+            "blockJson": {
+              "type": "field_input"
+            }
+          }
+        }
+      }
+    }
+  },
+  {
+    "opcode": "colour_picker",
+    "shape": "reporter",
+    "outputType": "color",
+    "inputs": {},
+    "fields": {
+      "COLOUR": {
+        "type": "text",
+        "default": {
+          "kind": "field",
+          "type": "text",
+          "value": "#037afb"
+        },
+        "metadata": {
+          "scratchBlocks": {
+            "blockJson": {
+              "type": "field_colour_slider"
+            }
+          }
+        }
+      }
+    }
+  },
+  {
+    "opcode": "matrix",
+    "shape": "reporter",
+    "outputType": "matrix",
+    "inputs": {},
+    "fields": {
+      "MATRIX": {
+        "type": "text",
+        "default": {
+          "kind": "field",
+          "type": "text",
+          "value": ""
+        },
+        "metadata": {
+          "scratchBlocks": {
+            "blockJson": {
+              "type": "field_matrix"
+            }
+          }
+        }
+      }
+    }
+  },
+  {
+    "opcode": "note",
+    "shape": "reporter",
+    "outputType": "note",
+    "inputs": {},
+    "fields": {
+      "NOTE": {
+        "type": "text",
+        "default": {
+          "kind": "field",
+          "type": "text",
+          "value": "60"
+        },
+        "metadata": {
+          "scratchBlocks": {
+            "blockJson": {
+              "type": "field_note"
+            }
+          }
+        }
+      }
+    }
+  }
+]
