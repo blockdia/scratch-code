@@ -17,6 +17,12 @@ importers:
 
   packages/ast: {}
 
+  packages/block-spec:
+    dependencies:
+      '@scratch-code/ast':
+        specifier: workspace:^
+        version: link:../ast
+
 packages:
 
   '@jridgewell/sourcemap-codec@1.5.5':

@@ -5,6 +5,7 @@ TypeScript packages for working with semantic Scratch code.
 ## Packages
 
 - [`@scratch-code/ast`](./packages/ast): a tree-shaped, JSON-serializable AST for Scratch blocks.
+- [`@scratch-code/block-spec`](./packages/block-spec): semantic block specifications and an extensible registry.
 
 ## Development
 

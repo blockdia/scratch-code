@@ -10,7 +10,7 @@
     "build": "pnpm --recursive build",
     "typecheck": "pnpm --recursive typecheck",
     "test": "pnpm --recursive test",
-    "test:smoke": "pnpm --filter @scratch-code/ast test:smoke"
+    "test:smoke": "pnpm --recursive --if-present run test:smoke"
   },
   "devDependencies": {
     "typescript": "^5.9.3",
