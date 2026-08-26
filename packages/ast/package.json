@@ -1,0 +1,31 @@
+{
+  "name": "@scratch-code/ast",
+  "version": "0.1.0",
+  "description": "A semantic, tree-shaped AST for Scratch blocks",
+  "license": "MIT",
+  "type": "module",
+  "sideEffects": false,
+  "engines": {
+    "node": ">=22"
+  },
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json",
+    "typecheck": "tsc -p tsconfig.json",
+    "test": "vitest run",
+    "test:smoke": "node test/smoke.mjs"
+  },
+  "keywords": [
+    "scratch",
+    "ast"
+  ]
+}

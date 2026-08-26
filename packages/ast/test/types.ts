@@ -1,0 +1,87 @@
+import type {
+  Block,
+  DropdownField,
+  Input,
+  ProcedureCallMutation,
+  ProcedurePrototypeMutation,
+  Script,
+  StringInput,
+} from "../src/index.js"
+
+const validScript: Script = {
+  kind: "script",
+  blocks: [],
+  metadata: {scratch: {x: 1, y: 2}},
+}
+
+const validBlock: Block = {
+  kind: "block",
+  opcode: "motion_xposition",
+  fields: {},
+  inputs: {},
+  metadata: {scratch: {id: "block-id"}},
+}
+
+const validInput: Input = {
+  kind: "input",
+  type: "number",
+  value: "0010",
+  metadata: {scratch: {numericKind: "integer"}},
+}
+
+const validPrototype: ProcedurePrototypeMutation = {
+  type: "procedure-prototype",
+  proccode: "do %s",
+  argumentIds: ["arg"],
+  argumentNames: ["value"],
+  argumentDefaults: [""],
+  warp: false,
+}
+
+const validCall: ProcedureCallMutation = {
+  type: "procedure-call",
+  proccode: "do %s",
+  argumentIds: ["arg"],
+  warp: false,
+  returnType: "statement",
+}
+
+// @ts-expect-error x/y belong to Script scratch metadata, not Block metadata.
+const blockWithPosition: Block = {kind: "block", opcode: "test", fields: {}, inputs: {}, metadata: {scratch: {x: 1}}}
+
+// @ts-expect-error source block IDs belong to Block scratch metadata, not Script metadata.
+const scriptWithBlockId: Script = {kind: "script", blocks: [], metadata: {scratch: {id: "block-id"}}}
+
+// @ts-expect-error numericKind is only valid on a number input.
+const stringWithNumericKind: StringInput = {kind: "input", type: "string", value: "1", metadata: {scratch: {numericKind: "integer"}}}
+
+// @ts-expect-error Scratch has no boolean literal input.
+const booleanLiteral: Input = {kind: "input", type: "boolean", value: true}
+
+// @ts-expect-error dropdowns are fields, not input literals.
+const dropdownInput: Input = {kind: "input", type: "dropdown", value: "option"}
+
+// @ts-expect-error plain dropdown fields do not carry reference IDs.
+const dropdownWithId: DropdownField = {kind: "field", type: "dropdown", value: "option", id: "id"}
+
+// @ts-expect-error prototype mutations require names and defaults.
+const incompletePrototype: ProcedurePrototypeMutation = {type: "procedure-prototype", proccode: "do %s", argumentIds: ["arg"], warp: false}
+
+// @ts-expect-error returnType is the Scratch three-state value, not a boolean.
+const booleanReturnFlag: ProcedureCallMutation = {type: "procedure-call", proccode: "do", argumentIds: [], warp: false, returnType: true}
+
+void [
+  validScript,
+  validBlock,
+  validInput,
+  validPrototype,
+  validCall,
+  blockWithPosition,
+  scriptWithBlockId,
+  stringWithNumericKind,
+  booleanLiteral,
+  dropdownInput,
+  dropdownWithId,
+  incompletePrototype,
+  booleanReturnFlag,
+]
