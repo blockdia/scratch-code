@@ -1,0 +1,25 @@
+{
+  "name": "@scratch-code/playground",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc -p tsconfig.json && vite build",
+    "typecheck": "tsc -p tsconfig.json",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "@scratch-code/ast": "workspace:^",
+    "@scratch-code/block-spec": "workspace:^",
+    "@scratch-code/sb3": "workspace:^",
+    "@scratch-code/scratchblocks-codec": "workspace:^",
+    "@scratch-code/turbowarp-blocks": "workspace:^",
+    "scratchblocks-plus": "^2.1.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.9.3",
+    "vite": "^7.1.7",
+    "vitest": "^4.0.0"
+  }
+}

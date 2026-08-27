@@ -21,3 +21,14 @@ pnpm typecheck
 pnpm test
 pnpm test:smoke
 ```
+
+## Playground
+
+The browser playground provides a package index with focused explorers for the
+AST, block-spec registry, TurboWarp catalog, SB3 conversion, and scratchblocks
+codec.
+
+```sh
+pnpm build
+pnpm dev:playground
+```

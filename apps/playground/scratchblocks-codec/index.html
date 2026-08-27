@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Convert scratchblocks text to the scratch-code semantic AST and back." />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <title>scratchblocks-codec Playground</title>
+  </head>
+  <body>
+    <header class="site-header">
+      <div>
+        <a class="back-link" href="../">← All playgrounds</a>
+        <p class="eyebrow">@scratch-code/scratchblocks-codec</p>
+        <h1>scratchblocks-codec Playground</h1>
+        <p class="lede">Explore Scratch code as readable text, rendered blocks, and a semantic JSON tree.</p>
+        <p class="devtools-hint">Inspect the latest valid values in DevTools as <code>window.ast</code> and <code>window.doc</code>.</p>
+      </div>
+      <label class="mode-control" for="coercion">Coercion<select id="coercion"><option value="loose">Loose</option><option value="strict">Strict</option></select></label>
+    </header>
+    <main>
+      <div class="conversion-bar" aria-label="Conversion controls">
+        <button class="button button-primary" id="text-to-ast" type="button">Text → AST</button>
+        <button class="button" id="ast-to-text" type="button">AST → Text</button>
+        <span class="conversion-hint">Conversions only replace the opposite editor when you choose a direction.</span>
+      </div>
+      <div class="workspace">
+        <section class="panel" aria-labelledby="text-heading">
+          <div class="panel-header"><div><p class="step">Input</p><h2 id="text-heading">scratchblocks text</h2></div><div class="button-group"><button class="button button-small" id="copy-text" type="button">Copy text</button><button class="button button-small" id="reset" type="button">Reset example</button></div></div>
+          <label class="visually-hidden" for="scratchblocks-source">English scratchblocks source</label>
+          <textarea id="scratchblocks-source" spellcheck="false" autocomplete="off"></textarea>
+          <p class="error" id="text-error" role="alert" aria-live="polite"></p>
+          <div class="preview-header"><div><p class="step">Live preview</p><h3>Scratch 3 blocks</h3></div><span class="preview-state" id="preview-state" aria-live="polite">Ready</span></div>
+          <div class="preview" id="preview" aria-label="Rendered Scratch blocks"></div>
+        </section>
+        <section class="panel" aria-labelledby="ast-heading">
+          <div class="panel-header"><div><p class="step">Semantic form</p><h2 id="ast-heading">AST JSON</h2></div><button class="button button-small" id="copy-ast" type="button">Copy AST</button></div>
+          <label class="visually-hidden" for="ast-source">scratch-code AST JSON</label>
+          <textarea id="ast-source" class="ast-editor" spellcheck="false" autocomplete="off"></textarea>
+          <p class="error" id="ast-error" role="alert" aria-live="polite"></p>
+        </section>
+      </div>
+    </main>
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>

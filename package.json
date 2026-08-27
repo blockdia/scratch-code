@@ -8,6 +8,8 @@
   },
   "scripts": {
     "build": "pnpm --recursive build",
+    "build:playground": "pnpm --filter @scratch-code/playground build",
+    "dev:playground": "pnpm --filter @scratch-code/playground dev",
     "typecheck": "pnpm --recursive typecheck",
     "test": "pnpm --recursive test",
     "test:smoke": "pnpm --recursive --if-present run test:smoke"
