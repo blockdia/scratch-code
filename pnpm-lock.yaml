@@ -23,6 +23,19 @@ importers:
         specifier: workspace:^
         version: link:../ast
 
+  packages/sb3:
+    dependencies:
+      '@scratch-code/ast':
+        specifier: workspace:^
+        version: link:../ast
+      '@scratch-code/block-spec':
+        specifier: workspace:^
+        version: link:../block-spec
+    devDependencies:
+      '@scratch-code/turbowarp-blocks':
+        specifier: workspace:^
+        version: link:../turbowarp-blocks
+
   packages/turbowarp-blocks:
     dependencies:
       '@scratch-code/ast':
