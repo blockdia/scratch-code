@@ -36,6 +36,25 @@ importers:
         specifier: workspace:^
         version: link:../turbowarp-blocks
 
+  packages/scratchblocks-codec:
+    dependencies:
+      '@scratch-code/ast':
+        specifier: workspace:^
+        version: link:../ast
+      '@scratch-code/block-spec':
+        specifier: workspace:^
+        version: link:../block-spec
+      scratchblocks-plus:
+        specifier: ^2.1.0
+        version: 2.1.0
+    devDependencies:
+      '@scratch-code/sb3':
+        specifier: workspace:^
+        version: link:../sb3
+      '@scratch-code/turbowarp-blocks':
+        specifier: workspace:^
+        version: link:../turbowarp-blocks
+
   packages/turbowarp-blocks:
     dependencies:
       '@scratch-code/ast':
@@ -336,6 +355,23 @@ packages:
     resolution: {integrity: sha512-VD2IE5PUG4Oj8zz2VGykiYd5wbnjdIiSsNQb8Qu5B+noEp+A78mu2iVvpp27g8es14Tk9rofNs5Tku9iQCS4fA==}
     engines: {node: ^20.19.0 || >=22.12.0}
     hasBin: true
+
+  scratchblocks-plus@2.1.0:
+    resolution: {integrity: sha512-3ryNcAVfiqHHVQFftJXR/Vt7TGWxYdOx5tmdSF/2UKCyi2kkDkmM8BJlH0nts5+nUa0EDFi9YgC/+sOuhSxc5w==}
+    peerDependencies:
+      '@napi-rs/canvas': '*'
+      '@xmldom/xmldom': '>=0.8.0'
+      canvas: '>=2.0.0'
+      jsdom: '>=16.0.0'
+    peerDependenciesMeta:
+      '@napi-rs/canvas':
+        optional: true
+      '@xmldom/xmldom':
+        optional: true
+      canvas:
+        optional: true
+      jsdom:
+        optional: true
 
   siginfo@2.0.0:
     resolution: {integrity: sha512-ybx0WO1/8bSBLEWXZvEd7gMW3Sn3JFlW3TvX1nREbDLRNQNaeNN8WK0meBwPdAaOI7TtRRRJn/Es1zhrrCHu7g==}
@@ -676,6 +712,8 @@ snapshots:
       '@rolldown/binding-openharmony-arm64': 1.2.5
       '@rolldown/binding-win32-arm64-msvc': 1.2.5
       '@rolldown/binding-win32-x64-msvc': 1.2.5
+
+  scratchblocks-plus@2.1.0: {}
 
   siginfo@2.0.0: {}
 
