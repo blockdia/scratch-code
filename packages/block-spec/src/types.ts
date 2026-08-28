@@ -41,8 +41,14 @@ export interface ScratchBlocksSource {
   readonly definition: "json" | "custom-init"
 }
 
+export interface ScratchVmSource {
+  readonly sourceFile: string
+  readonly definition: "extension-info"
+}
+
 export interface BlockSpecSource {
   readonly scratchBlocks?: ScratchBlocksSource
+  readonly scratchVm?: ScratchVmSource
 }
 
 export type BlockShape =

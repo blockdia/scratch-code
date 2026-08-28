@@ -12,7 +12,8 @@
     "dist",
     "README.md",
     "LICENSE",
-    "source-manifest.json"
+    "source-manifest.json",
+    "builtin-extensions-source-manifest.json"
   ],
   "exports": {
     ".": {
@@ -25,7 +26,9 @@
     "typecheck": "tsc -p tsconfig.json",
     "test": "vitest run",
     "test:smoke": "node test/smoke.mjs",
-    "audit:scratch-blocks": "node scripts/audit-scratch-blocks.mjs"
+    "generate:scratch-vm": "node scripts/generate-scratch-vm-catalog.mjs",
+    "audit:scratch-blocks": "node scripts/audit-scratch-blocks.mjs",
+    "audit:scratch-vm": "node scripts/audit-scratch-vm.mjs"
   },
   "dependencies": {
     "@scratch-code/ast": "workspace:^",

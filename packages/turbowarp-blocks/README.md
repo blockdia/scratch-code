@@ -1,9 +1,11 @@
 # @scratch-code/turbowarp-blocks
 
 TurboWarp-compatible block specifications for `@scratch-code/block-spec`.
-The package contains 169 serializable definitions extracted from the
+The package contains 294 serializable definitions: 169 extracted from the
 TurboWarp `scratch-blocks` fork at revision
-`7c58de666658df1bb447d010132aa3914c10f41e`.
+`7c58de666658df1bb447d010132aa3914c10f41e`, plus 125 block and reporter-menu
+definitions from the built-in extensions at `scratch-vm` revision
+`96ed93bbb5c405b7bf48f673a379f1c595672373`.
 
 ```ts
 import {createTurboWarpBlockRegistry} from "@scratch-code/turbowarp-blocks"
@@ -17,10 +19,22 @@ Category arrays and the aggregate `turboWarpBlockSpecs` are read-only catalog
 data. The factory creates a new registry on every call; the package does not
 export shared mutable registry state.
 
-Every definition exposes language-independent ordered `arguments`, an explicit
-scratchblocks-plus block binding when the block has a textual command identity,
-and separate `source.scratchBlocks` provenance. Runtime codecs do not depend on
-the generated raw Scratch Blocks `args*` data.
+The built-in extension arrays are exported under their VM IDs: `penBlockSpecs`,
+`wedo2BlockSpecs`, `musicBlockSpecs`, `microbitBlockSpecs`,
+`text2speechBlockSpecs`, `translateBlockSpecs`, `videoSensingBlockSpecs`,
+`ev3BlockSpecs`, `makeymakeyBlockSpecs`, `boostBlockSpecs`, `gdxforBlockSpecs`,
+and `twBlockSpecs`. Reporter-accepting menus are included as their serialized
+`${extensionId}_menu_${menuName}` shadow opcodes.
+
+`translate_getTranslate.LANGUAGE` intentionally has no static default in the
+catalog: the VM selects that menu shadow's initial language randomly each time
+the extension metadata is requested.
+
+Every definition exposes language-independent ordered `arguments` and separate
+`source.scratchBlocks` or `source.scratchVm` provenance. Core definitions use
+explicit scratchblocks-plus block IDs where available; built-in extensions keep
+an empty binding because scratchblocks-plus has no matching built-in-extension
+catalog. Runtime codecs do not depend on generated raw source argument data.
 
 ## Dynamic definitions
 
@@ -34,19 +48,30 @@ a converter or SB3 adapter and is intentionally not part of this package.
 
 ## Source audit
 
-The committed `source-manifest.json` records each opcode's source file, input
-connections, raw field types, and whether it is dynamic. To audit it against a
-local checkout at the pinned revision:
+The committed manifests record the Scratch Blocks definitions and the VM
+extension metadata used to build the catalog. To audit them against local
+checkouts at the pinned revisions:
 
 ```sh
 pnpm build
 pnpm --filter @scratch-code/turbowarp-blocks audit:scratch-blocks -- /path/to/scratch-blocks
+pnpm --filter @scratch-code/turbowarp-blocks audit:scratch-vm -- /path/to/scratch-vm
+```
+
+After intentionally changing the pinned VM revision, regenerate its committed
+catalog and manifest before auditing:
+
+```sh
+pnpm --filter @scratch-code/turbowarp-blocks generate:scratch-vm -- /path/to/scratch-vm
 ```
 
 The catalog excludes `procedures_declaration`, the two `argument_editor_*`
-editor-only blocks, and the demonstration `extension_*` definitions. It does
-not include an SB3 adapter, AST-to-context extractor, workspace menu contents,
-or external extension definitions.
+editor-only blocks, the Scratch Blocks demonstration `extension_*`
+definitions, and VM `coreExample`. It includes every entry in the VM's
+`defaultBuiltinExtensions` table except that example. `speech2text` is not in
+that table and remains outside the built-in catalog. The package does not
+include an SB3 adapter, AST-to-context extractor, or external extension
+definitions.
 
 ## License
 

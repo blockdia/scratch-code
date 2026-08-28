@@ -28,6 +28,7 @@ export type {
   ScratchblocksFieldBinding,
   ScratchblocksFieldOption,
   ScratchBlocksSource,
+  ScratchVmSource,
   StatementInputSpec,
   TerminalBlockSpec,
   ValueInputSpec,

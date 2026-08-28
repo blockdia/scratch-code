@@ -6861,5 +6861,5981 @@
         "definition": "json"
       }
     }
+  },
+  {
+    "opcode": "pen_clear",
+    "shape": "command",
+    "arguments": [],
+    "inputs": {},
+    "fields": {},
+    "bindings": {
+      "scratchblocks": {}
+    },
+    "source": {
+      "scratchVm": {
+        "sourceFile": "src/extensions/scratch3_pen/index.js",
+        "definition": "extension-info"
+      }
+    }
+  },
+  {
+    "opcode": "pen_stamp",
+    "shape": "command",
+    "arguments": [],
+    "inputs": {},
+    "fields": {},
+    "bindings": {
+      "scratchblocks": {}
+    },
+    "source": {
+      "scratchVm": {
+        "sourceFile": "src/extensions/scratch3_pen/index.js",
+        "definition": "extension-info"
+      }
+    }
+  },
+  {
+    "opcode": "pen_penDown",
+    "shape": "command",
+    "arguments": [],
+    "inputs": {},
+    "fields": {},
+    "bindings": {
+      "scratchblocks": {}
+    },
+    "source": {
+      "scratchVm": {
+        "sourceFile": "src/extensions/scratch3_pen/index.js",
+        "definition": "extension-info"
+      }
+    }
+  },
+  {
+    "opcode": "pen_penUp",
+    "shape": "command",
+    "arguments": [],
+    "inputs": {},
+    "fields": {},
+    "bindings": {
+      "scratchblocks": {}
+    },
+    "source": {
+      "scratchVm": {
+        "sourceFile": "src/extensions/scratch3_pen/index.js",
+        "definition": "extension-info"
+      }
+    }
+  },
+  {
+    "opcode": "pen_setPenColorToColor",
+    "shape": "command",
+    "arguments": [
+      {
+        "kind": "input",
+        "name": "COLOR"
+      }
+    ],
+    "inputs": {
+      "COLOR": {
+        "connection": "value",
+        "accepts": "color",
+        "default": {
+          "kind": "input",
+          "type": "block",
+          "value": {
+            "kind": "block",
+            "opcode": "colour_picker",
+            "inputs": {},
+            "fields": {}
+          }
+        }
+      }
+    },
+    "fields": {},
+    "bindings": {
+      "scratchblocks": {}
+    },
+    "source": {
+      "scratchVm": {
+        "sourceFile": "src/extensions/scratch3_pen/index.js",
+        "definition": "extension-info"
+      }
+    }
+  },
+  {
+    "opcode": "pen_changePenColorParamBy",
+    "shape": "command",
+    "arguments": [
+      {
+        "kind": "input",
+        "name": "COLOR_PARAM"
+      },
+      {
+        "kind": "input",
+        "name": "VALUE"
+      }
+    ],
+    "inputs": {
+      "COLOR_PARAM": {
+        "connection": "value",
+        "accepts": "string",
+        "default": {
+          "kind": "input",
+          "type": "block",
+          "value": {
+            "kind": "block",
+            "opcode": "pen_menu_colorParam",
+            "inputs": {},
+            "fields": {
+              "colorParam": {
+                "kind": "field",
+                "type": "dropdown",
+                "value": "color"
+              }
+            }
+          }
+        }
+      },
+      "VALUE": {
+        "connection": "value",
+        "accepts": "number",
+        "default": {
+          "kind": "input",
+          "type": "number",
+          "value": "10",
+          "metadata": {
+            "scratch": {
+              "numericKind": "number"
+            }
+          }
+        }
+      }
+    },
+    "fields": {},
+    "bindings": {
+      "scratchblocks": {}
+    },
+    "source": {
+      "scratchVm": {
+        "sourceFile": "src/extensions/scratch3_pen/index.js",
+        "definition": "extension-info"
+      }
+    }
+  },
+  {
+    "opcode": "pen_setPenColorParamTo",
+    "shape": "command",
+    "arguments": [
+      {
+        "kind": "input",
+        "name": "COLOR_PARAM"
+      },
+      {
+        "kind": "input",
+        "name": "VALUE"
+      }
+    ],
+    "inputs": {
+      "COLOR_PARAM": {
+        "connection": "value",
+        "accepts": "string",
+        "default": {
+          "kind": "input",
+          "type": "block",
+          "value": {
+            "kind": "block",
+            "opcode": "pen_menu_colorParam",
+            "inputs": {},
+            "fields": {
+              "colorParam": {
+                "kind": "field",
+                "type": "dropdown",
+                "value": "color"
+              }
+            }
+          }
+        }
+      },
+      "VALUE": {
+        "connection": "value",
+        "accepts": "number",
+        "default": {
+          "kind": "input",
+          "type": "number",
+          "value": "50",
+          "metadata": {
+            "scratch": {
+              "numericKind": "number"
+            }
+          }
+        }
+      }
+    },
+    "fields": {},
+    "bindings": {
+      "scratchblocks": {}
+    },
+    "source": {
+      "scratchVm": {
+        "sourceFile": "src/extensions/scratch3_pen/index.js",
+        "definition": "extension-info"
+      }
+    }
+  },
+  {
+    "opcode": "pen_changePenSizeBy",
+    "shape": "command",
+    "arguments": [
+      {
+        "kind": "input",
+        "name": "SIZE"
+      }
+    ],
+    "inputs": {
+      "SIZE": {
+        "connection": "value",
+        "accepts": "number",
+        "default": {
+          "kind": "input",
+          "type": "number",
+          "value": "1",
+          "metadata": {
+            "scratch": {
+              "numericKind": "number"
+            }
+          }
+        }
+      }
+    },
+    "fields": {},
+    "bindings": {
+      "scratchblocks": {}
+    },
+    "source": {
+      "scratchVm": {
+        "sourceFile": "src/extensions/scratch3_pen/index.js",
+        "definition": "extension-info"
+      }
+    }
+  },
+  {
+    "opcode": "pen_setPenSizeTo",
+    "shape": "command",
+    "arguments": [
+      {
+        "kind": "input",
+        "name": "SIZE"
+      }
+    ],
+    "inputs": {
+      "SIZE": {
+        "connection": "value",
+        "accepts": "number",
+        "default": {
+          "kind": "input",
+          "type": "number",
+          "value": "1",
+          "metadata": {
+            "scratch": {
+              "numericKind": "number"
+            }
+          }
+        }
+      }
+    },
+    "fields": {},
+    "bindings": {
+      "scratchblocks": {}
+    },
+    "source": {
+      "scratchVm": {
+        "sourceFile": "src/extensions/scratch3_pen/index.js",
+        "definition": "extension-info"
+      }
+    }
+  },
+  {
+    "opcode": "pen_setPenShadeToNumber",
+    "shape": "command",
+    "arguments": [
+      {
+        "kind": "input",
+        "name": "SHADE"
+      }
+    ],
+    "inputs": {
+      "SHADE": {
+        "connection": "value",
+        "accepts": "number",
+        "default": {
+          "kind": "input",
+          "type": "number",
+          "value": "1",
+          "metadata": {
+            "scratch": {
+              "numericKind": "number"
+            }
+          }
+        }
+      }
+    },
+    "fields": {},
+    "bindings": {
+      "scratchblocks": {}
+    },
+    "source": {
+      "scratchVm": {
+        "sourceFile": "src/extensions/scratch3_pen/index.js",
+        "definition": "extension-info"
+      }
+    }
+  },
+  {
+    "opcode": "pen_changePenShadeBy",
+    "shape": "command",
+    "arguments": [
+      {
+        "kind": "input",
+        "name": "SHADE"
+      }
+    ],
+    "inputs": {
+      "SHADE": {
+        "connection": "value",
+        "accepts": "number",
+        "default": {
+          "kind": "input",
+          "type": "number",
+          "value": "1",
+          "metadata": {
+            "scratch": {
+              "numericKind": "number"
+            }
+          }
+        }
+      }
+    },
+    "fields": {},
+    "bindings": {
+      "scratchblocks": {}
+    },
+    "source": {
+      "scratchVm": {
+        "sourceFile": "src/extensions/scratch3_pen/index.js",
+        "definition": "extension-info"
+      }
+    }
+  },
+  {
+    "opcode": "pen_setPenHueToNumber",
+    "shape": "command",
+    "arguments": [
+      {
+        "kind": "input",
+        "name": "HUE"
+      }
+    ],
+    "inputs": {
+      "HUE": {
+        "connection": "value",
+        "accepts": "number",
+        "default": {
+          "kind": "input",
+          "type": "number",
+          "value": "1",
+          "metadata": {
+            "scratch": {
+              "numericKind": "number"
+            }
+          }
+        }
+      }
+    },
+    "fields": {},
+    "bindings": {
+      "scratchblocks": {}
+    },
+    "source": {
+      "scratchVm": {
+        "sourceFile": "src/extensions/scratch3_pen/index.js",
+        "definition": "extension-info"
+      }
+    }
+  },
+  {
+    "opcode": "pen_changePenHueBy",
+    "shape": "command",
+    "arguments": [
+      {
+        "kind": "input",
+        "name": "HUE"
+      }
+    ],
+    "inputs": {
+      "HUE": {
+        "connection": "value",
+        "accepts": "number",
+        "default": {
+          "kind": "input",
+          "type": "number",
+          "value": "1",
+          "metadata": {
+            "scratch": {
+              "numericKind": "number"
+            }
+          }
+        }
+      }
+    },
+    "fields": {},
+    "bindings": {
+      "scratchblocks": {}
+    },
+    "source": {
+      "scratchVm": {
+        "sourceFile": "src/extensions/scratch3_pen/index.js",
+        "definition": "extension-info"
+      }
+    }
+  },
+  {
+    "opcode": "pen_menu_colorParam",
+    "shape": "reporter",
+    "outputType": "string",
+    "arguments": [
+      {
+        "kind": "field",
+        "name": "colorParam"
+      }
+    ],
+    "inputs": {},
+    "fields": {
+      "colorParam": {
+        "type": "dropdown",
+        "default": {
+          "kind": "field",
+          "type": "dropdown",
+          "value": "color"
+        },
+        "bindings": {
+          "scratchblocks": {
+            "shape": "dropdown",
+            "options": [
+              {
+                "label": "color",
+                "value": "color"
+              },
+              {
+                "label": "saturation",
+                "value": "saturation"
+              },
+              {
+                "label": "brightness",
+                "value": "brightness"
+              },
+              {
+                "label": "transparency",
+                "value": "transparency"
+              }
+            ]
+          }
+        }
+      }
+    },
+    "bindings": {
+      "scratchblocks": {}
+    },
+    "source": {
+      "scratchVm": {
+        "sourceFile": "src/extensions/scratch3_pen/index.js",
+        "definition": "extension-info"
+      }
+    }
+  },
+  {
+    "opcode": "wedo2_motorOnFor",
+    "shape": "command",
+    "arguments": [
+      {
+        "kind": "input",
+        "name": "MOTOR_ID"
+      },
+      {
+        "kind": "input",
+        "name": "DURATION"
+      }
+    ],
+    "inputs": {
+      "MOTOR_ID": {
+        "connection": "value",
+        "accepts": "string",
+        "default": {
+          "kind": "input",
+          "type": "block",
+          "value": {
+            "kind": "block",
+            "opcode": "wedo2_menu_MOTOR_ID",
+            "inputs": {},
+            "fields": {
+              "MOTOR_ID": {
+                "kind": "field",
+                "type": "dropdown",
+                "value": "motor"
+              }
+            }
+          }
+        }
+      },
+      "DURATION": {
+        "connection": "value",
+        "accepts": "number",
+        "default": {
+          "kind": "input",
+          "type": "number",
+          "value": "1",
+          "metadata": {
+            "scratch": {
+              "numericKind": "number"
+            }
+          }
+        }
+      }
+    },
+    "fields": {},
+    "bindings": {
+      "scratchblocks": {}
+    },
+    "source": {
+      "scratchVm": {
+        "sourceFile": "src/extensions/scratch3_wedo2/index.js",
+        "definition": "extension-info"
+      }
+    }
+  },
+  {
+    "opcode": "wedo2_motorOn",
+    "shape": "command",
+    "arguments": [
+      {
+        "kind": "input",
+        "name": "MOTOR_ID"
+      }
+    ],
+    "inputs": {
+      "MOTOR_ID": {
+        "connection": "value",
+        "accepts": "string",
+        "default": {
+          "kind": "input",
+          "type": "block",
+          "value": {
+            "kind": "block",
+            "opcode": "wedo2_menu_MOTOR_ID",
+            "inputs": {},
+            "fields": {
+              "MOTOR_ID": {
+                "kind": "field",
+                "type": "dropdown",
+                "value": "motor"
+              }
+            }
+          }
+        }
+      }
+    },
+    "fields": {},
+    "bindings": {
+      "scratchblocks": {}
+    },
+    "source": {
+      "scratchVm": {
+        "sourceFile": "src/extensions/scratch3_wedo2/index.js",
+        "definition": "extension-info"
+      }
+    }
+  },
+  {
+    "opcode": "wedo2_motorOff",
+    "shape": "command",
+    "arguments": [
+      {
+        "kind": "input",
+        "name": "MOTOR_ID"
+      }
+    ],
+    "inputs": {
+      "MOTOR_ID": {
+        "connection": "value",
+        "accepts": "string",
+        "default": {
+          "kind": "input",
+          "type": "block",
+          "value": {
+            "kind": "block",
+            "opcode": "wedo2_menu_MOTOR_ID",
+            "inputs": {},
+            "fields": {
+              "MOTOR_ID": {
+                "kind": "field",
+                "type": "dropdown",
+                "value": "motor"
+              }
+            }
+          }
+        }
+      }
+    },
+    "fields": {},
+    "bindings": {
+      "scratchblocks": {}
+    },
+    "source": {
+      "scratchVm": {
+        "sourceFile": "src/extensions/scratch3_wedo2/index.js",
+        "definition": "extension-info"
+      }
+    }
+  },
+  {
+    "opcode": "wedo2_startMotorPower",
+    "shape": "command",
+    "arguments": [
+      {
+        "kind": "input",
+        "name": "MOTOR_ID"
+      },
+      {
+        "kind": "input",
+        "name": "POWER"
+      }
+    ],
+    "inputs": {
+      "MOTOR_ID": {
+        "connection": "value",
+        "accepts": "string",
+        "default": {
+          "kind": "input",
+          "type": "block",
+          "value": {
+            "kind": "block",
+            "opcode": "wedo2_menu_MOTOR_ID",
+            "inputs": {},
+            "fields": {
+              "MOTOR_ID": {
+                "kind": "field",
+                "type": "dropdown",
+                "value": "motor"
+              }
+            }
+          }
+        }
+      },
+      "POWER": {
+        "connection": "value",
+        "accepts": "number",
+        "default": {
+          "kind": "input",
+          "type": "number",
+          "value": "100",
+          "metadata": {
+            "scratch": {
+              "numericKind": "number"
+            }
+          }
+        }
+      }
+    },
+    "fields": {},
+    "bindings": {
+      "scratchblocks": {}
+    },
+    "source": {
+      "scratchVm": {
+        "sourceFile": "src/extensions/scratch3_wedo2/index.js",
+        "definition": "extension-info"
+      }
+    }
+  },
+  {
+    "opcode": "wedo2_setMotorDirection",
+    "shape": "command",
+    "arguments": [
+      {
+        "kind": "input",
+        "name": "MOTOR_ID"
+      },
+      {
+        "kind": "input",
+        "name": "MOTOR_DIRECTION"
+      }
+    ],
+    "inputs": {
+      "MOTOR_ID": {
+        "connection": "value",
+        "accepts": "string",
+        "default": {
+          "kind": "input",
+          "type": "block",
+          "value": {
+            "kind": "block",
+            "opcode": "wedo2_menu_MOTOR_ID",
+            "inputs": {},
+            "fields": {
+              "MOTOR_ID": {
+                "kind": "field",
+                "type": "dropdown",
+                "value": "motor"
+              }
+            }
+          }
+        }
+      },
+      "MOTOR_DIRECTION": {
+        "connection": "value",
+        "accepts": "string",
+        "default": {
+          "kind": "input",
+          "type": "block",
+          "value": {
+            "kind": "block",
+            "opcode": "wedo2_menu_MOTOR_DIRECTION",
+            "inputs": {},
+            "fields": {
+              "MOTOR_DIRECTION": {
+                "kind": "field",
+                "type": "dropdown",
+                "value": "this way"
+              }
+            }
+          }
+        }
+      }
+    },
+    "fields": {},
+    "bindings": {
+      "scratchblocks": {}
+    },
+    "source": {
+      "scratchVm": {
+        "sourceFile": "src/extensions/scratch3_wedo2/index.js",
+        "definition": "extension-info"
+      }
+    }
+  },
+  {
+    "opcode": "wedo2_setLightHue",
+    "shape": "command",
+    "arguments": [
+      {
+        "kind": "input",
+        "name": "HUE"
+      }
+    ],
+    "inputs": {
+      "HUE": {
+        "connection": "value",
+        "accepts": "number",
+        "default": {
+          "kind": "input",
+          "type": "number",
+          "value": "50",
+          "metadata": {
+            "scratch": {
+              "numericKind": "number"
+            }
+          }
+        }
+      }
+    },
+    "fields": {},
+    "bindings": {
+      "scratchblocks": {}
+    },
+    "source": {
+      "scratchVm": {
+        "sourceFile": "src/extensions/scratch3_wedo2/index.js",
+        "definition": "extension-info"
+      }
+    }
+  },
+  {
+    "opcode": "wedo2_playNoteFor",
+    "shape": "command",
+    "arguments": [
+      {
+        "kind": "input",
+        "name": "NOTE"
+      },
+      {
+        "kind": "input",
+        "name": "DURATION"
+      }
+    ],
+    "inputs": {
+      "NOTE": {
+        "connection": "value",
+        "accepts": "number",
+        "default": {
+          "kind": "input",
+          "type": "number",
+          "value": "60",
+          "metadata": {
+            "scratch": {
+              "numericKind": "number"
+            }
+          }
+        }
+      },
+      "DURATION": {
+        "connection": "value",
+        "accepts": "number",
+        "default": {
+          "kind": "input",
+          "type": "number",
+          "value": "0.5",
+          "metadata": {
+            "scratch": {
+              "numericKind": "number"
+            }
+          }
+        }
+      }
+    },
+    "fields": {},
+    "bindings": {
+      "scratchblocks": {}
+    },
+    "source": {
+      "scratchVm": {
+        "sourceFile": "src/extensions/scratch3_wedo2/index.js",
+        "definition": "extension-info"
+      }
+    }
+  },
+  {
+    "opcode": "wedo2_whenDistance",
+    "shape": "hat",
+    "hatStyle": "standard",
+    "arguments": [
+      {
+        "kind": "input",
+        "name": "OP"
+      },
+      {
+        "kind": "input",
+        "name": "REFERENCE"
+      }
+    ],
+    "inputs": {
+      "OP": {
+        "connection": "value",
+        "accepts": "string",
+        "default": {
+          "kind": "input",
+          "type": "block",
+          "value": {
+            "kind": "block",
+            "opcode": "wedo2_menu_OP",
+            "inputs": {},
+            "fields": {
+              "OP": {
+                "kind": "field",
+                "type": "dropdown",
+                "value": "<"
+              }
+            }
+          }
+        }
+      },
+      "REFERENCE": {
+        "connection": "value",
+        "accepts": "number",
+        "default": {
+          "kind": "input",
+          "type": "number",
+          "value": "50",
+          "metadata": {
+            "scratch": {
+              "numericKind": "number"
+            }
+          }
+        }
+      }
+    },
+    "fields": {},
+    "bindings": {
+      "scratchblocks": {}
+    },
+    "source": {
+      "scratchVm": {
+        "sourceFile": "src/extensions/scratch3_wedo2/index.js",
+        "definition": "extension-info"
+      }
+    }
+  },
+  {
+    "opcode": "wedo2_whenTilted",
+    "shape": "hat",
+    "hatStyle": "standard",
+    "arguments": [
+      {
+        "kind": "input",
+        "name": "TILT_DIRECTION_ANY"
+      }
+    ],
+    "inputs": {
+      "TILT_DIRECTION_ANY": {
+        "connection": "value",
+        "accepts": "string",
+        "default": {
+          "kind": "input",
+          "type": "block",
+          "value": {
+            "kind": "block",
+            "opcode": "wedo2_menu_TILT_DIRECTION_ANY",
+            "inputs": {},
+            "fields": {
+              "TILT_DIRECTION_ANY": {
+                "kind": "field",
+                "type": "dropdown",
+                "value": "any"
+              }
+            }
+          }
+        }
+      }
+    },
+    "fields": {},
+    "bindings": {
+      "scratchblocks": {}
+    },
+    "source": {
+      "scratchVm": {
+        "sourceFile": "src/extensions/scratch3_wedo2/index.js",
+        "definition": "extension-info"
+      }
+    }
+  },
+  {
+    "opcode": "wedo2_getDistance",
+    "shape": "reporter",
+    "outputType": "number",
+    "arguments": [],
+    "inputs": {},
+    "fields": {},
+    "bindings": {
+      "scratchblocks": {}
+    },
+    "source": {
+      "scratchVm": {
+        "sourceFile": "src/extensions/scratch3_wedo2/index.js",
+        "definition": "extension-info"
+      }
+    }
+  },
+  {
+    "opcode": "wedo2_isTilted",
+    "shape": "boolean",
+    "arguments": [
+      {
+        "kind": "input",
+        "name": "TILT_DIRECTION_ANY"
+      }
+    ],
+    "inputs": {
+      "TILT_DIRECTION_ANY": {
+        "connection": "value",
+        "accepts": "string",
+        "default": {
+          "kind": "input",
+          "type": "block",
+          "value": {
+            "kind": "block",
+            "opcode": "wedo2_menu_TILT_DIRECTION_ANY",
+            "inputs": {},
+            "fields": {
+              "TILT_DIRECTION_ANY": {
+                "kind": "field",
+                "type": "dropdown",
+                "value": "any"
+              }
+            }
+          }
+        }
+      }
+    },
+    "fields": {},
+    "bindings": {
+      "scratchblocks": {}
+    },
+    "source": {
+      "scratchVm": {
+        "sourceFile": "src/extensions/scratch3_wedo2/index.js",
+        "definition": "extension-info"
+      }
+    }
+  },
+  {
+    "opcode": "wedo2_getTiltAngle",
+    "shape": "reporter",
+    "outputType": "number",
+    "arguments": [
+      {
+        "kind": "input",
+        "name": "TILT_DIRECTION"
+      }
+    ],
+    "inputs": {
+      "TILT_DIRECTION": {
+        "connection": "value",
+        "accepts": "string",
+        "default": {
+          "kind": "input",
+          "type": "block",
+          "value": {
+            "kind": "block",
+            "opcode": "wedo2_menu_TILT_DIRECTION",
+            "inputs": {},
+            "fields": {
+              "TILT_DIRECTION": {
+                "kind": "field",
+                "type": "dropdown",
+                "value": "up"
+              }
+            }
+          }
+        }
+      }
+    },
+    "fields": {},
+    "bindings": {
+      "scratchblocks": {}
+    },
+    "source": {
+      "scratchVm": {
+        "sourceFile": "src/extensions/scratch3_wedo2/index.js",
+        "definition": "extension-info"
+      }
+    }
+  },
+  {
+    "opcode": "wedo2_menu_MOTOR_ID",
+    "shape": "reporter",
+    "outputType": "string",
+    "arguments": [
+      {
+        "kind": "field",
+        "name": "MOTOR_ID"
+      }
+    ],
+    "inputs": {},
+    "fields": {
+      "MOTOR_ID": {
+        "type": "dropdown",
+        "default": {
+          "kind": "field",
+          "type": "dropdown",
+          "value": "motor"
+        },
+        "bindings": {
+          "scratchblocks": {
+            "shape": "dropdown",
+            "options": [
+              {
+                "label": "motor",
+                "value": "motor"
+              },
+              {
+                "label": "motor A",
+                "value": "motor A"
+              },
+              {
+                "label": "motor B",
+                "value": "motor B"
+              },
+              {
+                "label": "all motors",
+                "value": "all motors"
+              }
+            ]
+          }
+        }
+      }
+    },
+    "bindings": {
+      "scratchblocks": {}
+    },
+    "source": {
+      "scratchVm": {
+        "sourceFile": "src/extensions/scratch3_wedo2/index.js",
+        "definition": "extension-info"
+      }
+    }
+  },
+  {
+    "opcode": "wedo2_menu_MOTOR_DIRECTION",
+    "shape": "reporter",
+    "outputType": "string",
+    "arguments": [
+      {
+        "kind": "field",
+        "name": "MOTOR_DIRECTION"
+      }
+    ],
+    "inputs": {},
+    "fields": {
+      "MOTOR_DIRECTION": {
+        "type": "dropdown",
+        "default": {
+          "kind": "field",
+          "type": "dropdown",
+          "value": "this way"
+        },
+        "bindings": {
+          "scratchblocks": {
+            "shape": "dropdown",
+            "options": [
+              {
+                "label": "this way",
+                "value": "this way"
+              },
+              {
+                "label": "that way",
+                "value": "that way"
+              },
+              {
+                "label": "reverse",
+                "value": "reverse"
+              }
+            ]
+          }
+        }
+      }
+    },
+    "bindings": {
+      "scratchblocks": {}
+    },
+    "source": {
+      "scratchVm": {
+        "sourceFile": "src/extensions/scratch3_wedo2/index.js",
+        "definition": "extension-info"
+      }
+    }
+  },
+  {
+    "opcode": "wedo2_menu_TILT_DIRECTION",
+    "shape": "reporter",
+    "outputType": "string",
+    "arguments": [
+      {
+        "kind": "field",
+        "name": "TILT_DIRECTION"
+      }
+    ],
+    "inputs": {},
+    "fields": {
+      "TILT_DIRECTION": {
+        "type": "dropdown",
+        "default": {
+          "kind": "field",
+          "type": "dropdown",
+          "value": "up"
+        },
+        "bindings": {
+          "scratchblocks": {
+            "shape": "dropdown",
+            "options": [
+              {
+                "label": "up",
+                "value": "up"
+              },
+              {
+                "label": "down",
+                "value": "down"
+              },
+              {
+                "label": "left",
+                "value": "left"
+              },
+              {
+                "label": "right",
+                "value": "right"
+              }
+            ]
+          }
+        }
+      }
+    },
+    "bindings": {
+      "scratchblocks": {}
+    },
+    "source": {
+      "scratchVm": {
+        "sourceFile": "src/extensions/scratch3_wedo2/index.js",
+        "definition": "extension-info"
+      }
+    }
+  },
+  {
+    "opcode": "wedo2_menu_TILT_DIRECTION_ANY",
+    "shape": "reporter",
+    "outputType": "string",
+    "arguments": [
+      {
+        "kind": "field",
+        "name": "TILT_DIRECTION_ANY"
+      }
+    ],
+    "inputs": {},
+    "fields": {
+      "TILT_DIRECTION_ANY": {
+        "type": "dropdown",
+        "default": {
+          "kind": "field",
+          "type": "dropdown",
+          "value": "up"
+        },
+        "bindings": {
+          "scratchblocks": {
+            "shape": "dropdown",
+            "options": [
+              {
+                "label": "up",
+                "value": "up"
+              },
+              {
+                "label": "down",
+                "value": "down"
+              },
+              {
+                "label": "left",
+                "value": "left"
+              },
+              {
+                "label": "right",
+                "value": "right"
+              },
+              {
+                "label": "any",
+                "value": "any"
+              }
+            ]
+          }
+        }
+      }
+    },
+    "bindings": {
+      "scratchblocks": {}
+    },
+    "source": {
+      "scratchVm": {
+        "sourceFile": "src/extensions/scratch3_wedo2/index.js",
+        "definition": "extension-info"
+      }
+    }
+  },
+  {
+    "opcode": "wedo2_menu_OP",
+    "shape": "reporter",
+    "outputType": "string",
+    "arguments": [
+      {
+        "kind": "field",
+        "name": "OP"
+      }
+    ],
+    "inputs": {},
+    "fields": {
+      "OP": {
+        "type": "dropdown",
+        "default": {
+          "kind": "field",
+          "type": "dropdown",
+          "value": "<"
+        },
+        "bindings": {
+          "scratchblocks": {
+            "shape": "dropdown",
+            "options": [
+              {
+                "label": "<",
+                "value": "<"
+              },
+              {
+                "label": ">",
+                "value": ">"
+              }
+            ]
+          }
+        }
+      }
+    },
+    "bindings": {
+      "scratchblocks": {}
+    },
+    "source": {
+      "scratchVm": {
+        "sourceFile": "src/extensions/scratch3_wedo2/index.js",
+        "definition": "extension-info"
+      }
+    }
+  },
+  {
+    "opcode": "music_playDrumForBeats",
+    "shape": "command",
+    "arguments": [
+      {
+        "kind": "input",
+        "name": "DRUM"
+      },
+      {
+        "kind": "input",
+        "name": "BEATS"
+      }
+    ],
+    "inputs": {
+      "DRUM": {
+        "connection": "value",
+        "accepts": "number",
+        "default": {
+          "kind": "input",
+          "type": "block",
+          "value": {
+            "kind": "block",
+            "opcode": "music_menu_DRUM",
+            "inputs": {},
+            "fields": {
+              "DRUM": {
+                "kind": "field",
+                "type": "dropdown",
+                "value": "1"
+              }
+            }
+          }
+        }
+      },
+      "BEATS": {
+        "connection": "value",
+        "accepts": "number",
+        "default": {
+          "kind": "input",
+          "type": "number",
+          "value": "0.25",
+          "metadata": {
+            "scratch": {
+              "numericKind": "number"
+            }
+          }
+        }
+      }
+    },
+    "fields": {},
+    "bindings": {
+      "scratchblocks": {}
+    },
+    "source": {
+      "scratchVm": {
+        "sourceFile": "src/extensions/scratch3_music/index.js",
+        "definition": "extension-info"
+      }
+    }
+  },
+  {
+    "opcode": "music_midiPlayDrumForBeats",
+    "shape": "command",
+    "arguments": [
+      {
+        "kind": "input",
+        "name": "DRUM"
+      },
+      {
+        "kind": "input",
+        "name": "BEATS"
+      }
+    ],
+    "inputs": {
+      "DRUM": {
+        "connection": "value",
+        "accepts": "number",
+        "default": {
+          "kind": "input",
+          "type": "block",
+          "value": {
+            "kind": "block",
+            "opcode": "music_menu_DRUM",
+            "inputs": {},
+            "fields": {
+              "DRUM": {
+                "kind": "field",
+                "type": "dropdown",
+                "value": "1"
+              }
+            }
+          }
+        }
+      },
+      "BEATS": {
+        "connection": "value",
+        "accepts": "number",
+        "default": {
+          "kind": "input",
+          "type": "number",
+          "value": "0.25",
+          "metadata": {
+            "scratch": {
+              "numericKind": "number"
+            }
+          }
+        }
+      }
+    },
+    "fields": {},
+    "bindings": {
+      "scratchblocks": {}
+    },
+    "source": {
+      "scratchVm": {
+        "sourceFile": "src/extensions/scratch3_music/index.js",
+        "definition": "extension-info"
+      }
+    }
+  },
+  {
+    "opcode": "music_restForBeats",
+    "shape": "command",
+    "arguments": [
+      {
+        "kind": "input",
+        "name": "BEATS"
+      }
+    ],
+    "inputs": {
+      "BEATS": {
+        "connection": "value",
+        "accepts": "number",
+        "default": {
+          "kind": "input",
+          "type": "number",
+          "value": "0.25",
+          "metadata": {
+            "scratch": {
+              "numericKind": "number"
+            }
+          }
+        }
+      }
+    },
+    "fields": {},
+    "bindings": {
+      "scratchblocks": {}
+    },
+    "source": {
+      "scratchVm": {
+        "sourceFile": "src/extensions/scratch3_music/index.js",
+        "definition": "extension-info"
+      }
+    }
+  },
+  {
+    "opcode": "music_playNoteForBeats",
+    "shape": "command",
+    "arguments": [
+      {
+        "kind": "input",
+        "name": "NOTE"
+      },
+      {
+        "kind": "input",
+        "name": "BEATS"
+      }
+    ],
+    "inputs": {
+      "NOTE": {
+        "connection": "value",
+        "accepts": "note",
+        "default": {
+          "kind": "input",
+          "type": "note",
+          "value": "60"
+        }
+      },
+      "BEATS": {
+        "connection": "value",
+        "accepts": "number",
+        "default": {
+          "kind": "input",
+          "type": "number",
+          "value": "0.25",
+          "metadata": {
+            "scratch": {
+              "numericKind": "number"
+            }
+          }
+        }
+      }
+    },
+    "fields": {},
+    "bindings": {
+      "scratchblocks": {}
+    },
+    "source": {
+      "scratchVm": {
+        "sourceFile": "src/extensions/scratch3_music/index.js",
+        "definition": "extension-info"
+      }
+    }
+  },
+  {
+    "opcode": "music_setInstrument",
+    "shape": "command",
+    "arguments": [
+      {
+        "kind": "input",
+        "name": "INSTRUMENT"
+      }
+    ],
+    "inputs": {
+      "INSTRUMENT": {
+        "connection": "value",
+        "accepts": "number",
+        "default": {
+          "kind": "input",
+          "type": "block",
+          "value": {
+            "kind": "block",
+            "opcode": "music_menu_INSTRUMENT",
+            "inputs": {},
+            "fields": {
+              "INSTRUMENT": {
+                "kind": "field",
+                "type": "dropdown",
+                "value": "1"
+              }
+            }
+          }
+        }
+      }
+    },
+    "fields": {},
+    "bindings": {
+      "scratchblocks": {}
+    },
+    "source": {
+      "scratchVm": {
+        "sourceFile": "src/extensions/scratch3_music/index.js",
+        "definition": "extension-info"
+      }
+    }
+  },
+  {
+    "opcode": "music_midiSetInstrument",
+    "shape": "command",
+    "arguments": [
+      {
+        "kind": "input",
+        "name": "INSTRUMENT"
+      }
+    ],
+    "inputs": {
+      "INSTRUMENT": {
+        "connection": "value",
+        "accepts": "number",
+        "default": {
+          "kind": "input",
+          "type": "number",
+          "value": "1",
+          "metadata": {
+            "scratch": {
+              "numericKind": "number"
+            }
+          }
+        }
+      }
+    },
+    "fields": {},
+    "bindings": {
+      "scratchblocks": {}
+    },
+    "source": {
+      "scratchVm": {
+        "sourceFile": "src/extensions/scratch3_music/index.js",
+        "definition": "extension-info"
+      }
+    }
+  },
+  {
+    "opcode": "music_setTempo",
+    "shape": "command",
+    "arguments": [
+      {
+        "kind": "input",
+        "name": "TEMPO"
+      }
+    ],
+    "inputs": {
+      "TEMPO": {
+        "connection": "value",
+        "accepts": "number",
+        "default": {
+          "kind": "input",
+          "type": "number",
+          "value": "60",
+          "metadata": {
+            "scratch": {
+              "numericKind": "number"
+            }
+          }
+        }
+      }
+    },
+    "fields": {},
+    "bindings": {
+      "scratchblocks": {}
+    },
+    "source": {
+      "scratchVm": {
+        "sourceFile": "src/extensions/scratch3_music/index.js",
+        "definition": "extension-info"
+      }
+    }
+  },
+  {
+    "opcode": "music_changeTempo",
+    "shape": "command",
+    "arguments": [
+      {
+        "kind": "input",
+        "name": "TEMPO"
+      }
+    ],
+    "inputs": {
+      "TEMPO": {
+        "connection": "value",
+        "accepts": "number",
+        "default": {
+          "kind": "input",
+          "type": "number",
+          "value": "20",
+          "metadata": {
+            "scratch": {
+              "numericKind": "number"
+            }
+          }
+        }
+      }
+    },
+    "fields": {},
+    "bindings": {
+      "scratchblocks": {}
+    },
+    "source": {
+      "scratchVm": {
+        "sourceFile": "src/extensions/scratch3_music/index.js",
+        "definition": "extension-info"
+      }
+    }
+  },
+  {
+    "opcode": "music_getTempo",
+    "shape": "reporter",
+    "outputType": "number",
+    "arguments": [],
+    "inputs": {},
+    "fields": {},
+    "bindings": {
+      "scratchblocks": {}
+    },
+    "source": {
+      "scratchVm": {
+        "sourceFile": "src/extensions/scratch3_music/index.js",
+        "definition": "extension-info"
+      }
+    }
+  },
+  {
+    "opcode": "music_menu_DRUM",
+    "shape": "reporter",
+    "outputType": "string",
+    "arguments": [
+      {
+        "kind": "field",
+        "name": "DRUM"
+      }
+    ],
+    "inputs": {},
+    "fields": {
+      "DRUM": {
+        "type": "dropdown",
+        "default": {
+          "kind": "field",
+          "type": "dropdown",
+          "value": "1"
+        },
+        "bindings": {
+          "scratchblocks": {
+            "shape": "dropdown",
+            "options": [
+              {
+                "label": "(1) Snare Drum",
+                "value": "1"
+              },
+              {
+                "label": "(2) Bass Drum",
+                "value": "2"
+              },
+              {
+                "label": "(3) Side Stick",
+                "value": "3"
+              },
+              {
+                "label": "(4) Crash Cymbal",
+                "value": "4"
+              },
+              {
+                "label": "(5) Open Hi-Hat",
+                "value": "5"
+              },
+              {
+                "label": "(6) Closed Hi-Hat",
+                "value": "6"
+              },
+              {
+                "label": "(7) Tambourine",
+                "value": "7"
+              },
+              {
+                "label": "(8) Hand Clap",
+                "value": "8"
+              },
+              {
+                "label": "(9) Claves",
+                "value": "9"
+              },
+              {
+                "label": "(10) Wood Block",
+                "value": "10"
+              },
+              {
+                "label": "(11) Cowbell",
+                "value": "11"
+              },
+              {
+                "label": "(12) Triangle",
+                "value": "12"
+              },
+              {
+                "label": "(13) Bongo",
+                "value": "13"
+              },
+              {
+                "label": "(14) Conga",
+                "value": "14"
+              },
+              {
+                "label": "(15) Cabasa",
+                "value": "15"
+              },
+              {
+                "label": "(16) Guiro",
+                "value": "16"
+              },
+              {
+                "label": "(17) Vibraslap",
+                "value": "17"
+              },
+              {
+                "label": "(18) Cuica",
+                "value": "18"
+              }
+            ]
+          }
+        }
+      }
+    },
+    "bindings": {
+      "scratchblocks": {}
+    },
+    "source": {
+      "scratchVm": {
+        "sourceFile": "src/extensions/scratch3_music/index.js",
+        "definition": "extension-info"
+      }
+    }
+  },
+  {
+    "opcode": "music_menu_INSTRUMENT",
+    "shape": "reporter",
+    "outputType": "string",
+    "arguments": [
+      {
+        "kind": "field",
+        "name": "INSTRUMENT"
+      }
+    ],
+    "inputs": {},
+    "fields": {
+      "INSTRUMENT": {
+        "type": "dropdown",
+        "default": {
+          "kind": "field",
+          "type": "dropdown",
+          "value": "1"
+        },
+        "bindings": {
+          "scratchblocks": {
+            "shape": "dropdown",
+            "options": [
+              {
+                "label": "(1) Piano",
+                "value": "1"
+              },
+              {
+                "label": "(2) Electric Piano",
+                "value": "2"
+              },
+              {
+                "label": "(3) Organ",
+                "value": "3"
+              },
+              {
+                "label": "(4) Guitar",
+                "value": "4"
+              },
+              {
+                "label": "(5) Electric Guitar",
+                "value": "5"
+              },
+              {
+                "label": "(6) Bass",
+                "value": "6"
+              },
+              {
+                "label": "(7) Pizzicato",
+                "value": "7"
+              },
+              {
+                "label": "(8) Cello",
+                "value": "8"
+              },
+              {
+                "label": "(9) Trombone",
+                "value": "9"
+              },
+              {
+                "label": "(10) Clarinet",
+                "value": "10"
+              },
+              {
+                "label": "(11) Saxophone",
+                "value": "11"
+              },
+              {
+                "label": "(12) Flute",
+                "value": "12"
+              },
+              {
+                "label": "(13) Wooden Flute",
+                "value": "13"
+              },
+              {
+                "label": "(14) Bassoon",
+                "value": "14"
+              },
+              {
+                "label": "(15) Choir",
+                "value": "15"
+              },
+              {
+                "label": "(16) Vibraphone",
+                "value": "16"
+              },
+              {
+                "label": "(17) Music Box",
+                "value": "17"
+              },
+              {
+                "label": "(18) Steel Drum",
+                "value": "18"
+              },
+              {
+                "label": "(19) Marimba",
+                "value": "19"
+              },
+              {
+                "label": "(20) Synth Lead",
+                "value": "20"
+              },
+              {
+                "label": "(21) Synth Pad",
+                "value": "21"
+              }
+            ]
+          }
+        }
+      }
+    },
+    "bindings": {
+      "scratchblocks": {}
+    },
+    "source": {
+      "scratchVm": {
+        "sourceFile": "src/extensions/scratch3_music/index.js",
+        "definition": "extension-info"
+      }
+    }
+  },
+  {
+    "opcode": "microbit_whenButtonPressed",
+    "shape": "hat",
+    "hatStyle": "standard",
+    "arguments": [
+      {
+        "kind": "input",
+        "name": "BTN"
+      }
+    ],
+    "inputs": {
+      "BTN": {
+        "connection": "value",
+        "accepts": "string",
+        "default": {
+          "kind": "input",
+          "type": "block",
+          "value": {
+            "kind": "block",
+            "opcode": "microbit_menu_buttons",
+            "inputs": {},
+            "fields": {
+              "buttons": {
+                "kind": "field",
+                "type": "dropdown",
+                "value": "A"
+              }
+            }
+          }
+        }
+      }
+    },
+    "fields": {},
+    "bindings": {
+      "scratchblocks": {}
+    },
+    "source": {
+      "scratchVm": {
+        "sourceFile": "src/extensions/scratch3_microbit/index.js",
+        "definition": "extension-info"
+      }
+    }
+  },
+  {
+    "opcode": "microbit_isButtonPressed",
+    "shape": "boolean",
+    "arguments": [
+      {
+        "kind": "input",
+        "name": "BTN"
+      }
+    ],
+    "inputs": {
+      "BTN": {
+        "connection": "value",
+        "accepts": "string",
+        "default": {
+          "kind": "input",
+          "type": "block",
+          "value": {
+            "kind": "block",
+            "opcode": "microbit_menu_buttons",
+            "inputs": {},
+            "fields": {
+              "buttons": {
+                "kind": "field",
+                "type": "dropdown",
+                "value": "A"
+              }
+            }
+          }
+        }
+      }
+    },
+    "fields": {},
+    "bindings": {
+      "scratchblocks": {}
+    },
+    "source": {
+      "scratchVm": {
+        "sourceFile": "src/extensions/scratch3_microbit/index.js",
+        "definition": "extension-info"
+      }
+    }
+  },
+  {
+    "opcode": "microbit_whenGesture",
+    "shape": "hat",
+    "hatStyle": "standard",
+    "arguments": [
+      {
+        "kind": "input",
+        "name": "GESTURE"
+      }
+    ],
+    "inputs": {
+      "GESTURE": {
+        "connection": "value",
+        "accepts": "string",
+        "default": {
+          "kind": "input",
+          "type": "block",
+          "value": {
+            "kind": "block",
+            "opcode": "microbit_menu_gestures",
+            "inputs": {},
+            "fields": {
+              "gestures": {
+                "kind": "field",
+                "type": "dropdown",
+                "value": "moved"
+              }
+            }
+          }
+        }
+      }
+    },
+    "fields": {},
+    "bindings": {
+      "scratchblocks": {}
+    },
+    "source": {
+      "scratchVm": {
+        "sourceFile": "src/extensions/scratch3_microbit/index.js",
+        "definition": "extension-info"
+      }
+    }
+  },
+  {
+    "opcode": "microbit_displaySymbol",
+    "shape": "command",
+    "arguments": [
+      {
+        "kind": "input",
+        "name": "MATRIX"
+      }
+    ],
+    "inputs": {
+      "MATRIX": {
+        "connection": "value",
+        "accepts": "matrix",
+        "default": {
+          "kind": "input",
+          "type": "matrix",
+          "value": "0101010101100010101000100"
+        }
+      }
+    },
+    "fields": {},
+    "bindings": {
+      "scratchblocks": {}
+    },
+    "source": {
+      "scratchVm": {
+        "sourceFile": "src/extensions/scratch3_microbit/index.js",
+        "definition": "extension-info"
+      }
+    }
+  },
+  {
+    "opcode": "microbit_displayText",
+    "shape": "command",
+    "arguments": [
+      {
+        "kind": "input",
+        "name": "TEXT"
+      }
+    ],
+    "inputs": {
+      "TEXT": {
+        "connection": "value",
+        "accepts": "string",
+        "default": {
+          "kind": "input",
+          "type": "string",
+          "value": "Hello!"
+        }
+      }
+    },
+    "fields": {},
+    "bindings": {
+      "scratchblocks": {}
+    },
+    "source": {
+      "scratchVm": {
+        "sourceFile": "src/extensions/scratch3_microbit/index.js",
+        "definition": "extension-info"
+      }
+    }
+  },
+  {
+    "opcode": "microbit_displayClear",
+    "shape": "command",
+    "arguments": [],
+    "inputs": {},
+    "fields": {},
+    "bindings": {
+      "scratchblocks": {}
+    },
+    "source": {
+      "scratchVm": {
+        "sourceFile": "src/extensions/scratch3_microbit/index.js",
+        "definition": "extension-info"
+      }
+    }
+  },
+  {
+    "opcode": "microbit_whenTilted",
+    "shape": "hat",
+    "hatStyle": "standard",
+    "arguments": [
+      {
+        "kind": "input",
+        "name": "DIRECTION"
+      }
+    ],
+    "inputs": {
+      "DIRECTION": {
+        "connection": "value",
+        "accepts": "string",
+        "default": {
+          "kind": "input",
+          "type": "block",
+          "value": {
+            "kind": "block",
+            "opcode": "microbit_menu_tiltDirectionAny",
+            "inputs": {},
+            "fields": {
+              "tiltDirectionAny": {
+                "kind": "field",
+                "type": "dropdown",
+                "value": "any"
+              }
+            }
+          }
+        }
+      }
+    },
+    "fields": {},
+    "bindings": {
+      "scratchblocks": {}
+    },
+    "source": {
+      "scratchVm": {
+        "sourceFile": "src/extensions/scratch3_microbit/index.js",
+        "definition": "extension-info"
+      }
+    }
+  },
+  {
+    "opcode": "microbit_isTilted",
+    "shape": "boolean",
+    "arguments": [
+      {
+        "kind": "input",
+        "name": "DIRECTION"
+      }
+    ],
+    "inputs": {
+      "DIRECTION": {
+        "connection": "value",
+        "accepts": "string",
+        "default": {
+          "kind": "input",
+          "type": "block",
+          "value": {
+            "kind": "block",
+            "opcode": "microbit_menu_tiltDirectionAny",
+            "inputs": {},
+            "fields": {
+              "tiltDirectionAny": {
+                "kind": "field",
+                "type": "dropdown",
+                "value": "any"
+              }
+            }
+          }
+        }
+      }
+    },
+    "fields": {},
+    "bindings": {
+      "scratchblocks": {}
+    },
+    "source": {
+      "scratchVm": {
+        "sourceFile": "src/extensions/scratch3_microbit/index.js",
+        "definition": "extension-info"
+      }
+    }
+  },
+  {
+    "opcode": "microbit_getTiltAngle",
+    "shape": "reporter",
+    "outputType": "number",
+    "arguments": [
+      {
+        "kind": "input",
+        "name": "DIRECTION"
+      }
+    ],
+    "inputs": {
+      "DIRECTION": {
+        "connection": "value",
+        "accepts": "string",
+        "default": {
+          "kind": "input",
+          "type": "block",
+          "value": {
+            "kind": "block",
+            "opcode": "microbit_menu_tiltDirection",
+            "inputs": {},
+            "fields": {
+              "tiltDirection": {
+                "kind": "field",
+                "type": "dropdown",
+                "value": "front"
+              }
+            }
+          }
+        }
+      }
+    },
+    "fields": {},
+    "bindings": {
+      "scratchblocks": {}
+    },
+    "source": {
+      "scratchVm": {
+        "sourceFile": "src/extensions/scratch3_microbit/index.js",
+        "definition": "extension-info"
+      }
+    }
+  },
+  {
+    "opcode": "microbit_whenPinConnected",
+    "shape": "hat",
+    "hatStyle": "standard",
+    "arguments": [
+      {
+        "kind": "input",
+        "name": "PIN"
+      }
+    ],
+    "inputs": {
+      "PIN": {
+        "connection": "value",
+        "accepts": "string",
+        "default": {
+          "kind": "input",
+          "type": "block",
+          "value": {
+            "kind": "block",
+            "opcode": "microbit_menu_touchPins",
+            "inputs": {},
+            "fields": {
+              "touchPins": {
+                "kind": "field",
+                "type": "dropdown",
+                "value": "0"
+              }
+            }
+          }
+        }
+      }
+    },
+    "fields": {},
+    "bindings": {
+      "scratchblocks": {}
+    },
+    "source": {
+      "scratchVm": {
+        "sourceFile": "src/extensions/scratch3_microbit/index.js",
+        "definition": "extension-info"
+      }
+    }
+  },
+  {
+    "opcode": "microbit_menu_buttons",
+    "shape": "reporter",
+    "outputType": "string",
+    "arguments": [
+      {
+        "kind": "field",
+        "name": "buttons"
+      }
+    ],
+    "inputs": {},
+    "fields": {
+      "buttons": {
+        "type": "dropdown",
+        "default": {
+          "kind": "field",
+          "type": "dropdown",
+          "value": "A"
+        },
+        "bindings": {
+          "scratchblocks": {
+            "shape": "dropdown",
+            "options": [
+              {
+                "label": "A",
+                "value": "A"
+              },
+              {
+                "label": "B",
+                "value": "B"
+              },
+              {
+                "label": "any",
+                "value": "any"
+              }
+            ]
+          }
+        }
+      }
+    },
+    "bindings": {
+      "scratchblocks": {}
+    },
+    "source": {
+      "scratchVm": {
+        "sourceFile": "src/extensions/scratch3_microbit/index.js",
+        "definition": "extension-info"
+      }
+    }
+  },
+  {
+    "opcode": "microbit_menu_gestures",
+    "shape": "reporter",
+    "outputType": "string",
+    "arguments": [
+      {
+        "kind": "field",
+        "name": "gestures"
+      }
+    ],
+    "inputs": {},
+    "fields": {
+      "gestures": {
+        "type": "dropdown",
+        "default": {
+          "kind": "field",
+          "type": "dropdown",
+          "value": "moved"
+        },
+        "bindings": {
+          "scratchblocks": {
+            "shape": "dropdown",
+            "options": [
+              {
+                "label": "moved",
+                "value": "moved"
+              },
+              {
+                "label": "shaken",
+                "value": "shaken"
+              },
+              {
+                "label": "jumped",
+                "value": "jumped"
+              }
+            ]
+          }
+        }
+      }
+    },
+    "bindings": {
+      "scratchblocks": {}
+    },
+    "source": {
+      "scratchVm": {
+        "sourceFile": "src/extensions/scratch3_microbit/index.js",
+        "definition": "extension-info"
+      }
+    }
+  },
+  {
+    "opcode": "microbit_menu_pinState",
+    "shape": "reporter",
+    "outputType": "string",
+    "arguments": [
+      {
+        "kind": "field",
+        "name": "pinState"
+      }
+    ],
+    "inputs": {},
+    "fields": {
+      "pinState": {
+        "type": "dropdown",
+        "default": {
+          "kind": "field",
+          "type": "dropdown",
+          "value": "on"
+        },
+        "bindings": {
+          "scratchblocks": {
+            "shape": "dropdown",
+            "options": [
+              {
+                "label": "on",
+                "value": "on"
+              },
+              {
+                "label": "off",
+                "value": "off"
+              }
+            ]
+          }
+        }
+      }
+    },
+    "bindings": {
+      "scratchblocks": {}
+    },
+    "source": {
+      "scratchVm": {
+        "sourceFile": "src/extensions/scratch3_microbit/index.js",
+        "definition": "extension-info"
+      }
+    }
+  },
+  {
+    "opcode": "microbit_menu_tiltDirection",
+    "shape": "reporter",
+    "outputType": "string",
+    "arguments": [
+      {
+        "kind": "field",
+        "name": "tiltDirection"
+      }
+    ],
+    "inputs": {},
+    "fields": {
+      "tiltDirection": {
+        "type": "dropdown",
+        "default": {
+          "kind": "field",
+          "type": "dropdown",
+          "value": "front"
+        },
+        "bindings": {
+          "scratchblocks": {
+            "shape": "dropdown",
+            "options": [
+              {
+                "label": "front",
+                "value": "front"
+              },
+              {
+                "label": "back",
+                "value": "back"
+              },
+              {
+                "label": "left",
+                "value": "left"
+              },
+              {
+                "label": "right",
+                "value": "right"
+              }
+            ]
+          }
+        }
+      }
+    },
+    "bindings": {
+      "scratchblocks": {}
+    },
+    "source": {
+      "scratchVm": {
+        "sourceFile": "src/extensions/scratch3_microbit/index.js",
+        "definition": "extension-info"
+      }
+    }
+  },
+  {
+    "opcode": "microbit_menu_tiltDirectionAny",
+    "shape": "reporter",
+    "outputType": "string",
+    "arguments": [
+      {
+        "kind": "field",
+        "name": "tiltDirectionAny"
+      }
+    ],
+    "inputs": {},
+    "fields": {
+      "tiltDirectionAny": {
+        "type": "dropdown",
+        "default": {
+          "kind": "field",
+          "type": "dropdown",
+          "value": "front"
+        },
+        "bindings": {
+          "scratchblocks": {
+            "shape": "dropdown",
+            "options": [
+              {
+                "label": "front",
+                "value": "front"
+              },
+              {
+                "label": "back",
+                "value": "back"
+              },
+              {
+                "label": "left",
+                "value": "left"
+              },
+              {
+                "label": "right",
+                "value": "right"
+              },
+              {
+                "label": "any",
+                "value": "any"
+              }
+            ]
+          }
+        }
+      }
+    },
+    "bindings": {
+      "scratchblocks": {}
+    },
+    "source": {
+      "scratchVm": {
+        "sourceFile": "src/extensions/scratch3_microbit/index.js",
+        "definition": "extension-info"
+      }
+    }
+  },
+  {
+    "opcode": "microbit_menu_touchPins",
+    "shape": "reporter",
+    "outputType": "string",
+    "arguments": [
+      {
+        "kind": "field",
+        "name": "touchPins"
+      }
+    ],
+    "inputs": {},
+    "fields": {
+      "touchPins": {
+        "type": "dropdown",
+        "default": {
+          "kind": "field",
+          "type": "dropdown",
+          "value": "0"
+        },
+        "bindings": {
+          "scratchblocks": {
+            "shape": "dropdown",
+            "options": [
+              {
+                "label": "0",
+                "value": "0"
+              },
+              {
+                "label": "1",
+                "value": "1"
+              },
+              {
+                "label": "2",
+                "value": "2"
+              }
+            ]
+          }
+        }
+      }
+    },
+    "bindings": {
+      "scratchblocks": {}
+    },
+    "source": {
+      "scratchVm": {
+        "sourceFile": "src/extensions/scratch3_microbit/index.js",
+        "definition": "extension-info"
+      }
+    }
+  },
+  {
+    "opcode": "text2speech_speakAndWait",
+    "shape": "command",
+    "arguments": [
+      {
+        "kind": "input",
+        "name": "WORDS"
+      }
+    ],
+    "inputs": {
+      "WORDS": {
+        "connection": "value",
+        "accepts": "string",
+        "default": {
+          "kind": "input",
+          "type": "string",
+          "value": "hello"
+        }
+      }
+    },
+    "fields": {},
+    "bindings": {
+      "scratchblocks": {}
+    },
+    "source": {
+      "scratchVm": {
+        "sourceFile": "src/extensions/scratch3_text2speech/index.js",
+        "definition": "extension-info"
+      }
+    }
+  },
+  {
+    "opcode": "text2speech_setVoice",
+    "shape": "command",
+    "arguments": [
+      {
+        "kind": "input",
+        "name": "VOICE"
+      }
+    ],
+    "inputs": {
+      "VOICE": {
+        "connection": "value",
+        "accepts": "string",
+        "default": {
+          "kind": "input",
+          "type": "block",
+          "value": {
+            "kind": "block",
+            "opcode": "text2speech_menu_voices",
+            "inputs": {},
+            "fields": {
+              "voices": {
+                "kind": "field",
+                "type": "dropdown",
+                "value": "ALTO"
+              }
+            }
+          }
+        }
+      }
+    },
+    "fields": {},
+    "bindings": {
+      "scratchblocks": {}
+    },
+    "source": {
+      "scratchVm": {
+        "sourceFile": "src/extensions/scratch3_text2speech/index.js",
+        "definition": "extension-info"
+      }
+    }
+  },
+  {
+    "opcode": "text2speech_setLanguage",
+    "shape": "command",
+    "arguments": [
+      {
+        "kind": "input",
+        "name": "LANGUAGE"
+      }
+    ],
+    "inputs": {
+      "LANGUAGE": {
+        "connection": "value",
+        "accepts": "string",
+        "default": {
+          "kind": "input",
+          "type": "block",
+          "value": {
+            "kind": "block",
+            "opcode": "text2speech_menu_languages",
+            "inputs": {},
+            "fields": {
+              "languages": {
+                "kind": "field",
+                "type": "dropdown",
+                "value": "0"
+              }
+            }
+          }
+        }
+      }
+    },
+    "fields": {},
+    "bindings": {
+      "scratchblocks": {}
+    },
+    "source": {
+      "scratchVm": {
+        "sourceFile": "src/extensions/scratch3_text2speech/index.js",
+        "definition": "extension-info"
+      }
+    }
+  },
+  {
+    "opcode": "text2speech_menu_voices",
+    "shape": "reporter",
+    "outputType": "string",
+    "arguments": [
+      {
+        "kind": "field",
+        "name": "voices"
+      }
+    ],
+    "inputs": {},
+    "fields": {
+      "voices": {
+        "type": "dropdown",
+        "default": {
+          "kind": "field",
+          "type": "dropdown",
+          "value": "ALTO"
+        },
+        "bindings": {
+          "scratchblocks": {
+            "shape": "dropdown",
+            "options": [
+              {
+                "label": "alto",
+                "value": "ALTO"
+              },
+              {
+                "label": "tenor",
+                "value": "TENOR"
+              },
+              {
+                "label": "squeak",
+                "value": "SQUEAK"
+              },
+              {
+                "label": "giant",
+                "value": "GIANT"
+              },
+              {
+                "label": "kitten",
+                "value": "KITTEN"
+              }
+            ]
+          }
+        }
+      }
+    },
+    "bindings": {
+      "scratchblocks": {}
+    },
+    "source": {
+      "scratchVm": {
+        "sourceFile": "src/extensions/scratch3_text2speech/index.js",
+        "definition": "extension-info"
+      }
+    }
+  },
+  {
+    "opcode": "text2speech_menu_languages",
+    "shape": "reporter",
+    "outputType": "string",
+    "arguments": [
+      {
+        "kind": "field",
+        "name": "languages"
+      }
+    ],
+    "inputs": {},
+    "fields": {
+      "languages": {
+        "type": "dropdown",
+        "default": {
+          "kind": "field",
+          "type": "dropdown",
+          "value": "ar"
+        },
+        "bindings": {
+          "scratchblocks": {
+            "shape": "dropdown",
+            "options": [
+              {
+                "label": "Arabic",
+                "value": "ar"
+              },
+              {
+                "label": "Chinese (Mandarin)",
+                "value": "zh-cn"
+              },
+              {
+                "label": "Danish",
+                "value": "da"
+              },
+              {
+                "label": "Dutch",
+                "value": "nl"
+              },
+              {
+                "label": "English",
+                "value": "en"
+              },
+              {
+                "label": "French",
+                "value": "fr"
+              },
+              {
+                "label": "German",
+                "value": "de"
+              },
+              {
+                "label": "Hindi",
+                "value": "hi"
+              },
+              {
+                "label": "Icelandic",
+                "value": "is"
+              },
+              {
+                "label": "Italian",
+                "value": "it"
+              },
+              {
+                "label": "Japanese",
+                "value": "ja"
+              },
+              {
+                "label": "Korean",
+                "value": "ko"
+              },
+              {
+                "label": "Norwegian",
+                "value": "nb"
+              },
+              {
+                "label": "Polish",
+                "value": "pl"
+              },
+              {
+                "label": "Portuguese (Brazilian)",
+                "value": "pt-br"
+              },
+              {
+                "label": "Portuguese",
+                "value": "pt"
+              },
+              {
+                "label": "Romanian",
+                "value": "ro"
+              },
+              {
+                "label": "Russian",
+                "value": "ru"
+              },
+              {
+                "label": "Spanish",
+                "value": "es"
+              },
+              {
+                "label": "Spanish (Latin American)",
+                "value": "es-419"
+              },
+              {
+                "label": "Swedish",
+                "value": "sv"
+              },
+              {
+                "label": "Turkish",
+                "value": "tr"
+              },
+              {
+                "label": "Welsh",
+                "value": "cy"
+              }
+            ]
+          }
+        }
+      }
+    },
+    "bindings": {
+      "scratchblocks": {}
+    },
+    "source": {
+      "scratchVm": {
+        "sourceFile": "src/extensions/scratch3_text2speech/index.js",
+        "definition": "extension-info"
+      }
+    }
+  },
+  {
+    "opcode": "translate_getTranslate",
+    "shape": "reporter",
+    "outputType": "string",
+    "arguments": [
+      {
+        "kind": "input",
+        "name": "WORDS"
+      },
+      {
+        "kind": "input",
+        "name": "LANGUAGE"
+      }
+    ],
+    "inputs": {
+      "WORDS": {
+        "connection": "value",
+        "accepts": "string",
+        "default": {
+          "kind": "input",
+          "type": "string",
+          "value": "hello"
+        }
+      },
+      "LANGUAGE": {
+        "connection": "value",
+        "accepts": "string"
+      }
+    },
+    "fields": {},
+    "bindings": {
+      "scratchblocks": {}
+    },
+    "source": {
+      "scratchVm": {
+        "sourceFile": "src/extensions/scratch3_translate/index.js",
+        "definition": "extension-info"
+      }
+    }
+  },
+  {
+    "opcode": "translate_getViewerLanguage",
+    "shape": "reporter",
+    "outputType": "string",
+    "arguments": [],
+    "inputs": {},
+    "fields": {},
+    "bindings": {
+      "scratchblocks": {}
+    },
+    "source": {
+      "scratchVm": {
+        "sourceFile": "src/extensions/scratch3_translate/index.js",
+        "definition": "extension-info"
+      }
+    }
+  },
+  {
+    "opcode": "translate_menu_languages",
+    "shape": "reporter",
+    "outputType": "string",
+    "arguments": [
+      {
+        "kind": "field",
+        "name": "languages"
+      }
+    ],
+    "inputs": {},
+    "fields": {
+      "languages": {
+        "type": "dropdown",
+        "default": {
+          "kind": "field",
+          "type": "dropdown",
+          "value": "am"
+        },
+        "bindings": {
+          "scratchblocks": {
+            "shape": "dropdown",
+            "options": [
+              {
+                "label": "Amharic",
+                "value": "am"
+              },
+              {
+                "label": "Arabic",
+                "value": "ar"
+              },
+              {
+                "label": "Azerbaijani",
+                "value": "az"
+              },
+              {
+                "label": "Basque",
+                "value": "eu"
+              },
+              {
+                "label": "Bulgarian",
+                "value": "bg"
+              },
+              {
+                "label": "Catalan",
+                "value": "ca"
+              },
+              {
+                "label": "Chinese (Simplified)",
+                "value": "zh-cn"
+              },
+              {
+                "label": "Chinese (Traditional)",
+                "value": "zh-tw"
+              },
+              {
+                "label": "Croatian",
+                "value": "hr"
+              },
+              {
+                "label": "Czech",
+                "value": "cs"
+              },
+              {
+                "label": "Danish",
+                "value": "da"
+              },
+              {
+                "label": "Dutch",
+                "value": "nl"
+              },
+              {
+                "label": "English",
+                "value": "en"
+              },
+              {
+                "label": "Estonian",
+                "value": "et"
+              },
+              {
+                "label": "Finnish",
+                "value": "fi"
+              },
+              {
+                "label": "French",
+                "value": "fr"
+              },
+              {
+                "label": "Galician",
+                "value": "gl"
+              },
+              {
+                "label": "German",
+                "value": "de"
+              },
+              {
+                "label": "Greek",
+                "value": "el"
+              },
+              {
+                "label": "Hebrew",
+                "value": "he"
+              },
+              {
+                "label": "Hungarian",
+                "value": "hu"
+              },
+              {
+                "label": "Icelandic",
+                "value": "is"
+              },
+              {
+                "label": "Indonesian",
+                "value": "id"
+              },
+              {
+                "label": "Irish Gaelic",
+                "value": "ga"
+              },
+              {
+                "label": "Italian",
+                "value": "it"
+              },
+              {
+                "label": "Japanese",
+                "value": "ja"
+              },
+              {
+                "label": "Korean",
+                "value": "ko"
+              },
+              {
+                "label": "Kurdish (Sorani)",
+                "value": "ckb"
+              },
+              {
+                "label": "Latvian",
+                "value": "lv"
+              },
+              {
+                "label": "Lithuanian",
+                "value": "lt"
+              },
+              {
+                "label": "Maori",
+                "value": "mi"
+              },
+              {
+                "label": "Norwegian",
+                "value": "nb"
+              },
+              {
+                "label": "Persian",
+                "value": "fa"
+              },
+              {
+                "label": "Polish",
+                "value": "pl"
+              },
+              {
+                "label": "Portuguese",
+                "value": "pt"
+              },
+              {
+                "label": "Romanian",
+                "value": "ro"
+              },
+              {
+                "label": "Russian",
+                "value": "ru"
+              },
+              {
+                "label": "Scots Gaelic",
+                "value": "gd"
+              },
+              {
+                "label": "Serbian",
+                "value": "sr"
+              },
+              {
+                "label": "Slovak",
+                "value": "sk"
+              },
+              {
+                "label": "Slovenian",
+                "value": "sl"
+              },
+              {
+                "label": "Spanish",
+                "value": "es"
+              },
+              {
+                "label": "Swedish",
+                "value": "sv"
+              },
+              {
+                "label": "Thai",
+                "value": "th"
+              },
+              {
+                "label": "Turkish",
+                "value": "tr"
+              },
+              {
+                "label": "Ukrainian",
+                "value": "uk"
+              },
+              {
+                "label": "Vietnamese",
+                "value": "vi"
+              },
+              {
+                "label": "Welsh",
+                "value": "cy"
+              },
+              {
+                "label": "Zulu",
+                "value": "zu"
+              },
+              {
+                "label": "Hebrew",
+                "value": "he"
+              },
+              {
+                "label": "Chinese (Simplified)",
+                "value": "zh-cn"
+              }
+            ]
+          }
+        }
+      }
+    },
+    "bindings": {
+      "scratchblocks": {}
+    },
+    "source": {
+      "scratchVm": {
+        "sourceFile": "src/extensions/scratch3_translate/index.js",
+        "definition": "extension-info"
+      }
+    }
+  },
+  {
+    "opcode": "videoSensing_whenMotionGreaterThan",
+    "shape": "hat",
+    "hatStyle": "standard",
+    "arguments": [
+      {
+        "kind": "input",
+        "name": "REFERENCE"
+      }
+    ],
+    "inputs": {
+      "REFERENCE": {
+        "connection": "value",
+        "accepts": "number",
+        "default": {
+          "kind": "input",
+          "type": "number",
+          "value": "10",
+          "metadata": {
+            "scratch": {
+              "numericKind": "number"
+            }
+          }
+        }
+      }
+    },
+    "fields": {},
+    "bindings": {
+      "scratchblocks": {}
+    },
+    "source": {
+      "scratchVm": {
+        "sourceFile": "src/extensions/scratch3_video_sensing/index.js",
+        "definition": "extension-info"
+      }
+    }
+  },
+  {
+    "opcode": "videoSensing_videoOn",
+    "shape": "reporter",
+    "outputType": "number",
+    "arguments": [
+      {
+        "kind": "input",
+        "name": "ATTRIBUTE"
+      },
+      {
+        "kind": "input",
+        "name": "SUBJECT"
+      }
+    ],
+    "inputs": {
+      "ATTRIBUTE": {
+        "connection": "value",
+        "accepts": "number",
+        "default": {
+          "kind": "input",
+          "type": "block",
+          "value": {
+            "kind": "block",
+            "opcode": "videoSensing_menu_ATTRIBUTE",
+            "inputs": {},
+            "fields": {
+              "ATTRIBUTE": {
+                "kind": "field",
+                "type": "dropdown",
+                "value": "motion"
+              }
+            }
+          }
+        }
+      },
+      "SUBJECT": {
+        "connection": "value",
+        "accepts": "number",
+        "default": {
+          "kind": "input",
+          "type": "block",
+          "value": {
+            "kind": "block",
+            "opcode": "videoSensing_menu_SUBJECT",
+            "inputs": {},
+            "fields": {
+              "SUBJECT": {
+                "kind": "field",
+                "type": "dropdown",
+                "value": "this sprite"
+              }
+            }
+          }
+        }
+      }
+    },
+    "fields": {},
+    "bindings": {
+      "scratchblocks": {}
+    },
+    "source": {
+      "scratchVm": {
+        "sourceFile": "src/extensions/scratch3_video_sensing/index.js",
+        "definition": "extension-info"
+      }
+    }
+  },
+  {
+    "opcode": "videoSensing_videoToggle",
+    "shape": "command",
+    "arguments": [
+      {
+        "kind": "input",
+        "name": "VIDEO_STATE"
+      }
+    ],
+    "inputs": {
+      "VIDEO_STATE": {
+        "connection": "value",
+        "accepts": "number",
+        "default": {
+          "kind": "input",
+          "type": "block",
+          "value": {
+            "kind": "block",
+            "opcode": "videoSensing_menu_VIDEO_STATE",
+            "inputs": {},
+            "fields": {
+              "VIDEO_STATE": {
+                "kind": "field",
+                "type": "dropdown",
+                "value": "on"
+              }
+            }
+          }
+        }
+      }
+    },
+    "fields": {},
+    "bindings": {
+      "scratchblocks": {}
+    },
+    "source": {
+      "scratchVm": {
+        "sourceFile": "src/extensions/scratch3_video_sensing/index.js",
+        "definition": "extension-info"
+      }
+    }
+  },
+  {
+    "opcode": "videoSensing_setVideoTransparency",
+    "shape": "command",
+    "arguments": [
+      {
+        "kind": "input",
+        "name": "TRANSPARENCY"
+      }
+    ],
+    "inputs": {
+      "TRANSPARENCY": {
+        "connection": "value",
+        "accepts": "number",
+        "default": {
+          "kind": "input",
+          "type": "number",
+          "value": "50",
+          "metadata": {
+            "scratch": {
+              "numericKind": "number"
+            }
+          }
+        }
+      }
+    },
+    "fields": {},
+    "bindings": {
+      "scratchblocks": {}
+    },
+    "source": {
+      "scratchVm": {
+        "sourceFile": "src/extensions/scratch3_video_sensing/index.js",
+        "definition": "extension-info"
+      }
+    }
+  },
+  {
+    "opcode": "videoSensing_menu_ATTRIBUTE",
+    "shape": "reporter",
+    "outputType": "string",
+    "arguments": [
+      {
+        "kind": "field",
+        "name": "ATTRIBUTE"
+      }
+    ],
+    "inputs": {},
+    "fields": {
+      "ATTRIBUTE": {
+        "type": "dropdown",
+        "default": {
+          "kind": "field",
+          "type": "dropdown",
+          "value": "motion"
+        },
+        "bindings": {
+          "scratchblocks": {
+            "shape": "dropdown",
+            "options": [
+              {
+                "label": "motion",
+                "value": "motion"
+              },
+              {
+                "label": "direction",
+                "value": "direction"
+              }
+            ]
+          }
+        }
+      }
+    },
+    "bindings": {
+      "scratchblocks": {}
+    },
+    "source": {
+      "scratchVm": {
+        "sourceFile": "src/extensions/scratch3_video_sensing/index.js",
+        "definition": "extension-info"
+      }
+    }
+  },
+  {
+    "opcode": "videoSensing_menu_SUBJECT",
+    "shape": "reporter",
+    "outputType": "string",
+    "arguments": [
+      {
+        "kind": "field",
+        "name": "SUBJECT"
+      }
+    ],
+    "inputs": {},
+    "fields": {
+      "SUBJECT": {
+        "type": "dropdown",
+        "default": {
+          "kind": "field",
+          "type": "dropdown",
+          "value": "this sprite"
+        },
+        "bindings": {
+          "scratchblocks": {
+            "shape": "dropdown",
+            "options": [
+              {
+                "label": "sprite",
+                "value": "this sprite"
+              },
+              {
+                "label": "stage",
+                "value": "Stage"
+              }
+            ]
+          }
+        }
+      }
+    },
+    "bindings": {
+      "scratchblocks": {}
+    },
+    "source": {
+      "scratchVm": {
+        "sourceFile": "src/extensions/scratch3_video_sensing/index.js",
+        "definition": "extension-info"
+      }
+    }
+  },
+  {
+    "opcode": "videoSensing_menu_VIDEO_STATE",
+    "shape": "reporter",
+    "outputType": "string",
+    "arguments": [
+      {
+        "kind": "field",
+        "name": "VIDEO_STATE"
+      }
+    ],
+    "inputs": {},
+    "fields": {
+      "VIDEO_STATE": {
+        "type": "dropdown",
+        "default": {
+          "kind": "field",
+          "type": "dropdown",
+          "value": "off"
+        },
+        "bindings": {
+          "scratchblocks": {
+            "shape": "dropdown",
+            "options": [
+              {
+                "label": "off",
+                "value": "off"
+              },
+              {
+                "label": "on",
+                "value": "on"
+              },
+              {
+                "label": "on flipped",
+                "value": "on-flipped"
+              }
+            ]
+          }
+        }
+      }
+    },
+    "bindings": {
+      "scratchblocks": {}
+    },
+    "source": {
+      "scratchVm": {
+        "sourceFile": "src/extensions/scratch3_video_sensing/index.js",
+        "definition": "extension-info"
+      }
+    }
+  },
+  {
+    "opcode": "ev3_motorTurnClockwise",
+    "shape": "command",
+    "arguments": [
+      {
+        "kind": "input",
+        "name": "PORT"
+      },
+      {
+        "kind": "input",
+        "name": "TIME"
+      }
+    ],
+    "inputs": {
+      "PORT": {
+        "connection": "value",
+        "accepts": "string",
+        "default": {
+          "kind": "input",
+          "type": "block",
+          "value": {
+            "kind": "block",
+            "opcode": "ev3_menu_motorPorts",
+            "inputs": {},
+            "fields": {
+              "motorPorts": {
+                "kind": "field",
+                "type": "dropdown",
+                "value": "0"
+              }
+            }
+          }
+        }
+      },
+      "TIME": {
+        "connection": "value",
+        "accepts": "number",
+        "default": {
+          "kind": "input",
+          "type": "number",
+          "value": "1",
+          "metadata": {
+            "scratch": {
+              "numericKind": "number"
+            }
+          }
+        }
+      }
+    },
+    "fields": {},
+    "bindings": {
+      "scratchblocks": {}
+    },
+    "source": {
+      "scratchVm": {
+        "sourceFile": "src/extensions/scratch3_ev3/index.js",
+        "definition": "extension-info"
+      }
+    }
+  },
+  {
+    "opcode": "ev3_motorTurnCounterClockwise",
+    "shape": "command",
+    "arguments": [
+      {
+        "kind": "input",
+        "name": "PORT"
+      },
+      {
+        "kind": "input",
+        "name": "TIME"
+      }
+    ],
+    "inputs": {
+      "PORT": {
+        "connection": "value",
+        "accepts": "string",
+        "default": {
+          "kind": "input",
+          "type": "block",
+          "value": {
+            "kind": "block",
+            "opcode": "ev3_menu_motorPorts",
+            "inputs": {},
+            "fields": {
+              "motorPorts": {
+                "kind": "field",
+                "type": "dropdown",
+                "value": "0"
+              }
+            }
+          }
+        }
+      },
+      "TIME": {
+        "connection": "value",
+        "accepts": "number",
+        "default": {
+          "kind": "input",
+          "type": "number",
+          "value": "1",
+          "metadata": {
+            "scratch": {
+              "numericKind": "number"
+            }
+          }
+        }
+      }
+    },
+    "fields": {},
+    "bindings": {
+      "scratchblocks": {}
+    },
+    "source": {
+      "scratchVm": {
+        "sourceFile": "src/extensions/scratch3_ev3/index.js",
+        "definition": "extension-info"
+      }
+    }
+  },
+  {
+    "opcode": "ev3_motorSetPower",
+    "shape": "command",
+    "arguments": [
+      {
+        "kind": "input",
+        "name": "PORT"
+      },
+      {
+        "kind": "input",
+        "name": "POWER"
+      }
+    ],
+    "inputs": {
+      "PORT": {
+        "connection": "value",
+        "accepts": "string",
+        "default": {
+          "kind": "input",
+          "type": "block",
+          "value": {
+            "kind": "block",
+            "opcode": "ev3_menu_motorPorts",
+            "inputs": {},
+            "fields": {
+              "motorPorts": {
+                "kind": "field",
+                "type": "dropdown",
+                "value": "0"
+              }
+            }
+          }
+        }
+      },
+      "POWER": {
+        "connection": "value",
+        "accepts": "number",
+        "default": {
+          "kind": "input",
+          "type": "number",
+          "value": "100",
+          "metadata": {
+            "scratch": {
+              "numericKind": "number"
+            }
+          }
+        }
+      }
+    },
+    "fields": {},
+    "bindings": {
+      "scratchblocks": {}
+    },
+    "source": {
+      "scratchVm": {
+        "sourceFile": "src/extensions/scratch3_ev3/index.js",
+        "definition": "extension-info"
+      }
+    }
+  },
+  {
+    "opcode": "ev3_getMotorPosition",
+    "shape": "reporter",
+    "outputType": "number",
+    "arguments": [
+      {
+        "kind": "input",
+        "name": "PORT"
+      }
+    ],
+    "inputs": {
+      "PORT": {
+        "connection": "value",
+        "accepts": "string",
+        "default": {
+          "kind": "input",
+          "type": "block",
+          "value": {
+            "kind": "block",
+            "opcode": "ev3_menu_motorPorts",
+            "inputs": {},
+            "fields": {
+              "motorPorts": {
+                "kind": "field",
+                "type": "dropdown",
+                "value": "0"
+              }
+            }
+          }
+        }
+      }
+    },
+    "fields": {},
+    "bindings": {
+      "scratchblocks": {}
+    },
+    "source": {
+      "scratchVm": {
+        "sourceFile": "src/extensions/scratch3_ev3/index.js",
+        "definition": "extension-info"
+      }
+    }
+  },
+  {
+    "opcode": "ev3_whenButtonPressed",
+    "shape": "hat",
+    "hatStyle": "standard",
+    "arguments": [
+      {
+        "kind": "input",
+        "name": "PORT"
+      }
+    ],
+    "inputs": {
+      "PORT": {
+        "connection": "value",
+        "accepts": "string",
+        "default": {
+          "kind": "input",
+          "type": "block",
+          "value": {
+            "kind": "block",
+            "opcode": "ev3_menu_sensorPorts",
+            "inputs": {},
+            "fields": {
+              "sensorPorts": {
+                "kind": "field",
+                "type": "dropdown",
+                "value": "0"
+              }
+            }
+          }
+        }
+      }
+    },
+    "fields": {},
+    "bindings": {
+      "scratchblocks": {}
+    },
+    "source": {
+      "scratchVm": {
+        "sourceFile": "src/extensions/scratch3_ev3/index.js",
+        "definition": "extension-info"
+      }
+    }
+  },
+  {
+    "opcode": "ev3_whenDistanceLessThan",
+    "shape": "hat",
+    "hatStyle": "standard",
+    "arguments": [
+      {
+        "kind": "input",
+        "name": "DISTANCE"
+      }
+    ],
+    "inputs": {
+      "DISTANCE": {
+        "connection": "value",
+        "accepts": "number",
+        "default": {
+          "kind": "input",
+          "type": "number",
+          "value": "5",
+          "metadata": {
+            "scratch": {
+              "numericKind": "number"
+            }
+          }
+        }
+      }
+    },
+    "fields": {},
+    "bindings": {
+      "scratchblocks": {}
+    },
+    "source": {
+      "scratchVm": {
+        "sourceFile": "src/extensions/scratch3_ev3/index.js",
+        "definition": "extension-info"
+      }
+    }
+  },
+  {
+    "opcode": "ev3_whenBrightnessLessThan",
+    "shape": "hat",
+    "hatStyle": "standard",
+    "arguments": [
+      {
+        "kind": "input",
+        "name": "DISTANCE"
+      }
+    ],
+    "inputs": {
+      "DISTANCE": {
+        "connection": "value",
+        "accepts": "number",
+        "default": {
+          "kind": "input",
+          "type": "number",
+          "value": "50",
+          "metadata": {
+            "scratch": {
+              "numericKind": "number"
+            }
+          }
+        }
+      }
+    },
+    "fields": {},
+    "bindings": {
+      "scratchblocks": {}
+    },
+    "source": {
+      "scratchVm": {
+        "sourceFile": "src/extensions/scratch3_ev3/index.js",
+        "definition": "extension-info"
+      }
+    }
+  },
+  {
+    "opcode": "ev3_buttonPressed",
+    "shape": "boolean",
+    "arguments": [
+      {
+        "kind": "input",
+        "name": "PORT"
+      }
+    ],
+    "inputs": {
+      "PORT": {
+        "connection": "value",
+        "accepts": "string",
+        "default": {
+          "kind": "input",
+          "type": "block",
+          "value": {
+            "kind": "block",
+            "opcode": "ev3_menu_sensorPorts",
+            "inputs": {},
+            "fields": {
+              "sensorPorts": {
+                "kind": "field",
+                "type": "dropdown",
+                "value": "0"
+              }
+            }
+          }
+        }
+      }
+    },
+    "fields": {},
+    "bindings": {
+      "scratchblocks": {}
+    },
+    "source": {
+      "scratchVm": {
+        "sourceFile": "src/extensions/scratch3_ev3/index.js",
+        "definition": "extension-info"
+      }
+    }
+  },
+  {
+    "opcode": "ev3_getDistance",
+    "shape": "reporter",
+    "outputType": "number",
+    "arguments": [],
+    "inputs": {},
+    "fields": {},
+    "bindings": {
+      "scratchblocks": {}
+    },
+    "source": {
+      "scratchVm": {
+        "sourceFile": "src/extensions/scratch3_ev3/index.js",
+        "definition": "extension-info"
+      }
+    }
+  },
+  {
+    "opcode": "ev3_getBrightness",
+    "shape": "reporter",
+    "outputType": "number",
+    "arguments": [],
+    "inputs": {},
+    "fields": {},
+    "bindings": {
+      "scratchblocks": {}
+    },
+    "source": {
+      "scratchVm": {
+        "sourceFile": "src/extensions/scratch3_ev3/index.js",
+        "definition": "extension-info"
+      }
+    }
+  },
+  {
+    "opcode": "ev3_beep",
+    "shape": "command",
+    "arguments": [
+      {
+        "kind": "input",
+        "name": "NOTE"
+      },
+      {
+        "kind": "input",
+        "name": "TIME"
+      }
+    ],
+    "inputs": {
+      "NOTE": {
+        "connection": "value",
+        "accepts": "note",
+        "default": {
+          "kind": "input",
+          "type": "note",
+          "value": "60"
+        }
+      },
+      "TIME": {
+        "connection": "value",
+        "accepts": "number",
+        "default": {
+          "kind": "input",
+          "type": "number",
+          "value": "0.5",
+          "metadata": {
+            "scratch": {
+              "numericKind": "number"
+            }
+          }
+        }
+      }
+    },
+    "fields": {},
+    "bindings": {
+      "scratchblocks": {}
+    },
+    "source": {
+      "scratchVm": {
+        "sourceFile": "src/extensions/scratch3_ev3/index.js",
+        "definition": "extension-info"
+      }
+    }
+  },
+  {
+    "opcode": "ev3_menu_motorPorts",
+    "shape": "reporter",
+    "outputType": "string",
+    "arguments": [
+      {
+        "kind": "field",
+        "name": "motorPorts"
+      }
+    ],
+    "inputs": {},
+    "fields": {
+      "motorPorts": {
+        "type": "dropdown",
+        "default": {
+          "kind": "field",
+          "type": "dropdown",
+          "value": "0"
+        },
+        "bindings": {
+          "scratchblocks": {
+            "shape": "dropdown",
+            "options": [
+              {
+                "label": "A",
+                "value": "0"
+              },
+              {
+                "label": "B",
+                "value": "1"
+              },
+              {
+                "label": "C",
+                "value": "2"
+              },
+              {
+                "label": "D",
+                "value": "3"
+              }
+            ]
+          }
+        }
+      }
+    },
+    "bindings": {
+      "scratchblocks": {}
+    },
+    "source": {
+      "scratchVm": {
+        "sourceFile": "src/extensions/scratch3_ev3/index.js",
+        "definition": "extension-info"
+      }
+    }
+  },
+  {
+    "opcode": "ev3_menu_sensorPorts",
+    "shape": "reporter",
+    "outputType": "string",
+    "arguments": [
+      {
+        "kind": "field",
+        "name": "sensorPorts"
+      }
+    ],
+    "inputs": {},
+    "fields": {
+      "sensorPorts": {
+        "type": "dropdown",
+        "default": {
+          "kind": "field",
+          "type": "dropdown",
+          "value": "0"
+        },
+        "bindings": {
+          "scratchblocks": {
+            "shape": "dropdown",
+            "options": [
+              {
+                "label": "1",
+                "value": "0"
+              },
+              {
+                "label": "2",
+                "value": "1"
+              },
+              {
+                "label": "3",
+                "value": "2"
+              },
+              {
+                "label": "4",
+                "value": "3"
+              }
+            ]
+          }
+        }
+      }
+    },
+    "bindings": {
+      "scratchblocks": {}
+    },
+    "source": {
+      "scratchVm": {
+        "sourceFile": "src/extensions/scratch3_ev3/index.js",
+        "definition": "extension-info"
+      }
+    }
+  },
+  {
+    "opcode": "makeymakey_whenMakeyKeyPressed",
+    "shape": "hat",
+    "hatStyle": "standard",
+    "arguments": [
+      {
+        "kind": "input",
+        "name": "KEY"
+      }
+    ],
+    "inputs": {
+      "KEY": {
+        "connection": "value",
+        "accepts": "string",
+        "default": {
+          "kind": "input",
+          "type": "block",
+          "value": {
+            "kind": "block",
+            "opcode": "makeymakey_menu_KEY",
+            "inputs": {},
+            "fields": {
+              "KEY": {
+                "kind": "field",
+                "type": "dropdown",
+                "value": "SPACE"
+              }
+            }
+          }
+        }
+      }
+    },
+    "fields": {},
+    "bindings": {
+      "scratchblocks": {}
+    },
+    "source": {
+      "scratchVm": {
+        "sourceFile": "src/extensions/scratch3_makeymakey/index.js",
+        "definition": "extension-info"
+      }
+    }
+  },
+  {
+    "opcode": "makeymakey_whenCodePressed",
+    "shape": "hat",
+    "hatStyle": "standard",
+    "arguments": [
+      {
+        "kind": "input",
+        "name": "SEQUENCE"
+      }
+    ],
+    "inputs": {
+      "SEQUENCE": {
+        "connection": "value",
+        "accepts": "string",
+        "default": {
+          "kind": "input",
+          "type": "block",
+          "value": {
+            "kind": "block",
+            "opcode": "makeymakey_menu_SEQUENCE",
+            "inputs": {},
+            "fields": {
+              "SEQUENCE": {
+                "kind": "field",
+                "type": "dropdown",
+                "value": "LEFT UP RIGHT"
+              }
+            }
+          }
+        }
+      }
+    },
+    "fields": {},
+    "bindings": {
+      "scratchblocks": {}
+    },
+    "source": {
+      "scratchVm": {
+        "sourceFile": "src/extensions/scratch3_makeymakey/index.js",
+        "definition": "extension-info"
+      }
+    }
+  },
+  {
+    "opcode": "makeymakey_menu_KEY",
+    "shape": "reporter",
+    "outputType": "string",
+    "arguments": [
+      {
+        "kind": "field",
+        "name": "KEY"
+      }
+    ],
+    "inputs": {},
+    "fields": {
+      "KEY": {
+        "type": "dropdown",
+        "default": {
+          "kind": "field",
+          "type": "dropdown",
+          "value": "SPACE"
+        },
+        "bindings": {
+          "scratchblocks": {
+            "shape": "dropdown",
+            "options": [
+              {
+                "label": "space",
+                "value": "SPACE"
+              },
+              {
+                "label": "up arrow",
+                "value": "UP"
+              },
+              {
+                "label": "down arrow",
+                "value": "DOWN"
+              },
+              {
+                "label": "right arrow",
+                "value": "RIGHT"
+              },
+              {
+                "label": "left arrow",
+                "value": "LEFT"
+              },
+              {
+                "label": "w",
+                "value": "w"
+              },
+              {
+                "label": "a",
+                "value": "a"
+              },
+              {
+                "label": "s",
+                "value": "s"
+              },
+              {
+                "label": "d",
+                "value": "d"
+              },
+              {
+                "label": "f",
+                "value": "f"
+              },
+              {
+                "label": "g",
+                "value": "g"
+              }
+            ]
+          }
+        }
+      }
+    },
+    "bindings": {
+      "scratchblocks": {}
+    },
+    "source": {
+      "scratchVm": {
+        "sourceFile": "src/extensions/scratch3_makeymakey/index.js",
+        "definition": "extension-info"
+      }
+    }
+  },
+  {
+    "opcode": "makeymakey_menu_SEQUENCE",
+    "shape": "reporter",
+    "outputType": "string",
+    "arguments": [
+      {
+        "kind": "field",
+        "name": "SEQUENCE"
+      }
+    ],
+    "inputs": {},
+    "fields": {
+      "SEQUENCE": {
+        "type": "dropdown",
+        "default": {
+          "kind": "field",
+          "type": "dropdown",
+          "value": "LEFT UP RIGHT"
+        },
+        "bindings": {
+          "scratchblocks": {
+            "shape": "dropdown",
+            "options": [
+              {
+                "label": "left up right",
+                "value": "LEFT UP RIGHT"
+              },
+              {
+                "label": "right up left",
+                "value": "RIGHT UP LEFT"
+              },
+              {
+                "label": "left right",
+                "value": "LEFT RIGHT"
+              },
+              {
+                "label": "right left",
+                "value": "RIGHT LEFT"
+              },
+              {
+                "label": "up down",
+                "value": "UP DOWN"
+              },
+              {
+                "label": "down up",
+                "value": "DOWN UP"
+              },
+              {
+                "label": "up right down left",
+                "value": "UP RIGHT DOWN LEFT"
+              },
+              {
+                "label": "up left down right",
+                "value": "UP LEFT DOWN RIGHT"
+              },
+              {
+                "label": "up up down down left right left right",
+                "value": "UP UP DOWN DOWN LEFT RIGHT LEFT RIGHT"
+              }
+            ]
+          }
+        }
+      }
+    },
+    "bindings": {
+      "scratchblocks": {}
+    },
+    "source": {
+      "scratchVm": {
+        "sourceFile": "src/extensions/scratch3_makeymakey/index.js",
+        "definition": "extension-info"
+      }
+    }
+  },
+  {
+    "opcode": "boost_motorOnFor",
+    "shape": "command",
+    "arguments": [
+      {
+        "kind": "input",
+        "name": "MOTOR_ID"
+      },
+      {
+        "kind": "input",
+        "name": "DURATION"
+      }
+    ],
+    "inputs": {
+      "MOTOR_ID": {
+        "connection": "value",
+        "accepts": "string",
+        "default": {
+          "kind": "input",
+          "type": "block",
+          "value": {
+            "kind": "block",
+            "opcode": "boost_menu_MOTOR_ID",
+            "inputs": {},
+            "fields": {
+              "MOTOR_ID": {
+                "kind": "field",
+                "type": "dropdown",
+                "value": "A"
+              }
+            }
+          }
+        }
+      },
+      "DURATION": {
+        "connection": "value",
+        "accepts": "number",
+        "default": {
+          "kind": "input",
+          "type": "number",
+          "value": "1",
+          "metadata": {
+            "scratch": {
+              "numericKind": "number"
+            }
+          }
+        }
+      }
+    },
+    "fields": {},
+    "bindings": {
+      "scratchblocks": {}
+    },
+    "source": {
+      "scratchVm": {
+        "sourceFile": "src/extensions/scratch3_boost/index.js",
+        "definition": "extension-info"
+      }
+    }
+  },
+  {
+    "opcode": "boost_motorOnForRotation",
+    "shape": "command",
+    "arguments": [
+      {
+        "kind": "input",
+        "name": "MOTOR_ID"
+      },
+      {
+        "kind": "input",
+        "name": "ROTATION"
+      }
+    ],
+    "inputs": {
+      "MOTOR_ID": {
+        "connection": "value",
+        "accepts": "string",
+        "default": {
+          "kind": "input",
+          "type": "block",
+          "value": {
+            "kind": "block",
+            "opcode": "boost_menu_MOTOR_ID",
+            "inputs": {},
+            "fields": {
+              "MOTOR_ID": {
+                "kind": "field",
+                "type": "dropdown",
+                "value": "A"
+              }
+            }
+          }
+        }
+      },
+      "ROTATION": {
+        "connection": "value",
+        "accepts": "number",
+        "default": {
+          "kind": "input",
+          "type": "number",
+          "value": "1",
+          "metadata": {
+            "scratch": {
+              "numericKind": "number"
+            }
+          }
+        }
+      }
+    },
+    "fields": {},
+    "bindings": {
+      "scratchblocks": {}
+    },
+    "source": {
+      "scratchVm": {
+        "sourceFile": "src/extensions/scratch3_boost/index.js",
+        "definition": "extension-info"
+      }
+    }
+  },
+  {
+    "opcode": "boost_motorOn",
+    "shape": "command",
+    "arguments": [
+      {
+        "kind": "input",
+        "name": "MOTOR_ID"
+      }
+    ],
+    "inputs": {
+      "MOTOR_ID": {
+        "connection": "value",
+        "accepts": "string",
+        "default": {
+          "kind": "input",
+          "type": "block",
+          "value": {
+            "kind": "block",
+            "opcode": "boost_menu_MOTOR_ID",
+            "inputs": {},
+            "fields": {
+              "MOTOR_ID": {
+                "kind": "field",
+                "type": "dropdown",
+                "value": "A"
+              }
+            }
+          }
+        }
+      }
+    },
+    "fields": {},
+    "bindings": {
+      "scratchblocks": {}
+    },
+    "source": {
+      "scratchVm": {
+        "sourceFile": "src/extensions/scratch3_boost/index.js",
+        "definition": "extension-info"
+      }
+    }
+  },
+  {
+    "opcode": "boost_motorOff",
+    "shape": "command",
+    "arguments": [
+      {
+        "kind": "input",
+        "name": "MOTOR_ID"
+      }
+    ],
+    "inputs": {
+      "MOTOR_ID": {
+        "connection": "value",
+        "accepts": "string",
+        "default": {
+          "kind": "input",
+          "type": "block",
+          "value": {
+            "kind": "block",
+            "opcode": "boost_menu_MOTOR_ID",
+            "inputs": {},
+            "fields": {
+              "MOTOR_ID": {
+                "kind": "field",
+                "type": "dropdown",
+                "value": "A"
+              }
+            }
+          }
+        }
+      }
+    },
+    "fields": {},
+    "bindings": {
+      "scratchblocks": {}
+    },
+    "source": {
+      "scratchVm": {
+        "sourceFile": "src/extensions/scratch3_boost/index.js",
+        "definition": "extension-info"
+      }
+    }
+  },
+  {
+    "opcode": "boost_setMotorPower",
+    "shape": "command",
+    "arguments": [
+      {
+        "kind": "input",
+        "name": "MOTOR_ID"
+      },
+      {
+        "kind": "input",
+        "name": "POWER"
+      }
+    ],
+    "inputs": {
+      "MOTOR_ID": {
+        "connection": "value",
+        "accepts": "string",
+        "default": {
+          "kind": "input",
+          "type": "block",
+          "value": {
+            "kind": "block",
+            "opcode": "boost_menu_MOTOR_ID",
+            "inputs": {},
+            "fields": {
+              "MOTOR_ID": {
+                "kind": "field",
+                "type": "dropdown",
+                "value": "ABCD"
+              }
+            }
+          }
+        }
+      },
+      "POWER": {
+        "connection": "value",
+        "accepts": "number",
+        "default": {
+          "kind": "input",
+          "type": "number",
+          "value": "100",
+          "metadata": {
+            "scratch": {
+              "numericKind": "number"
+            }
+          }
+        }
+      }
+    },
+    "fields": {},
+    "bindings": {
+      "scratchblocks": {}
+    },
+    "source": {
+      "scratchVm": {
+        "sourceFile": "src/extensions/scratch3_boost/index.js",
+        "definition": "extension-info"
+      }
+    }
+  },
+  {
+    "opcode": "boost_setMotorDirection",
+    "shape": "command",
+    "arguments": [
+      {
+        "kind": "input",
+        "name": "MOTOR_ID"
+      },
+      {
+        "kind": "input",
+        "name": "MOTOR_DIRECTION"
+      }
+    ],
+    "inputs": {
+      "MOTOR_ID": {
+        "connection": "value",
+        "accepts": "string",
+        "default": {
+          "kind": "input",
+          "type": "block",
+          "value": {
+            "kind": "block",
+            "opcode": "boost_menu_MOTOR_ID",
+            "inputs": {},
+            "fields": {
+              "MOTOR_ID": {
+                "kind": "field",
+                "type": "dropdown",
+                "value": "A"
+              }
+            }
+          }
+        }
+      },
+      "MOTOR_DIRECTION": {
+        "connection": "value",
+        "accepts": "string",
+        "default": {
+          "kind": "input",
+          "type": "block",
+          "value": {
+            "kind": "block",
+            "opcode": "boost_menu_MOTOR_DIRECTION",
+            "inputs": {},
+            "fields": {
+              "MOTOR_DIRECTION": {
+                "kind": "field",
+                "type": "dropdown",
+                "value": "this way"
+              }
+            }
+          }
+        }
+      }
+    },
+    "fields": {},
+    "bindings": {
+      "scratchblocks": {}
+    },
+    "source": {
+      "scratchVm": {
+        "sourceFile": "src/extensions/scratch3_boost/index.js",
+        "definition": "extension-info"
+      }
+    }
+  },
+  {
+    "opcode": "boost_getMotorPosition",
+    "shape": "reporter",
+    "outputType": "number",
+    "arguments": [
+      {
+        "kind": "input",
+        "name": "MOTOR_REPORTER_ID"
+      }
+    ],
+    "inputs": {
+      "MOTOR_REPORTER_ID": {
+        "connection": "value",
+        "accepts": "string",
+        "default": {
+          "kind": "input",
+          "type": "block",
+          "value": {
+            "kind": "block",
+            "opcode": "boost_menu_MOTOR_REPORTER_ID",
+            "inputs": {},
+            "fields": {
+              "MOTOR_REPORTER_ID": {
+                "kind": "field",
+                "type": "dropdown",
+                "value": "A"
+              }
+            }
+          }
+        }
+      }
+    },
+    "fields": {},
+    "bindings": {
+      "scratchblocks": {}
+    },
+    "source": {
+      "scratchVm": {
+        "sourceFile": "src/extensions/scratch3_boost/index.js",
+        "definition": "extension-info"
+      }
+    }
+  },
+  {
+    "opcode": "boost_whenColor",
+    "shape": "hat",
+    "hatStyle": "standard",
+    "arguments": [
+      {
+        "kind": "input",
+        "name": "COLOR"
+      }
+    ],
+    "inputs": {
+      "COLOR": {
+        "connection": "value",
+        "accepts": "string",
+        "default": {
+          "kind": "input",
+          "type": "block",
+          "value": {
+            "kind": "block",
+            "opcode": "boost_menu_COLOR",
+            "inputs": {},
+            "fields": {
+              "COLOR": {
+                "kind": "field",
+                "type": "dropdown",
+                "value": "any"
+              }
+            }
+          }
+        }
+      }
+    },
+    "fields": {},
+    "bindings": {
+      "scratchblocks": {}
+    },
+    "source": {
+      "scratchVm": {
+        "sourceFile": "src/extensions/scratch3_boost/index.js",
+        "definition": "extension-info"
+      }
+    }
+  },
+  {
+    "opcode": "boost_seeingColor",
+    "shape": "boolean",
+    "arguments": [
+      {
+        "kind": "input",
+        "name": "COLOR"
+      }
+    ],
+    "inputs": {
+      "COLOR": {
+        "connection": "value",
+        "accepts": "string",
+        "default": {
+          "kind": "input",
+          "type": "block",
+          "value": {
+            "kind": "block",
+            "opcode": "boost_menu_COLOR",
+            "inputs": {},
+            "fields": {
+              "COLOR": {
+                "kind": "field",
+                "type": "dropdown",
+                "value": "any"
+              }
+            }
+          }
+        }
+      }
+    },
+    "fields": {},
+    "bindings": {
+      "scratchblocks": {}
+    },
+    "source": {
+      "scratchVm": {
+        "sourceFile": "src/extensions/scratch3_boost/index.js",
+        "definition": "extension-info"
+      }
+    }
+  },
+  {
+    "opcode": "boost_whenTilted",
+    "shape": "hat",
+    "hatStyle": "standard",
+    "arguments": [
+      {
+        "kind": "input",
+        "name": "TILT_DIRECTION_ANY"
+      }
+    ],
+    "inputs": {
+      "TILT_DIRECTION_ANY": {
+        "connection": "value",
+        "accepts": "string",
+        "default": {
+          "kind": "input",
+          "type": "block",
+          "value": {
+            "kind": "block",
+            "opcode": "boost_menu_TILT_DIRECTION_ANY",
+            "inputs": {},
+            "fields": {
+              "TILT_DIRECTION_ANY": {
+                "kind": "field",
+                "type": "dropdown",
+                "value": "any"
+              }
+            }
+          }
+        }
+      }
+    },
+    "fields": {},
+    "bindings": {
+      "scratchblocks": {}
+    },
+    "source": {
+      "scratchVm": {
+        "sourceFile": "src/extensions/scratch3_boost/index.js",
+        "definition": "extension-info"
+      }
+    }
+  },
+  {
+    "opcode": "boost_getTiltAngle",
+    "shape": "reporter",
+    "outputType": "number",
+    "arguments": [
+      {
+        "kind": "input",
+        "name": "TILT_DIRECTION"
+      }
+    ],
+    "inputs": {
+      "TILT_DIRECTION": {
+        "connection": "value",
+        "accepts": "string",
+        "default": {
+          "kind": "input",
+          "type": "block",
+          "value": {
+            "kind": "block",
+            "opcode": "boost_menu_TILT_DIRECTION",
+            "inputs": {},
+            "fields": {
+              "TILT_DIRECTION": {
+                "kind": "field",
+                "type": "dropdown",
+                "value": "up"
+              }
+            }
+          }
+        }
+      }
+    },
+    "fields": {},
+    "bindings": {
+      "scratchblocks": {}
+    },
+    "source": {
+      "scratchVm": {
+        "sourceFile": "src/extensions/scratch3_boost/index.js",
+        "definition": "extension-info"
+      }
+    }
+  },
+  {
+    "opcode": "boost_setLightHue",
+    "shape": "command",
+    "arguments": [
+      {
+        "kind": "input",
+        "name": "HUE"
+      }
+    ],
+    "inputs": {
+      "HUE": {
+        "connection": "value",
+        "accepts": "number",
+        "default": {
+          "kind": "input",
+          "type": "number",
+          "value": "50",
+          "metadata": {
+            "scratch": {
+              "numericKind": "number"
+            }
+          }
+        }
+      }
+    },
+    "fields": {},
+    "bindings": {
+      "scratchblocks": {}
+    },
+    "source": {
+      "scratchVm": {
+        "sourceFile": "src/extensions/scratch3_boost/index.js",
+        "definition": "extension-info"
+      }
+    }
+  },
+  {
+    "opcode": "boost_menu_MOTOR_ID",
+    "shape": "reporter",
+    "outputType": "string",
+    "arguments": [
+      {
+        "kind": "field",
+        "name": "MOTOR_ID"
+      }
+    ],
+    "inputs": {},
+    "fields": {
+      "MOTOR_ID": {
+        "type": "dropdown",
+        "default": {
+          "kind": "field",
+          "type": "dropdown",
+          "value": "A"
+        },
+        "bindings": {
+          "scratchblocks": {
+            "shape": "dropdown",
+            "options": [
+              {
+                "label": "A",
+                "value": "A"
+              },
+              {
+                "label": "B",
+                "value": "B"
+              },
+              {
+                "label": "C",
+                "value": "C"
+              },
+              {
+                "label": "D",
+                "value": "D"
+              },
+              {
+                "label": "AB",
+                "value": "AB"
+              },
+              {
+                "label": "ABCD",
+                "value": "ABCD"
+              }
+            ]
+          }
+        }
+      }
+    },
+    "bindings": {
+      "scratchblocks": {}
+    },
+    "source": {
+      "scratchVm": {
+        "sourceFile": "src/extensions/scratch3_boost/index.js",
+        "definition": "extension-info"
+      }
+    }
+  },
+  {
+    "opcode": "boost_menu_MOTOR_REPORTER_ID",
+    "shape": "reporter",
+    "outputType": "string",
+    "arguments": [
+      {
+        "kind": "field",
+        "name": "MOTOR_REPORTER_ID"
+      }
+    ],
+    "inputs": {},
+    "fields": {
+      "MOTOR_REPORTER_ID": {
+        "type": "dropdown",
+        "default": {
+          "kind": "field",
+          "type": "dropdown",
+          "value": "A"
+        },
+        "bindings": {
+          "scratchblocks": {
+            "shape": "dropdown",
+            "options": [
+              {
+                "label": "A",
+                "value": "A"
+              },
+              {
+                "label": "B",
+                "value": "B"
+              },
+              {
+                "label": "C",
+                "value": "C"
+              },
+              {
+                "label": "D",
+                "value": "D"
+              }
+            ]
+          }
+        }
+      }
+    },
+    "bindings": {
+      "scratchblocks": {}
+    },
+    "source": {
+      "scratchVm": {
+        "sourceFile": "src/extensions/scratch3_boost/index.js",
+        "definition": "extension-info"
+      }
+    }
+  },
+  {
+    "opcode": "boost_menu_MOTOR_DIRECTION",
+    "shape": "reporter",
+    "outputType": "string",
+    "arguments": [
+      {
+        "kind": "field",
+        "name": "MOTOR_DIRECTION"
+      }
+    ],
+    "inputs": {},
+    "fields": {
+      "MOTOR_DIRECTION": {
+        "type": "dropdown",
+        "default": {
+          "kind": "field",
+          "type": "dropdown",
+          "value": "this way"
+        },
+        "bindings": {
+          "scratchblocks": {
+            "shape": "dropdown",
+            "options": [
+              {
+                "label": "this way",
+                "value": "this way"
+              },
+              {
+                "label": "that way",
+                "value": "that way"
+              },
+              {
+                "label": "reverse",
+                "value": "reverse"
+              }
+            ]
+          }
+        }
+      }
+    },
+    "bindings": {
+      "scratchblocks": {}
+    },
+    "source": {
+      "scratchVm": {
+        "sourceFile": "src/extensions/scratch3_boost/index.js",
+        "definition": "extension-info"
+      }
+    }
+  },
+  {
+    "opcode": "boost_menu_TILT_DIRECTION",
+    "shape": "reporter",
+    "outputType": "string",
+    "arguments": [
+      {
+        "kind": "field",
+        "name": "TILT_DIRECTION"
+      }
+    ],
+    "inputs": {},
+    "fields": {
+      "TILT_DIRECTION": {
+        "type": "dropdown",
+        "default": {
+          "kind": "field",
+          "type": "dropdown",
+          "value": "up"
+        },
+        "bindings": {
+          "scratchblocks": {
+            "shape": "dropdown",
+            "options": [
+              {
+                "label": "up",
+                "value": "up"
+              },
+              {
+                "label": "down",
+                "value": "down"
+              },
+              {
+                "label": "left",
+                "value": "left"
+              },
+              {
+                "label": "right",
+                "value": "right"
+              }
+            ]
+          }
+        }
+      }
+    },
+    "bindings": {
+      "scratchblocks": {}
+    },
+    "source": {
+      "scratchVm": {
+        "sourceFile": "src/extensions/scratch3_boost/index.js",
+        "definition": "extension-info"
+      }
+    }
+  },
+  {
+    "opcode": "boost_menu_TILT_DIRECTION_ANY",
+    "shape": "reporter",
+    "outputType": "string",
+    "arguments": [
+      {
+        "kind": "field",
+        "name": "TILT_DIRECTION_ANY"
+      }
+    ],
+    "inputs": {},
+    "fields": {
+      "TILT_DIRECTION_ANY": {
+        "type": "dropdown",
+        "default": {
+          "kind": "field",
+          "type": "dropdown",
+          "value": "up"
+        },
+        "bindings": {
+          "scratchblocks": {
+            "shape": "dropdown",
+            "options": [
+              {
+                "label": "up",
+                "value": "up"
+              },
+              {
+                "label": "down",
+                "value": "down"
+              },
+              {
+                "label": "left",
+                "value": "left"
+              },
+              {
+                "label": "right",
+                "value": "right"
+              },
+              {
+                "label": "any",
+                "value": "any"
+              }
+            ]
+          }
+        }
+      }
+    },
+    "bindings": {
+      "scratchblocks": {}
+    },
+    "source": {
+      "scratchVm": {
+        "sourceFile": "src/extensions/scratch3_boost/index.js",
+        "definition": "extension-info"
+      }
+    }
+  },
+  {
+    "opcode": "boost_menu_COLOR",
+    "shape": "reporter",
+    "outputType": "string",
+    "arguments": [
+      {
+        "kind": "field",
+        "name": "COLOR"
+      }
+    ],
+    "inputs": {},
+    "fields": {
+      "COLOR": {
+        "type": "dropdown",
+        "default": {
+          "kind": "field",
+          "type": "dropdown",
+          "value": "red"
+        },
+        "bindings": {
+          "scratchblocks": {
+            "shape": "dropdown",
+            "options": [
+              {
+                "label": "red",
+                "value": "red"
+              },
+              {
+                "label": "blue",
+                "value": "blue"
+              },
+              {
+                "label": "green",
+                "value": "green"
+              },
+              {
+                "label": "yellow",
+                "value": "yellow"
+              },
+              {
+                "label": "white",
+                "value": "white"
+              },
+              {
+                "label": "black",
+                "value": "black"
+              },
+              {
+                "label": "any color",
+                "value": "any"
+              }
+            ]
+          }
+        }
+      }
+    },
+    "bindings": {
+      "scratchblocks": {}
+    },
+    "source": {
+      "scratchVm": {
+        "sourceFile": "src/extensions/scratch3_boost/index.js",
+        "definition": "extension-info"
+      }
+    }
+  },
+  {
+    "opcode": "gdxfor_whenGesture",
+    "shape": "hat",
+    "hatStyle": "standard",
+    "arguments": [
+      {
+        "kind": "input",
+        "name": "GESTURE"
+      }
+    ],
+    "inputs": {
+      "GESTURE": {
+        "connection": "value",
+        "accepts": "string",
+        "default": {
+          "kind": "input",
+          "type": "block",
+          "value": {
+            "kind": "block",
+            "opcode": "gdxfor_menu_gestureOptions",
+            "inputs": {},
+            "fields": {
+              "gestureOptions": {
+                "kind": "field",
+                "type": "dropdown",
+                "value": "shaken"
+              }
+            }
+          }
+        }
+      }
+    },
+    "fields": {},
+    "bindings": {
+      "scratchblocks": {}
+    },
+    "source": {
+      "scratchVm": {
+        "sourceFile": "src/extensions/scratch3_gdx_for/index.js",
+        "definition": "extension-info"
+      }
+    }
+  },
+  {
+    "opcode": "gdxfor_whenForcePushedOrPulled",
+    "shape": "hat",
+    "hatStyle": "standard",
+    "arguments": [
+      {
+        "kind": "input",
+        "name": "PUSH_PULL"
+      }
+    ],
+    "inputs": {
+      "PUSH_PULL": {
+        "connection": "value",
+        "accepts": "string",
+        "default": {
+          "kind": "input",
+          "type": "block",
+          "value": {
+            "kind": "block",
+            "opcode": "gdxfor_menu_pushPullOptions",
+            "inputs": {},
+            "fields": {
+              "pushPullOptions": {
+                "kind": "field",
+                "type": "dropdown",
+                "value": "pushed"
+              }
+            }
+          }
+        }
+      }
+    },
+    "fields": {},
+    "bindings": {
+      "scratchblocks": {}
+    },
+    "source": {
+      "scratchVm": {
+        "sourceFile": "src/extensions/scratch3_gdx_for/index.js",
+        "definition": "extension-info"
+      }
+    }
+  },
+  {
+    "opcode": "gdxfor_getForce",
+    "shape": "reporter",
+    "outputType": "number",
+    "arguments": [],
+    "inputs": {},
+    "fields": {},
+    "bindings": {
+      "scratchblocks": {}
+    },
+    "source": {
+      "scratchVm": {
+        "sourceFile": "src/extensions/scratch3_gdx_for/index.js",
+        "definition": "extension-info"
+      }
+    }
+  },
+  {
+    "opcode": "gdxfor_whenTilted",
+    "shape": "hat",
+    "hatStyle": "standard",
+    "arguments": [
+      {
+        "kind": "input",
+        "name": "TILT"
+      }
+    ],
+    "inputs": {
+      "TILT": {
+        "connection": "value",
+        "accepts": "string",
+        "default": {
+          "kind": "input",
+          "type": "block",
+          "value": {
+            "kind": "block",
+            "opcode": "gdxfor_menu_tiltAnyOptions",
+            "inputs": {},
+            "fields": {
+              "tiltAnyOptions": {
+                "kind": "field",
+                "type": "dropdown",
+                "value": "any"
+              }
+            }
+          }
+        }
+      }
+    },
+    "fields": {},
+    "bindings": {
+      "scratchblocks": {}
+    },
+    "source": {
+      "scratchVm": {
+        "sourceFile": "src/extensions/scratch3_gdx_for/index.js",
+        "definition": "extension-info"
+      }
+    }
+  },
+  {
+    "opcode": "gdxfor_isTilted",
+    "shape": "boolean",
+    "arguments": [
+      {
+        "kind": "input",
+        "name": "TILT"
+      }
+    ],
+    "inputs": {
+      "TILT": {
+        "connection": "value",
+        "accepts": "string",
+        "default": {
+          "kind": "input",
+          "type": "block",
+          "value": {
+            "kind": "block",
+            "opcode": "gdxfor_menu_tiltAnyOptions",
+            "inputs": {},
+            "fields": {
+              "tiltAnyOptions": {
+                "kind": "field",
+                "type": "dropdown",
+                "value": "any"
+              }
+            }
+          }
+        }
+      }
+    },
+    "fields": {},
+    "bindings": {
+      "scratchblocks": {}
+    },
+    "source": {
+      "scratchVm": {
+        "sourceFile": "src/extensions/scratch3_gdx_for/index.js",
+        "definition": "extension-info"
+      }
+    }
+  },
+  {
+    "opcode": "gdxfor_getTilt",
+    "shape": "reporter",
+    "outputType": "number",
+    "arguments": [
+      {
+        "kind": "input",
+        "name": "TILT"
+      }
+    ],
+    "inputs": {
+      "TILT": {
+        "connection": "value",
+        "accepts": "string",
+        "default": {
+          "kind": "input",
+          "type": "block",
+          "value": {
+            "kind": "block",
+            "opcode": "gdxfor_menu_tiltOptions",
+            "inputs": {},
+            "fields": {
+              "tiltOptions": {
+                "kind": "field",
+                "type": "dropdown",
+                "value": "front"
+              }
+            }
+          }
+        }
+      }
+    },
+    "fields": {},
+    "bindings": {
+      "scratchblocks": {}
+    },
+    "source": {
+      "scratchVm": {
+        "sourceFile": "src/extensions/scratch3_gdx_for/index.js",
+        "definition": "extension-info"
+      }
+    }
+  },
+  {
+    "opcode": "gdxfor_isFreeFalling",
+    "shape": "boolean",
+    "arguments": [],
+    "inputs": {},
+    "fields": {},
+    "bindings": {
+      "scratchblocks": {}
+    },
+    "source": {
+      "scratchVm": {
+        "sourceFile": "src/extensions/scratch3_gdx_for/index.js",
+        "definition": "extension-info"
+      }
+    }
+  },
+  {
+    "opcode": "gdxfor_getSpinSpeed",
+    "shape": "reporter",
+    "outputType": "number",
+    "arguments": [
+      {
+        "kind": "input",
+        "name": "DIRECTION"
+      }
+    ],
+    "inputs": {
+      "DIRECTION": {
+        "connection": "value",
+        "accepts": "string",
+        "default": {
+          "kind": "input",
+          "type": "block",
+          "value": {
+            "kind": "block",
+            "opcode": "gdxfor_menu_axisOptions",
+            "inputs": {},
+            "fields": {
+              "axisOptions": {
+                "kind": "field",
+                "type": "dropdown",
+                "value": "z"
+              }
+            }
+          }
+        }
+      }
+    },
+    "fields": {},
+    "bindings": {
+      "scratchblocks": {}
+    },
+    "source": {
+      "scratchVm": {
+        "sourceFile": "src/extensions/scratch3_gdx_for/index.js",
+        "definition": "extension-info"
+      }
+    }
+  },
+  {
+    "opcode": "gdxfor_getAcceleration",
+    "shape": "reporter",
+    "outputType": "number",
+    "arguments": [
+      {
+        "kind": "input",
+        "name": "DIRECTION"
+      }
+    ],
+    "inputs": {
+      "DIRECTION": {
+        "connection": "value",
+        "accepts": "string",
+        "default": {
+          "kind": "input",
+          "type": "block",
+          "value": {
+            "kind": "block",
+            "opcode": "gdxfor_menu_axisOptions",
+            "inputs": {},
+            "fields": {
+              "axisOptions": {
+                "kind": "field",
+                "type": "dropdown",
+                "value": "x"
+              }
+            }
+          }
+        }
+      }
+    },
+    "fields": {},
+    "bindings": {
+      "scratchblocks": {}
+    },
+    "source": {
+      "scratchVm": {
+        "sourceFile": "src/extensions/scratch3_gdx_for/index.js",
+        "definition": "extension-info"
+      }
+    }
+  },
+  {
+    "opcode": "gdxfor_menu_pushPullOptions",
+    "shape": "reporter",
+    "outputType": "string",
+    "arguments": [
+      {
+        "kind": "field",
+        "name": "pushPullOptions"
+      }
+    ],
+    "inputs": {},
+    "fields": {
+      "pushPullOptions": {
+        "type": "dropdown",
+        "default": {
+          "kind": "field",
+          "type": "dropdown",
+          "value": "pushed"
+        },
+        "bindings": {
+          "scratchblocks": {
+            "shape": "dropdown",
+            "options": [
+              {
+                "label": "pushed",
+                "value": "pushed"
+              },
+              {
+                "label": "pulled",
+                "value": "pulled"
+              }
+            ]
+          }
+        }
+      }
+    },
+    "bindings": {
+      "scratchblocks": {}
+    },
+    "source": {
+      "scratchVm": {
+        "sourceFile": "src/extensions/scratch3_gdx_for/index.js",
+        "definition": "extension-info"
+      }
+    }
+  },
+  {
+    "opcode": "gdxfor_menu_gestureOptions",
+    "shape": "reporter",
+    "outputType": "string",
+    "arguments": [
+      {
+        "kind": "field",
+        "name": "gestureOptions"
+      }
+    ],
+    "inputs": {},
+    "fields": {
+      "gestureOptions": {
+        "type": "dropdown",
+        "default": {
+          "kind": "field",
+          "type": "dropdown",
+          "value": "shaken"
+        },
+        "bindings": {
+          "scratchblocks": {
+            "shape": "dropdown",
+            "options": [
+              {
+                "label": "shaken",
+                "value": "shaken"
+              },
+              {
+                "label": "started falling",
+                "value": "started falling"
+              },
+              {
+                "label": "turned face up",
+                "value": "turned face up"
+              },
+              {
+                "label": "turned face down",
+                "value": "turned face down"
+              }
+            ]
+          }
+        }
+      }
+    },
+    "bindings": {
+      "scratchblocks": {}
+    },
+    "source": {
+      "scratchVm": {
+        "sourceFile": "src/extensions/scratch3_gdx_for/index.js",
+        "definition": "extension-info"
+      }
+    }
+  },
+  {
+    "opcode": "gdxfor_menu_axisOptions",
+    "shape": "reporter",
+    "outputType": "string",
+    "arguments": [
+      {
+        "kind": "field",
+        "name": "axisOptions"
+      }
+    ],
+    "inputs": {},
+    "fields": {
+      "axisOptions": {
+        "type": "dropdown",
+        "default": {
+          "kind": "field",
+          "type": "dropdown",
+          "value": "x"
+        },
+        "bindings": {
+          "scratchblocks": {
+            "shape": "dropdown",
+            "options": [
+              {
+                "label": "x",
+                "value": "x"
+              },
+              {
+                "label": "y",
+                "value": "y"
+              },
+              {
+                "label": "z",
+                "value": "z"
+              }
+            ]
+          }
+        }
+      }
+    },
+    "bindings": {
+      "scratchblocks": {}
+    },
+    "source": {
+      "scratchVm": {
+        "sourceFile": "src/extensions/scratch3_gdx_for/index.js",
+        "definition": "extension-info"
+      }
+    }
+  },
+  {
+    "opcode": "gdxfor_menu_tiltOptions",
+    "shape": "reporter",
+    "outputType": "string",
+    "arguments": [
+      {
+        "kind": "field",
+        "name": "tiltOptions"
+      }
+    ],
+    "inputs": {},
+    "fields": {
+      "tiltOptions": {
+        "type": "dropdown",
+        "default": {
+          "kind": "field",
+          "type": "dropdown",
+          "value": "front"
+        },
+        "bindings": {
+          "scratchblocks": {
+            "shape": "dropdown",
+            "options": [
+              {
+                "label": "front",
+                "value": "front"
+              },
+              {
+                "label": "back",
+                "value": "back"
+              },
+              {
+                "label": "left",
+                "value": "left"
+              },
+              {
+                "label": "right",
+                "value": "right"
+              }
+            ]
+          }
+        }
+      }
+    },
+    "bindings": {
+      "scratchblocks": {}
+    },
+    "source": {
+      "scratchVm": {
+        "sourceFile": "src/extensions/scratch3_gdx_for/index.js",
+        "definition": "extension-info"
+      }
+    }
+  },
+  {
+    "opcode": "gdxfor_menu_tiltAnyOptions",
+    "shape": "reporter",
+    "outputType": "string",
+    "arguments": [
+      {
+        "kind": "field",
+        "name": "tiltAnyOptions"
+      }
+    ],
+    "inputs": {},
+    "fields": {
+      "tiltAnyOptions": {
+        "type": "dropdown",
+        "default": {
+          "kind": "field",
+          "type": "dropdown",
+          "value": "front"
+        },
+        "bindings": {
+          "scratchblocks": {
+            "shape": "dropdown",
+            "options": [
+              {
+                "label": "front",
+                "value": "front"
+              },
+              {
+                "label": "back",
+                "value": "back"
+              },
+              {
+                "label": "left",
+                "value": "left"
+              },
+              {
+                "label": "right",
+                "value": "right"
+              },
+              {
+                "label": "any",
+                "value": "any"
+              }
+            ]
+          }
+        }
+      }
+    },
+    "bindings": {
+      "scratchblocks": {}
+    },
+    "source": {
+      "scratchVm": {
+        "sourceFile": "src/extensions/scratch3_gdx_for/index.js",
+        "definition": "extension-info"
+      }
+    }
+  },
+  {
+    "opcode": "tw_getLastKeyPressed",
+    "shape": "reporter",
+    "outputType": "string",
+    "arguments": [],
+    "inputs": {},
+    "fields": {},
+    "bindings": {
+      "scratchblocks": {}
+    },
+    "source": {
+      "scratchVm": {
+        "sourceFile": "src/extensions/tw/index.js",
+        "definition": "extension-info"
+      }
+    }
+  },
+  {
+    "opcode": "tw_getButtonIsDown",
+    "shape": "boolean",
+    "arguments": [
+      {
+        "kind": "input",
+        "name": "MOUSE_BUTTON"
+      }
+    ],
+    "inputs": {
+      "MOUSE_BUTTON": {
+        "connection": "value",
+        "accepts": "number",
+        "default": {
+          "kind": "input",
+          "type": "block",
+          "value": {
+            "kind": "block",
+            "opcode": "tw_menu_mouseButton",
+            "inputs": {},
+            "fields": {
+              "mouseButton": {
+                "kind": "field",
+                "type": "dropdown",
+                "value": "0"
+              }
+            }
+          }
+        }
+      }
+    },
+    "fields": {},
+    "bindings": {
+      "scratchblocks": {}
+    },
+    "source": {
+      "scratchVm": {
+        "sourceFile": "src/extensions/tw/index.js",
+        "definition": "extension-info"
+      }
+    }
+  },
+  {
+    "opcode": "tw_menu_mouseButton",
+    "shape": "reporter",
+    "outputType": "string",
+    "arguments": [
+      {
+        "kind": "field",
+        "name": "mouseButton"
+      }
+    ],
+    "inputs": {},
+    "fields": {
+      "mouseButton": {
+        "type": "dropdown",
+        "default": {
+          "kind": "field",
+          "type": "dropdown",
+          "value": "0"
+        },
+        "bindings": {
+          "scratchblocks": {
+            "shape": "dropdown",
+            "options": [
+              {
+                "label": "(0) primary",
+                "value": "0"
+              },
+              {
+                "label": "(1) middle",
+                "value": "1"
+              },
+              {
+                "label": "(2) secondary",
+                "value": "2"
+              }
+            ]
+          }
+        }
+      }
+    },
+    "bindings": {
+      "scratchblocks": {}
+    },
+    "source": {
+      "scratchVm": {
+        "sourceFile": "src/extensions/tw/index.js",
+        "definition": "extension-info"
+      }
+    }
   }
 ]

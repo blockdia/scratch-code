@@ -50,8 +50,9 @@ also have a `BlockInput` default, as used by a procedure definition's prototype.
 `arguments` is the language-independent identity and canonical order of fields
 and inputs. It does not describe translated display order. Syntax codecs use
 explicit bindings such as `bindings.scratchblocks.blockId`; they do not infer
-identity from English message text. `source.scratchBlocks` records source-file
-provenance separately from scratchblocks-plus syntax bindings.
+identity from English message text. `source.scratchBlocks` and
+`source.scratchVm` record source-file provenance separately from
+scratchblocks-plus syntax bindings.
 
 Field scratchblocks bindings contain only surface information the codec cannot
 infer, such as input shape and canonical dropdown label/value pairs. Raw Scratch
