@@ -21,11 +21,12 @@ need `metadata.scratch.id`. A Script is an independent stack or expression tree,
 not an alias for SB3 `topLevel: true`; filtering or cloning the returned
 `Script[]` does not depend on another Script.
 
-Mode 3 fallback shadows are first-class `Input.obscuredShadow` values. Minimal
-SB3-only provenance lives under versioned `metadata.sb3`; use
+Mode 3 fallback shadows are first-class `Input.obscuredShadow` values. Object
+scalar shadow IDs use `Input.metadata.scratch.id`. Minimal SB3-only provenance
+lives under versioned `metadata.sb3`; use
 `getSb3ScriptMetadata()`, `getSb3BlockMetadata()`,
-`getSb3InputMetadata()`, and `getSb3FieldMetadata()` instead of reading magic
-keys. The codec never stores the complete target blocks map or raw block/input/
+and `getSb3FieldMetadata()` instead of reading magic keys. The codec never
+stores the complete target blocks map or raw block/input/
 field snapshots. `metadata.scratch` remains limited to stable IDs, coordinates,
 and numeric kinds.
 

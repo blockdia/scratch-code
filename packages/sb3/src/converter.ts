@@ -21,7 +21,7 @@ import {
   InvalidSb3BlocksError,
   MissingBlockIdError,
 } from "./errors.js"
-import {getSb3BlockMetadata, getSb3InputMetadata} from "./metadata.js"
+import {getSb3BlockMetadata} from "./metadata.js"
 import type {
   Sb3Block,
   Sb3BlockEntry,
@@ -29,7 +29,6 @@ import type {
   Sb3Blocks,
   Sb3Field,
   Sb3Input,
-  Sb3InputMetadata,
   Sb3InputValue,
   Sb3Primitive,
 } from "./types.js"
@@ -132,7 +131,7 @@ const semanticMutation = (raw: Sb3Block): Block["mutation"] => {
 
 const setSb3Metadata = <T extends {metadata?: Record<string, unknown>}>(
   node: T,
-  metadata: Sb3BlockMetadata | Sb3InputMetadata,
+  metadata: Sb3BlockMetadata,
 ): void => {
   node.metadata = {...(node.metadata ?? {}), sb3: metadata}
 }
@@ -263,7 +262,7 @@ const validateGraph = <TContext>(blocks: Sb3Blocks, registry: BlockSpecRegistry<
 }
 
 const makeField = (raw: Sb3Field, type: FieldType): Field => {
-  const value = jsonString(raw[0])
+  const value = raw[0] === undefined ? "" : cloneJson(raw[0])
   const id = raw[1]
   const base = {kind: "field" as const, type, value}
   return ((type === "variable" || type === "list" || type === "broadcast") && typeof id === "string"
@@ -335,7 +334,10 @@ const literalFromScalarBlock = (raw: Sb3Block, id: string): ObscuredShadow => {
       value: typeof value === "number" || typeof value === "string" ? value : jsonString(value),
     }
   } else input = {kind: "input", type: "string", value: jsonString(value)}
-  setSb3Metadata(input, {version: 1, shadowId: id})
+  input.metadata = {
+    ...(input.metadata ?? {}),
+    scratch: {...(input.metadata?.scratch ?? {}), id},
+  }
   return input
 }
 
@@ -559,19 +561,20 @@ const serializeChild = (state: SerializeState, input: Input, parentId: string): 
     serializeSingleBlock(state, input.value, false, parentId, null)
     return requireBlockId(input.value)
   }
-  const shadowId = getSb3InputMetadata(input)?.shadowId
-  if (shadowId !== undefined) {
-    serializeScalarObject(state, input, shadowId)
-    const raw = state.result[shadowId]
+  const scalarId = input.metadata?.scratch?.id
+  if (scalarId !== undefined) {
+    serializeScalarObject(state, input, scalarId)
+    const raw = state.result[scalarId]
     if (isSb3Block(raw)) raw.parent = parentId
-    return shadowId
+    return scalarId
   }
   return primitiveForLiteral(input)
 }
 
 const inputUsesShadow = (input: Input): boolean => {
   if (input.type !== "block") return input.type !== "script" && input.type !== "empty"
-  return input.value.shadow === true || primitiveForBlock(input.value) !== undefined
+  return input.value.shadow === true ||
+    (blockId(input.value) === undefined && primitiveForBlock(input.value) !== undefined)
 }
 
 const serializeInput = (state: SerializeState, input: Input, parentId: string): Sb3Input | undefined => {
@@ -618,7 +621,7 @@ const serializeSingleBlock = (
   const x = script?.metadata?.scratch?.x
   const y = script?.metadata?.scratch?.y
   const primitive = primitiveForBlock(block, topLevel, x, y)
-  if (primitive !== undefined && (topLevel || getSb3BlockMetadata(block) === undefined)) {
+  if (primitive !== undefined && topLevel) {
     state.result[id] = primitive
     return
   }

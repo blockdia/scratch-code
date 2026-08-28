@@ -9,6 +9,7 @@ TypeScript packages for working with semantic Scratch code.
 - [`@scratch-code/materialize`](./packages/materialize): immutable completion of spec-default shadows and Scratch block IDs.
 - [`@scratch-code/turbowarp-blocks`](./packages/turbowarp-blocks): GPL-3.0 TurboWarp block specs derived from the pinned `scratch-blocks` source.
 - [`@scratch-code/sb3`](./packages/sb3): semantic conversion between SB3 target blocks and a stable canonical SB3 form.
+- [`@scratch-code/vm-blocks`](./packages/vm-blocks): bidirectional conversion between AST scripts and Scratch VM runtime blocks.
 - [`@scratch-code/scratchblocks-codec`](./packages/scratchblocks-codec): semantic conversion between scratchblocks-plus syntax trees and the AST.
 
 ## Development

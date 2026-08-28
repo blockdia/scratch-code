@@ -691,14 +691,15 @@ const displayedField = (
   fieldSpec: FieldSpec,
   state: SerializeState<unknown>,
 ): {value: string; menu?: string} => {
+  const fieldValue = String(field.value ?? "")
   for (const [label, value] of optionPairs(fieldSpec)) {
-    if (String(value ?? "") !== field.value || typeof label !== "string") continue
+    if (String(value ?? "") !== fieldValue || typeof label !== "string") continue
     return {
       value: state.english.dropdowns[label]?.value ?? label,
       menu: label,
     }
   }
-  return {value: field.value}
+  return {value: fieldValue}
 }
 
 const scratchFieldInput = (
@@ -768,7 +769,7 @@ const serializeSimpleReporter = <TContext>(
 ): ScratchBlock => {
   const spec = state.registry.require(block.opcode)
   const field = block.fields[Object.keys(spec.fields)[0] ?? ""]
-  const value = field?.value ?? ""
+  const value = String(field?.value ?? "")
   const isArgument = block.opcode.startsWith("argument_reporter_")
   const info: BlockInfo = isArgument
     ? {

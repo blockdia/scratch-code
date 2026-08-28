@@ -46,11 +46,5 @@ export interface Sb3BlockMetadata extends Sb3MetadataBase {
   mutation?: JsonObject
 }
 
-/** SB3-only details which cannot be derived from a semantic Input. */
-export interface Sb3InputMetadata extends Sb3MetadataBase {
-  /** ID required when a scalar shadow must be emitted as an object block. */
-  shadowId?: string
-}
-
 /** Reserved version marker for node-specific Field provenance. */
 export type Sb3FieldMetadata = Sb3MetadataBase

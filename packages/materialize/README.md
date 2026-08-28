@@ -2,8 +2,8 @@
 
 Complete a partial Scratch AST from block specs without mutating the input.
 The package inserts default shadows, preserves connected values as mode 3
-inputs, and assigns Scratch VM-compatible IDs to every block, including menu
-and procedure shadows.
+inputs, and assigns Scratch VM-compatible IDs to every runtime block, including
+scalar literal inputs, menu blocks, and procedure shadows.
 
 ```ts
 import {materializeScripts} from "@scratch-code/materialize"
@@ -32,7 +32,9 @@ metadata, mutations, undeclared inputs, and hidden shadows are retained.
 
 Existing non-empty IDs are preserved. Duplicate existing IDs, generator
 collisions, and invalid generated IDs throw rather than silently rewriting
-identity. Pass `generateBlockId` for deterministic tests or another ID policy.
+identity. Pass `generateBlockId` for deterministic tests or another ID policy;
+it receives either a semantic `Block` or a scalar input normalized from a VM
+shadow block.
 Variable, list, and broadcast field IDs are outside this package's scope.
 
 ## License

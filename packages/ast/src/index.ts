@@ -31,6 +31,7 @@ export type {
   ProcedurePrototypeMutation,
   ProcedureReturnType,
   ScratchMetadata,
+  ScalarInputScratchMetadata,
   Script,
   ScriptInput,
   ScriptScratchMetadata,

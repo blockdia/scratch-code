@@ -6,4 +6,5 @@ export type {
   BlockIdGenerator,
   MaterializeBlockContext,
   MaterializeOptions,
+  ScratchBlockIdNode,
 } from "./types.js"

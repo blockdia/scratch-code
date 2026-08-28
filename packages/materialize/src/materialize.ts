@@ -4,11 +4,11 @@ import type {BlockSpecRegistry, DefaultInput} from "@scratch-code/block-spec"
 
 import {DuplicateBlockIdError, InvalidGeneratedBlockIdError} from "./errors.js"
 import {generateScratchBlockId} from "./id.js"
-import type {BlockIdGenerator, MaterializeOptions} from "./types.js"
+import type {BlockIdGenerator, MaterializeOptions, ScratchBlockIdNode} from "./types.js"
 
 const cloneJson = <T>(value: T): T => JSON.parse(JSON.stringify(value)) as T
 
-const currentBlockId = (block: Readonly<Block>): string | undefined => {
+const currentBlockId = (block: Readonly<ScratchBlockIdNode>): string | undefined => {
   const id = block.metadata?.scratch?.id
   return id === "" ? undefined : id
 }
@@ -18,7 +18,8 @@ const reserveExistingIds = (scripts: readonly Script[]): Set<string> => {
   for (const script of scripts) {
     walk(script, {
       enter(node) {
-        if (node.kind !== "block") return
+        if (node.kind !== "block" && (node.kind !== "input" ||
+          node.type === "block" || node.type === "script" || node.type === "empty")) return
         const id = currentBlockId(node)
         if (id === undefined) return
         if (result.has(id)) throw new DuplicateBlockIdError(id)
@@ -30,7 +31,7 @@ const reserveExistingIds = (scripts: readonly Script[]): Set<string> => {
 }
 
 const assignBlockId = (
-  block: Block,
+  block: ScratchBlockIdNode,
   usedIds: Set<string>,
   generateBlockId: BlockIdGenerator,
 ): void => {
@@ -68,6 +69,7 @@ interface MaterializeState<TContext> {
 const materializeInput = <TContext>(state: MaterializeState<TContext>, input: Input): void => {
   if (input.type === "block") materializeBlock(state, input.value, false)
   else if (input.type === "script") materializeScript(state, input.value)
+  else if (input.type !== "empty") assignBlockId(input, state.usedIds, state.generateBlockId)
 
   if (input.obscuredShadow !== undefined) {
     markBlockShadow(input.obscuredShadow)
@@ -80,6 +82,7 @@ const materializeObscuredShadow = <TContext>(
   input: ObscuredShadow,
 ): void => {
   if (input.type === "block") materializeBlock(state, input.value, false)
+  else assignBlockId(input, state.usedIds, state.generateBlockId)
   if (input.obscuredShadow !== undefined) {
     markBlockShadow(input.obscuredShadow)
     materializeObscuredShadow(state, input.obscuredShadow)

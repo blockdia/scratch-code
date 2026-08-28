@@ -122,30 +122,34 @@ describe("materializeScripts", () => {
     const root = result[0]!.blocks[0]!
     expect(root.metadata).toMatchObject({scratch: {id: "root-id"}, custom: {kept: true}})
     expect(root.fields["VARIABLE"]).toMatchObject({id: "variable-id"})
-    expect(root.inputs["NUMBER"]).toMatchObject({type: "number", value: 10})
+    expect(root.inputs["NUMBER"]).toMatchObject({
+      type: "number", value: 10, metadata: {scratch: {id: "generated-1"}},
+    })
     expect(root.inputs["BOOLEAN"]).toEqual({kind: "input", type: "empty"})
 
     const menu = root.inputs["MENU"]
-    expect(menu).toMatchObject({type: "block", value: {shadow: true, metadata: {scratch: {id: "generated-1"}}}})
+    expect(menu).toMatchObject({type: "block", value: {shadow: true, metadata: {scratch: {id: "generated-2"}}}})
     const connected = root.inputs["CONNECTED"]
     expect(connected).toMatchObject({
       type: "block",
-      value: {metadata: {scratch: {id: "generated-2"}}},
-      obscuredShadow: {type: "number", value: 1},
+      value: {metadata: {scratch: {id: "generated-3"}}},
+      obscuredShadow: {type: "number", value: 1, metadata: {scratch: {id: "generated-4"}}},
     })
     expect(connected?.type === "block" && connected.value.shadow).toBeUndefined()
     expect(root.inputs["PROMOTE"]).toMatchObject({
       type: "block",
-      value: {shadow: true, fields: {VALUE: {value: "promoted"}}, metadata: {scratch: {id: "generated-3"}}},
+      value: {shadow: true, fields: {VALUE: {value: "promoted"}}, metadata: {scratch: {id: "generated-5"}}},
     })
     expect(root.inputs["PRESERVED"]).toMatchObject({
-      type: "block", obscuredShadow: {type: "string", value: "kept"},
+      type: "block",
+      value: {metadata: {scratch: {id: "generated-6"}}},
+      obscuredShadow: {type: "string", value: "kept", metadata: {scratch: {id: "generated-7"}}},
     })
     expect(root.inputs["BODY"]).toMatchObject({
-      type: "script", value: {blocks: [{metadata: {scratch: {id: "generated-5"}}}]},
+      type: "script", value: {blocks: [{metadata: {scratch: {id: "generated-8"}}}]},
     })
     expect(root.inputs["EXTRA"]).toMatchObject({
-      type: "block", value: {metadata: {scratch: {id: "generated-6"}}},
+      type: "block", value: {metadata: {scratch: {id: "generated-9"}}},
     })
   })
 
@@ -211,7 +215,9 @@ describe("materializeScripts", () => {
     })
     const call = result[0]!.blocks[0]!
     expect(call.inputs["number"]).toMatchObject({type: "number", value: 1})
-    expect(call.inputs["text"]).toEqual({kind: "input", type: "string", value: ""})
+    expect(call.inputs["text"]).toMatchObject({
+      kind: "input", type: "string", value: "", metadata: {scratch: {id: expect.any(String)}},
+    })
     expect(call.inputs["boolean"]).toEqual({kind: "input", type: "empty"})
     const prototype = result[0]!.blocks[1]!
     expect(prototype.inputs["number"]).toMatchObject({
@@ -244,7 +250,10 @@ describe("materializeScripts", () => {
 
     const ids: string[] = []
     for (const script of result) walk(script, {enter(node) {
-      if (node.kind === "block") ids.push(node.metadata?.scratch?.id ?? "")
+      if (node.kind === "block" || (node.kind === "input" &&
+        node.type !== "block" && node.type !== "script" && node.type !== "empty")) {
+        ids.push(node.metadata?.scratch?.id ?? "")
+      }
     }})
     expect(ids.every(id => id.length > 0)).toBe(true)
 

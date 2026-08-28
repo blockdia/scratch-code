@@ -1,4 +1,19 @@
-import type {Block} from "@scratch-code/ast"
+import type {
+  Block,
+  ColorInput,
+  MatrixInput,
+  NoteInput,
+  NumberInput,
+  StringInput,
+} from "@scratch-code/ast"
+
+export type ScratchBlockIdNode =
+  | Block
+  | StringInput
+  | NumberInput
+  | ColorInput
+  | MatrixInput
+  | NoteInput
 
 /** Stack information available while resolving a block's dynamic spec. */
 export interface MaterializeBlockContext {
@@ -11,9 +26,9 @@ export type BlockContextFactory<TContext> = (
   context: MaterializeBlockContext,
 ) => TContext
 
-/** Generate an ID for one block, with all IDs already reserved in this pass. */
+/** Generate an ID for one runtime block, with all IDs already reserved in this pass. */
 export type BlockIdGenerator = (
-  block: Readonly<Block>,
+  block: Readonly<ScratchBlockIdNode>,
   usedIds: ReadonlySet<string>,
 ) => string
 

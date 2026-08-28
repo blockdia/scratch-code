@@ -26,7 +26,13 @@ const validInput: Input = {
   kind: "input",
   type: "number",
   value: "0010",
-  metadata: {scratch: {numericKind: "integer"}},
+  metadata: {scratch: {id: "number-id", numericKind: "integer"}},
+}
+
+const validJsonField: DropdownField = {
+  kind: "field",
+  type: "dropdown",
+  value: ["legacy", {nested: true}],
 }
 
 const validPrototype: ProcedurePrototypeMutation = {
@@ -76,6 +82,7 @@ void [
   validInput,
   validPrototype,
   validCall,
+  validJsonField,
   blockWithPosition,
   scriptWithBlockId,
   stringWithNumericKind,

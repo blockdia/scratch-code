@@ -1,0 +1,42 @@
+{
+  "name": "@scratch-code/vm-blocks",
+  "version": "0.1.0",
+  "description": "Convert Scratch VM runtime blocks to and from @scratch-code/ast",
+  "license": "MIT",
+  "type": "module",
+  "sideEffects": false,
+  "engines": {
+    "node": ">=22"
+  },
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json",
+    "typecheck": "tsc -p tsconfig.json",
+    "test": "vitest run",
+    "test:smoke": "node test/smoke.mjs",
+    "test:vm": "node test/vm-integration.mjs",
+    "test:corpus": "node test/corpus.mjs"
+  },
+  "dependencies": {
+    "@scratch-code/ast": "workspace:^",
+    "@scratch-code/block-spec": "workspace:^"
+  },
+  "devDependencies": {
+    "@scratch-code/turbowarp-blocks": "workspace:^"
+  },
+  "keywords": [
+    "scratch",
+    "vm",
+    "blocks",
+    "ast"
+  ]
+}

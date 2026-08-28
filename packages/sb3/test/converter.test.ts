@@ -8,7 +8,6 @@ import {
   deserializeBlocks,
   DuplicateBlockIdError,
   getSb3BlockMetadata,
-  getSb3InputMetadata,
   InvalidBlockGraphError,
   MissingBlockIdError,
   serializeBlocks,
@@ -151,7 +150,7 @@ describe("SB3 fidelity", () => {
     expect(scripts).toHaveLength(2)
     const steps = scripts[0]!.blocks[0]!.inputs["STEPS"]!
     expect(steps).toMatchObject({type: "number", value: "10"})
-    expect(getSb3InputMetadata(steps)).toEqual({version: 1, shadowId: "number"})
+    expect(steps.metadata?.scratch?.id).toBe("number")
     expect(steps.metadata?.scratch).not.toHaveProperty("sb3")
     if (steps.type === "number") steps.value = "20"
     const serialized = serializeBlocks(scripts)
@@ -198,6 +197,31 @@ describe("SB3 fidelity", () => {
     expect(shadowBlock.value.metadata?.scratch).not.toHaveProperty("sb3")
     expect((serializeBlocks(scripts)["not"] as {inputs: object}).inputs).toEqual({
       OPERAND: [1, "equals"],
+    })
+  })
+
+  it("keeps identified primitive reporters as ordinary connected blocks", () => {
+    const scripts: Script[] = [{kind: "script", blocks: [{
+      kind: "block",
+      opcode: "looks_say",
+      metadata: {scratch: {id: "say"}},
+      fields: {},
+      inputs: {MESSAGE: {kind: "input", type: "block", value: {
+        kind: "block",
+        opcode: "data_variable",
+        metadata: {scratch: {id: "variable"}},
+        fields: {VARIABLE: {kind: "field", type: "variable", value: "score", id: "variable-id"}},
+        inputs: {},
+      }}},
+    }]}]
+
+    expect(serializeBlocks(scripts)).toMatchObject({
+      say: {inputs: {MESSAGE: [2, "variable"]}},
+      variable: {
+        opcode: "data_variable",
+        shadow: false,
+        fields: {VARIABLE: ["score", "variable-id"]},
+      },
     })
   })
 
@@ -305,7 +329,15 @@ describe("independent script provenance", () => {
     expect((serialized["second"] as {inputs: object}).inputs).toEqual({
       STEPS: [3, "score", [4, "10"]],
     })
-    expect(serialized["score"]).toEqual([12, "score", "variable-id"])
+    expect(serialized["score"]).toEqual({
+      opcode: "data_variable",
+      next: null,
+      parent: "second",
+      inputs: {},
+      fields: {VARIABLE: ["score", "variable-id"]},
+      shadow: false,
+      topLevel: false,
+    })
   })
 
   it("keeps mode 3 shadow local when a Script is cloned and moved", () => {
@@ -324,9 +356,7 @@ describe("independent script provenance", () => {
   it("uses typed metadata.sb3 without raw graph snapshots", () => {
     const scripts = deserializeBlocks(splitFixture(), createTurboWarpBlockRegistry())
     const block = scripts[1]!.blocks[0]!
-    const input = block.inputs["STEPS"]!
     expect(getSb3BlockMetadata(block)).toBeUndefined()
-    expect(getSb3InputMetadata(input)).toBeUndefined()
     const json = JSON.stringify(scripts)
     expect(json).not.toContain("sourceBlocks")
     expect(json).not.toContain("representedIds")

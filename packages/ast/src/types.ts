@@ -40,11 +40,16 @@ export type BlockScratchMetadata = {
   id?: string
 }
 
-/** Scratch metadata shared by non-numeric input nodes. */
+/** Scratch metadata shared by structural input nodes. */
 export type InputScratchMetadata = ScratchMetadata
 
+/** Scratch metadata for a scalar input normalized from a VM shadow block. */
+export type ScalarInputScratchMetadata = {
+  id?: string
+}
+
 /** Scratch metadata specific to a normalized number literal. */
-export type NumberInputScratchMetadata = {
+export type NumberInputScratchMetadata = ScalarInputScratchMetadata & {
   numericKind?: NumericKind
 }
 
@@ -129,7 +134,7 @@ interface InputBase<TScratch extends object>
 }
 
 export interface StringInput
-  extends InputBase<InputScratchMetadata> {
+  extends InputBase<ScalarInputScratchMetadata> {
   type: "string"
   value: string
 }
@@ -145,20 +150,20 @@ export interface NumberInput
 }
 
 export interface ColorInput
-  extends InputBase<InputScratchMetadata> {
+  extends InputBase<ScalarInputScratchMetadata> {
   type: "color"
   value: string
 }
 
 export interface MatrixInput
-  extends InputBase<InputScratchMetadata> {
+  extends InputBase<ScalarInputScratchMetadata> {
   type: "matrix"
   /** Scratch stores a matrix field as its 25-character bit string. */
   value: string
 }
 
 export interface NoteInput
-  extends InputBase<InputScratchMetadata> {
+  extends InputBase<ScalarInputScratchMetadata> {
   type: "note"
   value: string | number
 }
@@ -208,7 +213,7 @@ export type FieldType = "text" | "dropdown" | "variable" | "list" | "broadcast"
 interface FieldBase<TType extends FieldType>
   extends AstNodeBase<"field", FieldScratchMetadata> {
   type: TType
-  value: string
+  value: JsonValue
 }
 
 export interface TextField extends FieldBase<"text"> {}

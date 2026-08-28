@@ -2,7 +2,6 @@ export {deserializeBlocks, serializeBlocks} from "./converter.js"
 export {
   getSb3BlockMetadata,
   getSb3FieldMetadata,
-  getSb3InputMetadata,
   getSb3ScriptMetadata,
 } from "./metadata.js"
 export {
@@ -19,7 +18,6 @@ export type {
   Sb3Field,
   Sb3FieldMetadata,
   Sb3Input,
-  Sb3InputMetadata,
   Sb3InputValue,
   Sb3Primitive,
   Sb3PrimitiveCode,

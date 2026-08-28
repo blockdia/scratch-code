@@ -11,11 +11,12 @@ registry.register({
   arguments: [{kind: "input", name: "VALUE"}],
 })
 
+let nextId = 0
 const result = materializeScripts([
   {kind: "script", blocks: [{kind: "block", opcode: "example", inputs: {}, fields: {}}]},
 ], registry, {
   contextForBlock: () => undefined,
-  generateBlockId: () => "block-id",
+  generateBlockId: () => nextId++ === 0 ? "block-id" : `shadow-${nextId}`,
 })
 
 assert.equal(result[0].blocks[0].metadata.scratch.id, "block-id")

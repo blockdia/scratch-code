@@ -167,6 +167,30 @@ describe("Scratch-aligned AST model", () => {
       id: "broadcast-id",
     })
   })
+
+  it("preserves scalar source IDs and JSON-valued historical fields", () => {
+    const block: Block = {
+      kind: "block",
+      opcode: "legacy",
+      inputs: {
+        VALUE: {
+          kind: "input",
+          type: "string",
+          value: "hello",
+          metadata: {scratch: {id: "shadow-id"}},
+        },
+      },
+      fields: {
+        PROPERTY: {
+          kind: "field",
+          type: "dropdown",
+          value: ["letter:of:", ["readVariable", "i"]],
+        },
+      },
+    }
+
+    expect(JSON.parse(JSON.stringify(block))).toEqual(block)
+  })
 })
 
 describe("procedure semantic mutations", () => {
