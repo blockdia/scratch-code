@@ -95,7 +95,7 @@ const materializeBlock = <TContext>(
   hasNext: boolean,
 ): void => {
   assignBlockId(block, state.usedIds, state.generateBlockId)
-  const context = state.options.contextForBlock(block, {hasNext})
+  const context = state.options.contextForBlock?.(block, {hasNext}) as TContext
   const spec = state.registry.resolveRequired(block.opcode, context)
   const declaredInputs = new Set(Object.keys(spec.inputs))
 
@@ -141,10 +141,10 @@ const materializeScript = <TContext>(state: MaterializeState<TContext>, script: 
 }
 
 /** Return a deep-cloned AST with spec defaults, shadow flags, and block IDs completed. */
-export const materializeScripts = <TContext>(
+export const materialize = <TContext>(
   scripts: readonly Script[],
   registry: BlockSpecRegistry<TContext>,
-  options: MaterializeOptions<TContext>,
+  options: MaterializeOptions<TContext> = {},
 ): Script[] => {
   const result = cloneJson(scripts) as Script[]
   const state: MaterializeState<TContext> = {

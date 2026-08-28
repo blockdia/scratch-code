@@ -1,5 +1,5 @@
 import type {Script} from "@scratch-code/ast"
-import {deserializeBlocks, serializeBlocks} from "@scratch-code/sb3"
+import {deserializeSb3Blocks, serializeSb3Blocks} from "@scratch-code/sb3"
 import type {Sb3Blocks} from "@scratch-code/sb3"
 import {createTurboWarpBlockRegistry} from "@scratch-code/turbowarp-blocks"
 import "./package.css"
@@ -13,7 +13,7 @@ const astError = document.querySelector<HTMLElement>("#ast-error")!
 const message = (caught: unknown): string => caught instanceof Error ? caught.message : String(caught)
 const toAst = (): void => {
   try {
-    const scripts = deserializeBlocks(JSON.parse(blocks.value) as Sb3Blocks, registry)
+    const scripts = deserializeSb3Blocks(JSON.parse(blocks.value) as Sb3Blocks, registry)
     ast.value = JSON.stringify(scripts, null, 2)
     window.ast = scripts
     blocksError.textContent = ""
@@ -22,7 +22,7 @@ const toAst = (): void => {
 const toSb3 = (): void => {
   try {
     const scripts = JSON.parse(ast.value) as Script[]
-    blocks.value = JSON.stringify(serializeBlocks(scripts), null, 2)
+    blocks.value = JSON.stringify(serializeSb3Blocks(scripts), null, 2)
     window.ast = scripts
     astError.textContent = ""
   } catch (caught) { astError.textContent = message(caught) }

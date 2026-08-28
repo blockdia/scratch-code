@@ -5,11 +5,11 @@ tree-shaped AST from `@scratch-code/ast`.
 
 ```ts
 import {createTurboWarpBlockRegistry} from "@scratch-code/turbowarp-blocks"
-import {deserializeBlocks, serializeBlocks} from "@scratch-code/sb3"
+import {deserializeSb3Blocks, serializeSb3Blocks} from "@scratch-code/sb3"
 
 const registry = createTurboWarpBlockRegistry()
-const scripts = deserializeBlocks(target.blocks, registry)
-target.blocks = serializeBlocks(scripts)
+const scripts = deserializeSb3Blocks(target.blocks, registry)
+target.blocks = serializeSb3Blocks(scripts)
 ```
 
 Deserialization requires a block-spec registry. Missing inputs declared by a

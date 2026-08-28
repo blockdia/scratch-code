@@ -5,12 +5,12 @@ import {createBlockSpecRegistry, MissingBlockSpecError} from "@scratch-code/bloc
 import {createTurboWarpBlockRegistry} from "@scratch-code/turbowarp-blocks"
 
 import {
-  deserializeBlocks,
+  deserializeSb3Blocks,
   DuplicateBlockIdError,
   getSb3BlockMetadata,
   InvalidBlockGraphError,
   MissingBlockIdError,
-  serializeBlocks,
+  serializeSb3Blocks,
   type Sb3Blocks,
 } from "../src/index.js"
 
@@ -29,12 +29,12 @@ describe("empty inputs", () => {
         y: 340,
       },
     }
-    const scripts = deserializeBlocks(blocks, createTurboWarpBlockRegistry())
+    const scripts = deserializeSb3Blocks(blocks, createTurboWarpBlockRegistry())
     expect(scripts[0]?.blocks[0]?.inputs).toMatchObject({
       OPERAND1: {type: "empty"},
       OPERAND2: {type: "empty"},
     })
-    expect(serializeBlocks(scripts)).toEqual(blocks)
+    expect(serializeSb3Blocks(scripts)).toEqual(blocks)
   })
 
   it("normalizes legacy [1, null] inputs to omitted keys", () => {
@@ -51,9 +51,9 @@ describe("empty inputs", () => {
         y: 2,
       },
     }
-    const scripts = deserializeBlocks(blocks, createTurboWarpBlockRegistry())
+    const scripts = deserializeSb3Blocks(blocks, createTurboWarpBlockRegistry())
     expect(scripts[0]?.blocks[0]?.inputs["OPERAND"]).toMatchObject({type: "empty"})
-    expect((serializeBlocks(scripts)["a"] as {inputs: object}).inputs).toEqual({})
+    expect((serializeSb3Blocks(scripts)["a"] as {inputs: object}).inputs).toEqual({})
   })
 })
 
@@ -83,13 +83,13 @@ describe("SB3 fidelity", () => {
       },
       variableReporter: [12, "score", "variable", 200, 300],
     }
-    const scripts = deserializeBlocks(blocks, createTurboWarpBlockRegistry())
+    const scripts = deserializeSb3Blocks(blocks, createTurboWarpBlockRegistry())
     expect(scripts).toHaveLength(2)
     expect(scripts[0]?.blocks[1]?.inputs["STEPS"]).toMatchObject({
       type: "block",
       value: {opcode: "data_variable"},
     })
-    expect(serializeBlocks(scripts)).toEqual(blocks)
+    expect(serializeSb3Blocks(scripts)).toEqual(blocks)
   })
 
   it("updates modeled literal values while retaining their input encoding", () => {
@@ -106,10 +106,10 @@ describe("SB3 fidelity", () => {
         y: 0,
       },
     }
-    const scripts = deserializeBlocks(blocks, createTurboWarpBlockRegistry())
+    const scripts = deserializeSb3Blocks(blocks, createTurboWarpBlockRegistry())
     const input = scripts[0]!.blocks[0]!.inputs["STEPS"]!
     if (input.type === "number") input.value = "25"
-    expect((serializeBlocks(scripts)["move"] as {inputs: object}).inputs).toEqual({
+    expect((serializeSb3Blocks(scripts)["move"] as {inputs: object}).inputs).toEqual({
       STEPS: [1, [4, "25"]],
     })
   })
@@ -146,14 +146,14 @@ describe("SB3 fidelity", () => {
         topLevel: false,
       },
     }
-    const scripts = deserializeBlocks(blocks, createTurboWarpBlockRegistry())
+    const scripts = deserializeSb3Blocks(blocks, createTurboWarpBlockRegistry())
     expect(scripts).toHaveLength(2)
     const steps = scripts[0]!.blocks[0]!.inputs["STEPS"]!
     expect(steps).toMatchObject({type: "number", value: "10"})
     expect(steps.metadata?.scratch?.id).toBe("number")
     expect(steps.metadata?.scratch).not.toHaveProperty("sb3")
     if (steps.type === "number") steps.value = "20"
-    const serialized = serializeBlocks(scripts)
+    const serialized = serializeSb3Blocks(scripts)
     expect((serialized["number"] as {fields: object}).fields).toEqual({NUM: ["20"]})
     expect(serialized["orphan"]).toEqual({
       ...blocks["orphan"],
@@ -185,7 +185,7 @@ describe("SB3 fidelity", () => {
         topLevel: false,
       },
     }
-    const scripts = deserializeBlocks(blocks, createTurboWarpBlockRegistry())
+    const scripts = deserializeSb3Blocks(blocks, createTurboWarpBlockRegistry())
     expect(scripts[0]?.blocks[0]?.inputs["OPERAND"]).toMatchObject({
       type: "block",
       value: {opcode: "operator_equals"},
@@ -195,7 +195,7 @@ describe("SB3 fidelity", () => {
     expect(shadowBlock.value.shadow).toBe(true)
     expect(getSb3BlockMetadata(shadowBlock.value)).toBeUndefined()
     expect(shadowBlock.value.metadata?.scratch).not.toHaveProperty("sb3")
-    expect((serializeBlocks(scripts)["not"] as {inputs: object}).inputs).toEqual({
+    expect((serializeSb3Blocks(scripts)["not"] as {inputs: object}).inputs).toEqual({
       OPERAND: [1, "equals"],
     })
   })
@@ -215,7 +215,7 @@ describe("SB3 fidelity", () => {
       }}},
     }]}]
 
-    expect(serializeBlocks(scripts)).toMatchObject({
+    expect(serializeSb3Blocks(scripts)).toMatchObject({
       say: {inputs: {MESSAGE: [2, "variable"]}},
       variable: {
         opcode: "data_variable",
@@ -245,7 +245,7 @@ describe("SB3 fidelity", () => {
         },
       },
     }
-    const scripts = deserializeBlocks(blocks, createTurboWarpBlockRegistry())
+    const scripts = deserializeSb3Blocks(blocks, createTurboWarpBlockRegistry())
     expect(scripts[0]?.blocks[0]?.mutation).toEqual({
       type: "procedure-call",
       proccode: "do %s",
@@ -253,7 +253,7 @@ describe("SB3 fidelity", () => {
       warp: false,
       returnType: "statement",
     })
-    expect((serializeBlocks(scripts)["call"] as {mutation: object}).mutation).toEqual({
+    expect((serializeSb3Blocks(scripts)["call"] as {mutation: object}).mutation).toEqual({
       tagName: "mutation",
       children: [],
       proccode: "do %s",
@@ -278,13 +278,13 @@ describe("errors", () => {
         y: 0,
       },
     }
-    expect(() => deserializeBlocks(blocks, createBlockSpecRegistry())).toThrow(MissingBlockSpecError)
+    expect(() => deserializeSb3Blocks(blocks, createBlockSpecRegistry())).toThrow(MissingBlockSpecError)
   })
 
   it("does not allocate missing IDs", () => {
     const block: Block = {kind: "block", opcode: "motion_movesteps", inputs: {}, fields: {}}
     const script: Script = {kind: "script", blocks: [block]}
-    expect(() => serializeBlocks([script])).toThrow(MissingBlockIdError)
+    expect(() => serializeSb3Blocks([script])).toThrow(MissingBlockIdError)
   })
 
   it("rejects distinct blocks with duplicate IDs", () => {
@@ -295,7 +295,7 @@ describe("errors", () => {
       fields: {},
       metadata: {scratch: {id: "same"}},
     })
-    expect(() => serializeBlocks([
+    expect(() => serializeSb3Blocks([
       {kind: "script", blocks: [makeBlock()]},
       {kind: "script", blocks: [makeBlock()]},
     ])).toThrow(DuplicateBlockIdError)
@@ -317,14 +317,14 @@ describe("independent script provenance", () => {
   })
 
   it("serializes a filtered Script subset with its own obscured shadow", () => {
-    const scripts = deserializeBlocks(splitFixture(), createTurboWarpBlockRegistry())
+    const scripts = deserializeSb3Blocks(splitFixture(), createTurboWarpBlockRegistry())
     const steps = scripts[1]?.blocks[0]?.inputs["STEPS"]
     expect(steps).toMatchObject({
       type: "block",
       value: {opcode: "data_variable"},
       obscuredShadow: {type: "number", value: "10"},
     })
-    const serialized = serializeBlocks(scripts.slice(1))
+    const serialized = serializeSb3Blocks(scripts.slice(1))
     expect(serialized["first"]).toBeUndefined()
     expect((serialized["second"] as {inputs: object}).inputs).toEqual({
       STEPS: [3, "score", [4, "10"]],
@@ -342,10 +342,10 @@ describe("independent script provenance", () => {
 
   it("keeps mode 3 shadow local when a Script is cloned and moved", () => {
     const script = JSON.parse(JSON.stringify(
-      deserializeBlocks(splitFixture(), createTurboWarpBlockRegistry())[1]!,
+      deserializeSb3Blocks(splitFixture(), createTurboWarpBlockRegistry())[1]!,
     )) as Script
     script.metadata = {scratch: {x: 90, y: 120}}
-    const serialized = serializeBlocks([script])
+    const serialized = serializeSb3Blocks([script])
     expect(serialized["second"]).toMatchObject({
       x: 90,
       y: 120,
@@ -354,7 +354,7 @@ describe("independent script provenance", () => {
   })
 
   it("uses typed metadata.sb3 without raw graph snapshots", () => {
-    const scripts = deserializeBlocks(splitFixture(), createTurboWarpBlockRegistry())
+    const scripts = deserializeSb3Blocks(splitFixture(), createTurboWarpBlockRegistry())
     const block = scripts[1]!.blocks[0]!
     expect(getSb3BlockMetadata(block)).toBeUndefined()
     const json = JSON.stringify(scripts)
@@ -366,12 +366,31 @@ describe("independent script provenance", () => {
 
   it("keeps provenance size incremental instead of snapshot-sized", () => {
     const blocks = splitFixture()
-    const scripts = deserializeBlocks(blocks, createTurboWarpBlockRegistry())
+    const scripts = deserializeSb3Blocks(blocks, createTurboWarpBlockRegistry())
     expect(JSON.stringify(scripts).length).toBeLessThan(JSON.stringify(blocks).length * 3)
   })
 })
 
 describe("tree validation and hacked-but-editable inputs", () => {
+  it("uses procedure-call semantic return shape instead of its command base spec", () => {
+    const blocks: Sb3Blocks = {
+      say: {
+        opcode: "looks_say", next: null, parent: null, inputs: {MESSAGE: [2, "call"]},
+        fields: {}, shadow: false, topLevel: true,
+      },
+      call: {
+        opcode: "procedures_call", next: null, parent: "say", inputs: {}, fields: {},
+        shadow: false, topLevel: false,
+        mutation: {
+          tagName: "mutation", children: [], proccode: "value", argumentids: "[]",
+          warp: "false", return: "1",
+        },
+      },
+    }
+    expect(deserializeSb3Blocks(blocks, createTurboWarpBlockRegistry())[0]?.blocks[0])
+      .toMatchObject({inputs: {MESSAGE: {value: {mutation: {returnType: "reporter"}}}}})
+  })
+
   it("preserves a number reporter connected to a declared boolean slot", () => {
     const blocks: Sb3Blocks = {
       not: {
@@ -384,12 +403,12 @@ describe("tree validation and hacked-but-editable inputs", () => {
         shadow: false, topLevel: false,
       },
     }
-    const scripts = deserializeBlocks(blocks, createTurboWarpBlockRegistry())
+    const scripts = deserializeSb3Blocks(blocks, createTurboWarpBlockRegistry())
     expect(scripts[0]?.blocks[0]?.inputs["OPERAND"]).toMatchObject({
       type: "block",
       value: {opcode: "operator_add"},
     })
-    expect(serializeBlocks(scripts)).toEqual(blocks)
+    expect(serializeSb3Blocks(scripts)).toEqual(blocks)
   })
 
   it("rejects shared blocks", () => {
@@ -405,7 +424,7 @@ describe("tree validation and hacked-but-editable inputs", () => {
         shadow: false, topLevel: false,
       },
     }
-    expect(() => deserializeBlocks(blocks, createTurboWarpBlockRegistry())).toThrow(InvalidBlockGraphError)
+    expect(() => deserializeSb3Blocks(blocks, createTurboWarpBlockRegistry())).toThrow(InvalidBlockGraphError)
   })
 
   it("rejects cycles", () => {
@@ -413,7 +432,7 @@ describe("tree validation and hacked-but-editable inputs", () => {
       a: {opcode: "looks_hide", next: "b", parent: "b", inputs: {}, fields: {}, shadow: false, topLevel: false},
       b: {opcode: "looks_show", next: "a", parent: "a", inputs: {}, fields: {}, shadow: false, topLevel: false},
     }
-    expect(() => deserializeBlocks(blocks, createTurboWarpBlockRegistry())).toThrow(InvalidBlockGraphError)
+    expect(() => deserializeSb3Blocks(blocks, createTurboWarpBlockRegistry())).toThrow(InvalidBlockGraphError)
   })
 
   it("rejects command blocks in value inputs", () => {
@@ -424,6 +443,6 @@ describe("tree validation and hacked-but-editable inputs", () => {
       },
       hide: {opcode: "looks_hide", next: null, parent: "move", inputs: {}, fields: {}, shadow: false, topLevel: false},
     }
-    expect(() => deserializeBlocks(blocks, createTurboWarpBlockRegistry())).toThrow(InvalidBlockGraphError)
+    expect(() => deserializeSb3Blocks(blocks, createTurboWarpBlockRegistry())).toThrow(InvalidBlockGraphError)
   })
 })

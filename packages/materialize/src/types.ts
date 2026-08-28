@@ -33,6 +33,7 @@ export type BlockIdGenerator = (
 ) => string
 
 export interface MaterializeOptions<TContext> {
-  readonly contextForBlock: BlockContextFactory<TContext>
+  /** Required only when the registry contains a resolver that needs context. */
+  readonly contextForBlock?: BlockContextFactory<TContext>
   readonly generateBlockId?: BlockIdGenerator
 }

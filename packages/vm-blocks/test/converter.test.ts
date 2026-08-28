@@ -207,6 +207,22 @@ describe("VM block conversion", () => {
 })
 
 describe("VM block errors", () => {
+  it("uses procedure-call semantic return shape instead of its command base spec", () => {
+    expect(deserializeVmBlocks([{
+      id: "say", opcode: "looks_say", next: null, parent: null,
+      inputs: {MESSAGE: {block: "call", shadow: null}}, fields: {}, topLevel: true,
+    }, {
+      id: "call", opcode: "procedures_call", next: null, parent: "say", inputs: {}, fields: {},
+      topLevel: false,
+      mutation: {
+        tagName: "mutation", children: [], proccode: "value", argumentids: "[]",
+        warp: "false", return: "1",
+      },
+    }], registry())[0]?.blocks[0]).toMatchObject({
+      inputs: {MESSAGE: {value: {mutation: {returnType: "reporter"}}}},
+    })
+  })
+
   it("requires IDs for ordinary blocks and scalar shadows", () => {
     const missingBlock: Script[] = [{kind: "script", blocks: [{
       kind: "block", opcode: "looks_say", fields: {}, inputs: {},

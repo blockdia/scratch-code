@@ -6,23 +6,24 @@ inputs, and assigns Scratch VM-compatible IDs to every runtime block, including
 scalar literal inputs, menu blocks, and procedure shadows.
 
 ```ts
-import {materializeScripts} from "@scratch-code/materialize"
+import {materialize} from "@scratch-code/materialize"
 import {
   createTurboWarpBlockRegistry,
   getTurboWarpBlockResolveContext,
 } from "@scratch-code/turbowarp-blocks"
 
 const registry = createTurboWarpBlockRegistry()
-const complete = materializeScripts(scripts, registry, {
+const complete = materialize(scripts, registry, {
   contextForBlock: (block, {hasNext}) =>
     getTurboWarpBlockResolveContext(block, hasNext),
 })
 ```
 
-`contextForBlock` is required because a `BlockSpecRegistry` may contain dynamic
-entries. The callback receives the current cloned block after its ID has been
-assigned and whether another block follows it in the same stack. Missing specs
-and invalid dynamic contexts remain explicit registry errors.
+`contextForBlock` is needed only when a `BlockSpecRegistry` contains dynamic
+entries. Static registries can omit it. When supplied, the callback receives
+the current cloned block after its ID has been assigned and whether another
+block follows it in the same stack. Missing specs and invalid dynamic contexts
+remain explicit registry errors.
 
 Missing and empty declared inputs use their spec default. An existing hidden
 shadow on an empty input is promoted first. Connected block or script values

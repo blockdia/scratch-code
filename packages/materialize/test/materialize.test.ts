@@ -3,7 +3,7 @@ import {describe, expect, it} from "vitest"
 import type {Block, Script} from "@scratch-code/ast"
 import {walk} from "@scratch-code/ast"
 import {createBlockSpecRegistry} from "@scratch-code/block-spec"
-import {serializeBlocks, type Sb3Block} from "@scratch-code/sb3"
+import {serializeSb3Blocks, type Sb3Block} from "@scratch-code/sb3"
 import {deserializeScratchblocks} from "@scratch-code/scratchblocks-codec"
 import {
   createTurboWarpBlockRegistry,
@@ -16,7 +16,7 @@ import {
   DuplicateBlockIdError,
   generateScratchBlockId,
   InvalidGeneratedBlockIdError,
-  materializeScripts,
+  materialize,
 } from "../src/index.js"
 
 const createFixtureRegistry = () => {
@@ -97,7 +97,7 @@ const deterministicIds = () => {
   return () => `generated-${next++}`
 }
 
-describe("materializeScripts", () => {
+describe("materialize", () => {
   it("generates Scratch VM-compatible default IDs", () => {
     const id = generateScratchBlockId(
       {kind: "block", opcode: "command", inputs: {}, fields: {}},
@@ -111,7 +111,7 @@ describe("materializeScripts", () => {
   it("deep-clones and completes defaults, shadows, nested IDs, and empty slots", () => {
     const input = partialFixture()
     const snapshot = JSON.parse(JSON.stringify(input)) as Script[]
-    const result = materializeScripts(input, createFixtureRegistry(), {
+    const result = materialize(input, createFixtureRegistry(), {
       contextForBlock: () => undefined,
       generateBlockId: deterministicIds(),
     })
@@ -154,11 +154,11 @@ describe("materializeScripts", () => {
   })
 
   it("is structurally idempotent and does not call the generator again", () => {
-    const first = materializeScripts(partialFixture(), createFixtureRegistry(), {
+    const first = materialize(partialFixture(), createFixtureRegistry(), {
       contextForBlock: () => undefined,
       generateBlockId: deterministicIds(),
     })
-    const second = materializeScripts(first, createFixtureRegistry(), {
+    const second = materialize(first, createFixtureRegistry(), {
       contextForBlock: () => undefined,
       generateBlockId: () => {
         throw new Error("generator must not be called")
@@ -172,7 +172,7 @@ describe("materializeScripts", () => {
       {kind: "block", opcode: "command", inputs: {}, fields: {}, metadata: {scratch: {id: "same"}}},
       {kind: "block", opcode: "command", inputs: {}, fields: {}, metadata: {scratch: {id: "same"}}},
     ]}]
-    expect(() => materializeScripts(duplicate, createFixtureRegistry(), {
+    expect(() => materialize(duplicate, createFixtureRegistry(), {
       contextForBlock: () => undefined,
     })).toThrow(DuplicateBlockIdError)
 
@@ -180,11 +180,11 @@ describe("materializeScripts", () => {
       {kind: "block", opcode: "command", inputs: {}, fields: {}, metadata: {scratch: {id: "used"}}},
       {kind: "block", opcode: "command", inputs: {}, fields: {}},
     ]}]
-    expect(() => materializeScripts(existing, createFixtureRegistry(), {
+    expect(() => materialize(existing, createFixtureRegistry(), {
       contextForBlock: () => undefined,
       generateBlockId: () => "used",
     })).toThrow(DuplicateBlockIdError)
-    expect(() => materializeScripts([{kind: "script", blocks: [
+    expect(() => materialize([{kind: "script", blocks: [
       {kind: "block", opcode: "command", inputs: {}, fields: {}},
     ]}], createFixtureRegistry(), {
       contextForBlock: () => undefined,
@@ -209,7 +209,7 @@ describe("materializeScripts", () => {
         argumentNames: ["count", "label", "ready?"], argumentDefaults: [0, "", false], warp: false,
       },
     }]}]
-    const result = materializeScripts(scripts, createTurboWarpBlockRegistry(), {
+    const result = materialize(scripts, createTurboWarpBlockRegistry(), {
       contextForBlock: (block, {hasNext}) => getTurboWarpBlockResolveContext(block, hasNext),
       generateBlockId: deterministicIds(),
     })
@@ -227,7 +227,7 @@ describe("materializeScripts", () => {
       type: "block", value: {opcode: "argument_reporter_boolean", shadow: true},
     })
 
-    expect(() => materializeScripts([{kind: "script", blocks: [{
+    expect(() => materialize([{kind: "script", blocks: [{
       kind: "block", opcode: "procedures_call", inputs: {}, fields: {},
     }]}], createTurboWarpBlockRegistry(), {
       contextForBlock: (block, {hasNext}) => getTurboWarpBlockResolveContext(block, hasNext),
@@ -239,7 +239,7 @@ describe("materializeScripts", () => {
     const registry = createTurboWarpBlockRegistry()
     const source = "move (x position) steps\ngo to (random position v)"
     const partial = deserializeScratchblocks(parse(source, {languages: ["en"]}), registry)
-    const result = materializeScripts(partial, registry, {
+    const result = materialize(partial, registry, {
       contextForBlock: (block, {hasNext}) => getTurboWarpBlockResolveContext(block, hasNext),
       generateBlockId: deterministicIds(),
     })
@@ -257,7 +257,7 @@ describe("materializeScripts", () => {
     }})
     expect(ids.every(id => id.length > 0)).toBe(true)
 
-    const blocks = serializeBlocks(result)
+    const blocks = serializeSb3Blocks(result)
     expect(blocks[menu.value.metadata!.scratch!.id!] as Sb3Block).toMatchObject({shadow: true})
     const move = result[0]!.blocks[0]!
     const rawMove = blocks[move.metadata!.scratch!.id!] as Sb3Block

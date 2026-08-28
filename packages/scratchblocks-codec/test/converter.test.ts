@@ -2,7 +2,7 @@ import {describe, expect, it} from "vitest"
 
 import type {Block, Input, Script} from "@scratch-code/ast"
 import {createBlockSpecRegistry} from "@scratch-code/block-spec"
-import {deserializeBlocks} from "@scratch-code/sb3"
+import {deserializeSb3Blocks} from "@scratch-code/sb3"
 import {createTurboWarpBlockRegistry} from "@scratch-code/turbowarp-blocks"
 import {
   Comment,
@@ -198,7 +198,7 @@ describe("custom procedures and scratchblocks metadata", () => {
 describe("real SB3 corpus fragments", () => {
   for (const fragment of corpusFragments) {
     it(`${fragment.name} from ${fragment.source}`, () => {
-      const initial = deserializeBlocks(fragment.blocks, registry())
+      const initial = deserializeSb3Blocks(fragment.blocks, registry())
       const document = serializeScratchblocks(initial, registry())
       const restored = deserializeScratchblocks(document, registry())
       expect(restored.map(semanticScript)).toEqual(initial.map(semanticScript))

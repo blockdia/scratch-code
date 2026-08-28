@@ -1,6 +1,6 @@
 import assert from "node:assert/strict"
 import {createBlockSpecRegistry} from "@scratch-code/block-spec"
-import {materializeScripts} from "../dist/index.js"
+import {materialize} from "../dist/index.js"
 
 const registry = createBlockSpecRegistry()
 registry.register({
@@ -12,7 +12,7 @@ registry.register({
 })
 
 let nextId = 0
-const result = materializeScripts([
+const result = materialize([
   {kind: "script", blocks: [{kind: "block", opcode: "example", inputs: {}, fields: {}}]},
 ], registry, {
   contextForBlock: () => undefined,

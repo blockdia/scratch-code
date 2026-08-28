@@ -3,7 +3,11 @@ import {readdirSync} from "node:fs"
 import {basename, resolve} from "node:path"
 
 import {createTurboWarpBlockRegistry} from "@scratch-code/turbowarp-blocks"
-import {deserializeBlocks, InvalidBlockGraphError, serializeBlocks} from "@scratch-code/sb3"
+import {
+  deserializeSb3Blocks,
+  InvalidBlockGraphError,
+  serializeSb3Blocks,
+} from "@scratch-code/sb3"
 
 const directory = process.argv.slice(2).find(argument => argument !== "--")
 if (!directory) throw new Error("Usage: test:corpus -- /path/to/sb3-projects")
@@ -63,16 +67,16 @@ for (const filename of readdirSync(directory).filter(name => name.endsWith(".sb3
   for (const target of project.targets) {
     let firstAst
     try {
-      firstAst = deserializeBlocks(target.blocks, registry)
+      firstAst = deserializeSb3Blocks(target.blocks, registry)
     } catch (error) {
       if (!(error instanceof InvalidBlockGraphError)) throw error
       rejectedTargets += 1
       console.log(`REJECT ${basename(path)} / ${target.name}: ${error.message}`)
       continue
     }
-    const firstCanonical = serializeBlocks(firstAst)
-    const secondAst = deserializeBlocks(firstCanonical, registry)
-    const secondCanonical = serializeBlocks(secondAst)
+    const firstCanonical = serializeSb3Blocks(firstAst)
+    const secondAst = deserializeSb3Blocks(firstCanonical, registry)
+    const secondCanonical = serializeSb3Blocks(secondAst)
     const semanticDifference = firstDifference(semanticAst(secondAst), semanticAst(firstAst), "ast")
     if (semanticDifference) throw new Error(`${filename} / ${target.name}: ${semanticDifference}`)
     const canonicalDifference = firstDifference(secondCanonical, firstCanonical)

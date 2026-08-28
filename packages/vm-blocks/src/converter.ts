@@ -298,13 +298,18 @@ const validateConnection = <TContext>(
   edge: GraphEdge,
 ): void => {
   const childSpec = registry.require(child.opcode)
+  const childMutation = semanticMutation(child)
+  const childShape = childMutation?.type === "procedure-call"
+    ? childMutation.returnType === "reporter" ? "reporter"
+      : childMutation.returnType === "boolean" ? "boolean" : "command"
+    : childSpec.shape
   const isDeclaredBlockDefault = inputSpec.default?.type === "block" &&
     inputSpec.default.value.opcode === child.opcode
   if (inputSpec.connection === "statement") {
-    if (!isDeclaredBlockDefault && childSpec.shape !== "command" && childSpec.shape !== "terminal") {
+    if (!isDeclaredBlockDefault && childShape !== "command" && childShape !== "terminal") {
       invalid(`Statement input "${edge.inputName}" on "${parent.opcode}" cannot contain "${child.opcode}".`)
     }
-  } else if (childSpec.shape === "command" || childSpec.shape === "terminal" || childSpec.shape === "hat") {
+  } else if (childShape === "command" || childShape === "terminal" || childShape === "hat") {
     invalid(`Value input "${edge.inputName}" on "${parent.opcode}" cannot contain "${child.opcode}".`)
   }
 }

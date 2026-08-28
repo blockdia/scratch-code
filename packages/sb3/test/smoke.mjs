@@ -1,7 +1,7 @@
 import assert from "node:assert/strict"
 
 import {createBlockSpecRegistry} from "@scratch-code/block-spec"
-import {deserializeBlocks, serializeBlocks} from "@scratch-code/sb3"
+import {deserializeSb3Blocks, serializeSb3Blocks} from "@scratch-code/sb3"
 
 const registry = createBlockSpecRegistry()
 registry.register({
@@ -26,4 +26,4 @@ const blocks = {
   },
 }
 
-assert.deepEqual(serializeBlocks(deserializeBlocks(blocks, registry)), blocks)
+assert.deepEqual(serializeSb3Blocks(deserializeSb3Blocks(blocks, registry)), blocks)

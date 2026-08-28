@@ -1,4 +1,4 @@
-export {deserializeBlocks, serializeBlocks} from "./converter.js"
+export {deserializeSb3Blocks, serializeSb3Blocks} from "./converter.js"
 export {
   getSb3BlockMetadata,
   getSb3FieldMetadata,

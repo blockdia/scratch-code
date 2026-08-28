@@ -177,14 +177,19 @@ const validateConnection = <TContext>(
   }
   if (!isSb3Block(child)) return
   const childSpec = registry.require(child.opcode)
+  const childMutation = semanticMutation(child)
+  const childShape = childMutation?.type === "procedure-call"
+    ? childMutation.returnType === "reporter" ? "reporter"
+      : childMutation.returnType === "boolean" ? "boolean" : "command"
+    : childSpec.shape
   const isDeclaredBlockDefault = inputSpec.default?.type === "block" && inputSpec.default.value.opcode === child.opcode
   if (inputSpec.connection === "statement") {
-    if (!isDeclaredBlockDefault && childSpec.shape !== "command" && childSpec.shape !== "terminal") {
+    if (!isDeclaredBlockDefault && childShape !== "command" && childShape !== "terminal") {
       throw new InvalidBlockGraphError(
         `Statement input "${edge.inputName}" on "${parent.opcode}" cannot contain "${child.opcode}".`,
       )
     }
-  } else if (childSpec.shape === "command" || childSpec.shape === "terminal" || childSpec.shape === "hat") {
+  } else if (childShape === "command" || childShape === "terminal" || childShape === "hat") {
     throw new InvalidBlockGraphError(
       `Value input "${edge.inputName}" on "${parent.opcode}" cannot contain "${child.opcode}".`,
     )
@@ -471,8 +476,8 @@ const convertScript = <TContext>(state: DeserializeState<TContext>, rootId: stri
   }
 }
 
-export const deserializeBlocks = <TContext>(
-  blocks: Sb3Blocks, registry: BlockSpecRegistry<TContext>,
+export const deserializeSb3Blocks = <TContext>(
+  blocks: Readonly<Sb3Blocks>, registry: BlockSpecRegistry<TContext>,
 ): Script[] => {
   const source = cloneJson(blocks)
   const roots = validateGraph(source, registry)
@@ -659,7 +664,7 @@ const serializeScriptBlocks = (
   }
 }
 
-export const serializeBlocks = (scripts: readonly Script[]): Sb3Blocks => {
+export const serializeSb3Blocks = (scripts: readonly Script[]): Sb3Blocks => {
   const state: SerializeState = {result: {}, claimedIds: new Map()}
   for (const script of scripts) serializeScriptBlocks(state, script, true, null)
   return state.result
