@@ -52,3 +52,6 @@ export {
   walk,
 } from "./traversal.js"
 export type {WalkContext, WalkVisitor} from "./traversal.js"
+
+export {transformScripts} from "./transform.js"
+export type {TransformContext, TransformVisitor} from "./transform.js"

@@ -40,6 +40,45 @@ walk(script, {
 })
 ```
 
+## Immutable transforms
+
+`transformScripts()` is the modifying counterpart to `walk()`. It visits the
+same AST nodes in the same child order, but calls its visitor bottom-up so a
+parent receives its already-transformed children.
+
+```ts
+import {transformScripts} from "@scratch-code/ast"
+
+const renamed = transformScripts([script], {
+  leave(node, context) {
+    if (node.kind === "block" && node.opcode === "looks_say") {
+      return {...node, opcode: "looks_think"}
+    }
+    if (node.kind === "field" && context.key === "VARIABLE") {
+      return {...node, value: "renamed variable"}
+    }
+    // Returning undefined keeps this node.
+  },
+})
+```
+
+The input AST is never modified. Changed nodes and their ancestors are copied;
+unchanged subtrees, metadata, and mutations retain their references where
+possible. The returned top-level array is always new. A replacement must keep
+the original node `kind`, although an Input or Field may change its subtype.
+
+Transform context has the same `parent`, `key`, `index`, and `depth` fields as
+`walk()`. Its `parent` refers to the node in the input tree; the node passed to
+the parent's `leave` callback contains transformed children. Metadata and
+mutation objects are properties available on their owning node, not separate
+visitor events.
+
+Deletion is intentionally unsupported. AST node positions such as named inputs,
+fields, nested script values, and obscured shadows cannot be absent once their
+owning key exists; callers can replace an Input with an explicit `EmptyInput`
+where that is semantically appropriate. An `obscuredShadow` replacement must
+remain a scalar or block input.
+
 ## Scratch alignment
 
 - Canonical Scratch opcodes remain open strings so extension blocks are valid.

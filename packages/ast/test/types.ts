@@ -1,4 +1,5 @@
 import type {
+  AstNode,
   Block,
   DropdownField,
   Input,
@@ -6,7 +7,10 @@ import type {
   ProcedurePrototypeMutation,
   Script,
   StringInput,
+  TransformContext,
+  TransformVisitor,
 } from "../src/index.js"
+import {transformScripts} from "../src/index.js"
 
 const validScript: Script = {
   kind: "script",
@@ -52,6 +56,34 @@ const validCall: ProcedureCallMutation = {
   returnType: "statement",
 }
 
+const transformVisitor: TransformVisitor = {
+  leave(node, context) {
+    const currentNode: AstNode = node
+    const currentContext: TransformContext = context
+    if (node.kind === "block") return {...node, opcode: `copy_${node.opcode}`}
+    if (node.kind === "input" && node.type === "empty") {
+      return {kind: "input", type: "string", value: "default"}
+    }
+    void [currentNode, currentContext]
+    return undefined
+  },
+}
+
+const transformedScripts: Script[] = transformScripts(
+  [validScript] as readonly Script[],
+  transformVisitor,
+)
+
+transformScripts([validScript], {
+  // @ts-expect-error transform visitors return an AST node or undefined.
+  leave() { return "not a node" },
+})
+
+transformScripts([validScript], {
+  // @ts-expect-error deletion is not part of the transform visitor contract.
+  leave() { return null },
+})
+
 // @ts-expect-error x/y belong to Script scratch metadata, not Block metadata.
 const blockWithPosition: Block = {kind: "block", opcode: "test", fields: {}, inputs: {}, metadata: {scratch: {x: 1}}}
 
@@ -83,6 +115,7 @@ void [
   validPrototype,
   validCall,
   validJsonField,
+  transformedScripts,
   blockWithPosition,
   scriptWithBlockId,
   stringWithNumericKind,

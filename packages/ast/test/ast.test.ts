@@ -8,11 +8,13 @@ import {
   isInput,
   isScript,
   isJsonValue,
+  transformScripts,
   walk,
   type Block,
   type ProcedureCallMutation,
   type ProcedurePrototypeMutation,
   type Script,
+  type TransformContext,
   type WalkContext,
 } from "../src/index.js"
 
@@ -93,6 +95,15 @@ const createScratchScript = (): Script => ({
     },
   ],
 })
+
+const deepFreeze = <T>(value: T): T => {
+  if (typeof value !== "object" || value === null || Object.isFrozen(value)) {
+    return value
+  }
+  Object.freeze(value)
+  for (const child of Object.values(value)) deepFreeze(child)
+  return value
+}
 
 describe("Scratch-aligned AST model", () => {
   it("preserves literal values and the menu-shadow boundary", () => {
@@ -355,6 +366,226 @@ describe("input-local obscured shadows", () => {
     const visited: string[] = []
     walk(input, {enter: node => visited.push(node.kind === "input" ? node.type : node.kind)})
     expect(visited).toEqual(["number", "number"])
+  })
+})
+
+describe("immutable transforms", () => {
+  it("replaces nested nodes bottom-up without modifying the input", () => {
+    const script: Script = {
+      kind: "script",
+      metadata: {test: {owner: "source"}},
+      blocks: [{
+        kind: "block",
+        opcode: "test_parent",
+        fields: {
+          LABEL: {kind: "field", type: "text", value: "before"},
+        },
+        inputs: {
+          CHILD: {
+            kind: "input",
+            type: "block",
+            value: {
+              kind: "block",
+              opcode: "test_child",
+              fields: {},
+              inputs: {},
+            },
+            obscuredShadow: {
+              kind: "input",
+              type: "number",
+              value: "10",
+            },
+          },
+          SUBSTACK: {
+            kind: "input",
+            type: "script",
+            value: {
+              kind: "script",
+              blocks: [{
+                kind: "block",
+                opcode: "test_nested",
+                fields: {},
+                inputs: {
+                  VALUE: {kind: "input", type: "empty"},
+                },
+              }],
+            },
+          },
+        },
+      }],
+    }
+    const snapshot = JSON.parse(JSON.stringify(script)) as Script
+    deepFreeze(script)
+    let parentSawTransformedChildren = false
+
+    const scripts = [script]
+    const result = transformScripts(scripts, {
+      leave(node) {
+        if (node.kind === "field") return {...node, value: "after"}
+        if (node.kind === "input" && node.type === "number") {
+          return {...node, value: "20"}
+        }
+        if (node.kind === "input" && node.type === "empty") {
+          return {kind: "input", type: "string", value: "filled"}
+        }
+        if (node.kind === "block") {
+          if (node.opcode === "test_parent") {
+            parentSawTransformedChildren =
+              node.fields["LABEL"]?.value === "after" &&
+              node.inputs["CHILD"]?.obscuredShadow?.value === "20"
+          }
+          return {...node, opcode: `${node.opcode}_changed`}
+        }
+        if (node.kind === "script") {
+          return {...node, metadata: {...node.metadata, transformed: true}}
+        }
+        return undefined
+      },
+    })
+
+    expect(script).toEqual(snapshot)
+    expect(result).not.toBe(scripts)
+    expect(result[0]).not.toBe(script)
+    expect(parentSawTransformedChildren).toBe(true)
+    expect(result[0]).toMatchObject({
+      metadata: {test: {owner: "source"}, transformed: true},
+      blocks: [{
+        opcode: "test_parent_changed",
+        fields: {LABEL: {value: "after"}},
+        inputs: {
+          CHILD: {
+            value: {opcode: "test_child_changed"},
+            obscuredShadow: {type: "number", value: "20"},
+          },
+          SUBSTACK: {
+            value: {
+              metadata: {transformed: true},
+              blocks: [{
+                opcode: "test_nested_changed",
+                inputs: {VALUE: {type: "string", value: "filled"}},
+              }],
+            },
+          },
+        },
+      }],
+    })
+  })
+
+  it("uses walk-compatible context for blocks, nested values, and shadows", () => {
+    const script = createScratchScript()
+    const times = script.blocks[1]!.inputs["TIMES"]!
+    times.obscuredShadow = {kind: "input", type: "number", value: "10"}
+    const contexts: Array<{
+      label: string
+      parent: string | null
+      key: string | null
+      index?: number
+      depth: number
+    }> = []
+    const record = (label: string, context: TransformContext): void => {
+      contexts.push({
+        label,
+        parent: context.parent?.kind ?? null,
+        key: context.key,
+        ...(context.index === undefined ? {} : {index: context.index}),
+        depth: context.depth,
+      })
+    }
+
+    transformScripts([script], {
+      leave(node, context) {
+        if (node === times.obscuredShadow) record("shadow", context)
+        if (node.kind === "block" && node.opcode === "looks_say") {
+          record("nested-block", context)
+        }
+        if (node.kind === "script" && context.parent === null) {
+          record("root", context)
+        }
+      },
+    })
+
+    expect(contexts).toEqual([
+      {label: "shadow", parent: "input", key: "obscuredShadow", depth: 3},
+      {label: "nested-block", parent: "script", key: "blocks", index: 0, depth: 4},
+      {label: "root", parent: null, key: null, depth: 0},
+    ])
+  })
+
+  it("shares unchanged subtrees and clones only changed ancestors", () => {
+    const first: Script = {
+      kind: "script",
+      metadata: {test: {stable: true}},
+      blocks: [{
+        kind: "block",
+        opcode: "test_change",
+        mutation: {
+          type: "procedure-call",
+          proccode: "test",
+          argumentIds: [],
+          warp: false,
+          returnType: "statement",
+        },
+        fields: {
+          LABEL: {kind: "field", type: "text", value: "before"},
+        },
+        inputs: {
+          VALUE: {kind: "input", type: "number", value: 1},
+        },
+      }, {
+        kind: "block",
+        opcode: "test_unchanged",
+        fields: {},
+        inputs: {},
+      }],
+    }
+    const second: Script = {kind: "script", blocks: []}
+    const scripts = [first, second]
+    const result = transformScripts(scripts, {
+      leave(node) {
+        if (node.kind === "field" && node.value === "before") {
+          return {...node, value: "after"}
+        }
+      },
+    })
+
+    expect(result).not.toBe(scripts)
+    expect(result[0]).not.toBe(first)
+    expect(result[0]!.blocks).not.toBe(first.blocks)
+    expect(result[0]!.blocks[0]).not.toBe(first.blocks[0])
+    expect(result[0]!.blocks[0]!.fields).not.toBe(first.blocks[0]!.fields)
+    expect(result[0]!.blocks[0]!.inputs).toBe(first.blocks[0]!.inputs)
+    expect(result[0]!.blocks[0]!.metadata).toBe(first.blocks[0]!.metadata)
+    expect(result[0]!.blocks[0]!.mutation).toBe(first.blocks[0]!.mutation)
+    expect(result[0]!.blocks[1]).toBe(first.blocks[1])
+    expect(result[0]!.metadata).toBe(first.metadata)
+    expect(result[1]).toBe(second)
+
+    const unchangedInput = [first]
+    const unchanged = transformScripts(unchangedInput, {leave: () => undefined})
+    expect(unchanged).not.toBe(unchangedInput)
+    expect(unchanged[0]).toBe(first)
+  })
+
+  it("rejects replacements that are invalid for their structural position", () => {
+    const script = createScratchScript()
+    const times = script.blocks[1]!.inputs["TIMES"]!
+    times.obscuredShadow = {kind: "input", type: "number", value: "10"}
+
+    expect(() => transformScripts([script], {
+      leave(node, context) {
+        if (context.key === "obscuredShadow") {
+          return {kind: "input", type: "empty"}
+        }
+        return node
+      },
+    })).toThrow("An obscuredShadow must remain a scalar or block input")
+
+    expect(() => transformScripts([script], {
+      leave(node) {
+        if (node.kind === "field") return node
+        return {kind: "field", type: "text", value: "wrong"}
+      },
+    })).toThrow("Cannot replace")
   })
 })
 
