@@ -21,6 +21,7 @@
   "devDependencies": {
     "@scratch-code/ast": "workspace:^",
     "@scratch-code/block-spec": "workspace:^",
+    "@scratch-code/fragment": "workspace:^",
     "@scratch-code/materialize": "workspace:^",
     "@scratch-code/sb3": "workspace:^",
     "@scratch-code/scratchblocks-codec": "workspace:^",

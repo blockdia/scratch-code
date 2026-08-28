@@ -2,6 +2,7 @@ import {describe, expect, it} from "vitest"
 
 import * as astApi from "@scratch-code/ast"
 import * as blockSpecApi from "@scratch-code/block-spec"
+import * as fragmentApi from "@scratch-code/fragment"
 import * as materializeApi from "@scratch-code/materialize"
 import * as sb3Api from "@scratch-code/sb3"
 import * as scratchblocksApi from "@scratch-code/scratchblocks-codec"
@@ -10,6 +11,7 @@ import * as vmBlocksApi from "@scratch-code/vm-blocks"
 
 import astPackage from "../../packages/ast/package.json" with {type: "json"}
 import blockSpecPackage from "../../packages/block-spec/package.json" with {type: "json"}
+import fragmentPackage from "../../packages/fragment/package.json" with {type: "json"}
 import materializePackage from "../../packages/materialize/package.json" with {type: "json"}
 import sb3Package from "../../packages/sb3/package.json" with {type: "json"}
 import scratchblocksPackage from "../../packages/scratchblocks-codec/package.json" with {type: "json"}
@@ -25,6 +27,7 @@ interface PackageManifest {
 const manifests: Readonly<Record<string, PackageManifest>> = {
   "@scratch-code/ast": astPackage,
   "@scratch-code/block-spec": blockSpecPackage,
+  "@scratch-code/fragment": fragmentPackage,
   "@scratch-code/materialize": materializePackage,
   "@scratch-code/sb3": sb3Package,
   "@scratch-code/vm-blocks": vmBlocksPackage,
@@ -47,6 +50,11 @@ describe("public API consistency", () => {
     expect(scratchblocksApi).toMatchObject({
       deserializeScratchblocks: expect.any(Function),
       serializeScratchblocks: expect.any(Function),
+    })
+    expect(fragmentApi).toMatchObject({
+      analyzeScripts: expect.any(Function),
+      createScratchFragment: expect.any(Function),
+      SCRATCH_FRAGMENT_VERSION: 1,
     })
     expect(materializeApi).toMatchObject({materialize: expect.any(Function)})
     expect(materializeApi).not.toHaveProperty("materializeScripts")
@@ -77,6 +85,7 @@ describe("production dependency DAG", () => {
     expect(dependencies).toEqual({
       "@scratch-code/ast": [],
       "@scratch-code/block-spec": ["@scratch-code/ast"],
+      "@scratch-code/fragment": ["@scratch-code/ast"],
       "@scratch-code/materialize": ["@scratch-code/ast", "@scratch-code/block-spec"],
       "@scratch-code/sb3": ["@scratch-code/ast", "@scratch-code/block-spec"],
       "@scratch-code/vm-blocks": ["@scratch-code/ast", "@scratch-code/block-spec"],
