@@ -26,6 +26,7 @@
     "@eslint/js": "^10.0.1",
     "@scratch-code/ast": "workspace:^",
     "@scratch-code/block-spec": "workspace:^",
+    "@scratch-code/diff": "workspace:^",
     "@scratch-code/fragment": "workspace:^",
     "@scratch-code/materialize": "workspace:^",
     "@scratch-code/sb3": "workspace:^",

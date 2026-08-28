@@ -17,6 +17,9 @@ importers:
       '@scratch-code/block-spec':
         specifier: workspace:^
         version: link:packages/block-spec
+      '@scratch-code/diff':
+        specifier: workspace:^
+        version: link:packages/diff
       '@scratch-code/fragment':
         specifier: workspace:^
         version: link:packages/fragment
@@ -94,6 +97,12 @@ importers:
   packages/ast: {}
 
   packages/block-spec:
+    dependencies:
+      '@scratch-code/ast':
+        specifier: workspace:^
+        version: link:../ast
+
+  packages/diff:
     dependencies:
       '@scratch-code/ast':
         specifier: workspace:^
