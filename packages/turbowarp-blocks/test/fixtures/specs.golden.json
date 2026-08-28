@@ -2,6 +2,12 @@
   {
     "opcode": "motion_align_scene",
     "shape": "command",
+    "arguments": [
+      {
+        "kind": "field",
+        "name": "ALIGNMENT"
+      }
+    ],
     "inputs": {},
     "fields": {
       "ALIGNMENT": {
@@ -11,19 +17,56 @@
           "type": "dropdown",
           "value": "bottom-left"
         },
-        "metadata": {
-          "scratchBlocks": {
-            "blockJson": {
-              "type": "field_dropdown"
-            }
+        "bindings": {
+          "scratchblocks": {
+            "shape": "dropdown",
+            "options": [
+              {
+                "label": "MOTION_ALIGNSCENE_BOTTOMLEFT",
+                "value": "bottom-left"
+              },
+              {
+                "label": "MOTION_ALIGNSCENE_BOTTOMRIGHT",
+                "value": "bottom-right"
+              },
+              {
+                "label": "MOTION_ALIGNSCENE_MIDDLE",
+                "value": "middle"
+              },
+              {
+                "label": "MOTION_ALIGNSCENE_TOPLEFT",
+                "value": "top-left"
+              },
+              {
+                "label": "MOTION_ALIGNSCENE_TOPRIGHT",
+                "value": "top-right"
+              }
+            ]
           }
         }
+      }
+    },
+    "bindings": {
+      "scratchblocks": {
+        "blockId": "MOTION_ALIGNSCENE"
+      }
+    },
+    "source": {
+      "scratchBlocks": {
+        "sourceFile": "blocks_vertical/motion.js",
+        "definition": "json"
       }
     }
   },
   {
     "opcode": "motion_changexby",
     "shape": "command",
+    "arguments": [
+      {
+        "kind": "input",
+        "name": "DX"
+      }
+    ],
     "inputs": {
       "DX": {
         "connection": "value",
@@ -40,11 +83,28 @@
         }
       }
     },
-    "fields": {}
+    "fields": {},
+    "bindings": {
+      "scratchblocks": {
+        "blockId": "MOTION_CHANGEXBY"
+      }
+    },
+    "source": {
+      "scratchBlocks": {
+        "sourceFile": "blocks_vertical/motion.js",
+        "definition": "json"
+      }
+    }
   },
   {
     "opcode": "motion_changeyby",
     "shape": "command",
+    "arguments": [
+      {
+        "kind": "input",
+        "name": "DY"
+      }
+    ],
     "inputs": {
       "DY": {
         "connection": "value",
@@ -61,18 +121,55 @@
         }
       }
     },
-    "fields": {}
+    "fields": {},
+    "bindings": {
+      "scratchblocks": {
+        "blockId": "MOTION_CHANGEYBY"
+      }
+    },
+    "source": {
+      "scratchBlocks": {
+        "sourceFile": "blocks_vertical/motion.js",
+        "definition": "json"
+      }
+    }
   },
   {
     "opcode": "motion_direction",
     "shape": "reporter",
     "outputType": "number",
+    "arguments": [],
     "inputs": {},
-    "fields": {}
+    "fields": {},
+    "bindings": {
+      "scratchblocks": {
+        "blockId": "MOTION_DIRECTION"
+      }
+    },
+    "source": {
+      "scratchBlocks": {
+        "sourceFile": "blocks_vertical/motion.js",
+        "definition": "json"
+      }
+    }
   },
   {
     "opcode": "motion_glidesecstoxy",
     "shape": "command",
+    "arguments": [
+      {
+        "kind": "input",
+        "name": "SECS"
+      },
+      {
+        "kind": "input",
+        "name": "X"
+      },
+      {
+        "kind": "input",
+        "name": "Y"
+      }
+    ],
     "inputs": {
       "SECS": {
         "connection": "value",
@@ -117,11 +214,32 @@
         }
       }
     },
-    "fields": {}
+    "fields": {},
+    "bindings": {
+      "scratchblocks": {
+        "blockId": "MOTION_GLIDESECSTOXY"
+      }
+    },
+    "source": {
+      "scratchBlocks": {
+        "sourceFile": "blocks_vertical/motion.js",
+        "definition": "json"
+      }
+    }
   },
   {
     "opcode": "motion_glideto",
     "shape": "command",
+    "arguments": [
+      {
+        "kind": "input",
+        "name": "SECS"
+      },
+      {
+        "kind": "input",
+        "name": "TO"
+      }
+    ],
     "inputs": {
       "SECS": {
         "connection": "value",
@@ -158,12 +276,29 @@
         }
       }
     },
-    "fields": {}
+    "fields": {},
+    "bindings": {
+      "scratchblocks": {
+        "blockId": "MOTION_GLIDETO"
+      }
+    },
+    "source": {
+      "scratchBlocks": {
+        "sourceFile": "blocks_vertical/motion.js",
+        "definition": "json"
+      }
+    }
   },
   {
     "opcode": "motion_glideto_menu",
     "shape": "reporter",
     "outputType": "string",
+    "arguments": [
+      {
+        "kind": "field",
+        "name": "TO"
+      }
+    ],
     "inputs": {},
     "fields": {
       "TO": {
@@ -173,19 +308,42 @@
           "type": "dropdown",
           "value": "_mouse_"
         },
-        "metadata": {
-          "scratchBlocks": {
-            "blockJson": {
-              "type": "field_dropdown"
-            }
+        "bindings": {
+          "scratchblocks": {
+            "shape": "dropdown",
+            "options": [
+              {
+                "label": "MOTION_GLIDETO_POINTER",
+                "value": "_mouse_"
+              },
+              {
+                "label": "MOTION_GLIDETO_RANDOM",
+                "value": "_random_"
+              }
+            ]
           }
         }
+      }
+    },
+    "bindings": {
+      "scratchblocks": {}
+    },
+    "source": {
+      "scratchBlocks": {
+        "sourceFile": "blocks_vertical/motion.js",
+        "definition": "json"
       }
     }
   },
   {
     "opcode": "motion_goto",
     "shape": "command",
+    "arguments": [
+      {
+        "kind": "input",
+        "name": "TO"
+      }
+    ],
     "inputs": {
       "TO": {
         "connection": "value",
@@ -208,12 +366,29 @@
         }
       }
     },
-    "fields": {}
+    "fields": {},
+    "bindings": {
+      "scratchblocks": {
+        "blockId": "MOTION_GOTO"
+      }
+    },
+    "source": {
+      "scratchBlocks": {
+        "sourceFile": "blocks_vertical/motion.js",
+        "definition": "json"
+      }
+    }
   },
   {
     "opcode": "motion_goto_menu",
     "shape": "reporter",
     "outputType": "string",
+    "arguments": [
+      {
+        "kind": "field",
+        "name": "TO"
+      }
+    ],
     "inputs": {},
     "fields": {
       "TO": {
@@ -223,19 +398,46 @@
           "type": "dropdown",
           "value": "_mouse_"
         },
-        "metadata": {
-          "scratchBlocks": {
-            "blockJson": {
-              "type": "field_dropdown"
-            }
+        "bindings": {
+          "scratchblocks": {
+            "shape": "dropdown",
+            "options": [
+              {
+                "label": "MOTION_GOTO_POINTER",
+                "value": "_mouse_"
+              },
+              {
+                "label": "MOTION_GOTO_RANDOM",
+                "value": "_random_"
+              }
+            ]
           }
         }
+      }
+    },
+    "bindings": {
+      "scratchblocks": {}
+    },
+    "source": {
+      "scratchBlocks": {
+        "sourceFile": "blocks_vertical/motion.js",
+        "definition": "json"
       }
     }
   },
   {
     "opcode": "motion_gotoxy",
     "shape": "command",
+    "arguments": [
+      {
+        "kind": "input",
+        "name": "X"
+      },
+      {
+        "kind": "input",
+        "name": "Y"
+      }
+    ],
     "inputs": {
       "X": {
         "connection": "value",
@@ -266,17 +468,46 @@
         }
       }
     },
-    "fields": {}
+    "fields": {},
+    "bindings": {
+      "scratchblocks": {
+        "blockId": "MOTION_GOTOXY"
+      }
+    },
+    "source": {
+      "scratchBlocks": {
+        "sourceFile": "blocks_vertical/motion.js",
+        "definition": "json"
+      }
+    }
   },
   {
     "opcode": "motion_ifonedgebounce",
     "shape": "command",
+    "arguments": [],
     "inputs": {},
-    "fields": {}
+    "fields": {},
+    "bindings": {
+      "scratchblocks": {
+        "blockId": "MOTION_IFONEDGEBOUNCE"
+      }
+    },
+    "source": {
+      "scratchBlocks": {
+        "sourceFile": "blocks_vertical/motion.js",
+        "definition": "json"
+      }
+    }
   },
   {
     "opcode": "motion_movesteps",
     "shape": "command",
+    "arguments": [
+      {
+        "kind": "input",
+        "name": "STEPS"
+      }
+    ],
     "inputs": {
       "STEPS": {
         "connection": "value",
@@ -293,11 +524,28 @@
         }
       }
     },
-    "fields": {}
+    "fields": {},
+    "bindings": {
+      "scratchblocks": {
+        "blockId": "MOTION_MOVESTEPS"
+      }
+    },
+    "source": {
+      "scratchBlocks": {
+        "sourceFile": "blocks_vertical/motion.js",
+        "definition": "json"
+      }
+    }
   },
   {
     "opcode": "motion_pointindirection",
     "shape": "command",
+    "arguments": [
+      {
+        "kind": "input",
+        "name": "DIRECTION"
+      }
+    ],
     "inputs": {
       "DIRECTION": {
         "connection": "value",
@@ -314,11 +562,28 @@
         }
       }
     },
-    "fields": {}
+    "fields": {},
+    "bindings": {
+      "scratchblocks": {
+        "blockId": "MOTION_POINTINDIRECTION"
+      }
+    },
+    "source": {
+      "scratchBlocks": {
+        "sourceFile": "blocks_vertical/motion.js",
+        "definition": "json"
+      }
+    }
   },
   {
     "opcode": "motion_pointtowards",
     "shape": "command",
+    "arguments": [
+      {
+        "kind": "input",
+        "name": "TOWARDS"
+      }
+    ],
     "inputs": {
       "TOWARDS": {
         "connection": "value",
@@ -341,12 +606,29 @@
         }
       }
     },
-    "fields": {}
+    "fields": {},
+    "bindings": {
+      "scratchblocks": {
+        "blockId": "MOTION_POINTTOWARDS"
+      }
+    },
+    "source": {
+      "scratchBlocks": {
+        "sourceFile": "blocks_vertical/motion.js",
+        "definition": "json"
+      }
+    }
   },
   {
     "opcode": "motion_pointtowards_menu",
     "shape": "reporter",
     "outputType": "string",
+    "arguments": [
+      {
+        "kind": "field",
+        "name": "TOWARDS"
+      }
+    ],
     "inputs": {},
     "fields": {
       "TOWARDS": {
@@ -356,41 +638,98 @@
           "type": "dropdown",
           "value": "_mouse_"
         },
-        "metadata": {
-          "scratchBlocks": {
-            "blockJson": {
-              "type": "field_dropdown"
-            }
+        "bindings": {
+          "scratchblocks": {
+            "shape": "dropdown",
+            "options": [
+              {
+                "label": "MOTION_POINTTOWARDS_POINTER",
+                "value": "_mouse_"
+              },
+              {
+                "label": "MOTION_POINTTOWARDS_RANDOM",
+                "value": "_random_"
+              }
+            ]
           }
         }
+      }
+    },
+    "bindings": {
+      "scratchblocks": {}
+    },
+    "source": {
+      "scratchBlocks": {
+        "sourceFile": "blocks_vertical/motion.js",
+        "definition": "json"
       }
     }
   },
   {
     "opcode": "motion_scroll_right",
     "shape": "command",
+    "arguments": [
+      {
+        "kind": "input",
+        "name": "DISTANCE"
+      }
+    ],
     "inputs": {
       "DISTANCE": {
         "connection": "value",
         "accepts": "any"
       }
     },
-    "fields": {}
+    "fields": {},
+    "bindings": {
+      "scratchblocks": {
+        "blockId": "MOTION_SCROLLRIGHT"
+      }
+    },
+    "source": {
+      "scratchBlocks": {
+        "sourceFile": "blocks_vertical/motion.js",
+        "definition": "json"
+      }
+    }
   },
   {
     "opcode": "motion_scroll_up",
     "shape": "command",
+    "arguments": [
+      {
+        "kind": "input",
+        "name": "DISTANCE"
+      }
+    ],
     "inputs": {
       "DISTANCE": {
         "connection": "value",
         "accepts": "any"
       }
     },
-    "fields": {}
+    "fields": {},
+    "bindings": {
+      "scratchblocks": {
+        "blockId": "MOTION_SCROLLUP"
+      }
+    },
+    "source": {
+      "scratchBlocks": {
+        "sourceFile": "blocks_vertical/motion.js",
+        "definition": "json"
+      }
+    }
   },
   {
     "opcode": "motion_setrotationstyle",
     "shape": "command",
+    "arguments": [
+      {
+        "kind": "field",
+        "name": "STYLE"
+      }
+    ],
     "inputs": {},
     "fields": {
       "STYLE": {
@@ -400,19 +739,48 @@
           "type": "dropdown",
           "value": "left-right"
         },
-        "metadata": {
-          "scratchBlocks": {
-            "blockJson": {
-              "type": "field_dropdown"
-            }
+        "bindings": {
+          "scratchblocks": {
+            "shape": "dropdown",
+            "options": [
+              {
+                "label": "MOTION_SETROTATIONSTYLE_LEFTRIGHT",
+                "value": "left-right"
+              },
+              {
+                "label": "MOTION_SETROTATIONSTYLE_DONTROTATE",
+                "value": "don't rotate"
+              },
+              {
+                "label": "MOTION_SETROTATIONSTYLE_ALLAROUND",
+                "value": "all around"
+              }
+            ]
           }
         }
+      }
+    },
+    "bindings": {
+      "scratchblocks": {
+        "blockId": "MOTION_SETROTATIONSTYLE"
+      }
+    },
+    "source": {
+      "scratchBlocks": {
+        "sourceFile": "blocks_vertical/motion.js",
+        "definition": "json"
       }
     }
   },
   {
     "opcode": "motion_setx",
     "shape": "command",
+    "arguments": [
+      {
+        "kind": "input",
+        "name": "X"
+      }
+    ],
     "inputs": {
       "X": {
         "connection": "value",
@@ -429,11 +797,28 @@
         }
       }
     },
-    "fields": {}
+    "fields": {},
+    "bindings": {
+      "scratchblocks": {
+        "blockId": "MOTION_SETX"
+      }
+    },
+    "source": {
+      "scratchBlocks": {
+        "sourceFile": "blocks_vertical/motion.js",
+        "definition": "json"
+      }
+    }
   },
   {
     "opcode": "motion_sety",
     "shape": "command",
+    "arguments": [
+      {
+        "kind": "input",
+        "name": "Y"
+      }
+    ],
     "inputs": {
       "Y": {
         "connection": "value",
@@ -450,11 +835,28 @@
         }
       }
     },
-    "fields": {}
+    "fields": {},
+    "bindings": {
+      "scratchblocks": {
+        "blockId": "MOTION_SETY"
+      }
+    },
+    "source": {
+      "scratchBlocks": {
+        "sourceFile": "blocks_vertical/motion.js",
+        "definition": "json"
+      }
+    }
   },
   {
     "opcode": "motion_turnleft",
     "shape": "command",
+    "arguments": [
+      {
+        "kind": "input",
+        "name": "DEGREES"
+      }
+    ],
     "inputs": {
       "DEGREES": {
         "connection": "value",
@@ -471,11 +873,28 @@
         }
       }
     },
-    "fields": {}
+    "fields": {},
+    "bindings": {
+      "scratchblocks": {
+        "blockId": "MOTION_TURNLEFT"
+      }
+    },
+    "source": {
+      "scratchBlocks": {
+        "sourceFile": "blocks_vertical/motion.js",
+        "definition": "json"
+      }
+    }
   },
   {
     "opcode": "motion_turnright",
     "shape": "command",
+    "arguments": [
+      {
+        "kind": "input",
+        "name": "DEGREES"
+      }
+    ],
     "inputs": {
       "DEGREES": {
         "connection": "value",
@@ -492,40 +911,105 @@
         }
       }
     },
-    "fields": {}
+    "fields": {},
+    "bindings": {
+      "scratchblocks": {
+        "blockId": "MOTION_TURNRIGHT"
+      }
+    },
+    "source": {
+      "scratchBlocks": {
+        "sourceFile": "blocks_vertical/motion.js",
+        "definition": "json"
+      }
+    }
   },
   {
     "opcode": "motion_xposition",
     "shape": "reporter",
     "outputType": "number",
+    "arguments": [],
     "inputs": {},
-    "fields": {}
+    "fields": {},
+    "bindings": {
+      "scratchblocks": {
+        "blockId": "MOTION_XPOSITION"
+      }
+    },
+    "source": {
+      "scratchBlocks": {
+        "sourceFile": "blocks_vertical/motion.js",
+        "definition": "json"
+      }
+    }
   },
   {
     "opcode": "motion_xscroll",
     "shape": "reporter",
     "outputType": "number",
+    "arguments": [],
     "inputs": {},
-    "fields": {}
+    "fields": {},
+    "bindings": {
+      "scratchblocks": {
+        "blockId": "MOTION_XSCROLL"
+      }
+    },
+    "source": {
+      "scratchBlocks": {
+        "sourceFile": "blocks_vertical/motion.js",
+        "definition": "json"
+      }
+    }
   },
   {
     "opcode": "motion_yposition",
     "shape": "reporter",
     "outputType": "number",
+    "arguments": [],
     "inputs": {},
-    "fields": {}
+    "fields": {},
+    "bindings": {
+      "scratchblocks": {
+        "blockId": "MOTION_YPOSITION"
+      }
+    },
+    "source": {
+      "scratchBlocks": {
+        "sourceFile": "blocks_vertical/motion.js",
+        "definition": "json"
+      }
+    }
   },
   {
     "opcode": "motion_yscroll",
     "shape": "reporter",
     "outputType": "number",
+    "arguments": [],
     "inputs": {},
-    "fields": {}
+    "fields": {},
+    "bindings": {
+      "scratchblocks": {
+        "blockId": "MOTION_YSCROLL"
+      }
+    },
+    "source": {
+      "scratchBlocks": {
+        "sourceFile": "blocks_vertical/motion.js",
+        "definition": "json"
+      }
+    }
   },
   {
     "opcode": "looks_backdropnumbername",
     "shape": "reporter",
     "outputType": "number",
+    "arguments": [
+      {
+        "kind": "field",
+        "name": "NUMBER_NAME"
+      }
+    ],
     "inputs": {},
     "fields": {
       "NUMBER_NAME": {
@@ -535,13 +1019,32 @@
           "type": "dropdown",
           "value": "number"
         },
-        "metadata": {
-          "scratchBlocks": {
-            "blockJson": {
-              "type": "field_dropdown"
-            }
+        "bindings": {
+          "scratchblocks": {
+            "shape": "dropdown",
+            "options": [
+              {
+                "label": "LOOKS_NUMBERNAME_NUMBER",
+                "value": "number"
+              },
+              {
+                "label": "LOOKS_NUMBERNAME_NAME",
+                "value": "name"
+              }
+            ]
           }
         }
+      }
+    },
+    "bindings": {
+      "scratchblocks": {
+        "blockId": "LOOKS_BACKDROPNUMBERNAME"
+      }
+    },
+    "source": {
+      "scratchBlocks": {
+        "sourceFile": "blocks_vertical/looks.js",
+        "definition": "json"
       }
     }
   },
@@ -549,6 +1052,12 @@
     "opcode": "looks_backdrops",
     "shape": "reporter",
     "outputType": "string",
+    "arguments": [
+      {
+        "kind": "field",
+        "name": "BACKDROP"
+      }
+    ],
     "inputs": {},
     "fields": {
       "BACKDROP": {
@@ -558,19 +1067,42 @@
           "type": "dropdown",
           "value": "BACKDROP1"
         },
-        "metadata": {
-          "scratchBlocks": {
-            "blockJson": {
-              "type": "field_dropdown"
-            }
+        "bindings": {
+          "scratchblocks": {
+            "shape": "dropdown",
+            "options": [
+              {
+                "label": "backdrop1",
+                "value": "BACKDROP1"
+              }
+            ]
           }
         }
+      }
+    },
+    "bindings": {
+      "scratchblocks": {}
+    },
+    "source": {
+      "scratchBlocks": {
+        "sourceFile": "blocks_vertical/looks.js",
+        "definition": "json"
       }
     }
   },
   {
     "opcode": "looks_changeeffectby",
     "shape": "command",
+    "arguments": [
+      {
+        "kind": "field",
+        "name": "EFFECT"
+      },
+      {
+        "kind": "input",
+        "name": "CHANGE"
+      }
+    ],
     "inputs": {
       "CHANGE": {
         "connection": "value",
@@ -595,19 +1127,64 @@
           "type": "dropdown",
           "value": "COLOR"
         },
-        "metadata": {
-          "scratchBlocks": {
-            "blockJson": {
-              "type": "field_dropdown"
-            }
+        "bindings": {
+          "scratchblocks": {
+            "shape": "dropdown",
+            "options": [
+              {
+                "label": "LOOKS_EFFECT_COLOR",
+                "value": "COLOR"
+              },
+              {
+                "label": "LOOKS_EFFECT_FISHEYE",
+                "value": "FISHEYE"
+              },
+              {
+                "label": "LOOKS_EFFECT_WHIRL",
+                "value": "WHIRL"
+              },
+              {
+                "label": "LOOKS_EFFECT_PIXELATE",
+                "value": "PIXELATE"
+              },
+              {
+                "label": "LOOKS_EFFECT_MOSAIC",
+                "value": "MOSAIC"
+              },
+              {
+                "label": "LOOKS_EFFECT_BRIGHTNESS",
+                "value": "BRIGHTNESS"
+              },
+              {
+                "label": "LOOKS_EFFECT_GHOST",
+                "value": "GHOST"
+              }
+            ]
           }
         }
+      }
+    },
+    "bindings": {
+      "scratchblocks": {
+        "blockId": "LOOKS_CHANGEEFFECTBY"
+      }
+    },
+    "source": {
+      "scratchBlocks": {
+        "sourceFile": "blocks_vertical/looks.js",
+        "definition": "json"
       }
     }
   },
   {
     "opcode": "looks_changesizeby",
     "shape": "command",
+    "arguments": [
+      {
+        "kind": "input",
+        "name": "CHANGE"
+      }
+    ],
     "inputs": {
       "CHANGE": {
         "connection": "value",
@@ -624,29 +1201,75 @@
         }
       }
     },
-    "fields": {}
+    "fields": {},
+    "bindings": {
+      "scratchblocks": {
+        "blockId": "LOOKS_CHANGESIZEBY"
+      }
+    },
+    "source": {
+      "scratchBlocks": {
+        "sourceFile": "blocks_vertical/looks.js",
+        "definition": "json"
+      }
+    }
   },
   {
     "opcode": "looks_changestretchby",
     "shape": "command",
+    "arguments": [
+      {
+        "kind": "input",
+        "name": "CHANGE"
+      }
+    ],
     "inputs": {
       "CHANGE": {
         "connection": "value",
         "accepts": "number"
       }
     },
-    "fields": {}
+    "fields": {},
+    "bindings": {
+      "scratchblocks": {
+        "blockId": "LOOKS_CHANGESTRETCHBY"
+      }
+    },
+    "source": {
+      "scratchBlocks": {
+        "sourceFile": "blocks_vertical/looks.js",
+        "definition": "json"
+      }
+    }
   },
   {
     "opcode": "looks_cleargraphiceffects",
     "shape": "command",
+    "arguments": [],
     "inputs": {},
-    "fields": {}
+    "fields": {},
+    "bindings": {
+      "scratchblocks": {
+        "blockId": "LOOKS_CLEARGRAPHICEFFECTS"
+      }
+    },
+    "source": {
+      "scratchBlocks": {
+        "sourceFile": "blocks_vertical/looks.js",
+        "definition": "json"
+      }
+    }
   },
   {
     "opcode": "looks_costume",
     "shape": "reporter",
     "outputType": "string",
+    "arguments": [
+      {
+        "kind": "field",
+        "name": "COSTUME"
+      }
+    ],
     "inputs": {},
     "fields": {
       "COSTUME": {
@@ -656,13 +1279,30 @@
           "type": "dropdown",
           "value": "COSTUME1"
         },
-        "metadata": {
-          "scratchBlocks": {
-            "blockJson": {
-              "type": "field_dropdown"
-            }
+        "bindings": {
+          "scratchblocks": {
+            "shape": "dropdown",
+            "options": [
+              {
+                "label": "costume1",
+                "value": "COSTUME1"
+              },
+              {
+                "label": "costume2",
+                "value": "COSTUME2"
+              }
+            ]
           }
         }
+      }
+    },
+    "bindings": {
+      "scratchblocks": {}
+    },
+    "source": {
+      "scratchBlocks": {
+        "sourceFile": "blocks_vertical/looks.js",
+        "definition": "json"
       }
     }
   },
@@ -670,6 +1310,12 @@
     "opcode": "looks_costumenumbername",
     "shape": "reporter",
     "outputType": "number",
+    "arguments": [
+      {
+        "kind": "field",
+        "name": "NUMBER_NAME"
+      }
+    ],
     "inputs": {},
     "fields": {
       "NUMBER_NAME": {
@@ -679,19 +1325,48 @@
           "type": "dropdown",
           "value": "number"
         },
-        "metadata": {
-          "scratchBlocks": {
-            "blockJson": {
-              "type": "field_dropdown"
-            }
+        "bindings": {
+          "scratchblocks": {
+            "shape": "dropdown",
+            "options": [
+              {
+                "label": "LOOKS_NUMBERNAME_NUMBER",
+                "value": "number"
+              },
+              {
+                "label": "LOOKS_NUMBERNAME_NAME",
+                "value": "name"
+              }
+            ]
           }
         }
+      }
+    },
+    "bindings": {
+      "scratchblocks": {
+        "blockId": "LOOKS_COSTUMENUMBERNAME"
+      }
+    },
+    "source": {
+      "scratchBlocks": {
+        "sourceFile": "blocks_vertical/looks.js",
+        "definition": "json"
       }
     }
   },
   {
     "opcode": "looks_goforwardbackwardlayers",
     "shape": "command",
+    "arguments": [
+      {
+        "kind": "field",
+        "name": "FORWARD_BACKWARD"
+      },
+      {
+        "kind": "input",
+        "name": "NUM"
+      }
+    ],
     "inputs": {
       "NUM": {
         "connection": "value",
@@ -716,19 +1391,44 @@
           "type": "dropdown",
           "value": "forward"
         },
-        "metadata": {
-          "scratchBlocks": {
-            "blockJson": {
-              "type": "field_dropdown"
-            }
+        "bindings": {
+          "scratchblocks": {
+            "shape": "dropdown",
+            "options": [
+              {
+                "label": "LOOKS_GOFORWARDBACKWARDLAYERS_FORWARD",
+                "value": "forward"
+              },
+              {
+                "label": "LOOKS_GOFORWARDBACKWARDLAYERS_BACKWARD",
+                "value": "backward"
+              }
+            ]
           }
         }
+      }
+    },
+    "bindings": {
+      "scratchblocks": {
+        "blockId": "LOOKS_GOFORWARDBACKWARDLAYERS"
+      }
+    },
+    "source": {
+      "scratchBlocks": {
+        "sourceFile": "blocks_vertical/looks.js",
+        "definition": "json"
       }
     }
   },
   {
     "opcode": "looks_gotofrontback",
     "shape": "command",
+    "arguments": [
+      {
+        "kind": "field",
+        "name": "FRONT_BACK"
+      }
+    ],
     "inputs": {},
     "fields": {
       "FRONT_BACK": {
@@ -738,54 +1438,148 @@
           "type": "dropdown",
           "value": "front"
         },
-        "metadata": {
-          "scratchBlocks": {
-            "blockJson": {
-              "type": "field_dropdown"
-            }
+        "bindings": {
+          "scratchblocks": {
+            "shape": "dropdown",
+            "options": [
+              {
+                "label": "LOOKS_GOTOFRONTBACK_FRONT",
+                "value": "front"
+              },
+              {
+                "label": "LOOKS_GOTOFRONTBACK_BACK",
+                "value": "back"
+              }
+            ]
           }
         }
+      }
+    },
+    "bindings": {
+      "scratchblocks": {
+        "blockId": "LOOKS_GOTOFRONTBACK"
+      }
+    },
+    "source": {
+      "scratchBlocks": {
+        "sourceFile": "blocks_vertical/looks.js",
+        "definition": "json"
       }
     }
   },
   {
     "opcode": "looks_hide",
     "shape": "command",
+    "arguments": [],
     "inputs": {},
-    "fields": {}
+    "fields": {},
+    "bindings": {
+      "scratchblocks": {
+        "blockId": "LOOKS_HIDE"
+      }
+    },
+    "source": {
+      "scratchBlocks": {
+        "sourceFile": "blocks_vertical/looks.js",
+        "definition": "json"
+      }
+    }
   },
   {
     "opcode": "looks_hideallsprites",
     "shape": "command",
+    "arguments": [],
     "inputs": {},
-    "fields": {}
+    "fields": {},
+    "bindings": {
+      "scratchblocks": {
+        "blockId": "LOOKS_HIDEALLSPRITES"
+      }
+    },
+    "source": {
+      "scratchBlocks": {
+        "sourceFile": "blocks_vertical/looks.js",
+        "definition": "json"
+      }
+    }
   },
   {
     "opcode": "looks_nextbackdrop",
     "shape": "command",
+    "arguments": [],
     "inputs": {},
-    "fields": {}
+    "fields": {},
+    "bindings": {
+      "scratchblocks": {
+        "blockId": "LOOKS_NEXTBACKDROP_BLOCK"
+      }
+    },
+    "source": {
+      "scratchBlocks": {
+        "sourceFile": "blocks_vertical/looks.js",
+        "definition": "json"
+      }
+    }
   },
   {
     "opcode": "looks_nextcostume",
     "shape": "command",
+    "arguments": [],
     "inputs": {},
-    "fields": {}
+    "fields": {},
+    "bindings": {
+      "scratchblocks": {
+        "blockId": "LOOKS_NEXTCOSTUME"
+      }
+    },
+    "source": {
+      "scratchBlocks": {
+        "sourceFile": "blocks_vertical/looks.js",
+        "definition": "json"
+      }
+    }
   },
   {
     "opcode": "looks_say",
     "shape": "command",
+    "arguments": [
+      {
+        "kind": "input",
+        "name": "MESSAGE"
+      }
+    ],
     "inputs": {
       "MESSAGE": {
         "connection": "value",
         "accepts": "string"
       }
     },
-    "fields": {}
+    "fields": {},
+    "bindings": {
+      "scratchblocks": {
+        "blockId": "LOOKS_SAY"
+      }
+    },
+    "source": {
+      "scratchBlocks": {
+        "sourceFile": "blocks_vertical/looks.js",
+        "definition": "json"
+      }
+    }
   },
   {
     "opcode": "looks_sayforsecs",
     "shape": "command",
+    "arguments": [
+      {
+        "kind": "input",
+        "name": "MESSAGE"
+      },
+      {
+        "kind": "input",
+        "name": "SECS"
+      }
+    ],
     "inputs": {
       "MESSAGE": {
         "connection": "value",
@@ -796,11 +1590,32 @@
         "accepts": "number"
       }
     },
-    "fields": {}
+    "fields": {},
+    "bindings": {
+      "scratchblocks": {
+        "blockId": "LOOKS_SAYFORSECS"
+      }
+    },
+    "source": {
+      "scratchBlocks": {
+        "sourceFile": "blocks_vertical/looks.js",
+        "definition": "json"
+      }
+    }
   },
   {
     "opcode": "looks_seteffectto",
     "shape": "command",
+    "arguments": [
+      {
+        "kind": "field",
+        "name": "EFFECT"
+      },
+      {
+        "kind": "input",
+        "name": "VALUE"
+      }
+    ],
     "inputs": {
       "VALUE": {
         "connection": "value",
@@ -825,19 +1640,64 @@
           "type": "dropdown",
           "value": "COLOR"
         },
-        "metadata": {
-          "scratchBlocks": {
-            "blockJson": {
-              "type": "field_dropdown"
-            }
+        "bindings": {
+          "scratchblocks": {
+            "shape": "dropdown",
+            "options": [
+              {
+                "label": "LOOKS_EFFECT_COLOR",
+                "value": "COLOR"
+              },
+              {
+                "label": "LOOKS_EFFECT_FISHEYE",
+                "value": "FISHEYE"
+              },
+              {
+                "label": "LOOKS_EFFECT_WHIRL",
+                "value": "WHIRL"
+              },
+              {
+                "label": "LOOKS_EFFECT_PIXELATE",
+                "value": "PIXELATE"
+              },
+              {
+                "label": "LOOKS_EFFECT_MOSAIC",
+                "value": "MOSAIC"
+              },
+              {
+                "label": "LOOKS_EFFECT_BRIGHTNESS",
+                "value": "BRIGHTNESS"
+              },
+              {
+                "label": "LOOKS_EFFECT_GHOST",
+                "value": "GHOST"
+              }
+            ]
           }
         }
+      }
+    },
+    "bindings": {
+      "scratchblocks": {
+        "blockId": "LOOKS_SETEFFECTTO"
+      }
+    },
+    "source": {
+      "scratchBlocks": {
+        "sourceFile": "blocks_vertical/looks.js",
+        "definition": "json"
       }
     }
   },
   {
     "opcode": "looks_setsizeto",
     "shape": "command",
+    "arguments": [
+      {
+        "kind": "input",
+        "name": "SIZE"
+      }
+    ],
     "inputs": {
       "SIZE": {
         "connection": "value",
@@ -854,35 +1714,93 @@
         }
       }
     },
-    "fields": {}
+    "fields": {},
+    "bindings": {
+      "scratchblocks": {
+        "blockId": "LOOKS_SETSIZETO"
+      }
+    },
+    "source": {
+      "scratchBlocks": {
+        "sourceFile": "blocks_vertical/looks.js",
+        "definition": "json"
+      }
+    }
   },
   {
     "opcode": "looks_setstretchto",
     "shape": "command",
+    "arguments": [
+      {
+        "kind": "input",
+        "name": "STRETCH"
+      }
+    ],
     "inputs": {
       "STRETCH": {
         "connection": "value",
         "accepts": "number"
       }
     },
-    "fields": {}
+    "fields": {},
+    "bindings": {
+      "scratchblocks": {
+        "blockId": "LOOKS_SETSTRETCHTO"
+      }
+    },
+    "source": {
+      "scratchBlocks": {
+        "sourceFile": "blocks_vertical/looks.js",
+        "definition": "json"
+      }
+    }
   },
   {
     "opcode": "looks_show",
     "shape": "command",
+    "arguments": [],
     "inputs": {},
-    "fields": {}
+    "fields": {},
+    "bindings": {
+      "scratchblocks": {
+        "blockId": "LOOKS_SHOW"
+      }
+    },
+    "source": {
+      "scratchBlocks": {
+        "sourceFile": "blocks_vertical/looks.js",
+        "definition": "json"
+      }
+    }
   },
   {
     "opcode": "looks_size",
     "shape": "reporter",
     "outputType": "number",
+    "arguments": [],
     "inputs": {},
-    "fields": {}
+    "fields": {},
+    "bindings": {
+      "scratchblocks": {
+        "blockId": "LOOKS_SIZE"
+      }
+    },
+    "source": {
+      "scratchBlocks": {
+        "sourceFile": "blocks_vertical/looks.js",
+        "definition": "json"
+      }
+    }
   },
   {
     "opcode": "looks_switchbackdropto",
     "shape": "command",
+    "arguments": [
+      {
+        "kind": "input",
+        "name": "BACKDROP"
+      }
+    ],
     "inputs": {
       "BACKDROP": {
         "connection": "value",
@@ -905,11 +1823,28 @@
         }
       }
     },
-    "fields": {}
+    "fields": {},
+    "bindings": {
+      "scratchblocks": {
+        "blockId": "LOOKS_SWITCHBACKDROPTO"
+      }
+    },
+    "source": {
+      "scratchBlocks": {
+        "sourceFile": "blocks_vertical/looks.js",
+        "definition": "json"
+      }
+    }
   },
   {
     "opcode": "looks_switchbackdroptoandwait",
     "shape": "command",
+    "arguments": [
+      {
+        "kind": "input",
+        "name": "BACKDROP"
+      }
+    ],
     "inputs": {
       "BACKDROP": {
         "connection": "value",
@@ -932,11 +1867,28 @@
         }
       }
     },
-    "fields": {}
+    "fields": {},
+    "bindings": {
+      "scratchblocks": {
+        "blockId": "LOOKS_SWITCHBACKDROPTOANDWAIT"
+      }
+    },
+    "source": {
+      "scratchBlocks": {
+        "sourceFile": "blocks_vertical/looks.js",
+        "definition": "json"
+      }
+    }
   },
   {
     "opcode": "looks_switchcostumeto",
     "shape": "command",
+    "arguments": [
+      {
+        "kind": "input",
+        "name": "COSTUME"
+      }
+    ],
     "inputs": {
       "COSTUME": {
         "connection": "value",
@@ -959,22 +1911,60 @@
         }
       }
     },
-    "fields": {}
+    "fields": {},
+    "bindings": {
+      "scratchblocks": {
+        "blockId": "LOOKS_SWITCHCOSTUMETO"
+      }
+    },
+    "source": {
+      "scratchBlocks": {
+        "sourceFile": "blocks_vertical/looks.js",
+        "definition": "json"
+      }
+    }
   },
   {
     "opcode": "looks_think",
     "shape": "command",
+    "arguments": [
+      {
+        "kind": "input",
+        "name": "MESSAGE"
+      }
+    ],
     "inputs": {
       "MESSAGE": {
         "connection": "value",
         "accepts": "string"
       }
     },
-    "fields": {}
+    "fields": {},
+    "bindings": {
+      "scratchblocks": {
+        "blockId": "LOOKS_THINK"
+      }
+    },
+    "source": {
+      "scratchBlocks": {
+        "sourceFile": "blocks_vertical/looks.js",
+        "definition": "json"
+      }
+    }
   },
   {
     "opcode": "looks_thinkforsecs",
     "shape": "command",
+    "arguments": [
+      {
+        "kind": "input",
+        "name": "MESSAGE"
+      },
+      {
+        "kind": "input",
+        "name": "SECS"
+      }
+    ],
     "inputs": {
       "MESSAGE": {
         "connection": "value",
@@ -985,11 +1975,32 @@
         "accepts": "number"
       }
     },
-    "fields": {}
+    "fields": {},
+    "bindings": {
+      "scratchblocks": {
+        "blockId": "LOOKS_THINKFORSECS"
+      }
+    },
+    "source": {
+      "scratchBlocks": {
+        "sourceFile": "blocks_vertical/looks.js",
+        "definition": "json"
+      }
+    }
   },
   {
     "opcode": "sound_changeeffectby",
     "shape": "command",
+    "arguments": [
+      {
+        "kind": "field",
+        "name": "EFFECT"
+      },
+      {
+        "kind": "input",
+        "name": "VALUE"
+      }
+    ],
     "inputs": {
       "VALUE": {
         "connection": "value",
@@ -1014,19 +2025,44 @@
           "type": "dropdown",
           "value": "PITCH"
         },
-        "metadata": {
-          "scratchBlocks": {
-            "blockJson": {
-              "type": "field_dropdown"
-            }
+        "bindings": {
+          "scratchblocks": {
+            "shape": "dropdown",
+            "options": [
+              {
+                "label": "SOUND_EFFECTS_PITCH",
+                "value": "PITCH"
+              },
+              {
+                "label": "SOUND_EFFECTS_PAN",
+                "value": "PAN"
+              }
+            ]
           }
         }
+      }
+    },
+    "bindings": {
+      "scratchblocks": {
+        "blockId": "SOUND_CHANGEEFFECTBY"
+      }
+    },
+    "source": {
+      "scratchBlocks": {
+        "sourceFile": "blocks_vertical/sound.js",
+        "definition": "json"
       }
     }
   },
   {
     "opcode": "sound_changevolumeby",
     "shape": "command",
+    "arguments": [
+      {
+        "kind": "input",
+        "name": "VOLUME"
+      }
+    ],
     "inputs": {
       "VOLUME": {
         "connection": "value",
@@ -1043,17 +2079,46 @@
         }
       }
     },
-    "fields": {}
+    "fields": {},
+    "bindings": {
+      "scratchblocks": {
+        "blockId": "SOUND_CHANGEVOLUMEBY"
+      }
+    },
+    "source": {
+      "scratchBlocks": {
+        "sourceFile": "blocks_vertical/sound.js",
+        "definition": "json"
+      }
+    }
   },
   {
     "opcode": "sound_cleareffects",
     "shape": "command",
+    "arguments": [],
     "inputs": {},
-    "fields": {}
+    "fields": {},
+    "bindings": {
+      "scratchblocks": {
+        "blockId": "SOUND_CLEAREFFECTS"
+      }
+    },
+    "source": {
+      "scratchBlocks": {
+        "sourceFile": "blocks_vertical/sound.js",
+        "definition": "json"
+      }
+    }
   },
   {
     "opcode": "sound_play",
     "shape": "command",
+    "arguments": [
+      {
+        "kind": "input",
+        "name": "SOUND_MENU"
+      }
+    ],
     "inputs": {
       "SOUND_MENU": {
         "connection": "value",
@@ -1076,11 +2141,28 @@
         }
       }
     },
-    "fields": {}
+    "fields": {},
+    "bindings": {
+      "scratchblocks": {
+        "blockId": "SOUND_PLAY"
+      }
+    },
+    "source": {
+      "scratchBlocks": {
+        "sourceFile": "blocks_vertical/sound.js",
+        "definition": "json"
+      }
+    }
   },
   {
     "opcode": "sound_playuntildone",
     "shape": "command",
+    "arguments": [
+      {
+        "kind": "input",
+        "name": "SOUND_MENU"
+      }
+    ],
     "inputs": {
       "SOUND_MENU": {
         "connection": "value",
@@ -1103,11 +2185,32 @@
         }
       }
     },
-    "fields": {}
+    "fields": {},
+    "bindings": {
+      "scratchblocks": {
+        "blockId": "SOUND_PLAYUNTILDONE"
+      }
+    },
+    "source": {
+      "scratchBlocks": {
+        "sourceFile": "blocks_vertical/sound.js",
+        "definition": "json"
+      }
+    }
   },
   {
     "opcode": "sound_seteffectto",
     "shape": "command",
+    "arguments": [
+      {
+        "kind": "field",
+        "name": "EFFECT"
+      },
+      {
+        "kind": "input",
+        "name": "VALUE"
+      }
+    ],
     "inputs": {
       "VALUE": {
         "connection": "value",
@@ -1132,19 +2235,44 @@
           "type": "dropdown",
           "value": "PITCH"
         },
-        "metadata": {
-          "scratchBlocks": {
-            "blockJson": {
-              "type": "field_dropdown"
-            }
+        "bindings": {
+          "scratchblocks": {
+            "shape": "dropdown",
+            "options": [
+              {
+                "label": "SOUND_EFFECTS_PITCH",
+                "value": "PITCH"
+              },
+              {
+                "label": "SOUND_EFFECTS_PAN",
+                "value": "PAN"
+              }
+            ]
           }
         }
+      }
+    },
+    "bindings": {
+      "scratchblocks": {
+        "blockId": "SOUND_SETEFFECTO"
+      }
+    },
+    "source": {
+      "scratchBlocks": {
+        "sourceFile": "blocks_vertical/sound.js",
+        "definition": "json"
       }
     }
   },
   {
     "opcode": "sound_setvolumeto",
     "shape": "command",
+    "arguments": [
+      {
+        "kind": "input",
+        "name": "VOLUME"
+      }
+    ],
     "inputs": {
       "VOLUME": {
         "connection": "value",
@@ -1161,12 +2289,29 @@
         }
       }
     },
-    "fields": {}
+    "fields": {},
+    "bindings": {
+      "scratchblocks": {
+        "blockId": "SOUND_SETVOLUMETO"
+      }
+    },
+    "source": {
+      "scratchBlocks": {
+        "sourceFile": "blocks_vertical/sound.js",
+        "definition": "json"
+      }
+    }
   },
   {
     "opcode": "sound_sounds_menu",
     "shape": "reporter",
     "outputType": "string",
+    "arguments": [
+      {
+        "kind": "field",
+        "name": "SOUND_MENU"
+      }
+    ],
     "inputs": {},
     "fields": {
       "SOUND_MENU": {
@@ -1176,32 +2321,111 @@
           "type": "dropdown",
           "value": "0"
         },
-        "metadata": {
-          "scratchBlocks": {
-            "blockJson": {
-              "type": "field_dropdown"
-            }
+        "bindings": {
+          "scratchblocks": {
+            "shape": "dropdown",
+            "options": [
+              {
+                "label": "1",
+                "value": "0"
+              },
+              {
+                "label": "2",
+                "value": "1"
+              },
+              {
+                "label": "3",
+                "value": "2"
+              },
+              {
+                "label": "4",
+                "value": "3"
+              },
+              {
+                "label": "5",
+                "value": "4"
+              },
+              {
+                "label": "6",
+                "value": "5"
+              },
+              {
+                "label": "7",
+                "value": "6"
+              },
+              {
+                "label": "8",
+                "value": "7"
+              },
+              {
+                "label": "9",
+                "value": "8"
+              },
+              {
+                "label": "10",
+                "value": "9"
+              }
+            ]
           }
         }
+      }
+    },
+    "bindings": {
+      "scratchblocks": {}
+    },
+    "source": {
+      "scratchBlocks": {
+        "sourceFile": "blocks_vertical/sound.js",
+        "definition": "json"
       }
     }
   },
   {
     "opcode": "sound_stopallsounds",
     "shape": "command",
+    "arguments": [],
     "inputs": {},
-    "fields": {}
+    "fields": {},
+    "bindings": {
+      "scratchblocks": {
+        "blockId": "SOUND_STOPALLSOUNDS"
+      }
+    },
+    "source": {
+      "scratchBlocks": {
+        "sourceFile": "blocks_vertical/sound.js",
+        "definition": "json"
+      }
+    }
   },
   {
     "opcode": "sound_volume",
     "shape": "reporter",
     "outputType": "number",
+    "arguments": [],
     "inputs": {},
-    "fields": {}
+    "fields": {},
+    "bindings": {
+      "scratchblocks": {
+        "blockId": "SOUND_VOLUME"
+      }
+    },
+    "source": {
+      "scratchBlocks": {
+        "sourceFile": "blocks_vertical/sound.js",
+        "definition": "json"
+      }
+    }
   },
   {
     "opcode": "event_broadcast",
     "shape": "command",
+    "arguments": [
+      {
+        "kind": "input",
+        "name": "BROADCAST_INPUT"
+      }
+    ],
     "inputs": {
       "BROADCAST_INPUT": {
         "connection": "value",
@@ -1224,12 +2448,29 @@
         }
       }
     },
-    "fields": {}
+    "fields": {},
+    "bindings": {
+      "scratchblocks": {
+        "blockId": "EVENT_BROADCAST"
+      }
+    },
+    "source": {
+      "scratchBlocks": {
+        "sourceFile": "blocks_vertical/event.js",
+        "definition": "json"
+      }
+    }
   },
   {
     "opcode": "event_broadcast_menu",
     "shape": "reporter",
     "outputType": "string",
+    "arguments": [
+      {
+        "kind": "field",
+        "name": "BROADCAST_OPTION"
+      }
+    ],
     "inputs": {},
     "fields": {
       "BROADCAST_OPTION": {
@@ -1239,19 +2480,32 @@
           "type": "broadcast",
           "value": ""
         },
-        "metadata": {
-          "scratchBlocks": {
-            "blockJson": {
-              "type": "field_variable"
-            }
+        "bindings": {
+          "scratchblocks": {
+            "shape": "dropdown"
           }
         }
+      }
+    },
+    "bindings": {
+      "scratchblocks": {}
+    },
+    "source": {
+      "scratchBlocks": {
+        "sourceFile": "blocks_vertical/event.js",
+        "definition": "json"
       }
     }
   },
   {
     "opcode": "event_broadcastandwait",
     "shape": "command",
+    "arguments": [
+      {
+        "kind": "input",
+        "name": "BROADCAST_INPUT"
+      }
+    ],
     "inputs": {
       "BROADCAST_INPUT": {
         "connection": "value",
@@ -1274,12 +2528,29 @@
         }
       }
     },
-    "fields": {}
+    "fields": {},
+    "bindings": {
+      "scratchblocks": {
+        "blockId": "EVENT_BROADCASTANDWAIT"
+      }
+    },
+    "source": {
+      "scratchBlocks": {
+        "sourceFile": "blocks_vertical/event.js",
+        "definition": "json"
+      }
+    }
   },
   {
     "opcode": "event_touchingobjectmenu",
     "shape": "reporter",
     "outputType": "string",
+    "arguments": [
+      {
+        "kind": "field",
+        "name": "TOUCHINGOBJECTMENU"
+      }
+    ],
     "inputs": {},
     "fields": {
       "TOUCHINGOBJECTMENU": {
@@ -1289,13 +2560,30 @@
           "type": "dropdown",
           "value": "_mouse_"
         },
-        "metadata": {
-          "scratchBlocks": {
-            "blockJson": {
-              "type": "field_dropdown"
-            }
+        "bindings": {
+          "scratchblocks": {
+            "shape": "dropdown",
+            "options": [
+              {
+                "label": "SENSING_TOUCHINGOBJECT_POINTER",
+                "value": "_mouse_"
+              },
+              {
+                "label": "SENSING_TOUCHINGOBJECT_EDGE",
+                "value": "_edge_"
+              }
+            ]
           }
         }
+      }
+    },
+    "bindings": {
+      "scratchblocks": {}
+    },
+    "source": {
+      "scratchBlocks": {
+        "sourceFile": "blocks_vertical/event.js",
+        "definition": "json"
       }
     }
   },
@@ -1303,6 +2591,12 @@
     "opcode": "event_whenbackdropswitchesto",
     "shape": "hat",
     "hatStyle": "standard",
+    "arguments": [
+      {
+        "kind": "field",
+        "name": "BACKDROP"
+      }
+    ],
     "inputs": {},
     "fields": {
       "BACKDROP": {
@@ -1312,13 +2606,28 @@
           "type": "dropdown",
           "value": "BACKDROP1"
         },
-        "metadata": {
-          "scratchBlocks": {
-            "blockJson": {
-              "type": "field_dropdown"
-            }
+        "bindings": {
+          "scratchblocks": {
+            "shape": "dropdown",
+            "options": [
+              {
+                "label": "backdrop1",
+                "value": "BACKDROP1"
+              }
+            ]
           }
         }
+      }
+    },
+    "bindings": {
+      "scratchblocks": {
+        "blockId": "EVENT_WHENBACKDROPSWITCHESTO"
+      }
+    },
+    "source": {
+      "scratchBlocks": {
+        "sourceFile": "blocks_vertical/event.js",
+        "definition": "json"
       }
     }
   },
@@ -1326,6 +2635,12 @@
     "opcode": "event_whenbroadcastreceived",
     "shape": "hat",
     "hatStyle": "standard",
+    "arguments": [
+      {
+        "kind": "field",
+        "name": "BROADCAST_OPTION"
+      }
+    ],
     "inputs": {},
     "fields": {
       "BROADCAST_OPTION": {
@@ -1335,13 +2650,22 @@
           "type": "broadcast",
           "value": ""
         },
-        "metadata": {
-          "scratchBlocks": {
-            "blockJson": {
-              "type": "field_variable"
-            }
+        "bindings": {
+          "scratchblocks": {
+            "shape": "dropdown"
           }
         }
+      }
+    },
+    "bindings": {
+      "scratchblocks": {
+        "blockId": "EVENT_WHENBROADCASTRECEIVED"
+      }
+    },
+    "source": {
+      "scratchBlocks": {
+        "sourceFile": "blocks_vertical/event.js",
+        "definition": "json"
       }
     }
   },
@@ -1349,13 +2673,35 @@
     "opcode": "event_whenflagclicked",
     "shape": "hat",
     "hatStyle": "standard",
+    "arguments": [],
     "inputs": {},
-    "fields": {}
+    "fields": {},
+    "bindings": {
+      "scratchblocks": {
+        "blockId": "EVENT_WHENFLAGCLICKED"
+      }
+    },
+    "source": {
+      "scratchBlocks": {
+        "sourceFile": "blocks_vertical/event.js",
+        "definition": "json"
+      }
+    }
   },
   {
     "opcode": "event_whengreaterthan",
     "shape": "hat",
     "hatStyle": "standard",
+    "arguments": [
+      {
+        "kind": "field",
+        "name": "WHENGREATERTHANMENU"
+      },
+      {
+        "kind": "input",
+        "name": "VALUE"
+      }
+    ],
     "inputs": {
       "VALUE": {
         "connection": "value",
@@ -1380,13 +2726,32 @@
           "type": "dropdown",
           "value": "LOUDNESS"
         },
-        "metadata": {
-          "scratchBlocks": {
-            "blockJson": {
-              "type": "field_dropdown"
-            }
+        "bindings": {
+          "scratchblocks": {
+            "shape": "dropdown",
+            "options": [
+              {
+                "label": "EVENT_WHENGREATERTHAN_LOUDNESS",
+                "value": "LOUDNESS"
+              },
+              {
+                "label": "EVENT_WHENGREATERTHAN_TIMER",
+                "value": "TIMER"
+              }
+            ]
           }
         }
+      }
+    },
+    "bindings": {
+      "scratchblocks": {
+        "blockId": "EVENT_WHENGREATERTHAN"
+      }
+    },
+    "source": {
+      "scratchBlocks": {
+        "sourceFile": "blocks_vertical/event.js",
+        "definition": "json"
       }
     }
   },
@@ -1394,6 +2759,12 @@
     "opcode": "event_whenkeypressed",
     "shape": "hat",
     "hatStyle": "standard",
+    "arguments": [
+      {
+        "kind": "field",
+        "name": "KEY_OPTION"
+      }
+    ],
     "inputs": {},
     "fields": {
       "KEY_OPTION": {
@@ -1403,13 +2774,192 @@
           "type": "dropdown",
           "value": "space"
         },
-        "metadata": {
-          "scratchBlocks": {
-            "blockJson": {
-              "type": "field_dropdown"
-            }
+        "bindings": {
+          "scratchblocks": {
+            "shape": "dropdown",
+            "options": [
+              {
+                "label": "EVENT_WHENKEYPRESSED_SPACE",
+                "value": "space"
+              },
+              {
+                "label": "EVENT_WHENKEYPRESSED_UP",
+                "value": "up arrow"
+              },
+              {
+                "label": "EVENT_WHENKEYPRESSED_DOWN",
+                "value": "down arrow"
+              },
+              {
+                "label": "EVENT_WHENKEYPRESSED_RIGHT",
+                "value": "right arrow"
+              },
+              {
+                "label": "EVENT_WHENKEYPRESSED_LEFT",
+                "value": "left arrow"
+              },
+              {
+                "label": "EVENT_WHENKEYPRESSED_ANY",
+                "value": "any"
+              },
+              {
+                "label": "a",
+                "value": "a"
+              },
+              {
+                "label": "b",
+                "value": "b"
+              },
+              {
+                "label": "c",
+                "value": "c"
+              },
+              {
+                "label": "d",
+                "value": "d"
+              },
+              {
+                "label": "e",
+                "value": "e"
+              },
+              {
+                "label": "f",
+                "value": "f"
+              },
+              {
+                "label": "g",
+                "value": "g"
+              },
+              {
+                "label": "h",
+                "value": "h"
+              },
+              {
+                "label": "i",
+                "value": "i"
+              },
+              {
+                "label": "j",
+                "value": "j"
+              },
+              {
+                "label": "k",
+                "value": "k"
+              },
+              {
+                "label": "l",
+                "value": "l"
+              },
+              {
+                "label": "m",
+                "value": "m"
+              },
+              {
+                "label": "n",
+                "value": "n"
+              },
+              {
+                "label": "o",
+                "value": "o"
+              },
+              {
+                "label": "p",
+                "value": "p"
+              },
+              {
+                "label": "q",
+                "value": "q"
+              },
+              {
+                "label": "r",
+                "value": "r"
+              },
+              {
+                "label": "s",
+                "value": "s"
+              },
+              {
+                "label": "t",
+                "value": "t"
+              },
+              {
+                "label": "u",
+                "value": "u"
+              },
+              {
+                "label": "v",
+                "value": "v"
+              },
+              {
+                "label": "w",
+                "value": "w"
+              },
+              {
+                "label": "x",
+                "value": "x"
+              },
+              {
+                "label": "y",
+                "value": "y"
+              },
+              {
+                "label": "z",
+                "value": "z"
+              },
+              {
+                "label": "0",
+                "value": "0"
+              },
+              {
+                "label": "1",
+                "value": "1"
+              },
+              {
+                "label": "2",
+                "value": "2"
+              },
+              {
+                "label": "3",
+                "value": "3"
+              },
+              {
+                "label": "4",
+                "value": "4"
+              },
+              {
+                "label": "5",
+                "value": "5"
+              },
+              {
+                "label": "6",
+                "value": "6"
+              },
+              {
+                "label": "7",
+                "value": "7"
+              },
+              {
+                "label": "8",
+                "value": "8"
+              },
+              {
+                "label": "9",
+                "value": "9"
+              }
+            ]
           }
         }
+      }
+    },
+    "bindings": {
+      "scratchblocks": {
+        "blockId": "EVENT_WHENKEYPRESSED"
+      }
+    },
+    "source": {
+      "scratchBlocks": {
+        "sourceFile": "blocks_vertical/event.js",
+        "definition": "json"
       }
     }
   },
@@ -1417,47 +2967,123 @@
     "opcode": "event_whenstageclicked",
     "shape": "hat",
     "hatStyle": "standard",
+    "arguments": [],
     "inputs": {},
-    "fields": {}
+    "fields": {},
+    "bindings": {
+      "scratchblocks": {
+        "blockId": "EVENT_WHENSTAGECLICKED"
+      }
+    },
+    "source": {
+      "scratchBlocks": {
+        "sourceFile": "blocks_vertical/event.js",
+        "definition": "json"
+      }
+    }
   },
   {
     "opcode": "event_whenthisspriteclicked",
     "shape": "hat",
     "hatStyle": "standard",
+    "arguments": [],
     "inputs": {},
-    "fields": {}
+    "fields": {},
+    "bindings": {
+      "scratchblocks": {
+        "blockId": "EVENT_WHENTHISSPRITECLICKED"
+      }
+    },
+    "source": {
+      "scratchBlocks": {
+        "sourceFile": "blocks_vertical/event.js",
+        "definition": "json"
+      }
+    }
   },
   {
     "opcode": "event_whentouchingobject",
     "shape": "hat",
     "hatStyle": "standard",
+    "arguments": [
+      {
+        "kind": "input",
+        "name": "TOUCHINGOBJECTMENU"
+      }
+    ],
     "inputs": {
       "TOUCHINGOBJECTMENU": {
         "connection": "value",
         "accepts": "string"
       }
     },
-    "fields": {}
+    "fields": {},
+    "bindings": {
+      "scratchblocks": {
+        "blockId": "EVENT_WHENTOUCHINGOBJECT"
+      }
+    },
+    "source": {
+      "scratchBlocks": {
+        "sourceFile": "blocks_vertical/event.js",
+        "definition": "json"
+      }
+    }
   },
   {
     "opcode": "control_all_at_once",
     "shape": "command",
+    "arguments": [
+      {
+        "kind": "input",
+        "name": "SUBSTACK"
+      }
+    ],
     "inputs": {
       "SUBSTACK": {
         "connection": "statement"
       }
     },
-    "fields": {}
+    "fields": {},
+    "bindings": {
+      "scratchblocks": {
+        "blockId": "CONTROL_ALLATONCE"
+      }
+    },
+    "source": {
+      "scratchBlocks": {
+        "sourceFile": "blocks_vertical/control.js",
+        "definition": "json"
+      }
+    }
   },
   {
     "opcode": "control_clear_counter",
     "shape": "command",
+    "arguments": [],
     "inputs": {},
-    "fields": {}
+    "fields": {},
+    "bindings": {
+      "scratchblocks": {
+        "blockId": "CONTROL_CLEARCOUNTER"
+      }
+    },
+    "source": {
+      "scratchBlocks": {
+        "sourceFile": "blocks_vertical/control.js",
+        "definition": "json"
+      }
+    }
   },
   {
     "opcode": "control_create_clone_of",
     "shape": "command",
+    "arguments": [
+      {
+        "kind": "input",
+        "name": "CLONE_OPTION"
+      }
+    ],
     "inputs": {
       "CLONE_OPTION": {
         "connection": "value",
@@ -1480,12 +3106,29 @@
         }
       }
     },
-    "fields": {}
+    "fields": {},
+    "bindings": {
+      "scratchblocks": {
+        "blockId": "CONTROL_CREATECLONEOF"
+      }
+    },
+    "source": {
+      "scratchBlocks": {
+        "sourceFile": "blocks_vertical/control.js",
+        "definition": "json"
+      }
+    }
   },
   {
     "opcode": "control_create_clone_of_menu",
     "shape": "reporter",
     "outputType": "string",
+    "arguments": [
+      {
+        "kind": "field",
+        "name": "CLONE_OPTION"
+      }
+    ],
     "inputs": {},
     "fields": {
       "CLONE_OPTION": {
@@ -1495,25 +3138,64 @@
           "type": "dropdown",
           "value": "_myself_"
         },
-        "metadata": {
-          "scratchBlocks": {
-            "blockJson": {
-              "type": "field_dropdown"
-            }
+        "bindings": {
+          "scratchblocks": {
+            "shape": "dropdown",
+            "options": [
+              {
+                "label": "CONTROL_CREATECLONEOF_MYSELF",
+                "value": "_myself_"
+              }
+            ]
           }
         }
+      }
+    },
+    "bindings": {
+      "scratchblocks": {}
+    },
+    "source": {
+      "scratchBlocks": {
+        "sourceFile": "blocks_vertical/control.js",
+        "definition": "json"
       }
     }
   },
   {
     "opcode": "control_delete_this_clone",
     "shape": "terminal",
+    "arguments": [],
     "inputs": {},
-    "fields": {}
+    "fields": {},
+    "bindings": {
+      "scratchblocks": {
+        "blockId": "CONTROL_DELETETHISCLONE"
+      }
+    },
+    "source": {
+      "scratchBlocks": {
+        "sourceFile": "blocks_vertical/control.js",
+        "definition": "json"
+      }
+    }
   },
   {
     "opcode": "control_for_each",
     "shape": "command",
+    "arguments": [
+      {
+        "kind": "field",
+        "name": "VARIABLE"
+      },
+      {
+        "kind": "input",
+        "name": "VALUE"
+      },
+      {
+        "kind": "input",
+        "name": "SUBSTACK"
+      }
+    ],
     "inputs": {
       "VALUE": {
         "connection": "value",
@@ -1531,36 +3213,85 @@
           "type": "variable",
           "value": ""
         },
-        "metadata": {
-          "scratchBlocks": {
-            "blockJson": {
-              "type": "field_variable"
-            }
+        "bindings": {
+          "scratchblocks": {
+            "shape": "dropdown"
           }
         }
+      }
+    },
+    "bindings": {
+      "scratchblocks": {
+        "blockId": "CONTROL_FOREACH"
+      }
+    },
+    "source": {
+      "scratchBlocks": {
+        "sourceFile": "blocks_vertical/control.js",
+        "definition": "json"
       }
     }
   },
   {
     "opcode": "control_forever",
     "shape": "terminal",
+    "arguments": [
+      {
+        "kind": "input",
+        "name": "SUBSTACK"
+      }
+    ],
     "inputs": {
       "SUBSTACK": {
         "connection": "statement"
       }
     },
-    "fields": {}
+    "fields": {},
+    "bindings": {
+      "scratchblocks": {
+        "blockId": "CONTROL_FOREVER",
+        "hasLoopArrow": true
+      }
+    },
+    "source": {
+      "scratchBlocks": {
+        "sourceFile": "blocks_vertical/control.js",
+        "definition": "json"
+      }
+    }
   },
   {
     "opcode": "control_get_counter",
     "shape": "reporter",
     "outputType": "number",
+    "arguments": [],
     "inputs": {},
-    "fields": {}
+    "fields": {},
+    "bindings": {
+      "scratchblocks": {
+        "blockId": "CONTROL_COUNTER"
+      }
+    },
+    "source": {
+      "scratchBlocks": {
+        "sourceFile": "blocks_vertical/control.js",
+        "definition": "json"
+      }
+    }
   },
   {
     "opcode": "control_if",
     "shape": "command",
+    "arguments": [
+      {
+        "kind": "input",
+        "name": "CONDITION"
+      },
+      {
+        "kind": "input",
+        "name": "SUBSTACK"
+      }
+    ],
     "inputs": {
       "CONDITION": {
         "connection": "value",
@@ -1570,11 +3301,36 @@
         "connection": "statement"
       }
     },
-    "fields": {}
+    "fields": {},
+    "bindings": {
+      "scratchblocks": {
+        "blockId": "CONTROL_IF"
+      }
+    },
+    "source": {
+      "scratchBlocks": {
+        "sourceFile": "blocks_vertical/control.js",
+        "definition": "json"
+      }
+    }
   },
   {
     "opcode": "control_if_else",
     "shape": "command",
+    "arguments": [
+      {
+        "kind": "input",
+        "name": "CONDITION"
+      },
+      {
+        "kind": "input",
+        "name": "SUBSTACK"
+      },
+      {
+        "kind": "input",
+        "name": "SUBSTACK2"
+      }
+    ],
     "inputs": {
       "CONDITION": {
         "connection": "value",
@@ -1587,17 +3343,50 @@
         "connection": "statement"
       }
     },
-    "fields": {}
+    "fields": {},
+    "bindings": {
+      "scratchblocks": {
+        "blockId": "CONTROL_IF"
+      }
+    },
+    "source": {
+      "scratchBlocks": {
+        "sourceFile": "blocks_vertical/control.js",
+        "definition": "json"
+      }
+    }
   },
   {
     "opcode": "control_incr_counter",
     "shape": "command",
+    "arguments": [],
     "inputs": {},
-    "fields": {}
+    "fields": {},
+    "bindings": {
+      "scratchblocks": {
+        "blockId": "CONTROL_INCRCOUNTER"
+      }
+    },
+    "source": {
+      "scratchBlocks": {
+        "sourceFile": "blocks_vertical/control.js",
+        "definition": "json"
+      }
+    }
   },
   {
     "opcode": "control_repeat",
     "shape": "command",
+    "arguments": [
+      {
+        "kind": "input",
+        "name": "TIMES"
+      },
+      {
+        "kind": "input",
+        "name": "SUBSTACK"
+      }
+    ],
     "inputs": {
       "TIMES": {
         "connection": "value",
@@ -1617,11 +3406,33 @@
         "connection": "statement"
       }
     },
-    "fields": {}
+    "fields": {},
+    "bindings": {
+      "scratchblocks": {
+        "blockId": "CONTROL_REPEAT",
+        "hasLoopArrow": true
+      }
+    },
+    "source": {
+      "scratchBlocks": {
+        "sourceFile": "blocks_vertical/control.js",
+        "definition": "json"
+      }
+    }
   },
   {
     "opcode": "control_repeat_until",
     "shape": "command",
+    "arguments": [
+      {
+        "kind": "input",
+        "name": "CONDITION"
+      },
+      {
+        "kind": "input",
+        "name": "SUBSTACK"
+      }
+    ],
     "inputs": {
       "CONDITION": {
         "connection": "value",
@@ -1631,18 +3442,48 @@
         "connection": "statement"
       }
     },
-    "fields": {}
+    "fields": {},
+    "bindings": {
+      "scratchblocks": {
+        "blockId": "CONTROL_REPEATUNTIL",
+        "hasLoopArrow": true
+      }
+    },
+    "source": {
+      "scratchBlocks": {
+        "sourceFile": "blocks_vertical/control.js",
+        "definition": "json"
+      }
+    }
   },
   {
     "opcode": "control_start_as_clone",
     "shape": "hat",
     "hatStyle": "standard",
+    "arguments": [],
     "inputs": {},
-    "fields": {}
+    "fields": {},
+    "bindings": {
+      "scratchblocks": {
+        "blockId": "CONTROL_STARTASCLONE"
+      }
+    },
+    "source": {
+      "scratchBlocks": {
+        "sourceFile": "blocks_vertical/control.js",
+        "definition": "json"
+      }
+    }
   },
   {
     "opcode": "control_stop",
     "shape": "terminal",
+    "arguments": [
+      {
+        "kind": "field",
+        "name": "STOP_OPTION"
+      }
+    ],
     "inputs": {},
     "fields": {
       "STOP_OPTION": {
@@ -1653,11 +3494,28 @@
           "value": "all"
         }
       }
+    },
+    "bindings": {
+      "scratchblocks": {
+        "blockId": "CONTROL_STOP"
+      }
+    },
+    "source": {
+      "scratchBlocks": {
+        "sourceFile": "blocks_vertical/control.js",
+        "definition": "custom-init"
+      }
     }
   },
   {
     "opcode": "control_wait",
     "shape": "command",
+    "arguments": [
+      {
+        "kind": "input",
+        "name": "DURATION"
+      }
+    ],
     "inputs": {
       "DURATION": {
         "connection": "value",
@@ -1674,22 +3532,60 @@
         }
       }
     },
-    "fields": {}
+    "fields": {},
+    "bindings": {
+      "scratchblocks": {
+        "blockId": "CONTROL_WAIT"
+      }
+    },
+    "source": {
+      "scratchBlocks": {
+        "sourceFile": "blocks_vertical/control.js",
+        "definition": "json"
+      }
+    }
   },
   {
     "opcode": "control_wait_until",
     "shape": "command",
+    "arguments": [
+      {
+        "kind": "input",
+        "name": "CONDITION"
+      }
+    ],
     "inputs": {
       "CONDITION": {
         "connection": "value",
         "accepts": "boolean"
       }
     },
-    "fields": {}
+    "fields": {},
+    "bindings": {
+      "scratchblocks": {
+        "blockId": "CONTROL_WAITUNTIL"
+      }
+    },
+    "source": {
+      "scratchBlocks": {
+        "sourceFile": "blocks_vertical/control.js",
+        "definition": "json"
+      }
+    }
   },
   {
     "opcode": "control_while",
     "shape": "command",
+    "arguments": [
+      {
+        "kind": "input",
+        "name": "CONDITION"
+      },
+      {
+        "kind": "input",
+        "name": "SUBSTACK"
+      }
+    ],
     "inputs": {
       "CONDITION": {
         "connection": "value",
@@ -1699,29 +3595,80 @@
         "connection": "statement"
       }
     },
-    "fields": {}
+    "fields": {},
+    "bindings": {
+      "scratchblocks": {
+        "blockId": "CONTROL_WHILE",
+        "hasLoopArrow": true
+      }
+    },
+    "source": {
+      "scratchBlocks": {
+        "sourceFile": "blocks_vertical/control.js",
+        "definition": "json"
+      }
+    }
   },
   {
     "opcode": "sensing_answer",
     "shape": "reporter",
     "outputType": "number",
+    "arguments": [],
     "inputs": {},
-    "fields": {}
+    "fields": {},
+    "bindings": {
+      "scratchblocks": {
+        "blockId": "SENSING_ANSWER"
+      }
+    },
+    "source": {
+      "scratchBlocks": {
+        "sourceFile": "blocks_vertical/sensing.js",
+        "definition": "json"
+      }
+    }
   },
   {
     "opcode": "sensing_askandwait",
     "shape": "command",
+    "arguments": [
+      {
+        "kind": "input",
+        "name": "QUESTION"
+      }
+    ],
     "inputs": {
       "QUESTION": {
         "connection": "value",
         "accepts": "string"
       }
     },
-    "fields": {}
+    "fields": {},
+    "bindings": {
+      "scratchblocks": {
+        "blockId": "SENSING_ASKANDWAIT"
+      }
+    },
+    "source": {
+      "scratchBlocks": {
+        "sourceFile": "blocks_vertical/sensing.js",
+        "definition": "json"
+      }
+    }
   },
   {
     "opcode": "sensing_coloristouchingcolor",
     "shape": "boolean",
+    "arguments": [
+      {
+        "kind": "input",
+        "name": "COLOR"
+      },
+      {
+        "kind": "input",
+        "name": "COLOR2"
+      }
+    ],
     "inputs": {
       "COLOR": {
         "connection": "value",
@@ -1742,12 +3689,29 @@
         }
       }
     },
-    "fields": {}
+    "fields": {},
+    "bindings": {
+      "scratchblocks": {
+        "blockId": "SENSING_COLORISTOUCHINGCOLOR"
+      }
+    },
+    "source": {
+      "scratchBlocks": {
+        "sourceFile": "blocks_vertical/sensing.js",
+        "definition": "json"
+      }
+    }
   },
   {
     "opcode": "sensing_current",
     "shape": "reporter",
     "outputType": "number",
+    "arguments": [
+      {
+        "kind": "field",
+        "name": "CURRENTMENU"
+      }
+    ],
     "inputs": {},
     "fields": {
       "CURRENTMENU": {
@@ -1757,13 +3721,52 @@
           "type": "dropdown",
           "value": "YEAR"
         },
-        "metadata": {
-          "scratchBlocks": {
-            "blockJson": {
-              "type": "field_dropdown"
-            }
+        "bindings": {
+          "scratchblocks": {
+            "shape": "dropdown",
+            "options": [
+              {
+                "label": "SENSING_CURRENT_YEAR",
+                "value": "YEAR"
+              },
+              {
+                "label": "SENSING_CURRENT_MONTH",
+                "value": "MONTH"
+              },
+              {
+                "label": "SENSING_CURRENT_DATE",
+                "value": "DATE"
+              },
+              {
+                "label": "SENSING_CURRENT_DAYOFWEEK",
+                "value": "DAYOFWEEK"
+              },
+              {
+                "label": "SENSING_CURRENT_HOUR",
+                "value": "HOUR"
+              },
+              {
+                "label": "SENSING_CURRENT_MINUTE",
+                "value": "MINUTE"
+              },
+              {
+                "label": "SENSING_CURRENT_SECOND",
+                "value": "SECOND"
+              }
+            ]
           }
         }
+      }
+    },
+    "bindings": {
+      "scratchblocks": {
+        "blockId": "SENSING_CURRENT"
+      }
+    },
+    "source": {
+      "scratchBlocks": {
+        "sourceFile": "blocks_vertical/sensing.js",
+        "definition": "json"
       }
     }
   },
@@ -1771,13 +3774,31 @@
     "opcode": "sensing_dayssince2000",
     "shape": "reporter",
     "outputType": "number",
+    "arguments": [],
     "inputs": {},
-    "fields": {}
+    "fields": {},
+    "bindings": {
+      "scratchblocks": {
+        "blockId": "SENSING_DAYSSINCE2000"
+      }
+    },
+    "source": {
+      "scratchBlocks": {
+        "sourceFile": "blocks_vertical/sensing.js",
+        "definition": "json"
+      }
+    }
   },
   {
     "opcode": "sensing_distanceto",
     "shape": "reporter",
     "outputType": "number",
+    "arguments": [
+      {
+        "kind": "input",
+        "name": "DISTANCETOMENU"
+      }
+    ],
     "inputs": {
       "DISTANCETOMENU": {
         "connection": "value",
@@ -1800,12 +3821,29 @@
         }
       }
     },
-    "fields": {}
+    "fields": {},
+    "bindings": {
+      "scratchblocks": {
+        "blockId": "SENSING_DISTANCETO"
+      }
+    },
+    "source": {
+      "scratchBlocks": {
+        "sourceFile": "blocks_vertical/sensing.js",
+        "definition": "json"
+      }
+    }
   },
   {
     "opcode": "sensing_distancetomenu",
     "shape": "reporter",
     "outputType": "string",
+    "arguments": [
+      {
+        "kind": "field",
+        "name": "DISTANCETOMENU"
+      }
+    ],
     "inputs": {},
     "fields": {
       "DISTANCETOMENU": {
@@ -1815,13 +3853,26 @@
           "type": "dropdown",
           "value": "_mouse_"
         },
-        "metadata": {
-          "scratchBlocks": {
-            "blockJson": {
-              "type": "field_dropdown"
-            }
+        "bindings": {
+          "scratchblocks": {
+            "shape": "dropdown",
+            "options": [
+              {
+                "label": "SENSING_DISTANCETO_POINTER",
+                "value": "_mouse_"
+              }
+            ]
           }
         }
+      }
+    },
+    "bindings": {
+      "scratchblocks": {}
+    },
+    "source": {
+      "scratchBlocks": {
+        "sourceFile": "blocks_vertical/sensing.js",
+        "definition": "json"
       }
     }
   },
@@ -1829,6 +3880,12 @@
     "opcode": "sensing_keyoptions",
     "shape": "reporter",
     "outputType": "string",
+    "arguments": [
+      {
+        "kind": "field",
+        "name": "KEY_OPTION"
+      }
+    ],
     "inputs": {},
     "fields": {
       "KEY_OPTION": {
@@ -1838,19 +3895,202 @@
           "type": "dropdown",
           "value": "space"
         },
-        "metadata": {
-          "scratchBlocks": {
-            "blockJson": {
-              "type": "field_dropdown"
-            }
+        "bindings": {
+          "scratchblocks": {
+            "shape": "dropdown",
+            "options": [
+              {
+                "label": "EVENT_WHENKEYPRESSED_SPACE",
+                "value": "space"
+              },
+              {
+                "label": "EVENT_WHENKEYPRESSED_UP",
+                "value": "up arrow"
+              },
+              {
+                "label": "EVENT_WHENKEYPRESSED_DOWN",
+                "value": "down arrow"
+              },
+              {
+                "label": "EVENT_WHENKEYPRESSED_RIGHT",
+                "value": "right arrow"
+              },
+              {
+                "label": "EVENT_WHENKEYPRESSED_LEFT",
+                "value": "left arrow"
+              },
+              {
+                "label": "EVENT_WHENKEYPRESSED_ANY",
+                "value": "any"
+              },
+              {
+                "label": "a",
+                "value": "a"
+              },
+              {
+                "label": "b",
+                "value": "b"
+              },
+              {
+                "label": "c",
+                "value": "c"
+              },
+              {
+                "label": "d",
+                "value": "d"
+              },
+              {
+                "label": "e",
+                "value": "e"
+              },
+              {
+                "label": "f",
+                "value": "f"
+              },
+              {
+                "label": "g",
+                "value": "g"
+              },
+              {
+                "label": "h",
+                "value": "h"
+              },
+              {
+                "label": "i",
+                "value": "i"
+              },
+              {
+                "label": "j",
+                "value": "j"
+              },
+              {
+                "label": "k",
+                "value": "k"
+              },
+              {
+                "label": "l",
+                "value": "l"
+              },
+              {
+                "label": "m",
+                "value": "m"
+              },
+              {
+                "label": "n",
+                "value": "n"
+              },
+              {
+                "label": "o",
+                "value": "o"
+              },
+              {
+                "label": "p",
+                "value": "p"
+              },
+              {
+                "label": "q",
+                "value": "q"
+              },
+              {
+                "label": "r",
+                "value": "r"
+              },
+              {
+                "label": "s",
+                "value": "s"
+              },
+              {
+                "label": "t",
+                "value": "t"
+              },
+              {
+                "label": "u",
+                "value": "u"
+              },
+              {
+                "label": "v",
+                "value": "v"
+              },
+              {
+                "label": "w",
+                "value": "w"
+              },
+              {
+                "label": "x",
+                "value": "x"
+              },
+              {
+                "label": "y",
+                "value": "y"
+              },
+              {
+                "label": "z",
+                "value": "z"
+              },
+              {
+                "label": "0",
+                "value": "0"
+              },
+              {
+                "label": "1",
+                "value": "1"
+              },
+              {
+                "label": "2",
+                "value": "2"
+              },
+              {
+                "label": "3",
+                "value": "3"
+              },
+              {
+                "label": "4",
+                "value": "4"
+              },
+              {
+                "label": "5",
+                "value": "5"
+              },
+              {
+                "label": "6",
+                "value": "6"
+              },
+              {
+                "label": "7",
+                "value": "7"
+              },
+              {
+                "label": "8",
+                "value": "8"
+              },
+              {
+                "label": "9",
+                "value": "9"
+              }
+            ]
           }
         }
+      }
+    },
+    "bindings": {
+      "scratchblocks": {}
+    },
+    "source": {
+      "scratchBlocks": {
+        "sourceFile": "blocks_vertical/sensing.js",
+        "definition": "json"
       }
     }
   },
   {
     "opcode": "sensing_keypressed",
     "shape": "boolean",
+    "arguments": [
+      {
+        "kind": "input",
+        "name": "KEY_OPTION"
+      }
+    ],
     "inputs": {
       "KEY_OPTION": {
         "connection": "value",
@@ -1873,45 +4113,126 @@
         }
       }
     },
-    "fields": {}
+    "fields": {},
+    "bindings": {
+      "scratchblocks": {
+        "blockId": "SENSING_KEYPRESSED"
+      }
+    },
+    "source": {
+      "scratchBlocks": {
+        "sourceFile": "blocks_vertical/sensing.js",
+        "definition": "json"
+      }
+    }
   },
   {
     "opcode": "sensing_loud",
     "shape": "boolean",
+    "arguments": [],
     "inputs": {},
-    "fields": {}
+    "fields": {},
+    "bindings": {
+      "scratchblocks": {
+        "blockId": "SENSING_LOUD"
+      }
+    },
+    "source": {
+      "scratchBlocks": {
+        "sourceFile": "blocks_vertical/sensing.js",
+        "definition": "json"
+      }
+    }
   },
   {
     "opcode": "sensing_loudness",
     "shape": "reporter",
     "outputType": "number",
+    "arguments": [],
     "inputs": {},
-    "fields": {}
+    "fields": {},
+    "bindings": {
+      "scratchblocks": {
+        "blockId": "SENSING_LOUDNESS"
+      }
+    },
+    "source": {
+      "scratchBlocks": {
+        "sourceFile": "blocks_vertical/sensing.js",
+        "definition": "json"
+      }
+    }
   },
   {
     "opcode": "sensing_mousedown",
     "shape": "boolean",
+    "arguments": [],
     "inputs": {},
-    "fields": {}
+    "fields": {},
+    "bindings": {
+      "scratchblocks": {
+        "blockId": "SENSING_MOUSEDOWN"
+      }
+    },
+    "source": {
+      "scratchBlocks": {
+        "sourceFile": "blocks_vertical/sensing.js",
+        "definition": "json"
+      }
+    }
   },
   {
     "opcode": "sensing_mousex",
     "shape": "reporter",
     "outputType": "number",
+    "arguments": [],
     "inputs": {},
-    "fields": {}
+    "fields": {},
+    "bindings": {
+      "scratchblocks": {
+        "blockId": "SENSING_MOUSEX"
+      }
+    },
+    "source": {
+      "scratchBlocks": {
+        "sourceFile": "blocks_vertical/sensing.js",
+        "definition": "json"
+      }
+    }
   },
   {
     "opcode": "sensing_mousey",
     "shape": "reporter",
     "outputType": "number",
+    "arguments": [],
     "inputs": {},
-    "fields": {}
+    "fields": {},
+    "bindings": {
+      "scratchblocks": {
+        "blockId": "SENSING_MOUSEY"
+      }
+    },
+    "source": {
+      "scratchBlocks": {
+        "sourceFile": "blocks_vertical/sensing.js",
+        "definition": "json"
+      }
+    }
   },
   {
     "opcode": "sensing_of",
     "shape": "reporter",
     "outputType": "any",
+    "arguments": [
+      {
+        "kind": "field",
+        "name": "PROPERTY"
+      },
+      {
+        "kind": "input",
+        "name": "OBJECT"
+      }
+    ],
     "inputs": {
       "OBJECT": {
         "connection": "value",
@@ -1942,13 +4263,60 @@
           "type": "dropdown",
           "value": "x position"
         },
-        "metadata": {
-          "scratchBlocks": {
-            "blockJson": {
-              "type": "field_dropdown"
-            }
+        "bindings": {
+          "scratchblocks": {
+            "shape": "dropdown",
+            "options": [
+              {
+                "label": "SENSING_OF_XPOSITION",
+                "value": "x position"
+              },
+              {
+                "label": "SENSING_OF_YPOSITION",
+                "value": "y position"
+              },
+              {
+                "label": "SENSING_OF_DIRECTION",
+                "value": "direction"
+              },
+              {
+                "label": "SENSING_OF_COSTUMENUMBER",
+                "value": "costume #"
+              },
+              {
+                "label": "SENSING_OF_COSTUMENAME",
+                "value": "costume name"
+              },
+              {
+                "label": "SENSING_OF_SIZE",
+                "value": "size"
+              },
+              {
+                "label": "SENSING_OF_VOLUME",
+                "value": "volume"
+              },
+              {
+                "label": "SENSING_OF_BACKDROPNUMBER",
+                "value": "backdrop #"
+              },
+              {
+                "label": "SENSING_OF_BACKDROPNAME",
+                "value": "backdrop name"
+              }
+            ]
           }
         }
+      }
+    },
+    "bindings": {
+      "scratchblocks": {
+        "blockId": "SENSING_OF"
+      }
+    },
+    "source": {
+      "scratchBlocks": {
+        "sourceFile": "blocks_vertical/sensing.js",
+        "definition": "json"
       }
     }
   },
@@ -1956,6 +4324,12 @@
     "opcode": "sensing_of_object_menu",
     "shape": "reporter",
     "outputType": "string",
+    "arguments": [
+      {
+        "kind": "field",
+        "name": "OBJECT"
+      }
+    ],
     "inputs": {},
     "fields": {
       "OBJECT": {
@@ -1965,31 +4339,78 @@
           "type": "dropdown",
           "value": "Sprite1"
         },
-        "metadata": {
-          "scratchBlocks": {
-            "blockJson": {
-              "type": "field_dropdown"
-            }
+        "bindings": {
+          "scratchblocks": {
+            "shape": "dropdown",
+            "options": [
+              {
+                "label": "Sprite1",
+                "value": "Sprite1"
+              },
+              {
+                "label": "Stage",
+                "value": "_stage_"
+              }
+            ]
           }
         }
+      }
+    },
+    "bindings": {
+      "scratchblocks": {}
+    },
+    "source": {
+      "scratchBlocks": {
+        "sourceFile": "blocks_vertical/sensing.js",
+        "definition": "json"
       }
     }
   },
   {
     "opcode": "sensing_online",
     "shape": "boolean",
+    "arguments": [],
     "inputs": {},
-    "fields": {}
+    "fields": {},
+    "bindings": {
+      "scratchblocks": {
+        "blockId": "online?"
+      }
+    },
+    "source": {
+      "scratchBlocks": {
+        "sourceFile": "blocks_vertical/sensing.js",
+        "definition": "json"
+      }
+    }
   },
   {
     "opcode": "sensing_resettimer",
     "shape": "command",
+    "arguments": [],
     "inputs": {},
-    "fields": {}
+    "fields": {},
+    "bindings": {
+      "scratchblocks": {
+        "blockId": "SENSING_RESETTIMER"
+      }
+    },
+    "source": {
+      "scratchBlocks": {
+        "sourceFile": "blocks_vertical/sensing.js",
+        "definition": "json"
+      }
+    }
   },
   {
     "opcode": "sensing_setdragmode",
     "shape": "command",
+    "arguments": [
+      {
+        "kind": "field",
+        "name": "DRAG_MODE"
+      }
+    ],
     "inputs": {},
     "fields": {
       "DRAG_MODE": {
@@ -1999,13 +4420,32 @@
           "type": "dropdown",
           "value": "draggable"
         },
-        "metadata": {
-          "scratchBlocks": {
-            "blockJson": {
-              "type": "field_dropdown"
-            }
+        "bindings": {
+          "scratchblocks": {
+            "shape": "dropdown",
+            "options": [
+              {
+                "label": "SENSING_SETDRAGMODE_DRAGGABLE",
+                "value": "draggable"
+              },
+              {
+                "label": "SENSING_SETDRAGMODE_NOTDRAGGABLE",
+                "value": "not draggable"
+              }
+            ]
           }
         }
+      }
+    },
+    "bindings": {
+      "scratchblocks": {
+        "blockId": "SENSING_SETDRAGMODE"
+      }
+    },
+    "source": {
+      "scratchBlocks": {
+        "sourceFile": "blocks_vertical/sensing.js",
+        "definition": "json"
       }
     }
   },
@@ -2013,12 +4453,30 @@
     "opcode": "sensing_timer",
     "shape": "reporter",
     "outputType": "number",
+    "arguments": [],
     "inputs": {},
-    "fields": {}
+    "fields": {},
+    "bindings": {
+      "scratchblocks": {
+        "blockId": "SENSING_TIMER"
+      }
+    },
+    "source": {
+      "scratchBlocks": {
+        "sourceFile": "blocks_vertical/sensing.js",
+        "definition": "json"
+      }
+    }
   },
   {
     "opcode": "sensing_touchingcolor",
     "shape": "boolean",
+    "arguments": [
+      {
+        "kind": "input",
+        "name": "COLOR"
+      }
+    ],
     "inputs": {
       "COLOR": {
         "connection": "value",
@@ -2030,11 +4488,28 @@
         }
       }
     },
-    "fields": {}
+    "fields": {},
+    "bindings": {
+      "scratchblocks": {
+        "blockId": "SENSING_TOUCHINGCOLOR"
+      }
+    },
+    "source": {
+      "scratchBlocks": {
+        "sourceFile": "blocks_vertical/sensing.js",
+        "definition": "json"
+      }
+    }
   },
   {
     "opcode": "sensing_touchingobject",
     "shape": "boolean",
+    "arguments": [
+      {
+        "kind": "input",
+        "name": "TOUCHINGOBJECTMENU"
+      }
+    ],
     "inputs": {
       "TOUCHINGOBJECTMENU": {
         "connection": "value",
@@ -2057,12 +4532,29 @@
         }
       }
     },
-    "fields": {}
+    "fields": {},
+    "bindings": {
+      "scratchblocks": {
+        "blockId": "SENSING_TOUCHINGOBJECT"
+      }
+    },
+    "source": {
+      "scratchBlocks": {
+        "sourceFile": "blocks_vertical/sensing.js",
+        "definition": "json"
+      }
+    }
   },
   {
     "opcode": "sensing_touchingobjectmenu",
     "shape": "reporter",
     "outputType": "string",
+    "arguments": [
+      {
+        "kind": "field",
+        "name": "TOUCHINGOBJECTMENU"
+      }
+    ],
     "inputs": {},
     "fields": {
       "TOUCHINGOBJECTMENU": {
@@ -2072,13 +4564,30 @@
           "type": "dropdown",
           "value": "_mouse_"
         },
-        "metadata": {
-          "scratchBlocks": {
-            "blockJson": {
-              "type": "field_dropdown"
-            }
+        "bindings": {
+          "scratchblocks": {
+            "shape": "dropdown",
+            "options": [
+              {
+                "label": "SENSING_TOUCHINGOBJECT_POINTER",
+                "value": "_mouse_"
+              },
+              {
+                "label": "SENSING_TOUCHINGOBJECT_EDGE",
+                "value": "_edge_"
+              }
+            ]
           }
         }
+      }
+    },
+    "bindings": {
+      "scratchblocks": {}
+    },
+    "source": {
+      "scratchBlocks": {
+        "sourceFile": "blocks_vertical/sensing.js",
+        "definition": "json"
       }
     }
   },
@@ -2086,20 +4595,54 @@
     "opcode": "sensing_userid",
     "shape": "reporter",
     "outputType": "number",
+    "arguments": [],
     "inputs": {},
-    "fields": {}
+    "fields": {},
+    "bindings": {
+      "scratchblocks": {
+        "blockId": "SENSING_USERID"
+      }
+    },
+    "source": {
+      "scratchBlocks": {
+        "sourceFile": "blocks_vertical/sensing.js",
+        "definition": "json"
+      }
+    }
   },
   {
     "opcode": "sensing_username",
     "shape": "reporter",
     "outputType": "number",
+    "arguments": [],
     "inputs": {},
-    "fields": {}
+    "fields": {},
+    "bindings": {
+      "scratchblocks": {
+        "blockId": "SENSING_USERNAME"
+      }
+    },
+    "source": {
+      "scratchBlocks": {
+        "sourceFile": "blocks_vertical/sensing.js",
+        "definition": "json"
+      }
+    }
   },
   {
     "opcode": "operator_add",
     "shape": "reporter",
     "outputType": "number",
+    "arguments": [
+      {
+        "kind": "input",
+        "name": "NUM1"
+      },
+      {
+        "kind": "input",
+        "name": "NUM2"
+      }
+    ],
     "inputs": {
       "NUM1": {
         "connection": "value",
@@ -2130,11 +4673,32 @@
         }
       }
     },
-    "fields": {}
+    "fields": {},
+    "bindings": {
+      "scratchblocks": {
+        "blockId": "OPERATORS_ADD"
+      }
+    },
+    "source": {
+      "scratchBlocks": {
+        "sourceFile": "blocks_vertical/operators.js",
+        "definition": "json"
+      }
+    }
   },
   {
     "opcode": "operator_and",
     "shape": "boolean",
+    "arguments": [
+      {
+        "kind": "input",
+        "name": "OPERAND1"
+      },
+      {
+        "kind": "input",
+        "name": "OPERAND2"
+      }
+    ],
     "inputs": {
       "OPERAND1": {
         "connection": "value",
@@ -2145,11 +4709,32 @@
         "accepts": "boolean"
       }
     },
-    "fields": {}
+    "fields": {},
+    "bindings": {
+      "scratchblocks": {
+        "blockId": "OPERATORS_AND"
+      }
+    },
+    "source": {
+      "scratchBlocks": {
+        "sourceFile": "blocks_vertical/operators.js",
+        "definition": "json"
+      }
+    }
   },
   {
     "opcode": "operator_contains",
     "shape": "boolean",
+    "arguments": [
+      {
+        "kind": "input",
+        "name": "STRING1"
+      },
+      {
+        "kind": "input",
+        "name": "STRING2"
+      }
+    ],
     "inputs": {
       "STRING1": {
         "connection": "value",
@@ -2170,12 +4755,33 @@
         }
       }
     },
-    "fields": {}
+    "fields": {},
+    "bindings": {
+      "scratchblocks": {
+        "blockId": "OPERATORS_CONTAINS"
+      }
+    },
+    "source": {
+      "scratchBlocks": {
+        "sourceFile": "blocks_vertical/operators.js",
+        "definition": "json"
+      }
+    }
   },
   {
     "opcode": "operator_divide",
     "shape": "reporter",
     "outputType": "number",
+    "arguments": [
+      {
+        "kind": "input",
+        "name": "NUM1"
+      },
+      {
+        "kind": "input",
+        "name": "NUM2"
+      }
+    ],
     "inputs": {
       "NUM1": {
         "connection": "value",
@@ -2206,11 +4812,32 @@
         }
       }
     },
-    "fields": {}
+    "fields": {},
+    "bindings": {
+      "scratchblocks": {
+        "blockId": "OPERATORS_DIVIDE"
+      }
+    },
+    "source": {
+      "scratchBlocks": {
+        "sourceFile": "blocks_vertical/operators.js",
+        "definition": "json"
+      }
+    }
   },
   {
     "opcode": "operator_equals",
     "shape": "boolean",
+    "arguments": [
+      {
+        "kind": "input",
+        "name": "OPERAND1"
+      },
+      {
+        "kind": "input",
+        "name": "OPERAND2"
+      }
+    ],
     "inputs": {
       "OPERAND1": {
         "connection": "value",
@@ -2231,11 +4858,32 @@
         }
       }
     },
-    "fields": {}
+    "fields": {},
+    "bindings": {
+      "scratchblocks": {
+        "blockId": "OPERATORS_EQUALS"
+      }
+    },
+    "source": {
+      "scratchBlocks": {
+        "sourceFile": "blocks_vertical/operators.js",
+        "definition": "json"
+      }
+    }
   },
   {
     "opcode": "operator_gt",
     "shape": "boolean",
+    "arguments": [
+      {
+        "kind": "input",
+        "name": "OPERAND1"
+      },
+      {
+        "kind": "input",
+        "name": "OPERAND2"
+      }
+    ],
     "inputs": {
       "OPERAND1": {
         "connection": "value",
@@ -2256,12 +4904,33 @@
         }
       }
     },
-    "fields": {}
+    "fields": {},
+    "bindings": {
+      "scratchblocks": {
+        "blockId": "OPERATORS_GT"
+      }
+    },
+    "source": {
+      "scratchBlocks": {
+        "sourceFile": "blocks_vertical/operators.js",
+        "definition": "json"
+      }
+    }
   },
   {
     "opcode": "operator_join",
     "shape": "reporter",
     "outputType": "string",
+    "arguments": [
+      {
+        "kind": "input",
+        "name": "STRING1"
+      },
+      {
+        "kind": "input",
+        "name": "STRING2"
+      }
+    ],
     "inputs": {
       "STRING1": {
         "connection": "value",
@@ -2282,12 +4951,29 @@
         }
       }
     },
-    "fields": {}
+    "fields": {},
+    "bindings": {
+      "scratchblocks": {
+        "blockId": "OPERATORS_JOIN"
+      }
+    },
+    "source": {
+      "scratchBlocks": {
+        "sourceFile": "blocks_vertical/operators.js",
+        "definition": "json"
+      }
+    }
   },
   {
     "opcode": "operator_length",
     "shape": "reporter",
     "outputType": "string",
+    "arguments": [
+      {
+        "kind": "input",
+        "name": "STRING"
+      }
+    ],
     "inputs": {
       "STRING": {
         "connection": "value",
@@ -2299,12 +4985,33 @@
         }
       }
     },
-    "fields": {}
+    "fields": {},
+    "bindings": {
+      "scratchblocks": {
+        "blockId": "OPERATORS_LENGTH"
+      }
+    },
+    "source": {
+      "scratchBlocks": {
+        "sourceFile": "blocks_vertical/operators.js",
+        "definition": "json"
+      }
+    }
   },
   {
     "opcode": "operator_letter_of",
     "shape": "reporter",
     "outputType": "string",
+    "arguments": [
+      {
+        "kind": "input",
+        "name": "LETTER"
+      },
+      {
+        "kind": "input",
+        "name": "STRING"
+      }
+    ],
     "inputs": {
       "LETTER": {
         "connection": "value",
@@ -2330,11 +5037,32 @@
         }
       }
     },
-    "fields": {}
+    "fields": {},
+    "bindings": {
+      "scratchblocks": {
+        "blockId": "OPERATORS_LETTEROF"
+      }
+    },
+    "source": {
+      "scratchBlocks": {
+        "sourceFile": "blocks_vertical/operators.js",
+        "definition": "json"
+      }
+    }
   },
   {
     "opcode": "operator_lt",
     "shape": "boolean",
+    "arguments": [
+      {
+        "kind": "input",
+        "name": "OPERAND1"
+      },
+      {
+        "kind": "input",
+        "name": "OPERAND2"
+      }
+    ],
     "inputs": {
       "OPERAND1": {
         "connection": "value",
@@ -2355,12 +5083,33 @@
         }
       }
     },
-    "fields": {}
+    "fields": {},
+    "bindings": {
+      "scratchblocks": {
+        "blockId": "OPERATORS_LT"
+      }
+    },
+    "source": {
+      "scratchBlocks": {
+        "sourceFile": "blocks_vertical/operators.js",
+        "definition": "json"
+      }
+    }
   },
   {
     "opcode": "operator_mathop",
     "shape": "reporter",
     "outputType": "number",
+    "arguments": [
+      {
+        "kind": "field",
+        "name": "OPERATOR"
+      },
+      {
+        "kind": "input",
+        "name": "NUM"
+      }
+    ],
     "inputs": {
       "NUM": {
         "connection": "value",
@@ -2385,13 +5134,80 @@
           "type": "dropdown",
           "value": "abs"
         },
-        "metadata": {
-          "scratchBlocks": {
-            "blockJson": {
-              "type": "field_dropdown"
-            }
+        "bindings": {
+          "scratchblocks": {
+            "shape": "dropdown",
+            "options": [
+              {
+                "label": "OPERATORS_MATHOP_ABS",
+                "value": "abs"
+              },
+              {
+                "label": "OPERATORS_MATHOP_FLOOR",
+                "value": "floor"
+              },
+              {
+                "label": "OPERATORS_MATHOP_CEILING",
+                "value": "ceiling"
+              },
+              {
+                "label": "OPERATORS_MATHOP_SQRT",
+                "value": "sqrt"
+              },
+              {
+                "label": "OPERATORS_MATHOP_SIN",
+                "value": "sin"
+              },
+              {
+                "label": "OPERATORS_MATHOP_COS",
+                "value": "cos"
+              },
+              {
+                "label": "OPERATORS_MATHOP_TAN",
+                "value": "tan"
+              },
+              {
+                "label": "OPERATORS_MATHOP_ASIN",
+                "value": "asin"
+              },
+              {
+                "label": "OPERATORS_MATHOP_ACOS",
+                "value": "acos"
+              },
+              {
+                "label": "OPERATORS_MATHOP_ATAN",
+                "value": "atan"
+              },
+              {
+                "label": "OPERATORS_MATHOP_LN",
+                "value": "ln"
+              },
+              {
+                "label": "OPERATORS_MATHOP_LOG",
+                "value": "log"
+              },
+              {
+                "label": "OPERATORS_MATHOP_EEXP",
+                "value": "e ^"
+              },
+              {
+                "label": "OPERATORS_MATHOP_10EXP",
+                "value": "10 ^"
+              }
+            ]
           }
         }
+      }
+    },
+    "bindings": {
+      "scratchblocks": {
+        "blockId": "OPERATORS_MATHOP"
+      }
+    },
+    "source": {
+      "scratchBlocks": {
+        "sourceFile": "blocks_vertical/operators.js",
+        "definition": "json"
       }
     }
   },
@@ -2399,6 +5215,16 @@
     "opcode": "operator_mod",
     "shape": "reporter",
     "outputType": "number",
+    "arguments": [
+      {
+        "kind": "input",
+        "name": "NUM1"
+      },
+      {
+        "kind": "input",
+        "name": "NUM2"
+      }
+    ],
     "inputs": {
       "NUM1": {
         "connection": "value",
@@ -2429,12 +5255,33 @@
         }
       }
     },
-    "fields": {}
+    "fields": {},
+    "bindings": {
+      "scratchblocks": {
+        "blockId": "OPERATORS_MOD"
+      }
+    },
+    "source": {
+      "scratchBlocks": {
+        "sourceFile": "blocks_vertical/operators.js",
+        "definition": "json"
+      }
+    }
   },
   {
     "opcode": "operator_multiply",
     "shape": "reporter",
     "outputType": "number",
+    "arguments": [
+      {
+        "kind": "input",
+        "name": "NUM1"
+      },
+      {
+        "kind": "input",
+        "name": "NUM2"
+      }
+    ],
     "inputs": {
       "NUM1": {
         "connection": "value",
@@ -2465,22 +5312,60 @@
         }
       }
     },
-    "fields": {}
+    "fields": {},
+    "bindings": {
+      "scratchblocks": {
+        "blockId": "OPERATORS_MULTIPLY"
+      }
+    },
+    "source": {
+      "scratchBlocks": {
+        "sourceFile": "blocks_vertical/operators.js",
+        "definition": "json"
+      }
+    }
   },
   {
     "opcode": "operator_not",
     "shape": "boolean",
+    "arguments": [
+      {
+        "kind": "input",
+        "name": "OPERAND"
+      }
+    ],
     "inputs": {
       "OPERAND": {
         "connection": "value",
         "accepts": "boolean"
       }
     },
-    "fields": {}
+    "fields": {},
+    "bindings": {
+      "scratchblocks": {
+        "blockId": "OPERATORS_NOT"
+      }
+    },
+    "source": {
+      "scratchBlocks": {
+        "sourceFile": "blocks_vertical/operators.js",
+        "definition": "json"
+      }
+    }
   },
   {
     "opcode": "operator_or",
     "shape": "boolean",
+    "arguments": [
+      {
+        "kind": "input",
+        "name": "OPERAND1"
+      },
+      {
+        "kind": "input",
+        "name": "OPERAND2"
+      }
+    ],
     "inputs": {
       "OPERAND1": {
         "connection": "value",
@@ -2491,12 +5376,33 @@
         "accepts": "boolean"
       }
     },
-    "fields": {}
+    "fields": {},
+    "bindings": {
+      "scratchblocks": {
+        "blockId": "OPERATORS_OR"
+      }
+    },
+    "source": {
+      "scratchBlocks": {
+        "sourceFile": "blocks_vertical/operators.js",
+        "definition": "json"
+      }
+    }
   },
   {
     "opcode": "operator_random",
     "shape": "reporter",
     "outputType": "number",
+    "arguments": [
+      {
+        "kind": "input",
+        "name": "FROM"
+      },
+      {
+        "kind": "input",
+        "name": "TO"
+      }
+    ],
     "inputs": {
       "FROM": {
         "connection": "value",
@@ -2527,12 +5433,29 @@
         }
       }
     },
-    "fields": {}
+    "fields": {},
+    "bindings": {
+      "scratchblocks": {
+        "blockId": "OPERATORS_RANDOM"
+      }
+    },
+    "source": {
+      "scratchBlocks": {
+        "sourceFile": "blocks_vertical/operators.js",
+        "definition": "json"
+      }
+    }
   },
   {
     "opcode": "operator_round",
     "shape": "reporter",
     "outputType": "number",
+    "arguments": [
+      {
+        "kind": "input",
+        "name": "NUM"
+      }
+    ],
     "inputs": {
       "NUM": {
         "connection": "value",
@@ -2549,12 +5472,33 @@
         }
       }
     },
-    "fields": {}
+    "fields": {},
+    "bindings": {
+      "scratchblocks": {
+        "blockId": "OPERATORS_ROUND"
+      }
+    },
+    "source": {
+      "scratchBlocks": {
+        "sourceFile": "blocks_vertical/operators.js",
+        "definition": "json"
+      }
+    }
   },
   {
     "opcode": "operator_subtract",
     "shape": "reporter",
     "outputType": "number",
+    "arguments": [
+      {
+        "kind": "input",
+        "name": "NUM1"
+      },
+      {
+        "kind": "input",
+        "name": "NUM2"
+      }
+    ],
     "inputs": {
       "NUM1": {
         "connection": "value",
@@ -2585,11 +5529,32 @@
         }
       }
     },
-    "fields": {}
+    "fields": {},
+    "bindings": {
+      "scratchblocks": {
+        "blockId": "OPERATORS_SUBTRACT"
+      }
+    },
+    "source": {
+      "scratchBlocks": {
+        "sourceFile": "blocks_vertical/operators.js",
+        "definition": "json"
+      }
+    }
   },
   {
     "opcode": "data_addtolist",
     "shape": "command",
+    "arguments": [
+      {
+        "kind": "input",
+        "name": "ITEM"
+      },
+      {
+        "kind": "field",
+        "name": "LIST"
+      }
+    ],
     "inputs": {
       "ITEM": {
         "connection": "value",
@@ -2604,19 +5569,38 @@
           "type": "list",
           "value": ""
         },
-        "metadata": {
-          "scratchBlocks": {
-            "blockJson": {
-              "type": "field_variable"
-            }
+        "bindings": {
+          "scratchblocks": {
+            "shape": "dropdown"
           }
         }
+      }
+    },
+    "bindings": {
+      "scratchblocks": {
+        "blockId": "DATA_ADDTOLIST"
+      }
+    },
+    "source": {
+      "scratchBlocks": {
+        "sourceFile": "blocks_vertical/data.js",
+        "definition": "json"
       }
     }
   },
   {
     "opcode": "data_changevariableby",
     "shape": "command",
+    "arguments": [
+      {
+        "kind": "field",
+        "name": "VARIABLE"
+      },
+      {
+        "kind": "input",
+        "name": "VALUE"
+      }
+    ],
     "inputs": {
       "VALUE": {
         "connection": "value",
@@ -2631,19 +5615,34 @@
           "type": "variable",
           "value": ""
         },
-        "metadata": {
-          "scratchBlocks": {
-            "blockJson": {
-              "type": "field_variable"
-            }
+        "bindings": {
+          "scratchblocks": {
+            "shape": "dropdown"
           }
         }
+      }
+    },
+    "bindings": {
+      "scratchblocks": {
+        "blockId": "DATA_CHANGEVARIABLEBY"
+      }
+    },
+    "source": {
+      "scratchBlocks": {
+        "sourceFile": "blocks_vertical/data.js",
+        "definition": "json"
       }
     }
   },
   {
     "opcode": "data_deletealloflist",
     "shape": "command",
+    "arguments": [
+      {
+        "kind": "field",
+        "name": "LIST"
+      }
+    ],
     "inputs": {},
     "fields": {
       "LIST": {
@@ -2653,19 +5652,38 @@
           "type": "list",
           "value": ""
         },
-        "metadata": {
-          "scratchBlocks": {
-            "blockJson": {
-              "type": "field_variable"
-            }
+        "bindings": {
+          "scratchblocks": {
+            "shape": "dropdown"
           }
         }
+      }
+    },
+    "bindings": {
+      "scratchblocks": {
+        "blockId": "DATA_DELETEALLOFLIST"
+      }
+    },
+    "source": {
+      "scratchBlocks": {
+        "sourceFile": "blocks_vertical/data.js",
+        "definition": "json"
       }
     }
   },
   {
     "opcode": "data_deleteoflist",
     "shape": "command",
+    "arguments": [
+      {
+        "kind": "input",
+        "name": "INDEX"
+      },
+      {
+        "kind": "field",
+        "name": "LIST"
+      }
+    ],
     "inputs": {
       "INDEX": {
         "connection": "value",
@@ -2680,19 +5698,34 @@
           "type": "list",
           "value": ""
         },
-        "metadata": {
-          "scratchBlocks": {
-            "blockJson": {
-              "type": "field_variable"
-            }
+        "bindings": {
+          "scratchblocks": {
+            "shape": "dropdown"
           }
         }
+      }
+    },
+    "bindings": {
+      "scratchblocks": {
+        "blockId": "DATA_DELETEOFLIST"
+      }
+    },
+    "source": {
+      "scratchBlocks": {
+        "sourceFile": "blocks_vertical/data.js",
+        "definition": "json"
       }
     }
   },
   {
     "opcode": "data_hidelist",
     "shape": "command",
+    "arguments": [
+      {
+        "kind": "field",
+        "name": "LIST"
+      }
+    ],
     "inputs": {},
     "fields": {
       "LIST": {
@@ -2702,19 +5735,34 @@
           "type": "list",
           "value": ""
         },
-        "metadata": {
-          "scratchBlocks": {
-            "blockJson": {
-              "type": "field_variable"
-            }
+        "bindings": {
+          "scratchblocks": {
+            "shape": "dropdown"
           }
         }
+      }
+    },
+    "bindings": {
+      "scratchblocks": {
+        "blockId": "DATA_HIDELIST"
+      }
+    },
+    "source": {
+      "scratchBlocks": {
+        "sourceFile": "blocks_vertical/data.js",
+        "definition": "json"
       }
     }
   },
   {
     "opcode": "data_hidevariable",
     "shape": "command",
+    "arguments": [
+      {
+        "kind": "field",
+        "name": "VARIABLE"
+      }
+    ],
     "inputs": {},
     "fields": {
       "VARIABLE": {
@@ -2724,19 +5772,42 @@
           "type": "variable",
           "value": ""
         },
-        "metadata": {
-          "scratchBlocks": {
-            "blockJson": {
-              "type": "field_variable"
-            }
+        "bindings": {
+          "scratchblocks": {
+            "shape": "dropdown"
           }
         }
+      }
+    },
+    "bindings": {
+      "scratchblocks": {
+        "blockId": "DATA_HIDEVARIABLE"
+      }
+    },
+    "source": {
+      "scratchBlocks": {
+        "sourceFile": "blocks_vertical/data.js",
+        "definition": "json"
       }
     }
   },
   {
     "opcode": "data_insertatlist",
     "shape": "command",
+    "arguments": [
+      {
+        "kind": "input",
+        "name": "ITEM"
+      },
+      {
+        "kind": "input",
+        "name": "INDEX"
+      },
+      {
+        "kind": "field",
+        "name": "LIST"
+      }
+    ],
     "inputs": {
       "ITEM": {
         "connection": "value",
@@ -2755,13 +5826,22 @@
           "type": "list",
           "value": ""
         },
-        "metadata": {
-          "scratchBlocks": {
-            "blockJson": {
-              "type": "field_variable"
-            }
+        "bindings": {
+          "scratchblocks": {
+            "shape": "dropdown"
           }
         }
+      }
+    },
+    "bindings": {
+      "scratchblocks": {
+        "blockId": "DATA_INSERTATLIST"
+      }
+    },
+    "source": {
+      "scratchBlocks": {
+        "sourceFile": "blocks_vertical/data.js",
+        "definition": "json"
       }
     }
   },
@@ -2769,6 +5849,16 @@
     "opcode": "data_itemnumoflist",
     "shape": "reporter",
     "outputType": "any",
+    "arguments": [
+      {
+        "kind": "input",
+        "name": "ITEM"
+      },
+      {
+        "kind": "field",
+        "name": "LIST"
+      }
+    ],
     "inputs": {
       "ITEM": {
         "connection": "value",
@@ -2783,13 +5873,22 @@
           "type": "list",
           "value": ""
         },
-        "metadata": {
-          "scratchBlocks": {
-            "blockJson": {
-              "type": "field_variable"
-            }
+        "bindings": {
+          "scratchblocks": {
+            "shape": "dropdown"
           }
         }
+      }
+    },
+    "bindings": {
+      "scratchblocks": {
+        "blockId": "DATA_ITEMNUMOFLIST"
+      }
+    },
+    "source": {
+      "scratchBlocks": {
+        "sourceFile": "blocks_vertical/data.js",
+        "definition": "json"
       }
     }
   },
@@ -2797,6 +5896,16 @@
     "opcode": "data_itemoflist",
     "shape": "reporter",
     "outputType": "any",
+    "arguments": [
+      {
+        "kind": "input",
+        "name": "INDEX"
+      },
+      {
+        "kind": "field",
+        "name": "LIST"
+      }
+    ],
     "inputs": {
       "INDEX": {
         "connection": "value",
@@ -2811,13 +5920,22 @@
           "type": "list",
           "value": ""
         },
-        "metadata": {
-          "scratchBlocks": {
-            "blockJson": {
-              "type": "field_variable"
-            }
+        "bindings": {
+          "scratchblocks": {
+            "shape": "dropdown"
           }
         }
+      }
+    },
+    "bindings": {
+      "scratchblocks": {
+        "blockId": "DATA_ITEMOFLIST"
+      }
+    },
+    "source": {
+      "scratchBlocks": {
+        "sourceFile": "blocks_vertical/data.js",
+        "definition": "json"
       }
     }
   },
@@ -2825,6 +5943,12 @@
     "opcode": "data_lengthoflist",
     "shape": "reporter",
     "outputType": "number",
+    "arguments": [
+      {
+        "kind": "field",
+        "name": "LIST"
+      }
+    ],
     "inputs": {},
     "fields": {
       "LIST": {
@@ -2834,19 +5958,38 @@
           "type": "list",
           "value": ""
         },
-        "metadata": {
-          "scratchBlocks": {
-            "blockJson": {
-              "type": "field_variable"
-            }
+        "bindings": {
+          "scratchblocks": {
+            "shape": "dropdown"
           }
         }
+      }
+    },
+    "bindings": {
+      "scratchblocks": {
+        "blockId": "DATA_LENGTHOFLIST"
+      }
+    },
+    "source": {
+      "scratchBlocks": {
+        "sourceFile": "blocks_vertical/data.js",
+        "definition": "json"
       }
     }
   },
   {
     "opcode": "data_listcontainsitem",
     "shape": "boolean",
+    "arguments": [
+      {
+        "kind": "field",
+        "name": "LIST"
+      },
+      {
+        "kind": "input",
+        "name": "ITEM"
+      }
+    ],
     "inputs": {
       "ITEM": {
         "connection": "value",
@@ -2861,13 +6004,22 @@
           "type": "list",
           "value": ""
         },
-        "metadata": {
-          "scratchBlocks": {
-            "blockJson": {
-              "type": "field_variable"
-            }
+        "bindings": {
+          "scratchblocks": {
+            "shape": "dropdown"
           }
         }
+      }
+    },
+    "bindings": {
+      "scratchblocks": {
+        "blockId": "DATA_LISTCONTAINSITEM"
+      }
+    },
+    "source": {
+      "scratchBlocks": {
+        "sourceFile": "blocks_vertical/data.js",
+        "definition": "json"
       }
     }
   },
@@ -2875,6 +6027,12 @@
     "opcode": "data_listcontents",
     "shape": "reporter",
     "outputType": "string",
+    "arguments": [
+      {
+        "kind": "field",
+        "name": "LIST"
+      }
+    ],
     "inputs": {},
     "fields": {
       "LIST": {
@@ -2884,13 +6042,20 @@
           "type": "list",
           "value": ""
         },
-        "metadata": {
-          "scratchBlocks": {
-            "blockJson": {
-              "type": "field_variable_getter"
-            }
+        "bindings": {
+          "scratchblocks": {
+            "shape": "dropdown"
           }
         }
+      }
+    },
+    "bindings": {
+      "scratchblocks": {}
+    },
+    "source": {
+      "scratchBlocks": {
+        "sourceFile": "blocks_vertical/data.js",
+        "definition": "json"
       }
     }
   },
@@ -2898,6 +6063,12 @@
     "opcode": "data_listindexall",
     "shape": "reporter",
     "outputType": "string",
+    "arguments": [
+      {
+        "kind": "field",
+        "name": "INDEX"
+      }
+    ],
     "inputs": {},
     "fields": {
       "INDEX": {
@@ -2907,13 +6078,34 @@
           "type": "dropdown",
           "value": "1"
         },
-        "metadata": {
-          "scratchBlocks": {
-            "blockJson": {
-              "type": "field_numberdropdown"
-            }
+        "bindings": {
+          "scratchblocks": {
+            "shape": "dropdown",
+            "options": [
+              {
+                "label": "1",
+                "value": "1"
+              },
+              {
+                "label": "DATA_INDEX_LAST",
+                "value": "last"
+              },
+              {
+                "label": "DATA_INDEX_ALL",
+                "value": "all"
+              }
+            ]
           }
         }
+      }
+    },
+    "bindings": {
+      "scratchblocks": {}
+    },
+    "source": {
+      "scratchBlocks": {
+        "sourceFile": "blocks_vertical/data.js",
+        "definition": "json"
       }
     }
   },
@@ -2921,6 +6113,12 @@
     "opcode": "data_listindexrandom",
     "shape": "reporter",
     "outputType": "string",
+    "arguments": [
+      {
+        "kind": "field",
+        "name": "INDEX"
+      }
+    ],
     "inputs": {},
     "fields": {
       "INDEX": {
@@ -2930,19 +6128,54 @@
           "type": "dropdown",
           "value": "1"
         },
-        "metadata": {
-          "scratchBlocks": {
-            "blockJson": {
-              "type": "field_numberdropdown"
-            }
+        "bindings": {
+          "scratchblocks": {
+            "shape": "dropdown",
+            "options": [
+              {
+                "label": "1",
+                "value": "1"
+              },
+              {
+                "label": "DATA_INDEX_LAST",
+                "value": "last"
+              },
+              {
+                "label": "DATA_INDEX_RANDOM",
+                "value": "random"
+              }
+            ]
           }
         }
+      }
+    },
+    "bindings": {
+      "scratchblocks": {}
+    },
+    "source": {
+      "scratchBlocks": {
+        "sourceFile": "blocks_vertical/data.js",
+        "definition": "json"
       }
     }
   },
   {
     "opcode": "data_replaceitemoflist",
     "shape": "command",
+    "arguments": [
+      {
+        "kind": "input",
+        "name": "INDEX"
+      },
+      {
+        "kind": "field",
+        "name": "LIST"
+      },
+      {
+        "kind": "input",
+        "name": "ITEM"
+      }
+    ],
     "inputs": {
       "INDEX": {
         "connection": "value",
@@ -2961,19 +6194,38 @@
           "type": "list",
           "value": ""
         },
-        "metadata": {
-          "scratchBlocks": {
-            "blockJson": {
-              "type": "field_variable"
-            }
+        "bindings": {
+          "scratchblocks": {
+            "shape": "dropdown"
           }
         }
+      }
+    },
+    "bindings": {
+      "scratchblocks": {
+        "blockId": "DATA_REPLACEITEMOFLIST"
+      }
+    },
+    "source": {
+      "scratchBlocks": {
+        "sourceFile": "blocks_vertical/data.js",
+        "definition": "json"
       }
     }
   },
   {
     "opcode": "data_setvariableto",
     "shape": "command",
+    "arguments": [
+      {
+        "kind": "field",
+        "name": "VARIABLE"
+      },
+      {
+        "kind": "input",
+        "name": "VALUE"
+      }
+    ],
     "inputs": {
       "VALUE": {
         "connection": "value",
@@ -2988,19 +6240,34 @@
           "type": "variable",
           "value": ""
         },
-        "metadata": {
-          "scratchBlocks": {
-            "blockJson": {
-              "type": "field_variable"
-            }
+        "bindings": {
+          "scratchblocks": {
+            "shape": "dropdown"
           }
         }
+      }
+    },
+    "bindings": {
+      "scratchblocks": {
+        "blockId": "DATA_SETVARIABLETO"
+      }
+    },
+    "source": {
+      "scratchBlocks": {
+        "sourceFile": "blocks_vertical/data.js",
+        "definition": "json"
       }
     }
   },
   {
     "opcode": "data_showlist",
     "shape": "command",
+    "arguments": [
+      {
+        "kind": "field",
+        "name": "LIST"
+      }
+    ],
     "inputs": {},
     "fields": {
       "LIST": {
@@ -3010,19 +6277,34 @@
           "type": "list",
           "value": ""
         },
-        "metadata": {
-          "scratchBlocks": {
-            "blockJson": {
-              "type": "field_variable"
-            }
+        "bindings": {
+          "scratchblocks": {
+            "shape": "dropdown"
           }
         }
+      }
+    },
+    "bindings": {
+      "scratchblocks": {
+        "blockId": "DATA_SHOWLIST"
+      }
+    },
+    "source": {
+      "scratchBlocks": {
+        "sourceFile": "blocks_vertical/data.js",
+        "definition": "json"
       }
     }
   },
   {
     "opcode": "data_showvariable",
     "shape": "command",
+    "arguments": [
+      {
+        "kind": "field",
+        "name": "VARIABLE"
+      }
+    ],
     "inputs": {},
     "fields": {
       "VARIABLE": {
@@ -3032,13 +6314,22 @@
           "type": "variable",
           "value": ""
         },
-        "metadata": {
-          "scratchBlocks": {
-            "blockJson": {
-              "type": "field_variable"
-            }
+        "bindings": {
+          "scratchblocks": {
+            "shape": "dropdown"
           }
         }
+      }
+    },
+    "bindings": {
+      "scratchblocks": {
+        "blockId": "DATA_SHOWVARIABLE"
+      }
+    },
+    "source": {
+      "scratchBlocks": {
+        "sourceFile": "blocks_vertical/data.js",
+        "definition": "json"
       }
     }
   },
@@ -3046,6 +6337,12 @@
     "opcode": "data_variable",
     "shape": "reporter",
     "outputType": "string",
+    "arguments": [
+      {
+        "kind": "field",
+        "name": "VARIABLE"
+      }
+    ],
     "inputs": {},
     "fields": {
       "VARIABLE": {
@@ -3055,19 +6352,32 @@
           "type": "variable",
           "value": ""
         },
-        "metadata": {
-          "scratchBlocks": {
-            "blockJson": {
-              "type": "field_variable_getter"
-            }
+        "bindings": {
+          "scratchblocks": {
+            "shape": "dropdown"
           }
         }
+      }
+    },
+    "bindings": {
+      "scratchblocks": {}
+    },
+    "source": {
+      "scratchBlocks": {
+        "sourceFile": "blocks_vertical/data.js",
+        "definition": "json"
       }
     }
   },
   {
     "opcode": "argument_reporter_boolean",
     "shape": "boolean",
+    "arguments": [
+      {
+        "kind": "field",
+        "name": "VALUE"
+      }
+    ],
     "inputs": {},
     "fields": {
       "VALUE": {
@@ -3077,13 +6387,20 @@
           "type": "text",
           "value": ""
         },
-        "metadata": {
-          "scratchBlocks": {
-            "blockJson": {
-              "type": "field_label_serializable"
-            }
+        "bindings": {
+          "scratchblocks": {
+            "shape": "string"
           }
         }
+      }
+    },
+    "bindings": {
+      "scratchblocks": {}
+    },
+    "source": {
+      "scratchBlocks": {
+        "sourceFile": "blocks_vertical/procedures.js",
+        "definition": "json"
       }
     }
   },
@@ -3091,6 +6408,12 @@
     "opcode": "argument_reporter_string_number",
     "shape": "reporter",
     "outputType": "any",
+    "arguments": [
+      {
+        "kind": "field",
+        "name": "VALUE"
+      }
+    ],
     "inputs": {},
     "fields": {
       "VALUE": {
@@ -3100,26 +6423,49 @@
           "type": "text",
           "value": ""
         },
-        "metadata": {
-          "scratchBlocks": {
-            "blockJson": {
-              "type": "field_label_serializable"
-            }
+        "bindings": {
+          "scratchblocks": {
+            "shape": "string"
           }
         }
+      }
+    },
+    "bindings": {
+      "scratchblocks": {}
+    },
+    "source": {
+      "scratchBlocks": {
+        "sourceFile": "blocks_vertical/procedures.js",
+        "definition": "json"
       }
     }
   },
   {
     "opcode": "procedures_call",
     "shape": "command",
+    "arguments": [],
     "inputs": {},
-    "fields": {}
+    "fields": {},
+    "bindings": {
+      "scratchblocks": {}
+    },
+    "source": {
+      "scratchBlocks": {
+        "sourceFile": "blocks_vertical/procedures.js",
+        "definition": "json"
+      }
+    }
   },
   {
     "opcode": "procedures_definition",
     "shape": "hat",
     "hatStyle": "define",
+    "arguments": [
+      {
+        "kind": "input",
+        "name": "custom_block"
+      }
+    ],
     "inputs": {
       "custom_block": {
         "connection": "statement",
@@ -3135,29 +6481,73 @@
         }
       }
     },
-    "fields": {}
+    "fields": {},
+    "bindings": {
+      "scratchblocks": {
+        "blockId": "PROCEDURES_DEFINITION"
+      }
+    },
+    "source": {
+      "scratchBlocks": {
+        "sourceFile": "blocks_vertical/procedures.js",
+        "definition": "json"
+      }
+    }
   },
   {
     "opcode": "procedures_prototype",
     "shape": "command",
+    "arguments": [],
     "inputs": {},
-    "fields": {}
+    "fields": {},
+    "bindings": {
+      "scratchblocks": {}
+    },
+    "source": {
+      "scratchBlocks": {
+        "sourceFile": "blocks_vertical/procedures.js",
+        "definition": "json"
+      }
+    }
   },
   {
     "opcode": "procedures_return",
     "shape": "terminal",
+    "arguments": [
+      {
+        "kind": "input",
+        "name": "VALUE"
+      }
+    ],
     "inputs": {
       "VALUE": {
         "connection": "value",
         "accepts": "any"
       }
     },
-    "fields": {}
+    "fields": {},
+    "bindings": {
+      "scratchblocks": {
+        "blockId": "PROCEDURES_RETURN"
+      }
+    },
+    "source": {
+      "scratchBlocks": {
+        "sourceFile": "blocks_vertical/procedures.js",
+        "definition": "json"
+      }
+    }
   },
   {
     "opcode": "math_angle",
     "shape": "reporter",
     "outputType": "number",
+    "arguments": [
+      {
+        "kind": "field",
+        "name": "NUM"
+      }
+    ],
     "inputs": {},
     "fields": {
       "NUM": {
@@ -3167,13 +6557,20 @@
           "type": "text",
           "value": "90"
         },
-        "metadata": {
-          "scratchBlocks": {
-            "blockJson": {
-              "type": "field_angle"
-            }
+        "bindings": {
+          "scratchblocks": {
+            "shape": "string"
           }
         }
+      }
+    },
+    "bindings": {
+      "scratchblocks": {}
+    },
+    "source": {
+      "scratchBlocks": {
+        "sourceFile": "blocks_common/math.js",
+        "definition": "json"
       }
     }
   },
@@ -3181,6 +6578,12 @@
     "opcode": "math_integer",
     "shape": "reporter",
     "outputType": "number",
+    "arguments": [
+      {
+        "kind": "field",
+        "name": "NUM"
+      }
+    ],
     "inputs": {},
     "fields": {
       "NUM": {
@@ -3190,13 +6593,20 @@
           "type": "text",
           "value": ""
         },
-        "metadata": {
-          "scratchBlocks": {
-            "blockJson": {
-              "type": "field_number"
-            }
+        "bindings": {
+          "scratchblocks": {
+            "shape": "string"
           }
         }
+      }
+    },
+    "bindings": {
+      "scratchblocks": {}
+    },
+    "source": {
+      "scratchBlocks": {
+        "sourceFile": "blocks_common/math.js",
+        "definition": "json"
       }
     }
   },
@@ -3204,6 +6614,12 @@
     "opcode": "math_number",
     "shape": "reporter",
     "outputType": "number",
+    "arguments": [
+      {
+        "kind": "field",
+        "name": "NUM"
+      }
+    ],
     "inputs": {},
     "fields": {
       "NUM": {
@@ -3213,13 +6629,20 @@
           "type": "text",
           "value": "0"
         },
-        "metadata": {
-          "scratchBlocks": {
-            "blockJson": {
-              "type": "field_number"
-            }
+        "bindings": {
+          "scratchblocks": {
+            "shape": "string"
           }
         }
+      }
+    },
+    "bindings": {
+      "scratchblocks": {}
+    },
+    "source": {
+      "scratchBlocks": {
+        "sourceFile": "blocks_common/math.js",
+        "definition": "json"
       }
     }
   },
@@ -3227,6 +6650,12 @@
     "opcode": "math_positive_number",
     "shape": "reporter",
     "outputType": "number",
+    "arguments": [
+      {
+        "kind": "field",
+        "name": "NUM"
+      }
+    ],
     "inputs": {},
     "fields": {
       "NUM": {
@@ -3236,13 +6665,20 @@
           "type": "text",
           "value": ""
         },
-        "metadata": {
-          "scratchBlocks": {
-            "blockJson": {
-              "type": "field_number"
-            }
+        "bindings": {
+          "scratchblocks": {
+            "shape": "string"
           }
         }
+      }
+    },
+    "bindings": {
+      "scratchblocks": {}
+    },
+    "source": {
+      "scratchBlocks": {
+        "sourceFile": "blocks_common/math.js",
+        "definition": "json"
       }
     }
   },
@@ -3250,6 +6686,12 @@
     "opcode": "math_whole_number",
     "shape": "reporter",
     "outputType": "number",
+    "arguments": [
+      {
+        "kind": "field",
+        "name": "NUM"
+      }
+    ],
     "inputs": {},
     "fields": {
       "NUM": {
@@ -3259,13 +6701,20 @@
           "type": "text",
           "value": ""
         },
-        "metadata": {
-          "scratchBlocks": {
-            "blockJson": {
-              "type": "field_number"
-            }
+        "bindings": {
+          "scratchblocks": {
+            "shape": "string"
           }
         }
+      }
+    },
+    "bindings": {
+      "scratchblocks": {}
+    },
+    "source": {
+      "scratchBlocks": {
+        "sourceFile": "blocks_common/math.js",
+        "definition": "json"
       }
     }
   },
@@ -3273,6 +6722,12 @@
     "opcode": "text",
     "shape": "reporter",
     "outputType": "string",
+    "arguments": [
+      {
+        "kind": "field",
+        "name": "TEXT"
+      }
+    ],
     "inputs": {},
     "fields": {
       "TEXT": {
@@ -3282,13 +6737,20 @@
           "type": "text",
           "value": ""
         },
-        "metadata": {
-          "scratchBlocks": {
-            "blockJson": {
-              "type": "field_input"
-            }
+        "bindings": {
+          "scratchblocks": {
+            "shape": "string"
           }
         }
+      }
+    },
+    "bindings": {
+      "scratchblocks": {}
+    },
+    "source": {
+      "scratchBlocks": {
+        "sourceFile": "blocks_common/text.js",
+        "definition": "json"
       }
     }
   },
@@ -3296,6 +6758,12 @@
     "opcode": "colour_picker",
     "shape": "reporter",
     "outputType": "color",
+    "arguments": [
+      {
+        "kind": "field",
+        "name": "COLOUR"
+      }
+    ],
     "inputs": {},
     "fields": {
       "COLOUR": {
@@ -3305,13 +6773,20 @@
           "type": "text",
           "value": "#037afb"
         },
-        "metadata": {
-          "scratchBlocks": {
-            "blockJson": {
-              "type": "field_colour_slider"
-            }
+        "bindings": {
+          "scratchblocks": {
+            "shape": "color"
           }
         }
+      }
+    },
+    "bindings": {
+      "scratchblocks": {}
+    },
+    "source": {
+      "scratchBlocks": {
+        "sourceFile": "blocks_common/colour.js",
+        "definition": "json"
       }
     }
   },
@@ -3319,6 +6794,12 @@
     "opcode": "matrix",
     "shape": "reporter",
     "outputType": "matrix",
+    "arguments": [
+      {
+        "kind": "field",
+        "name": "MATRIX"
+      }
+    ],
     "inputs": {},
     "fields": {
       "MATRIX": {
@@ -3328,13 +6809,20 @@
           "type": "text",
           "value": ""
         },
-        "metadata": {
-          "scratchBlocks": {
-            "blockJson": {
-              "type": "field_matrix"
-            }
+        "bindings": {
+          "scratchblocks": {
+            "shape": "string"
           }
         }
+      }
+    },
+    "bindings": {
+      "scratchblocks": {}
+    },
+    "source": {
+      "scratchBlocks": {
+        "sourceFile": "blocks_common/matrix.js",
+        "definition": "json"
       }
     }
   },
@@ -3342,6 +6830,12 @@
     "opcode": "note",
     "shape": "reporter",
     "outputType": "note",
+    "arguments": [
+      {
+        "kind": "field",
+        "name": "NOTE"
+      }
+    ],
     "inputs": {},
     "fields": {
       "NOTE": {
@@ -3351,13 +6845,20 @@
           "type": "text",
           "value": "60"
         },
-        "metadata": {
-          "scratchBlocks": {
-            "blockJson": {
-              "type": "field_note"
-            }
+        "bindings": {
+          "scratchblocks": {
+            "shape": "string"
           }
         }
+      }
+    },
+    "bindings": {
+      "scratchblocks": {}
+    },
+    "source": {
+      "scratchBlocks": {
+        "sourceFile": "blocks_common/note.js",
+        "definition": "json"
       }
     }
   }

@@ -1,11 +1,4 @@
-import type {
-  Field,
-  FieldType,
-  Input,
-  JsonObject,
-  JsonValue,
-  Opcode,
-} from "@scratch-code/ast"
+import type {Field, FieldType, Input, Opcode} from "@scratch-code/ast"
 
 type DeepReadonly<T> = T extends (...args: never[]) => unknown
   ? T
@@ -15,12 +8,41 @@ type DeepReadonly<T> = T extends (...args: never[]) => unknown
       ? {readonly [TKey in keyof T]: DeepReadonly<T[TKey]>}
       : T
 
-/** JSON-safe source details which are intentionally outside the semantic model. */
-export type BlockSpecMetadata = {
-  readonly scratchBlocks?: {
-    readonly blockJson?: DeepReadonly<JsonObject>
-  }
-  readonly [namespace: string]: DeepReadonly<JsonValue> | undefined
+export type BlockArgumentRef =
+  | {readonly kind: "field"; readonly name: string}
+  | {readonly kind: "input"; readonly name: string}
+
+export interface ScratchblocksBlockBinding {
+  /** scratchblocks-plus Block.info.id in its English pivot language. */
+  readonly blockId?: string
+  readonly hasLoopArrow?: true
+}
+
+export interface ScratchblocksFieldOption {
+  readonly label: string
+  readonly value: string
+}
+
+export interface ScratchblocksFieldBinding {
+  readonly shape?: "string" | "dropdown" | "color"
+  readonly options?: readonly ScratchblocksFieldOption[]
+}
+
+export interface BlockSpecBindings {
+  readonly scratchblocks?: ScratchblocksBlockBinding
+}
+
+export interface FieldSpecBindings {
+  readonly scratchblocks?: ScratchblocksFieldBinding
+}
+
+export interface ScratchBlocksSource {
+  readonly sourceFile: string
+  readonly definition: "json" | "custom-init"
+}
+
+export interface BlockSpecSource {
+  readonly scratchBlocks?: ScratchBlocksSource
 }
 
 export type BlockShape =
@@ -53,7 +75,6 @@ export type DefaultField = DeepReadonly<Field>
 interface InputSpecBase {
   /** The initial shadow or connected content, represented exactly like AST content. */
   readonly default?: DefaultInput
-  readonly metadata?: BlockSpecMetadata
 }
 
 export interface ValueInputSpec extends InputSpecBase {
@@ -73,14 +94,17 @@ export interface FieldSpec {
   readonly type: FieldType
   /** The initial field, including identity where Scratch requires it. */
   readonly default?: DefaultField
-  readonly metadata?: BlockSpecMetadata
+  readonly bindings?: FieldSpecBindings
 }
 
 interface BlockSpecBase {
   readonly opcode: Opcode
   readonly inputs: Readonly<Record<string, InputSpec>>
   readonly fields: Readonly<Record<string, FieldSpec>>
-  readonly metadata?: BlockSpecMetadata
+  /** Language-independent identity and canonical field/input order. */
+  readonly arguments: readonly BlockArgumentRef[]
+  readonly bindings?: BlockSpecBindings
+  readonly source?: BlockSpecSource
 }
 
 export interface CommandBlockSpec extends BlockSpecBase {

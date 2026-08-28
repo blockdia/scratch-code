@@ -31,3 +31,27 @@ export interface Sb3Block extends JsonObject {
 export type Sb3BlockEntry = Sb3Block | Sb3Primitive
 
 export type Sb3Blocks = Record<string, Sb3BlockEntry>
+
+interface Sb3MetadataBase {
+  version: 1
+}
+
+/** SB3-only details meaningful on a Script node. */
+export type Sb3ScriptMetadata = Sb3MetadataBase
+
+/** SB3-only details which cannot be derived from a semantic Block. */
+export interface Sb3BlockMetadata extends Sb3MetadataBase {
+  shadow?: true
+  comment?: string
+  /** Raw mutation only for opcodes without a modeled semantic mutation. */
+  mutation?: JsonObject
+}
+
+/** SB3-only details which cannot be derived from a semantic Input. */
+export interface Sb3InputMetadata extends Sb3MetadataBase {
+  /** ID required when a scalar shadow must be emitted as an object block. */
+  shadowId?: string
+}
+
+/** Reserved version marker for node-specific Field provenance. */
+export type Sb3FieldMetadata = Sb3MetadataBase

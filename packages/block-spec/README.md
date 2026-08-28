@@ -26,6 +26,8 @@ const moveSteps: BlockSpec = {
     },
   },
   fields: {},
+  arguments: [{kind: "input", name: "STEPS"}],
+  bindings: {scratchblocks: {blockId: "MOTION_MOVESTEPS"}},
 }
 
 const registry = createBlockSpecRegistry()
@@ -45,8 +47,15 @@ Defaults use AST `Input` nodes. Scalar shadows therefore retain details such as
 complete `BlockInput` containing their opcode and fields. A statement slot may
 also have a `BlockInput` default, as used by a procedure definition's prototype.
 
-`metadata.scratchBlocks.blockJson` is available on specs, inputs, and fields for
-JSON-safe Scratch Blocks source details which are not part of the semantic API.
+`arguments` is the language-independent identity and canonical order of fields
+and inputs. It does not describe translated display order. Syntax codecs use
+explicit bindings such as `bindings.scratchblocks.blockId`; they do not infer
+identity from English message text. `source.scratchBlocks` records source-file
+provenance separately from scratchblocks-plus syntax bindings.
+
+Field scratchblocks bindings contain only surface information the codec cannot
+infer, such as input shape and canonical dropdown label/value pairs. Raw Scratch
+Blocks `args*` definitions no longer carry ordering or identity responsibilities.
 
 Hat blocks distinguish the curved, event-style hat from the flat procedure
 definition hat:
@@ -58,6 +67,7 @@ const definition: BlockSpec = {
   hatStyle: "define",
   inputs: {custom_block: {connection: "statement"}},
   fields: {},
+  arguments: [{kind: "input", name: "custom_block"}],
 }
 ```
 

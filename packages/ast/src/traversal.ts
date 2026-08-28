@@ -33,7 +33,10 @@ export const getChildren = (node: AstNode): AstNode[] => {
     case "block":
       return [...Object.values(node.fields), ...Object.values(node.inputs)]
     case "input":
-      return node.type === "block" || node.type === "script" ? [node.value] : []
+      return [
+        ...(node.type === "block" || node.type === "script" ? [node.value] : []),
+        ...(node.obscuredShadow === undefined ? [] : [node.obscuredShadow]),
+      ]
     case "field":
       return []
   }
@@ -79,6 +82,13 @@ export const walk = (root: AstNode, visitor: WalkVisitor): void => {
           visit(node.value, {
             parent: node,
             key: "value",
+            depth: context.depth + 1,
+          })
+        }
+        if (node.obscuredShadow !== undefined) {
+          visit(node.obscuredShadow, {
+            parent: node,
+            key: "obscuredShadow",
             depth: context.depth + 1,
           })
         }

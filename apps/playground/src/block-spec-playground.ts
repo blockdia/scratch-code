@@ -2,7 +2,7 @@ import {createBlockSpecRegistry} from "@scratch-code/block-spec"
 import type {BlockSpec} from "@scratch-code/block-spec"
 import "./package.css"
 
-const example: BlockSpec = {opcode: "example_say", shape: "command", fields: {}, inputs: {MESSAGE: {connection: "value", accepts: ["string", "number"], default: {kind: "input", type: "string", value: "Hello!"}}}}
+const example: BlockSpec = {opcode: "example_say", shape: "command", fields: {}, inputs: {MESSAGE: {connection: "value", accepts: ["string", "number"], default: {kind: "input", type: "string", value: "Hello!"}}}, arguments: [{kind: "input", name: "MESSAGE"}]}
 const source = document.querySelector<HTMLTextAreaElement>("#source")!
 const output = document.querySelector<HTMLElement>("#output")!
 const error = document.querySelector<HTMLElement>("#error")!

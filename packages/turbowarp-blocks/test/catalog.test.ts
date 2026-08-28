@@ -39,8 +39,11 @@ describe("TurboWarp catalog", () => {
       shape: spec.shape,
       ...(spec.hatStyle === undefined ? {} : {hatStyle: spec.hatStyle}),
       ...(spec.outputType === undefined ? {} : {outputType: spec.outputType}),
+      arguments: spec.arguments,
       inputs: spec.inputs,
       fields: spec.fields,
+      bindings: spec.bindings,
+      source: spec.source,
     }))
     expect(normalized).toEqual(specsGolden)
   })
@@ -63,6 +66,11 @@ describe("TurboWarp catalog", () => {
       type: "number",
       value: "10",
       metadata: {scratch: {numericKind: "number"}},
+    })
+    expect(registry.require("motion_movesteps")).toMatchObject({
+      arguments: [{kind: "input", name: "STEPS"}],
+      bindings: {scratchblocks: {blockId: "MOTION_MOVESTEPS"}},
+      source: {scratchBlocks: {sourceFile: "blocks_vertical/motion.js", definition: "json"}},
     })
     const definition = registry.require("procedures_definition")
     expect(definition).toMatchObject({shape: "hat", hatStyle: "define"})

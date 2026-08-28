@@ -17,6 +17,11 @@ Category arrays and the aggregate `turboWarpBlockSpecs` are read-only catalog
 data. The factory creates a new registry on every call; the package does not
 export shared mutable registry state.
 
+Every definition exposes language-independent ordered `arguments`, an explicit
+scratchblocks-plus block binding when the block has a textual command identity,
+and separate `source.scratchBlocks` provenance. Runtime codecs do not depend on
+the generated raw Scratch Blocks `args*` data.
+
 ## Dynamic definitions
 
 `control_stop`, `procedures_call`, and `procedures_prototype` require a minimal

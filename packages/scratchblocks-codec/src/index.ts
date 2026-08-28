@@ -1,4 +1,5 @@
 export {deserializeScratchblocks, serializeScratchblocks} from "./converter.js"
+export {getScratchblocksBlockMetadata, getScratchblocksScriptMetadata} from "./metadata.js"
 export {
   AmbiguousScratchblocksBlockError,
   InvalidScratchblocksAstError,
@@ -11,6 +12,8 @@ export type {
   ProcedureArgumentIdContext,
   ScratchblocksCoercion,
   ScratchblocksMetadata,
+  ScratchblocksBlockMetadata,
+  ScratchblocksScriptMetadata,
   SerializeScratchblocksOptions,
 } from "./types.js"
 

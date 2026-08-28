@@ -24,6 +24,7 @@ export type {
   NumberInputScratchMetadata,
   NodeKind,
   NumericKind,
+  ObscuredShadow,
   Opcode,
   ProcedureArgumentDefault,
   ProcedureCallMutation,
@@ -38,6 +39,8 @@ export type {
   TextField,
   VariableField,
 } from "./types.js"
+
+export {assertJsonValue, isJsonValue} from "./json.js"
 
 export {
   getChildren,

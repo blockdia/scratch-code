@@ -1,7 +1,9 @@
-import type {Field, FieldType, Input, JsonObject, NumericKind} from "@scratch-code/ast"
+import type {Field, FieldType, Input, NumericKind} from "@scratch-code/ast"
 import type {
+  BlockArgumentRef,
   BlockSpec,
   FieldSpec,
+  FieldSpecBindings,
   InputAccepts,
   InputSpec,
   ReporterOutputType,
@@ -19,6 +21,7 @@ interface SourceArgument {
   readonly options?: readonly (readonly unknown[])[]
 }
 interface SourceBlockJson {
+  readonly message0?: string
   readonly args0?: readonly SourceArgument[]
   readonly args1?: readonly SourceArgument[]
   readonly args2?: readonly SourceArgument[]
@@ -71,6 +74,22 @@ const literalDefault = (shadow: ShadowDefault): Input | undefined => {
 }
 
 const rawFieldType = (argument: SourceArgument): string => argument.type ?? "field_unknown"
+const fieldBinding = (argument: SourceArgument): FieldSpecBindings => {
+  const type = rawFieldType(argument)
+  const shape = type === "field_colour" || type === "field_colour_slider"
+    ? "color" as const
+    : type === "field_dropdown" || type === "field_numberdropdown" || type.includes("variable")
+      ? "dropdown" as const
+      : "string" as const
+  const options = argument.options?.flatMap(option => {
+    const label = option[0]
+    const value = option[1]
+    return typeof label === "string" && (typeof value === "string" || typeof value === "number")
+      ? [{label, value: String(value)}]
+      : []
+  })
+  return {scratchblocks: {shape, ...(options === undefined || options.length === 0 ? {} : {options})}}
+}
 const semanticFieldType = (opcode: string, argument: SourceArgument): FieldType => {
   if (argument.name === "BROADCAST_OPTION") return "broadcast"
   if (argument.name === "LIST") return "list"
@@ -99,7 +118,7 @@ const fieldsFor = (
     .map(argument => [argument.name!, {
       type: semanticFieldType(record.opcode, argument),
       default: fieldFromArgument(record.opcode, argument, overrides[argument.name!]),
-      metadata: {scratchBlocks: {blockJson: {type: rawFieldType(argument)}}},
+      bindings: fieldBinding(argument),
     }]),
 )
 
@@ -189,6 +208,36 @@ const shapeFor = (record: SourceRecord): Pick<BlockSpec, "shape"> & Partial<Bloc
   return {shape: "command"}
 }
 
+const containsLoopArrow = (value: unknown): boolean => {
+  if (Array.isArray(value)) return value.some(containsLoopArrow)
+  if (typeof value !== "object" || value === null) return false
+  const record = value as Readonly<Record<string, unknown>>
+  if (record["type"] === "field_image" && record["src"] === "repeat.svg") return true
+  return Object.values(record).some(containsLoopArrow)
+}
+
+const argumentsFor = (record: SourceRecord): readonly BlockArgumentRef[] => {
+  const arguments_: BlockArgumentRef[] = []
+  for (const argument of sourceArguments(record.blockJson)) {
+    if (argument.name === undefined || argument.type === "field_image") continue
+    if (argument.type?.startsWith("field_") === true) arguments_.push({kind: "field", name: argument.name})
+    else if (argument.type === "input_value" || argument.type === "input_statement") {
+      arguments_.push({kind: "input", name: argument.name})
+    }
+  }
+  if (record.opcode === "control_stop") return [{kind: "field", name: "STOP_OPTION"}]
+  if (record.opcode === "procedures_definition" && !arguments_.some(argument => argument.name === "custom_block")) {
+    arguments_.push({kind: "input", name: "custom_block"})
+  }
+  return arguments_
+}
+
+const scratchblocksBlockId = (record: SourceRecord): string | undefined => {
+  if (record.opcode === "control_stop") return "CONTROL_STOP"
+  const message = record.blockJson?.message0
+  return typeof message === "string" && !message.includes("%") ? message : undefined
+}
+
 const createSpec = (record: SourceRecord): BlockSpec => {
   const extractedInputs = record.opcode === "control_stop" ? {} : inputsFor(record)
   const inputs = record.opcode === "procedures_definition"
@@ -207,10 +256,27 @@ const createSpec = (record: SourceRecord): BlockSpec => {
   const fields = record.opcode === "control_stop"
     ? {STOP_OPTION: {type: "dropdown" as const, default: {kind: "field" as const, type: "dropdown" as const, value: "all"}}}
     : fieldsFor(record)
-  const metadata = record.blockJson === null
-    ? {scratchBlocks: {blockJson: {customInit: record.opcode}}}
-    : {scratchBlocks: {blockJson: record.blockJson as JsonObject}}
-  return {opcode: record.opcode, inputs, fields, metadata, ...shapeFor(record)} as BlockSpec
+  const blockId = scratchblocksBlockId(record)
+  const hasLoopArrow = containsLoopArrow(record.blockJson)
+  return {
+    opcode: record.opcode,
+    inputs,
+    fields,
+    arguments: argumentsFor(record),
+    bindings: {
+      scratchblocks: {
+        ...(blockId === undefined ? {} : {blockId}),
+        ...(hasLoopArrow ? {hasLoopArrow: true as const} : {}),
+      },
+    },
+    source: {
+      scratchBlocks: {
+        sourceFile: record.file,
+        definition: record.blockJson === null ? "custom-init" : "json",
+      },
+    },
+    ...shapeFor(record),
+  } as BlockSpec
 }
 
 export const specsBySourceFile = new Map<string, readonly BlockSpec[]>(

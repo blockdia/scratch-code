@@ -21,6 +21,11 @@ const script: Script = {
           type: "number",
           value: "0010",
           metadata: {scratch: {numericKind: "number"}},
+          obscuredShadow: {
+            kind: "input",
+            type: "number",
+            value: "10",
+          },
         },
       },
     },
@@ -41,6 +46,9 @@ walk(script, {
 - Scalar shadow blocks are represented as literals. Numeric shadow variants are
   recorded non-semantically as `metadata.scratch.numericKind`.
 - Menu shadows remain blocks; only Scratch fields use `type: "dropdown"`.
+- A mode 3 fallback hidden by a connected value lives on that Input as
+  `obscuredShadow`; it moves and clones with the Input. If the current value is
+  itself the shadow, it is stored only as the current value.
 - Boolean inputs contain a reporter block or are explicitly empty. There is no
   boolean literal input.
 - Workspace coordinates belong to the top-level `Script`, while source block IDs
@@ -52,5 +60,12 @@ and must have matching lengths. Call argument IDs correspond to the call block's
 input keys, and `returnType` distinguishes statement, reporter, and boolean calls.
 
 The package does not validate opcodes, execute blocks, render blocks, or convert
-SB3 files. Hidden/obscured shadows and unsupported raw mutations may be retained
-under `metadata.scratch.sb3` by converter packages.
+SB3 files. Stable annotations under `metadata.scratch` are limited to block IDs,
+script coordinates, and numeric shadow kinds. Codec namespaces such as
+`metadata.sb3` and `metadata.scratchblocks` are owned and typed by their codec
+packages.
+
+`JsonValue` describes the JSON data model, but TypeScript cannot prove that a
+number is finite. Use `isJsonValue()` or `assertJsonValue()` at untrusted
+boundaries; missing object properties should be omitted rather than represented
+as array `undefined` values.

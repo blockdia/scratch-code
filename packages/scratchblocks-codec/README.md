@@ -20,8 +20,8 @@ rebuilt.stringify() // "move (10) steps"
 ```
 
 Both directions require a block-spec registry. The registry supplies semantic
-input and field types, menu-shadow defaults, Scratch Blocks JSON argument
-ordering, and block shapes. The codec uses `scratchblocks-plus/syntax`; it does
+input and field types, menu-shadow defaults, ordered arguments, explicit syntax
+bindings, and block shapes. The codec uses `scratchblocks-plus/syntax`; it does
 not require a DOM, canvas implementation, or renderer.
 
 ## Type conversion
@@ -43,10 +43,13 @@ Dropdown children are interpreted using the spec:
 
 ## Languages and children
 
-Serialization starts with scratchblocks-plus's built-in English language. It
-constructs only semantic children—fields, inputs, nested blocks, and scripts—
-then calls `Block.translate()`, allowing scratchblocks-plus to rebuild labels,
-icons, and localized child ordering.
+Serialization starts with scratchblocks-plus's built-in English language. A
+BlockSpec's ordered `arguments` and explicit `bindings.scratchblocks.blockId`
+construct a minimal English pivot block containing only semantic children—
+fields, inputs, nested blocks, and scripts. It then calls `Block.translate()`,
+allowing scratchblocks-plus to rebuild labels, icons, RTL layout, and localized
+child ordering. The codec does not read raw `blockJson.args*` and does not use
+English message matching as its primary identity mechanism.
 
 Pass a loaded `LanguageData` object as `language` to produce another language.
 Blocks not registered in the English scratchblocks language table cannot be
@@ -63,14 +66,17 @@ Scratchblocks syntax does not contain Scratch 3 prototype defaults or warp
 state. New mutations therefore use Scratch 3-compatible defaults:
 
 - `%n` and `%s`: `""`
-- `%b`: `"false"`
+- `%b`: `false`
 - `warp`: `false`
 
 ## Preserved scratchblocks metadata
 
-Comments, diff markers, and glow wrappers are stored under
-`metadata.scratchblocks` and restored when serializing. Ordinary labels and
-icons are rebuilt and are not copied into semantic metadata.
+Comments, diff markers, and glow wrappers are stored under versioned
+`metadata.scratchblocks` and restored when serializing. Script metadata only
+permits glow; Block metadata permits comment, diff, and glow. Use
+`getScratchblocksScriptMetadata()` and `getScratchblocksBlockMetadata()` for
+typed access. Ordinary labels and icons are rebuilt and are not copied into
+semantic metadata.
 
 Scratchblocks ASTs do not carry workspace coordinates or variable, list, and
 broadcast IDs. Those values are not invented. This package provides semantic

@@ -39,6 +39,7 @@ const standardHat: BlockSpec = {
   hatStyle: "standard",
   inputs: {},
   fields: {},
+  arguments: [],
 }
 
 const defineHat: BlockSpec = {
@@ -47,6 +48,7 @@ const defineHat: BlockSpec = {
   hatStyle: "define",
   inputs: {custom_block: {connection: "statement"}},
   fields: {},
+  arguments: [{kind: "input", name: "custom_block"}],
 }
 
 // @ts-expect-error value connections require an accepts constraint.
@@ -59,13 +61,13 @@ const constrainedStatement: InputSpec = {connection: "statement", accepts: "bool
 const blockConstraint: InputSpec = {connection: "value", accepts: "block"}
 
 // @ts-expect-error hats must choose their visual style.
-const hatWithoutStyle: BlockSpec = {opcode: "event_test", shape: "hat", inputs: {}, fields: {}}
+const hatWithoutStyle: BlockSpec = {opcode: "event_test", shape: "hat", inputs: {}, fields: {}, arguments: []}
 
 // @ts-expect-error non-hat blocks cannot declare a hat style.
-const commandWithHatStyle: BlockSpec = {opcode: "motion_test", shape: "command", hatStyle: "standard", inputs: {}, fields: {}}
+const commandWithHatStyle: BlockSpec = {opcode: "motion_test", shape: "command", hatStyle: "standard", inputs: {}, fields: {}, arguments: []}
 
 // @ts-expect-error round reporters require their semantic output type.
-const reporterWithoutOutput: BlockSpec = {opcode: "sensing_test", shape: "reporter", inputs: {}, fields: {}}
+const reporterWithoutOutput: BlockSpec = {opcode: "sensing_test", shape: "reporter", inputs: {}, fields: {}, arguments: []}
 
 void [
   roundTripNumericKind,

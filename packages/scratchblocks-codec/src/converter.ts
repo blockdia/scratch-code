@@ -51,15 +51,21 @@ import type {
   DeserializeScratchblocksOptions,
   ProcedureArgumentIdContext,
   ScratchblocksCoercion,
+  ScratchblocksBlockMetadata,
   ScratchblocksMetadata,
   SerializeScratchblocksOptions,
 } from "./types.js"
 
 type UnknownRecord = Record<string, unknown>
+type ScratchblocksMetadataContent = {
+  comment?: string
+  diff?: "+" | "-"
+  glow?: boolean
+}
 
 type OrderedSlot =
-  | {readonly kind: "field"; readonly name: string; readonly spec: FieldSpec; readonly source?: UnknownRecord}
-  | {readonly kind: "input"; readonly name: string; readonly spec: InputSpec; readonly source?: UnknownRecord}
+  | {readonly kind: "field"; readonly name: string; readonly spec: FieldSpec}
+  | {readonly kind: "input"; readonly name: string; readonly spec: InputSpec}
 
 interface ProcedureArgument {
   readonly id: string
@@ -89,7 +95,7 @@ interface SerializeState<TContext> {
 }
 
 interface RegistryIndex {
-  readonly byMessage: ReadonlyMap<string, readonly BlockSpec[]>
+  readonly byBlockId: ReadonlyMap<string, readonly BlockSpec[]>
 }
 
 const isRecord = (value: unknown): value is UnknownRecord =>
@@ -101,63 +107,39 @@ const scratchblocksMetadata = (
   node: {metadata?: Record<string, unknown>},
 ): ScratchblocksMetadata | undefined => {
   const value = node.metadata?.["scratchblocks"]
-  return isRecord(value) ? value as ScratchblocksMetadata : undefined
+  return isRecord(value) && value["version"] === 1 ? value as unknown as ScratchblocksMetadata : undefined
 }
 
 const setScratchblocksMetadata = (
   node: {metadata?: Record<string, unknown>},
-  metadata: ScratchblocksMetadata,
+  metadata: ScratchblocksMetadataContent,
 ): void => {
   if (Object.keys(metadata).length === 0) return
-  node.metadata = {...(node.metadata ?? {}), scratchblocks: metadata}
+  node.metadata = {...(node.metadata ?? {}), scratchblocks: {version: 1, ...metadata}}
 }
-
-const blockJson = (spec: BlockSpec): UnknownRecord | undefined => {
-  const value = spec.metadata?.scratchBlocks?.blockJson
-  return isRecord(value) ? value : undefined
-}
-
-const numberedValues = (source: UnknownRecord, prefix: string): unknown[] =>
-  Object.entries(source)
-    .flatMap(([key, value]) => {
-      const match = new RegExp(`^${prefix}(\\d+)$`).exec(key)
-      return match === null ? [] : [{index: Number(match[1]), value}]
-    })
-    .sort((left, right) => left.index - right.index)
-    .map(entry => entry.value)
 
 const orderedSlots = (spec: BlockSpec): OrderedSlot[] => {
-  const json = blockJson(spec)
   const slots: OrderedSlot[] = []
   const seen = new Set<string>()
-  if (json !== undefined) {
-    for (const args of numberedValues(json, "args")) {
-      if (!Array.isArray(args)) continue
-      for (const raw of args) {
-        if (!isRecord(raw) || typeof raw["name"] !== "string") continue
-        const name = raw["name"]
-        if (spec.fields[name] !== undefined) {
-          slots.push({kind: "field", name, spec: spec.fields[name], source: raw})
-          seen.add(`field:${name}`)
-        } else if (spec.inputs[name] !== undefined) {
-          slots.push({kind: "input", name, spec: spec.inputs[name], source: raw})
-          seen.add(`input:${name}`)
-        }
-      }
+  for (const argument of spec.arguments) {
+    const key = `${argument.kind}:${argument.name}`
+    if (seen.has(key)) throw new MissingScratchblocksSpecMetadataError(spec.opcode, `deduplicate argument "${argument.name}"`)
+    seen.add(key)
+    if (argument.kind === "field") {
+      const field = spec.fields[argument.name]
+      if (field === undefined) throw new MissingScratchblocksSpecMetadataError(spec.opcode, `resolve field "${argument.name}"`)
+      slots.push({kind: "field", name: argument.name, spec: field})
+    } else {
+      const input = spec.inputs[argument.name]
+      if (input === undefined) throw new MissingScratchblocksSpecMetadataError(spec.opcode, `resolve input "${argument.name}"`)
+      slots.push({kind: "input", name: argument.name, spec: input})
     }
   }
-
-  const remainingFields = Object.entries(spec.fields)
-    .filter(([name]) => !seen.has(`field:${name}`))
-  const remainingInputs = Object.entries(spec.inputs)
-    .filter(([name]) => !seen.has(`input:${name}`))
-  if (remainingFields.length + remainingInputs.length > 0) {
-    if (remainingFields.length + remainingInputs.length === 1) {
-      for (const [name, fieldSpec] of remainingFields) slots.push({kind: "field", name, spec: fieldSpec})
-      for (const [name, inputSpec] of remainingInputs) slots.push({kind: "input", name, spec: inputSpec})
-    } else {
-      throw new MissingScratchblocksSpecMetadataError(spec.opcode, "order its fields and inputs")
-    }
+  for (const name of Object.keys(spec.fields)) {
+    if (!seen.has(`field:${name}`)) throw new MissingScratchblocksSpecMetadataError(spec.opcode, `order field "${name}"`)
+  }
+  for (const name of Object.keys(spec.inputs)) {
+    if (!seen.has(`input:${name}`)) throw new MissingScratchblocksSpecMetadataError(spec.opcode, `order input "${name}"`)
   }
   return slots
 }
@@ -166,13 +148,13 @@ const createRegistryIndex = <TContext>(registry: BlockSpecRegistry<TContext>): R
   const mutable = new Map<string, BlockSpec[]>()
   for (const opcode of registry.opcodes()) {
     const spec = registry.require(opcode)
-    const message = blockJson(spec)?.["message0"]
-    if (typeof message !== "string" || message.includes("%")) continue
-    const entries = mutable.get(message) ?? []
+    const blockId = spec.bindings?.scratchblocks?.blockId
+    if (blockId === undefined) continue
+    const entries = mutable.get(blockId) ?? []
     entries.push(spec)
-    mutable.set(message, entries)
+    mutable.set(blockId, entries)
   }
-  return {byMessage: mutable}
+  return {byBlockId: mutable}
 }
 
 const unwrapScratchBlock = (block: ScratchBlock | ScratchGlow): {block: ScratchBlock; glow: boolean} => {
@@ -234,10 +216,7 @@ const resolveOpcode = <TContext>(state: DeserializeState<TContext>, block: Scrat
 
   const candidates: BlockSpec[] = []
   if (block.info.id !== undefined) {
-    candidates.push(...(state.index.byMessage.get(block.info.id) ?? []))
-    const lower = block.info.id.toLowerCase()
-    const direct = state.registry.get(lower)
-    if (direct !== undefined && !candidates.includes(direct)) candidates.push(direct)
+    candidates.push(...(state.index.byBlockId.get(block.info.id) ?? []))
   }
   const matching = candidates.filter(spec => candidateMatches(spec, block))
   if (matching.length === 1) return matching[0]!.opcode
@@ -250,18 +229,15 @@ const resolveOpcode = <TContext>(state: DeserializeState<TContext>, block: Scrat
   throw new UnknownScratchblocksBlockError(describeScratchBlock(block))
 }
 
-const optionPairs = (source: UnknownRecord | undefined): Array<readonly [unknown, unknown]> => {
-  const options = source?.["options"]
-  if (!Array.isArray(options)) return []
-  return options.filter((option): option is [unknown, unknown] => Array.isArray(option) && option.length >= 2)
-}
+const optionPairs = (field: FieldSpec): Array<readonly [string, string]> =>
+  field.bindings?.scratchblocks?.options?.map(option => [option.label, option.value] as const) ?? []
 
 const canonicalFieldValue = (
   input: ScratchInput,
-  source: UnknownRecord | undefined,
+  fieldSpec: FieldSpec,
   english: LanguageData,
 ): string => {
-  const pairs = optionPairs(source)
+  const pairs = optionPairs(fieldSpec)
   for (const [label, value] of pairs) {
     if (typeof label === "string" && input.menu === label) return String(value ?? "")
     if (typeof label === "string" && english.dropdowns[label]?.value === input.value) return String(value ?? "")
@@ -278,7 +254,7 @@ const makeField = (
     ? {kind: "field" as const, type: slot.spec.type, value: ""}
     : cloneJson(slot.spec.default) as Field
   if (input === undefined) return fallback
-  const value = canonicalFieldValue(input, slot.source, english)
+  const value = canonicalFieldValue(input, slot.spec, english)
   return {
     kind: "field",
     type: slot.spec.type,
@@ -379,10 +355,10 @@ const procedureTokens = (procedureCode: string): Array<"number" | "string" | "bo
     match[1] === "n" ? "number" : match[1] === "b" ? "boolean" : "string")
 
 const defaultArgumentId = (context: ProcedureArgumentIdContext): string =>
-  `scratchblocks:${context.procedurePath}:${context.argumentIndex}`
+  `scratchblocks:${encodeURIComponent(context.procedureCode)}:${context.argumentIndex}`
 
 const procedureDefault = (type: ProcedureArgument["type"]): ProcedureArgumentDefault =>
-  type === "boolean" ? "false" : ""
+  type === "boolean" ? false : ""
 
 const definitionDescriptor = (
   block: ScratchBlock,
@@ -676,7 +652,7 @@ const convertScratchBlock = <TContext>(
       result = {kind: "block", opcode, inputs, fields}
     }
   }
-  const metadata: ScratchblocksMetadata = {}
+  const metadata: ScratchblocksMetadataContent = {}
   if (block.comment !== null) metadata.comment = block.comment.label.value
   if (block.diff === "+" || block.diff === "-") metadata.diff = block.diff
   if (glow) metadata.glow = true
@@ -710,17 +686,12 @@ export const deserializeScratchblocks = <TContext>(
   return document.scripts.map((script, index) => convertScratchScript(state, script, String(index)))
 }
 
-const rawFieldSource = (fieldSpec: FieldSpec): UnknownRecord | undefined => {
-  const value = fieldSpec.metadata?.scratchBlocks?.blockJson
-  return isRecord(value) ? value : undefined
-}
-
 const displayedField = (
   field: Field,
-  source: UnknownRecord | undefined,
+  fieldSpec: FieldSpec,
   state: SerializeState<unknown>,
 ): {value: string; menu?: string} => {
-  for (const [label, value] of optionPairs(source)) {
+  for (const [label, value] of optionPairs(fieldSpec)) {
     if (String(value ?? "") !== field.value || typeof label !== "string") continue
     return {
       value: state.english.dropdowns[label]?.value ?? label,
@@ -735,12 +706,9 @@ const scratchFieldInput = (
   slot: Extract<OrderedSlot, {kind: "field"}>,
   state: SerializeState<unknown>,
 ): ScratchInput => {
-  const source = slot.source ?? rawFieldSource(slot.spec)
-  const displayed = displayedField(field, source, state)
-  const rawType = source?.["type"]
-  const shape = rawType === "field_colour" || rawType === "field_colour_slider"
-    ? "color"
-    : slot.spec.type === "text" ? "string" : "dropdown"
+  const displayed = displayedField(field, slot.spec, state)
+  const shape = slot.spec.bindings?.scratchblocks?.shape ??
+    (slot.spec.type === "text" ? "string" : "dropdown")
   const input = new ScratchInputConstructor(shape, displayed.value)
   if (displayed.menu !== undefined) input.menu = displayed.menu
   return input
@@ -831,13 +799,6 @@ const categoryFor = (spec: BlockSpec): string => {
   return spec.opcode.split(/[_.]/, 1)[0] ?? "obsolete"
 }
 
-const containsLoopArrow = (value: unknown): boolean => {
-  if (Array.isArray(value)) return value.some(containsLoopArrow)
-  if (!isRecord(value)) return false
-  if (value["type"] === "field_image" && value["src"] === "repeat.svg") return true
-  return Object.values(value).some(containsLoopArrow)
-}
-
 const scratchShape = (spec: BlockSpec): string => {
   if (spec.shape === "reporter") return "reporter"
   if (spec.shape === "boolean") return "boolean"
@@ -847,10 +808,9 @@ const scratchShape = (spec: BlockSpec): string => {
 }
 
 const translationId = (spec: BlockSpec, english: LanguageData): string => {
-  if (spec.opcode === "control_stop") return "CONTROL_STOP"
-  const message = blockJson(spec)?.["message0"]
-  if (typeof message === "string" && !message.includes("%") && english.commands[message] !== undefined) {
-    return message
+  const blockId = spec.bindings?.scratchblocks?.blockId
+  if (blockId !== undefined && english.commands[blockId] !== undefined) {
+    return blockId
   }
   throw new MissingScratchblocksSpecMetadataError(spec.opcode, "find an English scratchblocks translation")
 }
@@ -870,7 +830,7 @@ const menuInputFromBlock = <TContext>(
   if (field === undefined) return new ScratchInputConstructor("number-dropdown", "")
   const displayed = displayedField(
     field,
-    firstSlot.source ?? rawFieldSource(firstSlot.spec),
+    firstSlot.spec,
     state as SerializeState<unknown>,
   )
   const result = new ScratchInputConstructor("number-dropdown", displayed.value)
@@ -1039,7 +999,7 @@ const serializeProcedureCall = <TContext>(
 }
 
 const decorateScratchBlock = (block: ScratchBlock, ast: AstBlock): ScratchBlock | ScratchGlow => {
-  const metadata = scratchblocksMetadata(ast)
+  const metadata = scratchblocksMetadata(ast) as ScratchblocksBlockMetadata | undefined
   if (metadata?.comment !== undefined) block.comment = new ScratchCommentConstructor(metadata.comment, true)
   if (metadata?.diff === "+" || metadata?.diff === "-") block.diff = metadata.diff
   return metadata?.glow === true ? new ScratchGlowConstructor(block) : block
@@ -1061,8 +1021,7 @@ const serializeOrdinaryBlock = <TContext>(
     }
     return serializeValueChild(state, block.opcode, slot.name, block.inputs[slot.name], slot.spec)
   })
-  const json = blockJson(spec)
-  const hasLoopArrow = containsLoopArrow(json)
+  const hasLoopArrow = spec.bindings?.scratchblocks?.hasLoopArrow === true
   const info: BlockInfo = {
     id: translationId(spec, state.english),
     selector: `sb3:${block.opcode}`,

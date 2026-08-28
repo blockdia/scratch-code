@@ -7,8 +7,11 @@ const normalized = turboWarpBlockSpecs.map(spec => ({
   shape: spec.shape,
   ...(spec.hatStyle === undefined ? {} : {hatStyle: spec.hatStyle}),
   ...(spec.outputType === undefined ? {} : {outputType: spec.outputType}),
+  arguments: spec.arguments,
   inputs: spec.inputs,
   fields: spec.fields,
+  bindings: spec.bindings,
+  source: spec.source,
 }))
 const output = path.resolve(process.argv[2] ?? "test/fixtures/specs.golden.json")
 fs.mkdirSync(path.dirname(output), {recursive: true})

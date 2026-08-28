@@ -41,6 +41,33 @@ const semanticBlock = (block: Block): unknown => ({
 const semanticScript = (script: Script): unknown => ({blocks: script.blocks.map(semanticBlock)})
 
 describe("ordinary Scratch blocks", () => {
+  it("uses BlockSpec arguments and explicit scratchblocks binding without block JSON", () => {
+    const customRegistry = createBlockSpecRegistry()
+    customRegistry.register({
+      opcode: "extension_move",
+      shape: "command",
+      inputs: {VALUE: {connection: "value", accepts: "number"}},
+      fields: {},
+      arguments: [{kind: "input", name: "VALUE"}],
+      bindings: {scratchblocks: {blockId: "MOTION_MOVESTEPS"}},
+    })
+    const scripts: Script[] = [{
+      kind: "script",
+      blocks: [{
+        kind: "block",
+        opcode: "extension_move",
+        inputs: {VALUE: {kind: "input", type: "number", value: "7"}},
+        fields: {},
+      }],
+    }]
+    const document = serializeScratchblocks(scripts, customRegistry)
+    expect(document.stringify()).toBe("move (7) steps")
+    expect(deserializeScratchblocks(document, customRegistry)[0]?.blocks[0]).toMatchObject({
+      opcode: "extension_move",
+      inputs: {VALUE: {type: "number", value: "7"}},
+    })
+  })
+
   it("round-trips fields, nested reporters, C blocks, and menu shadows", () => {
     const source = [
       "set [score v] to ((x position) + (1))",
@@ -124,7 +151,7 @@ describe("custom procedures and scratchblocks metadata", () => {
     const mutation = prototypeInput.value.mutation
     expect(mutation).toMatchObject({
       type: "procedure-prototype",
-      argumentDefaults: ["", "", "false"],
+      argumentDefaults: ["", "", false],
       warp: false,
     })
     if (mutation?.type !== "procedure-prototype" || call.mutation?.type !== "procedure-call") {
@@ -155,6 +182,7 @@ describe("custom procedures and scratchblocks metadata", () => {
     document.scripts[0]!.blocks[0] = new Glow(block)
     const scripts = deserializeScratchblocks(document, registry())
     expect(scripts[0]?.blocks[0]?.metadata?.["scratchblocks"]).toEqual({
+      version: 1,
       comment: "kept",
       diff: "-",
       glow: true,
@@ -186,6 +214,7 @@ describe("errors", () => {
       shape: "command",
       inputs: {VALUE: {connection: "value", accepts: "string"}},
       fields: {MODE: {type: "dropdown"}},
+      arguments: [],
     })
     const script: Script = {
       kind: "script",

@@ -5,6 +5,13 @@ export class InvalidSb3BlocksError extends Error {
   }
 }
 
+export class InvalidBlockGraphError extends InvalidSb3BlocksError {
+  constructor(message: string) {
+    super(message)
+    this.name = "InvalidBlockGraphError"
+  }
+}
+
 export class MissingBlockIdError extends Error {
   constructor(opcode: string) {
     super(`Cannot serialize non-primitive block "${opcode}" without metadata.scratch.id.`)

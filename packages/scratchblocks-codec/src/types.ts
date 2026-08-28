@@ -1,4 +1,3 @@
-import type {JsonObject} from "@scratch-code/ast"
 import type {LanguageData} from "scratchblocks-plus/syntax"
 
 export type ScratchblocksCoercion = "loose" | "strict"
@@ -23,9 +22,17 @@ export interface SerializeScratchblocksOptions {
   readonly language?: LanguageData
 }
 
-/** Lightweight scratchblocks-only details stored in AST metadata. */
-export interface ScratchblocksMetadata extends JsonObject {
+export interface ScratchblocksScriptMetadata {
+  version: 1
+  glow?: boolean
+}
+
+/** Lightweight scratchblocks-only details stored on Block nodes. */
+export interface ScratchblocksBlockMetadata {
+  version: 1
   comment?: string
   diff?: "+" | "-"
   glow?: boolean
 }
+
+export type ScratchblocksMetadata = ScratchblocksScriptMetadata | ScratchblocksBlockMetadata

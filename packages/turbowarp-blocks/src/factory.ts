@@ -74,7 +74,9 @@ const resolveControlStop = (
     shape: "command",
     inputs: baseSpec.inputs,
     fields: baseSpec.fields,
-    ...(baseSpec.metadata === undefined ? {} : {metadata: baseSpec.metadata}),
+    arguments: baseSpec.arguments,
+    ...(baseSpec.bindings === undefined ? {} : {bindings: baseSpec.bindings}),
+    ...(baseSpec.source === undefined ? {} : {source: baseSpec.source}),
   }
 }
 
@@ -89,7 +91,9 @@ const resolveProcedureCall = (
     opcode: baseSpec.opcode,
     inputs,
     fields: baseSpec.fields,
-    ...(baseSpec.metadata === undefined ? {} : {metadata: baseSpec.metadata}),
+    arguments: call.arguments.map(argument => ({kind: "input" as const, name: argument.id})),
+    ...(baseSpec.bindings === undefined ? {} : {bindings: baseSpec.bindings}),
+    ...(baseSpec.source === undefined ? {} : {source: baseSpec.source}),
   }
   if (call.returnType === "boolean") return {...common, shape: "boolean"}
   if (call.returnType === "reporter") return {...common, shape: "reporter", outputType: "any"}
@@ -112,7 +116,9 @@ const resolveProcedurePrototype = (
     shape: "command",
     inputs,
     fields: baseSpec.fields,
-    ...(baseSpec.metadata === undefined ? {} : {metadata: baseSpec.metadata}),
+    arguments: prototype.arguments.map(argument => ({kind: "input" as const, name: argument.id})),
+    ...(baseSpec.bindings === undefined ? {} : {bindings: baseSpec.bindings}),
+    ...(baseSpec.source === undefined ? {} : {source: baseSpec.source}),
   }
 }
 

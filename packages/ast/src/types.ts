@@ -26,19 +26,17 @@ export type NumericKind =
   | "positive-number"
   | "angle"
 
-/** Raw Scratch-specific information shared by all AST node metadata. */
-export type ScratchMetadata = {
-  sb3?: JsonObject
-}
+/** Stable Scratch annotations shared by all AST node metadata. */
+export type ScratchMetadata = Record<string, never>
 
 /** Scratch metadata that is meaningful on a workspace-level script. */
-export type ScriptScratchMetadata = ScratchMetadata & {
+export type ScriptScratchMetadata = {
   x?: number
   y?: number
 }
 
 /** Scratch metadata that is meaningful on an individual block. */
-export type BlockScratchMetadata = ScratchMetadata & {
+export type BlockScratchMetadata = {
   id?: string
 }
 
@@ -46,7 +44,7 @@ export type BlockScratchMetadata = ScratchMetadata & {
 export type InputScratchMetadata = ScratchMetadata
 
 /** Scratch metadata specific to a normalized number literal. */
-export type NumberInputScratchMetadata = ScratchMetadata & {
+export type NumberInputScratchMetadata = {
   numericKind?: NumericKind
 }
 
@@ -59,14 +57,14 @@ export type FieldScratchMetadata = ScratchMetadata
  * Scratch-derived annotations live under `scratch`; consumers should use
  * separate top-level namespaces for their own annotations.
  */
-export type Metadata<TScratch extends JsonObject> = {
+export type Metadata<TScratch extends object> = {
   scratch?: TScratch
-  [namespace: string]: JsonValue | undefined
+  [namespace: string]: JsonValue | TScratch | undefined
 }
 
 export interface AstNodeBase<
   TKind extends NodeKind,
-  TScratch extends JsonObject,
+  TScratch extends object,
 > {
   kind: TKind
   metadata?: Metadata<TScratch>
@@ -118,14 +116,24 @@ export interface Block extends AstNodeBase<"block", BlockScratchMetadata> {
   mutation?: SemanticMutation
 }
 
+interface InputBase<TScratch extends object>
+  extends AstNodeBase<"input", TScratch> {
+  /**
+   * The default shadow hidden by the current connected value in an SB3 mode 3
+   * input. It moves with the input and is omitted when the current value is
+   * itself the shadow.
+   */
+  obscuredShadow?: ObscuredShadow
+}
+
 export interface StringInput
-  extends AstNodeBase<"input", InputScratchMetadata> {
+  extends InputBase<InputScratchMetadata> {
   type: "string"
   value: string
 }
 
 export interface NumberInput
-  extends AstNodeBase<"input", NumberInputScratchMetadata> {
+  extends InputBase<NumberInputScratchMetadata> {
   type: "number"
   /**
    * Strings are intentionally accepted to preserve values such as `0010`,
@@ -135,38 +143,38 @@ export interface NumberInput
 }
 
 export interface ColorInput
-  extends AstNodeBase<"input", InputScratchMetadata> {
+  extends InputBase<InputScratchMetadata> {
   type: "color"
   value: string
 }
 
 export interface MatrixInput
-  extends AstNodeBase<"input", InputScratchMetadata> {
+  extends InputBase<InputScratchMetadata> {
   type: "matrix"
   /** Scratch stores a matrix field as its 25-character bit string. */
   value: string
 }
 
 export interface NoteInput
-  extends AstNodeBase<"input", InputScratchMetadata> {
+  extends InputBase<InputScratchMetadata> {
   type: "note"
   value: string | number
 }
 
 export interface BlockInput
-  extends AstNodeBase<"input", InputScratchMetadata> {
+  extends InputBase<InputScratchMetadata> {
   type: "block"
   value: Block
 }
 
 export interface ScriptInput
-  extends AstNodeBase<"input", InputScratchMetadata> {
+  extends InputBase<InputScratchMetadata> {
   type: "script"
   value: Script
 }
 
 export interface EmptyInput
-  extends AstNodeBase<"input", InputScratchMetadata> {
+  extends InputBase<InputScratchMetadata> {
   type: "empty"
 }
 
@@ -183,6 +191,15 @@ export type Input =
   | BlockInput
   | ScriptInput
   | EmptyInput
+
+/** A hidden SB3 fallback shadow can be a literal or a single shadow block. */
+export type ObscuredShadow =
+  | StringInput
+  | NumberInput
+  | ColorInput
+  | MatrixInput
+  | NoteInput
+  | BlockInput
 
 export type FieldType = "text" | "dropdown" | "variable" | "list" | "broadcast"
 

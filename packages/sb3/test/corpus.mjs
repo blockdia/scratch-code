@@ -3,7 +3,7 @@ import {readdirSync} from "node:fs"
 import {basename, resolve} from "node:path"
 
 import {createTurboWarpBlockRegistry} from "@scratch-code/turbowarp-blocks"
-import {deserializeBlocks, serializeBlocks} from "@scratch-code/sb3"
+import {deserializeBlocks, InvalidBlockGraphError, serializeBlocks} from "@scratch-code/sb3"
 
 const directory = process.argv.slice(2).find(argument => argument !== "--")
 if (!directory) throw new Error("Usage: test:corpus -- /path/to/sb3-projects")
@@ -14,17 +14,16 @@ let checkedProjects = 0
 let checkedTargets = 0
 let checkedBlocks = 0
 let skippedProjects = 0
+let rejectedTargets = 0
+let sourceBytes = 0
+let semanticAstBytes = 0
+let fullAstBytes = 0
 
-const normalizeEmptyInputs = blocks => {
-  const copy = structuredClone(blocks)
-  for (const block of Object.values(copy)) {
-    if (Array.isArray(block)) continue
-    for (const [name, input] of Object.entries(block.inputs)) {
-      if (input.length === 2 && input[0] === 1 && input[1] === null) delete block.inputs[name]
-    }
-  }
-  return copy
-}
+const semanticAst = scripts => JSON.parse(JSON.stringify(scripts, (key, value) => {
+  if (key !== "metadata" || typeof value !== "object" || value === null) return value
+  const scratch = value.scratch
+  return scratch === undefined ? undefined : {scratch}
+}))
 
 const firstDifference = (actual, expected, path = "blocks") => {
   if (Object.is(actual, expected)) return null
@@ -62,14 +61,39 @@ for (const filename of readdirSync(directory).filter(name => name.endsWith(".sb3
     continue
   }
   for (const target of project.targets) {
-    const expected = normalizeEmptyInputs(target.blocks)
-    const actual = serializeBlocks(deserializeBlocks(target.blocks, registry))
-    const difference = firstDifference(actual, expected)
-    if (difference) throw new Error(`${filename} / ${target.name}: ${difference}`)
+    let firstAst
+    try {
+      firstAst = deserializeBlocks(target.blocks, registry)
+    } catch (error) {
+      if (!(error instanceof InvalidBlockGraphError)) throw error
+      rejectedTargets += 1
+      console.log(`REJECT ${basename(path)} / ${target.name}: ${error.message}`)
+      continue
+    }
+    const firstCanonical = serializeBlocks(firstAst)
+    const secondAst = deserializeBlocks(firstCanonical, registry)
+    const secondCanonical = serializeBlocks(secondAst)
+    const semanticDifference = firstDifference(semanticAst(secondAst), semanticAst(firstAst), "ast")
+    if (semanticDifference) throw new Error(`${filename} / ${target.name}: ${semanticDifference}`)
+    const canonicalDifference = firstDifference(secondCanonical, firstCanonical)
+    if (canonicalDifference) throw new Error(`${filename} / ${target.name}: unstable canonical form: ${canonicalDifference}`)
     checkedTargets += 1
     checkedBlocks += Object.keys(target.blocks).length
+    sourceBytes += JSON.stringify(target.blocks).length
+    semanticAstBytes += JSON.stringify(semanticAst(firstAst)).length
+    fullAstBytes += JSON.stringify(firstAst).length
   }
   checkedProjects += 1
 }
 
-console.log(JSON.stringify({checkedProjects, checkedTargets, checkedBlocks, skippedProjects}))
+console.log(JSON.stringify({
+  checkedProjects,
+  checkedTargets,
+  checkedBlocks,
+  skippedProjects,
+  rejectedTargets,
+  sourceBytes,
+  semanticAstBytes,
+  fullAstBytes,
+  provenanceBytes: fullAstBytes - semanticAstBytes,
+}))

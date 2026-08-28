@@ -1,11 +1,13 @@
 import {describe, expect, it} from "vitest"
 
 import {
+  assertJsonValue,
   getChildren,
   isBlock,
   isField,
   isInput,
   isScript,
+  isJsonValue,
   walk,
   type Block,
   type ProcedureCallMutation,
@@ -20,8 +22,8 @@ const createScratchScript = (): Script => ({
     scratch: {
       x: 120,
       y: 48,
-      sb3: {source: "project.json"},
     },
+    sb3: {version: 1},
     test: {fixture: true},
   },
   blocks: [
@@ -318,5 +320,25 @@ describe("traversal", () => {
     expect(isInput(repeat.inputs["TIMES"])).toBe(true)
     expect(isField({kind: "field", type: "text", value: "value"})).toBe(true)
     expect(isBlock(null)).toBe(false)
+  })
+})
+
+describe("input-local obscured shadows", () => {
+  it("walks the active value and its fallback shadow", () => {
+    const input = createScratchScript().blocks[1]!.inputs["TIMES"]!
+    input.obscuredShadow = {kind: "input", type: "number", value: "10"}
+    expect(getChildren(input)).toEqual([input.obscuredShadow])
+    const visited: string[] = []
+    walk(input, {enter: node => visited.push(node.kind === "input" ? node.type : node.kind)})
+    expect(visited).toEqual(["number", "number"])
+  })
+})
+
+describe("JSON guards", () => {
+  it("rejects non-finite numbers and undefined array items", () => {
+    expect(isJsonValue({ok: [1, true, null]})).toBe(true)
+    expect(isJsonValue(Number.POSITIVE_INFINITY)).toBe(false)
+    expect(isJsonValue([undefined])).toBe(false)
+    expect(() => assertJsonValue({bad: Number.NaN})).toThrow(TypeError)
   })
 })

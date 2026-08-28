@@ -26,6 +26,7 @@ const moveSteps: CommandBlockSpec = {
     },
   },
   fields: {},
+  arguments: [{kind: "input", name: "STEPS"}],
 }
 
 describe("BlockSpecRegistry", () => {
@@ -156,6 +157,7 @@ describe("SB3-compatible semantic fixtures", () => {
           },
         },
         fields: {},
+        arguments: [{kind: "input", name: "TO"}],
       },
       {
         opcode: "control_repeat",
@@ -174,6 +176,10 @@ describe("SB3-compatible semantic fixtures", () => {
           SUBSTACK: {connection: "statement"},
         },
         fields: {},
+        arguments: [
+          {kind: "input", name: "TIMES"},
+          {kind: "input", name: "SUBSTACK"},
+        ],
       },
       {
         opcode: "test_literal_shadows",
@@ -235,6 +241,15 @@ describe("SB3-compatible semantic fixtures", () => {
           },
         },
         fields: {},
+        arguments: [
+          {kind: "input", name: "INTEGER"},
+          {kind: "input", name: "POSITIVE"},
+          {kind: "input", name: "ANGLE"},
+          {kind: "input", name: "TEXT"},
+          {kind: "input", name: "COLOR"},
+          {kind: "input", name: "MATRIX"},
+          {kind: "input", name: "NOTE"},
+        ],
       },
       {
         opcode: "procedures_definition",
@@ -264,6 +279,7 @@ describe("SB3-compatible semantic fixtures", () => {
           },
         },
         fields: {},
+        arguments: [{kind: "input", name: "custom_block"}],
       },
       {
         opcode: "data_variable",
@@ -279,11 +295,7 @@ describe("SB3-compatible semantic fixtures", () => {
               value: "score",
               id: "variable-id",
             },
-            metadata: {
-              scratchBlocks: {
-                blockJson: {type: "field_variable_getter"},
-              },
-            },
+            bindings: {scratchblocks: {shape: "dropdown"}},
           },
           LIST: {
             type: "list",
@@ -304,6 +316,11 @@ describe("SB3-compatible semantic fixtures", () => {
             },
           },
         },
+        arguments: [
+          {kind: "field", name: "VARIABLE"},
+          {kind: "field", name: "LIST"},
+          {kind: "field", name: "BROADCAST_OPTION"},
+        ],
       },
     ]
 
@@ -329,9 +346,7 @@ describe("SB3-compatible semantic fixtures", () => {
     expect(copy[5]?.fields["VARIABLE"]).toMatchObject({
       type: "variable",
       default: {id: "variable-id"},
-      metadata: {
-        scratchBlocks: {blockJson: {type: "field_variable_getter"}},
-      },
+      bindings: {scratchblocks: {shape: "dropdown"}},
     })
   })
 })
