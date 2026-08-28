@@ -71,6 +71,15 @@ importers:
       '@scratch-code/block-spec':
         specifier: workspace:^
         version: link:../../packages/block-spec
+      '@scratch-code/diff':
+        specifier: workspace:^
+        version: link:../../packages/diff
+      '@scratch-code/fragment':
+        specifier: workspace:^
+        version: link:../../packages/fragment
+      '@scratch-code/materialize':
+        specifier: workspace:^
+        version: link:../../packages/materialize
       '@scratch-code/sb3':
         specifier: workspace:^
         version: link:../../packages/sb3
@@ -80,6 +89,9 @@ importers:
       '@scratch-code/turbowarp-blocks':
         specifier: workspace:^
         version: link:../../packages/turbowarp-blocks
+      '@scratch-code/vm-blocks':
+        specifier: workspace:^
+        version: link:../../packages/vm-blocks
       scratchblocks-plus:
         specifier: ^2.1.0
         version: 2.1.0

@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <title>VM Blocks Playground</title>
+  </head>
+  <body>
+    <main class="package-shell">
+      <a class="back-link" href="../">← All playgrounds</a>
+      <p class="eyebrow">@scratch-code/vm-blocks</p>
+      <h1>VM Blocks Playground</h1>
+      <p class="lede">
+        Convert Scratch VM's hydrated runtime block array to semantic scripts and back.
+      </p>
+      <div class="toolbar">
+        <button class="button button-primary" id="to-ast" type="button">VM blocks → AST</button>
+        <button class="button" id="to-vm" type="button">AST → VM blocks</button>
+        <button class="button" id="reset" type="button">Reset example</button>
+      </div>
+      <div class="grid">
+        <section class="panel">
+          <h2>VmBlock[] JSON</h2>
+          <textarea id="blocks" spellcheck="false"></textarea>
+          <p class="error" id="blocks-error" role="alert"></p>
+        </section>
+        <section class="panel">
+          <h2>Semantic AST JSON</h2>
+          <textarea id="ast" spellcheck="false"></textarea>
+          <p class="error" id="ast-error" role="alert"></p>
+        </section>
+      </div>
+    </main>
+    <script type="module" src="/src/vm-blocks-playground.ts"></script>
+  </body>
+</html>

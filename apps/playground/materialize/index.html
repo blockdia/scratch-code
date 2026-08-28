@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <title>Materialize Playground</title>
+  </head>
+  <body>
+    <main class="package-shell">
+      <a class="back-link" href="../">← All playgrounds</a>
+      <p class="eyebrow">@scratch-code/materialize</p>
+      <h1>Materialize Playground</h1>
+      <p class="lede">
+        Complete a partial semantic AST with catalog defaults, shadow state, and deterministic demo
+        block IDs.
+      </p>
+      <div class="toolbar">
+        <button class="button button-primary" id="materialize" type="button">
+          Materialize AST
+        </button>
+        <button class="button" id="reset" type="button">Reset example</button>
+      </div>
+      <div class="grid">
+        <section class="panel">
+          <h2>Partial Script[]</h2>
+          <textarea id="source" spellcheck="false"></textarea>
+          <p class="error" id="error" role="alert"></p>
+        </section>
+        <section class="panel">
+          <h2>Completed Script[]</h2>
+          <pre id="output"></pre>
+        </section>
+      </div>
+    </main>
+    <script type="module" src="/src/materialize-playground.ts"></script>
+  </body>
+</html>

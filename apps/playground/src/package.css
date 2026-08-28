@@ -21,6 +21,7 @@ body {
 }
 button,
 input,
+select,
 textarea {
   font: inherit;
 }
@@ -129,6 +130,23 @@ input[type='search'] {
   border-radius: 0.65rem;
   padding: 0 0.8rem;
   background: #fff;
+}
+.toolbar-label {
+  margin-left: 0.35rem;
+  color: #657188;
+  font-size: 0.82rem;
+  font-weight: 750;
+}
+.toolbar select {
+  min-height: 2.5rem;
+  border: 1px solid #c7d0df;
+  border-radius: 0.65rem;
+  padding: 0 2.2rem 0 0.75rem;
+  color: #26334c;
+  background: #fff;
+}
+.output-panel {
+  margin-top: 1rem;
 }
 .error {
   min-height: 1.25rem;

@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <title>Scratch Fragment Playground</title>
+  </head>
+  <body>
+    <main class="package-shell">
+      <a class="back-link" href="../">← All playgrounds</a>
+      <p class="eyebrow">@scratch-code/fragment</p>
+      <h1>Scratch Fragment Playground</h1>
+      <p class="lede">
+        Analyze selected scripts and append reachable custom-procedure definitions from an available
+        source collection.
+      </p>
+      <div class="toolbar">
+        <button class="button button-primary" id="create" type="button">Create fragment</button>
+        <button class="button" id="reset" type="button">Reset example</button>
+      </div>
+      <div class="grid">
+        <section class="panel">
+          <h2>Selected Script[]</h2>
+          <textarea id="selected" spellcheck="false"></textarea>
+        </section>
+        <section class="panel">
+          <h2>Available source Script[]</h2>
+          <textarea id="source" spellcheck="false"></textarea>
+        </section>
+      </div>
+      <p class="error" id="error" role="alert"></p>
+      <section class="panel output-panel">
+        <h2>Fragment and selected-script analysis</h2>
+        <pre id="output"></pre>
+      </section>
+    </main>
+    <script type="module" src="/src/fragment-playground.ts"></script>
+  </body>
+</html>

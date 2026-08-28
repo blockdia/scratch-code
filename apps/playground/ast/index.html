@@ -12,21 +12,23 @@
       <p class="eyebrow">@scratch-code/ast</p>
       <h1>AST Playground</h1>
       <p class="lede">
-        Edit a semantic script and traverse its nodes with the package's <code>walk()</code> API.
+        Validate an untrusted semantic script collection, then traverse its nodes with
+        <code>walk()</code>.
       </p>
       <div class="toolbar">
-        <button class="button button-primary" id="analyze" type="button">Analyze AST</button
+        <button class="button button-primary" id="analyze" type="button">
+          Validate &amp; analyze</button
         ><button class="button" id="reset" type="button">Reset example</button>
       </div>
       <div class="grid">
         <section class="panel">
-          <h2>Script JSON</h2>
+          <h2>Script[] JSON</h2>
           <label for="source" class="eyebrow">Semantic AST</label
           ><textarea id="source" spellcheck="false"></textarea>
           <p class="error" id="error" role="alert"></p>
         </section>
         <section class="panel">
-          <h2>Traversal result</h2>
+          <h2>Validation and traversal result</h2>
           <pre id="output"></pre>
         </section>
       </div>

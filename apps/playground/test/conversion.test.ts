@@ -56,13 +56,13 @@ describe('playground conversion', () => {
 
   it('rejects a non-array AST root', () => {
     expect(() => astToText('{"kind":"script","blocks":[]}')).toThrow(
-      'The AST must be a JSON array',
+      'AST validation failed with 1 error(s)',
     );
   });
 
   it('rejects malformed script and block nodes', () => {
     expect(() => assertScriptArray([{ kind: 'script', blocks: [{ kind: 'block' }] }])).toThrow(
-      'opcode must be a non-empty string',
+      'AST validation failed with 3 error(s)',
     );
   });
 });

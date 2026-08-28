@@ -1,5 +1,6 @@
 import {
   TURBOWARP_BLOCKS_SOURCE_REVISION,
+  TURBOWARP_VM_SOURCE_REVISION,
   turboWarpBlockSpecs,
 } from '@scratch-code/turbowarp-blocks';
 import type { BlockSpec } from '@scratch-code/block-spec';
@@ -24,7 +25,13 @@ const select = (spec: BlockSpec): void => {
 const render = (): void => {
   const query = search.value.trim().toLowerCase();
   const matches = turboWarpBlockSpecs.filter((spec) => searchable(spec).includes(query));
-  summary.textContent = `${matches.length} of ${turboWarpBlockSpecs.length} specs · source ${TURBOWARP_BLOCKS_SOURCE_REVISION.slice(0, 8)}`;
+  const scratchBlocksCount = turboWarpBlockSpecs.filter(
+    (spec) => spec.source?.scratchBlocks !== undefined,
+  ).length;
+  const scratchVmCount = turboWarpBlockSpecs.filter(
+    (spec) => spec.source?.scratchVm !== undefined,
+  ).length;
+  summary.textContent = `${matches.length} of ${turboWarpBlockSpecs.length} specs · ${scratchBlocksCount} Scratch Blocks @ ${TURBOWARP_BLOCKS_SOURCE_REVISION.slice(0, 8)} · ${scratchVmCount} Scratch VM @ ${TURBOWARP_VM_SOURCE_REVISION.slice(0, 8)}`;
   list.replaceChildren(
     ...matches.map((spec) => {
       const button = document.createElement('button');

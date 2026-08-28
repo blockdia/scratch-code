@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <title>Semantic Diff Playground</title>
+  </head>
+  <body>
+    <main class="package-shell">
+      <a class="back-link" href="../">← All playgrounds</a>
+      <p class="eyebrow">@scratch-code/diff</p>
+      <h1>Semantic Diff Playground</h1>
+      <p class="lede">
+        Compare two validated semantic script collections without depending on a codec or block
+        catalog.
+      </p>
+      <div class="toolbar">
+        <button class="button button-primary" id="compare" type="button">Compare scripts</button>
+        <label class="toolbar-label" for="matching">Matching</label>
+        <select id="matching">
+          <option value="default">ID, ordered, similarity</option>
+          <option value="ordered">Ordered only</option>
+          <option value="id">Scratch ID only</option>
+        </select>
+        <button class="button" id="reset" type="button">Reset example</button>
+      </div>
+      <div class="grid">
+        <section class="panel">
+          <h2>Before Script[]</h2>
+          <textarea id="before" spellcheck="false"></textarea>
+        </section>
+        <section class="panel">
+          <h2>After Script[]</h2>
+          <textarea id="after" spellcheck="false"></textarea>
+        </section>
+      </div>
+      <p class="error" id="error" role="alert"></p>
+      <section class="panel output-panel">
+        <h2>SemanticDiff</h2>
+        <pre id="output"></pre>
+      </section>
+    </main>
+    <script type="module" src="/src/diff-playground.ts"></script>
+  </body>
+</html>

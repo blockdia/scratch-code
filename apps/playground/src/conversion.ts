@@ -1,3 +1,4 @@
+import { assertValidScripts } from '@scratch-code/ast';
 import type { Script } from '@scratch-code/ast';
 import {
   deserializeScratchblocks,
@@ -9,39 +10,8 @@ import { parse } from 'scratchblocks-plus/syntax';
 
 const registry = createTurboWarpBlockRegistry();
 
-const isRecord = (value: unknown): value is Record<string, unknown> =>
-  typeof value === 'object' && value !== null && !Array.isArray(value);
-
-const assertBlock = (value: unknown, path: string): void => {
-  if (!isRecord(value) || value['kind'] !== 'block') {
-    throw new TypeError(`${path} must be a block node.`);
-  }
-  if (typeof value['opcode'] !== 'string' || value['opcode'] === '') {
-    throw new TypeError(`${path}.opcode must be a non-empty string.`);
-  }
-  if (!isRecord(value['fields'])) {
-    throw new TypeError(`${path}.fields must be an object.`);
-  }
-  if (!isRecord(value['inputs'])) {
-    throw new TypeError(`${path}.inputs must be an object.`);
-  }
-};
-
 export const assertScriptArray: (value: unknown) => asserts value is Script[] = (value) => {
-  if (!Array.isArray(value)) {
-    throw new TypeError('The AST must be a JSON array of script nodes.');
-  }
-  value.forEach((script, scriptIndex) => {
-    const path = `AST[${scriptIndex}]`;
-    if (!isRecord(script) || script['kind'] !== 'script') {
-      throw new TypeError(`${path} must be a script node.`);
-    }
-    const blocks = script['blocks'];
-    if (!Array.isArray(blocks)) {
-      throw new TypeError(`${path}.blocks must be an array.`);
-    }
-    blocks.forEach((block, blockIndex) => assertBlock(block, `${path}.blocks[${blockIndex}]`));
-  });
+  assertValidScripts(value);
 };
 
 export const textToAst = (source: string, coercion: ScratchblocksCoercion = 'loose'): Script[] => {

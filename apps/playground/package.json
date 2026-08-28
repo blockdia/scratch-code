@@ -12,9 +12,13 @@
   "dependencies": {
     "@scratch-code/ast": "workspace:^",
     "@scratch-code/block-spec": "workspace:^",
+    "@scratch-code/diff": "workspace:^",
+    "@scratch-code/fragment": "workspace:^",
+    "@scratch-code/materialize": "workspace:^",
     "@scratch-code/sb3": "workspace:^",
     "@scratch-code/scratchblocks-codec": "workspace:^",
     "@scratch-code/turbowarp-blocks": "workspace:^",
+    "@scratch-code/vm-blocks": "workspace:^",
     "scratchblocks-plus": "^2.1.0"
   },
   "devDependencies": {

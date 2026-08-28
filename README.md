@@ -45,9 +45,8 @@ The default CI commands do not depend on absolute corpus paths.
 
 ## Playground
 
-The browser playground provides a package index with focused explorers for the
-AST, block-spec registry, TurboWarp catalog, SB3 conversion, and scratchblocks
-codec.
+The browser playground provides a package index with one focused, lightweight
+explorer for every published package.
 
 ```sh
 pnpm build
