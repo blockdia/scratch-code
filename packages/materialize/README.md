@@ -6,17 +6,16 @@ inputs, and assigns Scratch VM-compatible IDs to every runtime block, including
 scalar literal inputs, menu blocks, and procedure shadows.
 
 ```ts
-import {materialize} from "@scratch-code/materialize"
+import { materialize } from '@scratch-code/materialize';
 import {
   createTurboWarpBlockRegistry,
   getTurboWarpBlockResolveContext,
-} from "@scratch-code/turbowarp-blocks"
+} from '@scratch-code/turbowarp-blocks';
 
-const registry = createTurboWarpBlockRegistry()
+const registry = createTurboWarpBlockRegistry();
 const complete = materialize(scripts, registry, {
-  contextForBlock: (block, {hasNext}) =>
-    getTurboWarpBlockResolveContext(block, hasNext),
-})
+  contextForBlock: (block, { hasNext }) => getTurboWarpBlockResolveContext(block, hasNext),
+});
 ```
 
 `contextForBlock` is needed only when a `BlockSpecRegistry` contains dynamic

@@ -1,159 +1,140 @@
-import type {Field, FieldType, Input, Opcode} from "@scratch-code/ast"
+import type { Field, FieldType, Input, Opcode } from '@scratch-code/ast';
 
 type DeepReadonly<T> = T extends (...args: never[]) => unknown
   ? T
   : T extends readonly (infer TValue)[]
     ? readonly DeepReadonly<TValue>[]
     : T extends object
-      ? {readonly [TKey in keyof T]: DeepReadonly<T[TKey]>}
-      : T
+      ? { readonly [TKey in keyof T]: DeepReadonly<T[TKey]> }
+      : T;
 
 export type BlockArgumentRef =
-  | {readonly kind: "field"; readonly name: string}
-  | {readonly kind: "input"; readonly name: string}
+  | { readonly kind: 'field'; readonly name: string }
+  | { readonly kind: 'input'; readonly name: string };
 
 export interface ScratchblocksBlockBinding {
   /** scratchblocks-plus Block.info.id in its English pivot language. */
-  readonly blockId?: string
-  readonly hasLoopArrow?: true
+  readonly blockId?: string;
+  readonly hasLoopArrow?: true;
 }
 
 export interface ScratchblocksFieldOption {
-  readonly label: string
-  readonly value: string
+  readonly label: string;
+  readonly value: string;
 }
 
 export interface ScratchblocksFieldBinding {
-  readonly shape?: "string" | "dropdown" | "color"
-  readonly options?: readonly ScratchblocksFieldOption[]
+  readonly shape?: 'string' | 'dropdown' | 'color';
+  readonly options?: readonly ScratchblocksFieldOption[];
 }
 
 export interface BlockSpecBindings {
-  readonly scratchblocks?: ScratchblocksBlockBinding
+  readonly scratchblocks?: ScratchblocksBlockBinding;
 }
 
 export interface FieldSpecBindings {
-  readonly scratchblocks?: ScratchblocksFieldBinding
+  readonly scratchblocks?: ScratchblocksFieldBinding;
 }
 
 export interface ScratchBlocksSource {
-  readonly sourceFile: string
-  readonly definition: "json" | "custom-init"
+  readonly sourceFile: string;
+  readonly definition: 'json' | 'custom-init';
 }
 
 export interface ScratchVmSource {
-  readonly sourceFile: string
-  readonly definition: "extension-info"
+  readonly sourceFile: string;
+  readonly definition: 'extension-info';
 }
 
 export interface BlockSpecSource {
-  readonly scratchBlocks?: ScratchBlocksSource
-  readonly scratchVm?: ScratchVmSource
+  readonly scratchBlocks?: ScratchBlocksSource;
+  readonly scratchVm?: ScratchVmSource;
 }
 
-export type BlockShape =
-  | "command"
-  | "terminal"
-  | "hat"
-  | "reporter"
-  | "boolean"
+export type BlockShape = 'command' | 'terminal' | 'hat' | 'reporter' | 'boolean';
 
-export type HatStyle = "standard" | "define"
+export type HatStyle = 'standard' | 'define';
 
 /** A semantic constraint on values accepted by a value connection. */
-export type InputValueType =
-  | "string"
-  | "number"
-  | "boolean"
-  | "color"
-  | "matrix"
-  | "note"
-  | "any"
+export type InputValueType = 'string' | 'number' | 'boolean' | 'color' | 'matrix' | 'note' | 'any';
 
-export type InputAccepts = InputValueType | readonly InputValueType[]
+export type InputAccepts = InputValueType | readonly InputValueType[];
 
 /** An AST input template exposed as immutable block-spec data. */
-export type DefaultInput = DeepReadonly<Input>
+export type DefaultInput = DeepReadonly<Input>;
 
 /** An AST field template exposed as immutable block-spec data. */
-export type DefaultField = DeepReadonly<Field>
+export type DefaultField = DeepReadonly<Field>;
 
 interface InputSpecBase {
   /** The initial shadow or connected content, represented exactly like AST content. */
-  readonly default?: DefaultInput
+  readonly default?: DefaultInput;
 }
 
 export interface ValueInputSpec extends InputSpecBase {
-  readonly connection: "value"
-  readonly accepts: InputAccepts
+  readonly connection: 'value';
+  readonly accepts: InputAccepts;
 }
 
 export interface StatementInputSpec extends InputSpecBase {
-  readonly connection: "statement"
-  readonly accepts?: never
+  readonly connection: 'statement';
+  readonly accepts?: never;
 }
 
 /** A slot declaration. This describes requirements, not the slot's current AST content. */
-export type InputSpec = ValueInputSpec | StatementInputSpec
+export type InputSpec = ValueInputSpec | StatementInputSpec;
 
 export interface FieldSpec {
-  readonly type: FieldType
+  readonly type: FieldType;
   /** The initial field, including identity where Scratch requires it. */
-  readonly default?: DefaultField
-  readonly bindings?: FieldSpecBindings
+  readonly default?: DefaultField;
+  readonly bindings?: FieldSpecBindings;
 }
 
 interface BlockSpecBase {
-  readonly opcode: Opcode
-  readonly inputs: Readonly<Record<string, InputSpec>>
-  readonly fields: Readonly<Record<string, FieldSpec>>
+  readonly opcode: Opcode;
+  readonly inputs: Readonly<Record<string, InputSpec>>;
+  readonly fields: Readonly<Record<string, FieldSpec>>;
   /** Language-independent identity and canonical field/input order. */
-  readonly arguments: readonly BlockArgumentRef[]
-  readonly bindings?: BlockSpecBindings
-  readonly source?: BlockSpecSource
+  readonly arguments: readonly BlockArgumentRef[];
+  readonly bindings?: BlockSpecBindings;
+  readonly source?: BlockSpecSource;
 }
 
 export interface CommandBlockSpec extends BlockSpecBase {
-  readonly shape: "command"
-  readonly hatStyle?: never
-  readonly outputType?: never
+  readonly shape: 'command';
+  readonly hatStyle?: never;
+  readonly outputType?: never;
 }
 
 export interface TerminalBlockSpec extends BlockSpecBase {
-  readonly shape: "terminal"
-  readonly hatStyle?: never
-  readonly outputType?: never
+  readonly shape: 'terminal';
+  readonly hatStyle?: never;
+  readonly outputType?: never;
 }
 
 export interface HatBlockSpec extends BlockSpecBase {
-  readonly shape: "hat"
-  readonly hatStyle: HatStyle
-  readonly outputType?: never
+  readonly shape: 'hat';
+  readonly hatStyle: HatStyle;
+  readonly outputType?: never;
 }
 
-export type ReporterOutputType = Exclude<InputValueType, "boolean">
+export type ReporterOutputType = Exclude<InputValueType, 'boolean'>;
 
 export interface ReporterBlockSpec extends BlockSpecBase {
-  readonly shape: "reporter"
-  readonly outputType: ReporterOutputType
-  readonly hatStyle?: never
+  readonly shape: 'reporter';
+  readonly outputType: ReporterOutputType;
+  readonly hatStyle?: never;
 }
 
 export interface BooleanBlockSpec extends BlockSpecBase {
-  readonly shape: "boolean"
-  readonly hatStyle?: never
-  readonly outputType?: never
+  readonly shape: 'boolean';
+  readonly hatStyle?: never;
+  readonly outputType?: never;
 }
 
 export type BlockSpec =
-  | CommandBlockSpec
-  | TerminalBlockSpec
-  | HatBlockSpec
-  | ReporterBlockSpec
-  | BooleanBlockSpec
+  CommandBlockSpec | TerminalBlockSpec | HatBlockSpec | ReporterBlockSpec | BooleanBlockSpec;
 
 /** Resolve a context-dependent final spec from its stable base spec. */
-export type BlockSpecResolver<TContext> = (
-  baseSpec: BlockSpec,
-  context: TContext,
-) => BlockSpec
+export type BlockSpecResolver<TContext> = (baseSpec: BlockSpec, context: TContext) => BlockSpec;

@@ -1,60 +1,55 @@
 /** A JSON primitive. Non-finite JavaScript numbers are not JSON-safe. */
-export type JsonPrimitive = string | number | boolean | null
+export type JsonPrimitive = string | number | boolean | null;
 
 /** A JSON object. Optional properties are represented by omitted keys. */
 export interface JsonObject {
-  [key: string]: JsonValue | undefined
+  [key: string]: JsonValue | undefined;
 }
 
 /** A value that can be represented in JSON without a custom serializer. */
-export type JsonValue = JsonPrimitive | JsonObject | JsonValue[]
+export type JsonValue = JsonPrimitive | JsonObject | JsonValue[];
 
 /** Canonical Scratch opcodes remain open so extension blocks are supported. */
-export type Opcode = string
+export type Opcode = string;
 
-export type NodeKind = "script" | "block" | "input" | "field"
+export type NodeKind = 'script' | 'block' | 'input' | 'field';
 
 /**
  * The editor constraint used by the Scratch numeric shadow that produced a
  * semantic number literal. It is annotation only and does not affect runtime
  * semantics.
  */
-export type NumericKind =
-  | "number"
-  | "integer"
-  | "whole-number"
-  | "positive-number"
-  | "angle"
+export type NumericKind = 'number' | 'integer' | 'whole-number' | 'positive-number' | 'angle';
 
 /** Stable Scratch annotations shared by all AST node metadata. */
-export type ScratchMetadata = Record<string, never>
+export type ScratchMetadata = Record<string, never>;
 
 /** Scratch metadata that is meaningful on a workspace-level script. */
 export type ScriptScratchMetadata = {
-  x?: number
-  y?: number
-}
+  x?: number;
+  y?: number;
+};
 
 /** Scratch metadata that is meaningful on an individual block. */
 export type BlockScratchMetadata = {
-  id?: string
-}
+  id?: string;
+};
 
 /** Scratch metadata shared by structural input nodes. */
-export type InputScratchMetadata = ScratchMetadata
+export type InputScratchMetadata = ScratchMetadata;
 
 /** Scratch metadata for a scalar input normalized from a VM shadow block. */
 export type ScalarInputScratchMetadata = {
-  id?: string
-}
+  id?: string;
+};
 
 /** Scratch metadata specific to a normalized number literal. */
 export type NumberInputScratchMetadata = ScalarInputScratchMetadata & {
-  numericKind?: NumericKind
-}
+  numericKind?: NumericKind;
+};
 
 /** Scratch metadata meaningful on field nodes. */
-export type FieldScratchMetadata = ScratchMetadata
+export type FieldScratchMetadata = ScratchMetadata;
 
 /**
  * Optional, non-semantic node metadata.
@@ -63,126 +58,111 @@ export type FieldScratchMetadata = ScratchMetadata
  * separate top-level namespaces for their own annotations.
  */
 export type Metadata<TScratch extends object> = {
-  scratch?: TScratch
-  [namespace: string]: JsonValue | TScratch | undefined
-}
+  scratch?: TScratch;
+  [namespace: string]: JsonValue | TScratch | undefined;
+};
 
-export interface AstNodeBase<
-  TKind extends NodeKind,
-  TScratch extends object,
-> {
-  kind: TKind
-  metadata?: Metadata<TScratch>
+export interface AstNodeBase<TKind extends NodeKind, TScratch extends object> {
+  kind: TKind;
+  metadata?: Metadata<TScratch>;
 }
 
 /** A normalized default value in a custom procedure signature. */
-export type ProcedureArgumentDefault = string | number | boolean
+export type ProcedureArgumentDefault = string | number | boolean;
 
 /** Semantic mutation on a `procedures_prototype` block. */
 export interface ProcedurePrototypeMutation {
-  type: "procedure-prototype"
-  proccode: string
+  type: 'procedure-prototype';
+  proccode: string;
   /** Parallel arrays; all three arrays must have the same length and order. */
-  argumentIds: string[]
-  argumentNames: string[]
-  argumentDefaults: ProcedureArgumentDefault[]
-  warp: boolean
+  argumentIds: string[];
+  argumentNames: string[];
+  argumentDefaults: ProcedureArgumentDefault[];
+  warp: boolean;
 }
 
 /** The three call shapes supported by the local Scratch Blocks implementation. */
-export type ProcedureReturnType = "statement" | "reporter" | "boolean"
+export type ProcedureReturnType = 'statement' | 'reporter' | 'boolean';
 
 /** Semantic mutation on a `procedures_call` block. */
 export interface ProcedureCallMutation {
-  type: "procedure-call"
-  proccode: string
+  type: 'procedure-call';
+  proccode: string;
   /** Ordered argument IDs, which are also the keys used by the call inputs. */
-  argumentIds: string[]
-  warp: boolean
-  returnType: ProcedureReturnType
+  argumentIds: string[];
+  warp: boolean;
+  returnType: ProcedureReturnType;
 }
 
 /** Semantic mutations understood by this version of the AST. */
-export type SemanticMutation =
-  | ProcedurePrototypeMutation
-  | ProcedureCallMutation
+export type SemanticMutation = ProcedurePrototypeMutation | ProcedureCallMutation;
 
 /** A sequence of blocks connected through Scratch's `next` relationship. */
-export interface Script
-  extends AstNodeBase<"script", ScriptScratchMetadata> {
-  blocks: Block[]
+export interface Script extends AstNodeBase<'script', ScriptScratchMetadata> {
+  blocks: Block[];
 }
 
 /** A semantic Scratch block. Inputs and fields are named by Scratch keys. */
-export interface Block extends AstNodeBase<"block", BlockScratchMetadata> {
-  opcode: Opcode
+export interface Block extends AstNodeBase<'block', BlockScratchMetadata> {
+  opcode: Opcode;
   /** This block is acting as a Scratch shadow. Omission means a regular block. */
-  shadow?: true
-  fields: Record<string, Field>
-  inputs: Record<string, Input>
-  mutation?: SemanticMutation
+  shadow?: true;
+  fields: Record<string, Field>;
+  inputs: Record<string, Input>;
+  mutation?: SemanticMutation;
 }
 
-interface InputBase<TScratch extends object>
-  extends AstNodeBase<"input", TScratch> {
+interface InputBase<TScratch extends object> extends AstNodeBase<'input', TScratch> {
   /**
    * The default shadow hidden by the current connected value in an SB3 mode 3
    * input. It moves with the input and is omitted when the current value is
    * itself the shadow.
    */
-  obscuredShadow?: ObscuredShadow
+  obscuredShadow?: ObscuredShadow;
 }
 
-export interface StringInput
-  extends InputBase<ScalarInputScratchMetadata> {
-  type: "string"
-  value: string
+export interface StringInput extends InputBase<ScalarInputScratchMetadata> {
+  type: 'string';
+  value: string;
 }
 
-export interface NumberInput
-  extends InputBase<NumberInputScratchMetadata> {
-  type: "number"
+export interface NumberInput extends InputBase<NumberInputScratchMetadata> {
+  type: 'number';
   /**
    * Strings are intentionally accepted to preserve values such as `0010`,
    * `1e2`, and the empty string without normalization.
    */
-  value: string | number
+  value: string | number;
 }
 
-export interface ColorInput
-  extends InputBase<ScalarInputScratchMetadata> {
-  type: "color"
-  value: string
+export interface ColorInput extends InputBase<ScalarInputScratchMetadata> {
+  type: 'color';
+  value: string;
 }
 
-export interface MatrixInput
-  extends InputBase<ScalarInputScratchMetadata> {
-  type: "matrix"
+export interface MatrixInput extends InputBase<ScalarInputScratchMetadata> {
+  type: 'matrix';
   /** Scratch stores a matrix field as its 25-character bit string. */
-  value: string
+  value: string;
 }
 
-export interface NoteInput
-  extends InputBase<ScalarInputScratchMetadata> {
-  type: "note"
-  value: string | number
+export interface NoteInput extends InputBase<ScalarInputScratchMetadata> {
+  type: 'note';
+  value: string | number;
 }
 
-export interface BlockInput
-  extends InputBase<InputScratchMetadata> {
-  type: "block"
-  value: Block
+export interface BlockInput extends InputBase<InputScratchMetadata> {
+  type: 'block';
+  value: Block;
 }
 
-export interface ScriptInput
-  extends InputBase<InputScratchMetadata> {
-  type: "script"
-  value: Script
+export interface ScriptInput extends InputBase<InputScratchMetadata> {
+  type: 'script';
+  value: Script;
 }
 
-export interface EmptyInput
-  extends InputBase<InputScratchMetadata> {
-  type: "empty"
+export interface EmptyInput extends InputBase<InputScratchMetadata> {
+  type: 'empty';
 }
 
 /**
@@ -197,48 +177,37 @@ export type Input =
   | NoteInput
   | BlockInput
   | ScriptInput
-  | EmptyInput
+  | EmptyInput;
 
 /** A hidden SB3 fallback shadow can be a literal or a single shadow block. */
 export type ObscuredShadow =
-  | StringInput
-  | NumberInput
-  | ColorInput
-  | MatrixInput
-  | NoteInput
-  | BlockInput
+  StringInput | NumberInput | ColorInput | MatrixInput | NoteInput | BlockInput;
 
-export type FieldType = "text" | "dropdown" | "variable" | "list" | "broadcast"
+export type FieldType = 'text' | 'dropdown' | 'variable' | 'list' | 'broadcast';
 
-interface FieldBase<TType extends FieldType>
-  extends AstNodeBase<"field", FieldScratchMetadata> {
-  type: TType
-  value: JsonValue
+interface FieldBase<TType extends FieldType> extends AstNodeBase<'field', FieldScratchMetadata> {
+  type: TType;
+  value: JsonValue;
 }
 
-export interface TextField extends FieldBase<"text"> {}
+export interface TextField extends FieldBase<'text'> {}
 
-export interface DropdownField extends FieldBase<"dropdown"> {}
+export interface DropdownField extends FieldBase<'dropdown'> {}
 
-export interface VariableField extends FieldBase<"variable"> {
-  id?: string
+export interface VariableField extends FieldBase<'variable'> {
+  id?: string;
 }
 
-export interface ListField extends FieldBase<"list"> {
-  id?: string
+export interface ListField extends FieldBase<'list'> {
+  id?: string;
 }
 
-export interface BroadcastField extends FieldBase<"broadcast"> {
-  id?: string
+export interface BroadcastField extends FieldBase<'broadcast'> {
+  id?: string;
 }
 
 /** A Scratch field. Dropdowns are fields, never input literals. */
-export type Field =
-  | TextField
-  | DropdownField
-  | VariableField
-  | ListField
-  | BroadcastField
+export type Field = TextField | DropdownField | VariableField | ListField | BroadcastField;
 
 /** Every tree node visited by the traversal helpers. */
-export type AstNode = Script | Block | Input | Field
+export type AstNode = Script | Block | Input | Field;

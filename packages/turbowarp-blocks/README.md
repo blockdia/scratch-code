@@ -8,11 +8,11 @@ definitions from the built-in extensions at `scratch-vm` revision
 `96ed93bbb5c405b7bf48f673a379f1c595672373`.
 
 ```ts
-import {createTurboWarpBlockRegistry} from "@scratch-code/turbowarp-blocks"
+import { createTurboWarpBlockRegistry } from '@scratch-code/turbowarp-blocks';
 
-const registry = createTurboWarpBlockRegistry()
-registry.get("motion_movesteps")
-registry.resolve("control_stop", {kind: "control-stop", hasNext: true})
+const registry = createTurboWarpBlockRegistry();
+registry.get('motion_movesteps');
+registry.resolve('control_stop', { kind: 'control-stop', hasNext: true });
 ```
 
 Category arrays and the aggregate `turboWarpBlockSpecs` are read-only catalog

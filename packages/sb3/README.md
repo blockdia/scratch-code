@@ -4,12 +4,12 @@ Convert a serialized Scratch 3 target's `blocks` object to and from the
 tree-shaped AST from `@scratch-code/ast`.
 
 ```ts
-import {createTurboWarpBlockRegistry} from "@scratch-code/turbowarp-blocks"
-import {deserializeSb3Blocks, serializeSb3Blocks} from "@scratch-code/sb3"
+import { createTurboWarpBlockRegistry } from '@scratch-code/turbowarp-blocks';
+import { deserializeSb3Blocks, serializeSb3Blocks } from '@scratch-code/sb3';
 
-const registry = createTurboWarpBlockRegistry()
-const scripts = deserializeSb3Blocks(target.blocks, registry)
-target.blocks = serializeSb3Blocks(scripts)
+const registry = createTurboWarpBlockRegistry();
+const scripts = deserializeSb3Blocks(target.blocks, registry);
+target.blocks = serializeSb3Blocks(scripts);
 ```
 
 Deserialization requires a block-spec registry. Missing inputs declared by a

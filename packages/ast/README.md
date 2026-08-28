@@ -5,39 +5,39 @@ content rather than the flat ID graph used by SB3 or rendering-oriented syntax
 trees.
 
 ```ts
-import type {Script} from "@scratch-code/ast"
-import {walk} from "@scratch-code/ast"
+import type { Script } from '@scratch-code/ast';
+import { walk } from '@scratch-code/ast';
 
 const script: Script = {
-  kind: "script",
+  kind: 'script',
   blocks: [
     {
-      kind: "block",
-      opcode: "motion_movesteps",
+      kind: 'block',
+      opcode: 'motion_movesteps',
       fields: {},
       inputs: {
         STEPS: {
-          kind: "input",
-          type: "number",
-          value: "0010",
-          metadata: {scratch: {numericKind: "number"}},
+          kind: 'input',
+          type: 'number',
+          value: '0010',
+          metadata: { scratch: { numericKind: 'number' } },
           obscuredShadow: {
-            kind: "input",
-            type: "number",
-            value: "10",
+            kind: 'input',
+            type: 'number',
+            value: '10',
           },
         },
       },
     },
   ],
-  metadata: {scratch: {x: 32, y: 48}},
-}
+  metadata: { scratch: { x: 32, y: 48 } },
+};
 
 walk(script, {
   enter(node) {
-    if (node.kind === "block") console.log(node.opcode)
+    if (node.kind === 'block') console.log(node.opcode);
   },
-})
+});
 ```
 
 ## Immutable transforms
@@ -47,19 +47,19 @@ same AST nodes in the same child order, but calls its visitor bottom-up so a
 parent receives its already-transformed children.
 
 ```ts
-import {transformScripts} from "@scratch-code/ast"
+import { transformScripts } from '@scratch-code/ast';
 
 const renamed = transformScripts([script], {
   leave(node, context) {
-    if (node.kind === "block" && node.opcode === "looks_say") {
-      return {...node, opcode: "looks_think"}
+    if (node.kind === 'block' && node.opcode === 'looks_say') {
+      return { ...node, opcode: 'looks_think' };
     }
-    if (node.kind === "field" && context.key === "VARIABLE") {
-      return {...node, value: "renamed variable"}
+    if (node.kind === 'field' && context.key === 'VARIABLE') {
+      return { ...node, value: 'renamed variable' };
     }
     // Returning undefined keeps this node.
   },
-})
+});
 ```
 
 The input AST is never modified. Changed nodes and their ancestors are copied;

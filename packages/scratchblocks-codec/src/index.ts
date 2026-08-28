@@ -1,12 +1,12 @@
-export {deserializeScratchblocks, serializeScratchblocks} from "./converter.js"
-export {getScratchblocksBlockMetadata, getScratchblocksScriptMetadata} from "./metadata.js"
+export { deserializeScratchblocks, serializeScratchblocks } from './converter.js';
+export { getScratchblocksBlockMetadata, getScratchblocksScriptMetadata } from './metadata.js';
 export {
   AmbiguousScratchblocksBlockError,
   InvalidScratchblocksAstError,
   MissingScratchblocksSpecMetadataError,
   ScratchblocksTypeMismatchError,
   UnknownScratchblocksBlockError,
-} from "./errors.js"
+} from './errors.js';
 export type {
   DeserializeScratchblocksOptions,
   ProcedureArgumentIdContext,
@@ -15,6 +15,6 @@ export type {
   ScratchblocksBlockMetadata,
   ScratchblocksScriptMetadata,
   SerializeScratchblocksOptions,
-} from "./types.js"
+} from './types.js';
 
-export type {Document as ScratchblocksDocument, LanguageData} from "scratchblocks-plus/syntax"
+export type { Document as ScratchblocksDocument, LanguageData } from 'scratchblocks-plus/syntax';

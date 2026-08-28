@@ -6,8 +6,5 @@
     "resolveJsonModule": true,
     "types": ["vitest/globals"]
   },
-  "include": [
-    "tests/integration/**/*.ts",
-    "vitest.integration.config.ts"
-  ]
+  "include": ["tests/integration/**/*.ts", "vitest.integration.config.ts"]
 }

@@ -5,34 +5,31 @@ describes the connections a block exposes and the initial content used to draw
 empty slots. It does not describe a block instance's current contents.
 
 ```ts
-import {
-  createBlockSpecRegistry,
-  type BlockSpec,
-} from "@scratch-code/block-spec"
+import { createBlockSpecRegistry, type BlockSpec } from '@scratch-code/block-spec';
 
 const moveSteps: BlockSpec = {
-  opcode: "motion_movesteps",
-  shape: "command",
+  opcode: 'motion_movesteps',
+  shape: 'command',
   inputs: {
     STEPS: {
-      connection: "value",
-      accepts: "number",
+      connection: 'value',
+      accepts: 'number',
       default: {
-        kind: "input",
-        type: "number",
+        kind: 'input',
+        type: 'number',
         value: 10,
-        metadata: {scratch: {numericKind: "number"}},
+        metadata: { scratch: { numericKind: 'number' } },
       },
     },
   },
   fields: {},
-  arguments: [{kind: "input", name: "STEPS"}],
-  bindings: {scratchblocks: {blockId: "MOTION_MOVESTEPS"}},
-}
+  arguments: [{ kind: 'input', name: 'STEPS' }],
+  bindings: { scratchblocks: { blockId: 'MOTION_MOVESTEPS' } },
+};
 
-const registry = createBlockSpecRegistry()
-registry.register(moveSteps)
-registry.get("motion_movesteps") // moveSteps
+const registry = createBlockSpecRegistry();
+registry.register(moveSteps);
+registry.get('motion_movesteps'); // moveSteps
 ```
 
 ## Connections and defaults
@@ -63,13 +60,13 @@ definition hat:
 
 ```ts
 const definition: BlockSpec = {
-  opcode: "procedures_definition",
-  shape: "hat",
-  hatStyle: "define",
-  inputs: {custom_block: {connection: "statement"}},
+  opcode: 'procedures_definition',
+  shape: 'hat',
+  hatStyle: 'define',
+  inputs: { custom_block: { connection: 'statement' } },
   fields: {},
-  arguments: [{kind: "input", name: "custom_block"}],
-}
+  arguments: [{ kind: 'input', name: 'custom_block' }],
+};
 ```
 
 ## Dynamic specs
@@ -80,16 +77,16 @@ The context contains only semantic information chosen by the consumer. Turning
 an AST block into that context belongs in a converter or adapter package.
 
 ```ts
-type StopContext = {hasNext: boolean}
+type StopContext = { hasNext: boolean };
 
-const registry = createBlockSpecRegistry<StopContext>()
+const registry = createBlockSpecRegistry<StopContext>();
 registry.register(baseStopSpec, (base, context) => ({
   ...base,
-  shape: context.hasNext ? "command" : "terminal",
-}))
+  shape: context.hasNext ? 'command' : 'terminal',
+}));
 
-registry.get("control_stop") // stable baseStopSpec
-registry.resolve("control_stop", {hasNext: false}) // terminal final spec
+registry.get('control_stop'); // stable baseStopSpec
+registry.resolve('control_stop', { hasNext: false }); // terminal final spec
 ```
 
 Resolvers run for every `resolve` call and must return the registered opcode.

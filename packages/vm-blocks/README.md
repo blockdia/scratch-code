@@ -4,16 +4,13 @@ Convert Scratch VM's hydrated runtime block array to and from the semantic AST
 from `@scratch-code/ast`.
 
 ```ts
-import {createTurboWarpBlockRegistry} from "@scratch-code/turbowarp-blocks"
-import {deserializeVmBlocks, serializeVmBlocks} from "@scratch-code/vm-blocks"
+import { createTurboWarpBlockRegistry } from '@scratch-code/turbowarp-blocks';
+import { deserializeVmBlocks, serializeVmBlocks } from '@scratch-code/vm-blocks';
 
-const registry = createTurboWarpBlockRegistry()
-const scripts = deserializeVmBlocks(
-  Object.values(target.blocks._blocks),
-  registry,
-)
+const registry = createTurboWarpBlockRegistry();
+const scripts = deserializeVmBlocks(Object.values(target.blocks._blocks), registry);
 
-await vm.shareBlocksToTarget(serializeVmBlocks(scripts), destination.id)
+await vm.shareBlocksToTarget(serializeVmBlocks(scripts), destination.id);
 ```
 
 `deserializeVmBlocks()` accepts the properties produced by

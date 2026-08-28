@@ -1,22 +1,22 @@
-import type {Sb3Blocks} from "@scratch-code/sb3"
-import type {VmBlock} from "@scratch-code/vm-blocks"
+import type { Sb3Blocks } from '@scratch-code/sb3';
+import type { VmBlock } from '@scratch-code/vm-blocks';
 
 export interface WireFixture {
-  readonly name: string
-  readonly sb3: Sb3Blocks
-  readonly vmBlocks: readonly VmBlock[]
-  readonly scratchblocksText: string
+  readonly name: string;
+  readonly sb3: Sb3Blocks;
+  readonly vmBlocks: readonly VmBlock[];
+  readonly scratchblocksText: string;
 }
 
 export const wireFixtures: readonly WireFixture[] = [
   {
-    name: "move-number",
+    name: 'move-number',
     sb3: {
       move: {
-        opcode: "motion_movesteps",
+        opcode: 'motion_movesteps',
         next: null,
         parent: null,
-        inputs: {STEPS: [1, [4, "10"]]},
+        inputs: { STEPS: [1, [4, '10']] },
         fields: {},
         shadow: false,
         topLevel: true,
@@ -26,11 +26,11 @@ export const wireFixtures: readonly WireFixture[] = [
     },
     vmBlocks: [
       {
-        id: "move",
-        opcode: "motion_movesteps",
+        id: 'move',
+        opcode: 'motion_movesteps',
         next: null,
         parent: null,
-        inputs: {STEPS: {name: "STEPS", block: "number", shadow: "number"}},
+        inputs: { STEPS: { name: 'STEPS', block: 'number', shadow: 'number' } },
         fields: {},
         shadow: false,
         topLevel: true,
@@ -38,118 +38,120 @@ export const wireFixtures: readonly WireFixture[] = [
         y: 34,
       },
       {
-        id: "number",
-        opcode: "math_number",
+        id: 'number',
+        opcode: 'math_number',
         next: null,
-        parent: "move",
+        parent: 'move',
         inputs: {},
-        fields: {NUM: {name: "NUM", value: "10"}},
+        fields: { NUM: { name: 'NUM', value: '10' } },
         shadow: true,
         topLevel: false,
       },
     ],
-    scratchblocksText: "move (10) steps",
+    scratchblocksText: 'move (10) steps',
   },
   {
-    name: "nested-reporter-with-fallback",
+    name: 'nested-reporter-with-fallback',
     sb3: {
       move: {
-        opcode: "motion_movesteps",
+        opcode: 'motion_movesteps',
         next: null,
         parent: null,
-        inputs: {STEPS: [3, "variable", [4, "10"]]},
+        inputs: { STEPS: [3, 'variable', [4, '10']] },
         fields: {},
         shadow: false,
         topLevel: true,
       },
       variable: {
-        opcode: "data_variable",
+        opcode: 'data_variable',
         next: null,
-        parent: "move",
+        parent: 'move',
         inputs: {},
-        fields: {VARIABLE: ["score", "variable-id"]},
+        fields: { VARIABLE: ['score', 'variable-id'] },
         shadow: false,
         topLevel: false,
       },
     },
     vmBlocks: [
       {
-        id: "move",
-        opcode: "motion_movesteps",
+        id: 'move',
+        opcode: 'motion_movesteps',
         next: null,
         parent: null,
-        inputs: {STEPS: {name: "STEPS", block: "variable", shadow: "number"}},
+        inputs: { STEPS: { name: 'STEPS', block: 'variable', shadow: 'number' } },
         fields: {},
         shadow: false,
         topLevel: true,
       },
       {
-        id: "variable",
-        opcode: "data_variable",
+        id: 'variable',
+        opcode: 'data_variable',
         next: null,
-        parent: "move",
+        parent: 'move',
         inputs: {},
-        fields: {VARIABLE: {name: "VARIABLE", value: "score", id: "variable-id", variableType: ""}},
+        fields: {
+          VARIABLE: { name: 'VARIABLE', value: 'score', id: 'variable-id', variableType: '' },
+        },
         shadow: false,
         topLevel: false,
       },
       {
-        id: "number",
-        opcode: "math_number",
+        id: 'number',
+        opcode: 'math_number',
         next: null,
-        parent: "move",
+        parent: 'move',
         inputs: {},
-        fields: {NUM: {name: "NUM", value: "10"}},
+        fields: { NUM: { name: 'NUM', value: '10' } },
         shadow: true,
         topLevel: false,
       },
     ],
-    scratchblocksText: "move (score) steps",
+    scratchblocksText: 'move (score) steps',
   },
   {
-    name: "menu-shadow",
+    name: 'menu-shadow',
     sb3: {
       goto: {
-        opcode: "motion_goto",
+        opcode: 'motion_goto',
         next: null,
         parent: null,
-        inputs: {TO: [1, "menu"]},
+        inputs: { TO: [1, 'menu'] },
         fields: {},
         shadow: false,
         topLevel: true,
       },
       menu: {
-        opcode: "motion_goto_menu",
+        opcode: 'motion_goto_menu',
         next: null,
-        parent: "goto",
+        parent: 'goto',
         inputs: {},
-        fields: {TO: ["_random_"]},
+        fields: { TO: ['_random_'] },
         shadow: true,
         topLevel: false,
       },
     },
     vmBlocks: [
       {
-        id: "goto",
-        opcode: "motion_goto",
+        id: 'goto',
+        opcode: 'motion_goto',
         next: null,
         parent: null,
-        inputs: {TO: {name: "TO", block: "menu", shadow: "menu"}},
+        inputs: { TO: { name: 'TO', block: 'menu', shadow: 'menu' } },
         fields: {},
         shadow: false,
         topLevel: true,
       },
       {
-        id: "menu",
-        opcode: "motion_goto_menu",
+        id: 'menu',
+        opcode: 'motion_goto_menu',
         next: null,
-        parent: "goto",
+        parent: 'goto',
         inputs: {},
-        fields: {TO: {name: "TO", value: "_random_"}},
+        fields: { TO: { name: 'TO', value: '_random_' } },
         shadow: true,
         topLevel: false,
       },
     ],
-    scratchblocksText: "go to (random position v)",
+    scratchblocksText: 'go to (random position v)',
   },
-]
+];

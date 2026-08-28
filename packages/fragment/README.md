@@ -4,10 +4,10 @@ Analyze semantic Scratch scripts and create versioned, JSON-serializable code
 fragments without consulting SB3, VM Blocks, scratchblocks, or a block registry.
 
 ```ts
-import {analyzeScripts, createScratchFragment} from "@scratch-code/fragment"
+import { analyzeScripts, createScratchFragment } from '@scratch-code/fragment';
 
-const analysis = analyzeScripts(selectedScripts)
-const fragment = createScratchFragment(selectedScripts, {sourceScripts})
+const analysis = analyzeScripts(selectedScripts);
+const fragment = createScratchFragment(selectedScripts, { sourceScripts });
 ```
 
 `analyzeScripts()` reports variable, list, broadcast, procedure, and extension

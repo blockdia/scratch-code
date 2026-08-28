@@ -8,10 +8,6 @@
     "declarationMap": true,
     "sourceMap": true
   },
-  "include": [
-    "src/**/*.ts"
-  ],
-  "exclude": [
-    "test"
-  ]
+  "include": ["src/**/*.ts"],
+  "exclude": ["test"]
 }

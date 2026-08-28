@@ -1,149 +1,170 @@
-import assert from "node:assert/strict"
-import {execFileSync} from "node:child_process"
-import {createRequire} from "node:module"
-import {readFileSync, readdirSync} from "node:fs"
-import {basename, resolve} from "node:path"
+import assert from 'node:assert/strict';
+import { execFileSync } from 'node:child_process';
+import { createRequire } from 'node:module';
+import { readFileSync, readdirSync } from 'node:fs';
+import { basename, resolve } from 'node:path';
 
-import {materialize} from "@scratch-code/materialize"
+import { materialize } from '@scratch-code/materialize';
 import {
   createTurboWarpBlockRegistry,
   getTurboWarpBlockResolveContext,
   InvalidTurboWarpBlockContextError,
   TURBOWARP_VM_SOURCE_REVISION,
-} from "@scratch-code/turbowarp-blocks"
-import {deserializeVmBlocks, InvalidVmBlocksError, serializeVmBlocks} from "../dist/index.js"
+} from '@scratch-code/turbowarp-blocks';
+import { deserializeVmBlocks, InvalidVmBlocksError, serializeVmBlocks } from '../dist/index.js';
 
-const arguments_ = process.argv.slice(2).filter(argument => argument !== "--")
+const arguments_ = process.argv.slice(2).filter((argument) => argument !== '--');
 if (arguments_.length < 2) {
-  throw new Error("Usage: test:corpus -- /path/to/scratch-vm /path/to/sb3-projects")
+  throw new Error('Usage: test:corpus -- /path/to/scratch-vm /path/to/sb3-projects');
 }
-const vmPath = resolve(arguments_[0])
-const directory = resolve(arguments_[1])
-const revision = execFileSync("git", ["rev-parse", "HEAD"], {cwd: vmPath, encoding: "utf8"}).trim()
-assert.equal(revision, TURBOWARP_VM_SOURCE_REVISION, "scratch-vm revision does not match the pinned source")
+const vmPath = resolve(arguments_[0]);
+const directory = resolve(arguments_[1]);
+const revision = execFileSync('git', ['rev-parse', 'HEAD'], {
+  cwd: vmPath,
+  encoding: 'utf8',
+}).trim();
+assert.equal(
+  revision,
+  TURBOWARP_VM_SOURCE_REVISION,
+  'scratch-vm revision does not match the pinned source',
+);
 
-const vmRequire = createRequire(resolve(vmPath, "package.json"))
-const originalWarn = console.warn
-console.warn = () => {}
-const VirtualMachine = vmRequire("./src/index.js")
-const registry = createTurboWarpBlockRegistry()
-let checkedProjects = 0
-let checkedTargets = 0
-let checkedBlocks = 0
-let skippedProjects = 0
-let rejectedTargets = 0
-let checkedSubsets = 0
-let checkedSubsetBlocks = 0
-let rejectedSubsets = 0
+const vmRequire = createRequire(resolve(vmPath, 'package.json'));
+const originalWarn = console.warn;
+console.warn = () => {};
+const VirtualMachine = vmRequire('./src/index.js');
+const registry = createTurboWarpBlockRegistry();
+let checkedProjects = 0;
+let checkedTargets = 0;
+let checkedBlocks = 0;
+let skippedProjects = 0;
+let rejectedTargets = 0;
+let checkedSubsets = 0;
+let checkedSubsetBlocks = 0;
+let rejectedSubsets = 0;
 
 const rootClosure = (blocks, rootId) => {
-  const byId = new Map(blocks.map(block => [block.id, block]))
-  const included = new Set()
-  const pending = [rootId]
+  const byId = new Map(blocks.map((block) => [block.id, block]));
+  const included = new Set();
+  const pending = [rootId];
   while (pending.length > 0) {
-    const id = pending.pop()
-    if (included.has(id)) continue
-    const block = byId.get(id)
-    if (!block) throw new Error(`Subset root references missing block ${JSON.stringify(id)}.`)
-    included.add(id)
-    if (typeof block.next === "string") pending.push(block.next)
+    const id = pending.pop();
+    if (included.has(id)) continue;
+    const block = byId.get(id);
+    if (!block) throw new Error(`Subset root references missing block ${JSON.stringify(id)}.`);
+    included.add(id);
+    if (typeof block.next === 'string') pending.push(block.next);
     for (const input of Object.values(block.inputs ?? {})) {
-      if (typeof input.block === "string") pending.push(input.block)
-      if (typeof input.shadow === "string") pending.push(input.shadow)
+      if (typeof input.block === 'string') pending.push(input.block);
+      if (typeof input.shadow === 'string') pending.push(input.shadow);
     }
   }
-  return blocks.filter(block => included.has(block.id))
-}
+  return blocks.filter((block) => included.has(block.id));
+};
 
-const materializeSubset = scripts => {
-  let next = 1
+const materializeSubset = (scripts) => {
+  let next = 1;
   return materialize(scripts, registry, {
-    contextForBlock: (block, {hasNext}) => getTurboWarpBlockResolveContext(block, hasNext),
+    contextForBlock: (block, { hasNext }) => getTurboWarpBlockResolveContext(block, hasNext),
     generateBlockId: (_node, usedIds) => {
-      let id
-      do id = `vm-subset-${next++}`
-      while (usedIds.has(id))
-      return id
+      let id;
+      do id = `vm-subset-${next++}`;
+      while (usedIds.has(id));
+      return id;
     },
-  })
-}
+  });
+};
 
-for (const filename of readdirSync(directory).filter(name => name.endsWith(".sb3")).sort()) {
-  const path = resolve(directory, filename)
-  const project = JSON.parse(execFileSync("unzip", ["-p", path, "project.json"], {
-    encoding: "utf8",
-    maxBuffer: 512 * 1024 * 1024,
-  }))
-  const missing = new Set()
+for (const filename of readdirSync(directory)
+  .filter((name) => name.endsWith('.sb3'))
+  .sort()) {
+  const path = resolve(directory, filename);
+  const project = JSON.parse(
+    execFileSync('unzip', ['-p', path, 'project.json'], {
+      encoding: 'utf8',
+      maxBuffer: 512 * 1024 * 1024,
+    }),
+  );
+  const missing = new Set();
   for (const target of project.targets ?? []) {
     for (const block of Object.values(target.blocks ?? {})) {
-      if (!Array.isArray(block) && typeof block?.opcode === "string" && !registry.has(block.opcode)) {
-        missing.add(block.opcode)
+      if (
+        !Array.isArray(block) &&
+        typeof block?.opcode === 'string' &&
+        !registry.has(block.opcode)
+      ) {
+        missing.add(block.opcode);
       }
     }
   }
   if (missing.size > 0) {
-    skippedProjects += 1
-    console.log(`SKIP ${basename(path)}: ${[...missing].sort().join(", ")}`)
-    continue
+    skippedProjects += 1;
+    console.log(`SKIP ${basename(path)}: ${[...missing].sort().join(', ')}`);
+    continue;
   }
 
-  const vm = new VirtualMachine()
-  await vm.loadProject(readFileSync(path))
+  const vm = new VirtualMachine();
+  await vm.loadProject(readFileSync(path));
   for (const target of vm.runtime.targets) {
-    const source = Object.values(target.blocks._blocks)
+    const source = Object.values(target.blocks._blocks);
     try {
-      const first = deserializeVmBlocks(source, registry)
-      const canonical = serializeVmBlocks(first)
-      const second = deserializeVmBlocks(canonical, registry)
-      assert.deepEqual(second, first, `${filename} / ${target.getName()}: semantic AST changed`)
-      assert.deepEqual(serializeVmBlocks(second), canonical, `${filename} / ${target.getName()}: canonical VM blocks changed`)
-      const root = source.find(block => block.topLevel === true && block.shadow !== true)
+      const first = deserializeVmBlocks(source, registry);
+      const canonical = serializeVmBlocks(first);
+      const second = deserializeVmBlocks(canonical, registry);
+      assert.deepEqual(second, first, `${filename} / ${target.getName()}: semantic AST changed`);
+      assert.deepEqual(
+        serializeVmBlocks(second),
+        canonical,
+        `${filename} / ${target.getName()}: canonical VM blocks changed`,
+      );
+      const root = source.find((block) => block.topLevel === true && block.shadow !== true);
       if (root) {
         try {
-          const subset = rootClosure(source, root.id)
-          const subsetAst = deserializeVmBlocks(subset, registry)
-          const shareAst = materializeSubset(subsetAst)
-          const shareBlocks = serializeVmBlocks(shareAst)
+          const subset = rootClosure(source, root.id);
+          const subsetAst = deserializeVmBlocks(subset, registry);
+          const shareAst = materializeSubset(subsetAst);
+          const shareBlocks = serializeVmBlocks(shareAst);
           assert.deepEqual(
             deserializeVmBlocks(shareBlocks, registry),
             shareAst,
             `${filename} / ${target.getName()} / ${root.id}: root subset changed`,
-          )
-          checkedSubsets += 1
-          checkedSubsetBlocks += subset.length
+          );
+          checkedSubsets += 1;
+          checkedSubsetBlocks += subset.length;
         } catch (error) {
-          if (!(error instanceof InvalidTurboWarpBlockContextError)) throw error
-          rejectedSubsets += 1
+          if (!(error instanceof InvalidTurboWarpBlockContextError)) throw error;
+          rejectedSubsets += 1;
           console.log(
             `REJECT_SUBSET ${basename(path)} / ${target.getName()} / ${root.id} / ${root.opcode}: ${error.message}`,
-          )
+          );
         }
       }
-      checkedTargets += 1
-      checkedBlocks += source.length
+      checkedTargets += 1;
+      checkedBlocks += source.length;
     } catch (error) {
-      if (!(error instanceof InvalidVmBlocksError)) throw error
-      rejectedTargets += 1
-      console.log(`REJECT ${basename(path)} / ${target.getName()}: ${error.message}`)
+      if (!(error instanceof InvalidVmBlocksError)) throw error;
+      rejectedTargets += 1;
+      console.log(`REJECT ${basename(path)} / ${target.getName()}: ${error.message}`);
     }
   }
-  vm.quit()
-  checkedProjects += 1
+  vm.quit();
+  checkedProjects += 1;
 }
 
-console.warn = originalWarn
-console.log(JSON.stringify({
-  revision,
-  checkedProjects,
-  checkedTargets,
-  checkedBlocks,
-  skippedProjects,
-  rejectedTargets,
-  checkedSubsets,
-  checkedSubsetBlocks,
-  rejectedSubsets,
-}))
+console.warn = originalWarn;
+console.log(
+  JSON.stringify({
+    revision,
+    checkedProjects,
+    checkedTargets,
+    checkedBlocks,
+    skippedProjects,
+    rejectedTargets,
+    checkedSubsets,
+    checkedSubsetBlocks,
+    rejectedSubsets,
+  }),
+);
 // Some projects load extension workers which outlive VirtualMachine.quit(). The audit is
 // complete once every VM instance has been quit and the summary has been written.
-process.exit(0)
+process.exit(0);

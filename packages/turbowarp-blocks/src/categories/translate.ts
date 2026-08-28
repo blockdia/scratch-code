@@ -1,2 +1,2 @@
-import {specsByExtensionId} from "../internal/extension-catalog.js"
-export const translateBlockSpecs = specsByExtensionId.get("translate")!
+import { specsByExtensionId } from '../internal/extension-catalog.js';
+export const translateBlockSpecs = specsByExtensionId.get('translate')!;

@@ -4,19 +4,19 @@ Convert syntax trees from [`scratchblocks-plus`](https://www.npmjs.com/package/s
 to and from the semantic tree-shaped AST from `@scratch-code/ast`.
 
 ```ts
-import {createTurboWarpBlockRegistry} from "@scratch-code/turbowarp-blocks"
+import { createTurboWarpBlockRegistry } from '@scratch-code/turbowarp-blocks';
 import {
   deserializeScratchblocks,
   serializeScratchblocks,
-} from "@scratch-code/scratchblocks-codec"
-import {parse} from "scratchblocks-plus/syntax"
+} from '@scratch-code/scratchblocks-codec';
+import { parse } from 'scratchblocks-plus/syntax';
 
-const registry = createTurboWarpBlockRegistry()
-const document = parse("move (10) steps", {languages: ["en"]})
-const scripts = deserializeScratchblocks(document, registry)
-const rebuilt = serializeScratchblocks(scripts, registry)
+const registry = createTurboWarpBlockRegistry();
+const document = parse('move (10) steps', { languages: ['en'] });
+const scripts = deserializeScratchblocks(document, registry);
+const rebuilt = serializeScratchblocks(scripts, registry);
 
-rebuilt.stringify() // "move (10) steps"
+rebuilt.stringify(); // "move (10) steps"
 ```
 
 Both directions require a block-spec registry. The registry supplies semantic

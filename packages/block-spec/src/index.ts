@@ -2,8 +2,8 @@ export {
   DuplicateBlockSpecError,
   InvalidResolvedBlockSpecError,
   MissingBlockSpecError,
-} from "./errors.js"
-export {BlockSpecRegistry, createBlockSpecRegistry} from "./registry.js"
+} from './errors.js';
+export { BlockSpecRegistry, createBlockSpecRegistry } from './registry.js';
 export type {
   BlockArgumentRef,
   BlockShape,
@@ -32,7 +32,7 @@ export type {
   StatementInputSpec,
   TerminalBlockSpec,
   ValueInputSpec,
-} from "./types.js"
+} from './types.js';
 
 export type {
   Block,
@@ -46,4 +46,4 @@ export type {
   Metadata,
   NumericKind,
   Opcode,
-} from "@scratch-code/ast"
+} from '@scratch-code/ast';

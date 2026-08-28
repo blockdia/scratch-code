@@ -1,4 +1,4 @@
-import {describe, expect, it} from "vitest"
+import { describe, expect, it } from 'vitest';
 
 import {
   InvalidTurboWarpBlockContextError,
@@ -6,118 +6,224 @@ import {
   getTurboWarpBlockResolveContext,
   type ProcedureCallResolveContext,
   type ProcedurePrototypeResolveContext,
-} from "../src/index.js"
+} from '../src/index.js';
 
-describe("TurboWarp dynamic specs", () => {
-  it("extracts resolver contexts from AST blocks", () => {
-    expect(getTurboWarpBlockResolveContext({
-      kind: "block", opcode: "control_stop", inputs: {}, fields: {},
-    }, true)).toEqual({kind: "control-stop", hasNext: true})
-    expect(getTurboWarpBlockResolveContext({
-      kind: "block", opcode: "procedures_call", inputs: {}, fields: {},
-      mutation: {
-        type: "procedure-call", proccode: "mix %n %s %b", argumentIds: ["n", "s", "b"],
-        warp: false, returnType: "reporter",
-      },
-    }, false)).toEqual({
-      kind: "procedure-call", returnType: "reporter",
+describe('TurboWarp dynamic specs', () => {
+  it('extracts resolver contexts from AST blocks', () => {
+    expect(
+      getTurboWarpBlockResolveContext(
+        {
+          kind: 'block',
+          opcode: 'control_stop',
+          inputs: {},
+          fields: {},
+        },
+        true,
+      ),
+    ).toEqual({ kind: 'control-stop', hasNext: true });
+    expect(
+      getTurboWarpBlockResolveContext(
+        {
+          kind: 'block',
+          opcode: 'procedures_call',
+          inputs: {},
+          fields: {},
+          mutation: {
+            type: 'procedure-call',
+            proccode: 'mix %n %s %b',
+            argumentIds: ['n', 's', 'b'],
+            warp: false,
+            returnType: 'reporter',
+          },
+        },
+        false,
+      ),
+    ).toEqual({
+      kind: 'procedure-call',
+      returnType: 'reporter',
       arguments: [
-        {id: "n", type: "number"},
-        {id: "s", type: "string"},
-        {id: "b", type: "boolean"},
+        { id: 'n', type: 'number' },
+        { id: 's', type: 'string' },
+        { id: 'b', type: 'boolean' },
       ],
-    })
-    expect(getTurboWarpBlockResolveContext({
-      kind: "block", opcode: "procedures_prototype", inputs: {}, fields: {},
-      mutation: {
-        type: "procedure-prototype", proccode: "mix %n %s %b",
-        argumentIds: ["n", "s", "b"], argumentNames: ["count", "label", "ready?"],
-        argumentDefaults: [0, "", false], warp: false,
-      },
-    }, false)).toEqual({
-      kind: "procedure-prototype",
+    });
+    expect(
+      getTurboWarpBlockResolveContext(
+        {
+          kind: 'block',
+          opcode: 'procedures_prototype',
+          inputs: {},
+          fields: {},
+          mutation: {
+            type: 'procedure-prototype',
+            proccode: 'mix %n %s %b',
+            argumentIds: ['n', 's', 'b'],
+            argumentNames: ['count', 'label', 'ready?'],
+            argumentDefaults: [0, '', false],
+            warp: false,
+          },
+        },
+        false,
+      ),
+    ).toEqual({
+      kind: 'procedure-prototype',
       arguments: [
-        {id: "n", name: "count", type: "number"},
-        {id: "s", name: "label", type: "string"},
-        {id: "b", name: "ready?", type: "boolean"},
+        { id: 'n', name: 'count', type: 'number' },
+        { id: 's', name: 'label', type: 'string' },
+        { id: 'b', name: 'ready?', type: 'boolean' },
       ],
-    })
-    expect(getTurboWarpBlockResolveContext({
-      kind: "block", opcode: "motion_movesteps", inputs: {}, fields: {},
-    }, false)).toBeUndefined()
-  })
+    });
+    expect(
+      getTurboWarpBlockResolveContext(
+        {
+          kind: 'block',
+          opcode: 'motion_movesteps',
+          inputs: {},
+          fields: {},
+        },
+        false,
+      ),
+    ).toBeUndefined();
+  });
 
-  it("rejects inconsistent AST procedure mutations", () => {
-    expect(() => getTurboWarpBlockResolveContext({
-      kind: "block", opcode: "procedures_call", inputs: {}, fields: {},
-    }, false)).toThrow(InvalidTurboWarpBlockContextError)
-    expect(() => getTurboWarpBlockResolveContext({
-      kind: "block", opcode: "procedures_prototype", inputs: {}, fields: {},
-      mutation: {
-        type: "procedure-prototype", proccode: "test %n", argumentIds: [],
-        argumentNames: [], argumentDefaults: [], warp: false,
-      },
-    }, false)).toThrow(InvalidTurboWarpBlockContextError)
-  })
+  it('rejects inconsistent AST procedure mutations', () => {
+    expect(() =>
+      getTurboWarpBlockResolveContext(
+        {
+          kind: 'block',
+          opcode: 'procedures_call',
+          inputs: {},
+          fields: {},
+        },
+        false,
+      ),
+    ).toThrow(InvalidTurboWarpBlockContextError);
+    expect(() =>
+      getTurboWarpBlockResolveContext(
+        {
+          kind: 'block',
+          opcode: 'procedures_prototype',
+          inputs: {},
+          fields: {},
+          mutation: {
+            type: 'procedure-prototype',
+            proccode: 'test %n',
+            argumentIds: [],
+            argumentNames: [],
+            argumentDefaults: [],
+            warp: false,
+          },
+        },
+        false,
+      ),
+    ).toThrow(InvalidTurboWarpBlockContextError);
+  });
 
-  it("resolves control_stop without changing its terminal base", () => {
-    const registry = createTurboWarpBlockRegistry()
-    const base = registry.require("control_stop")
-    expect(base.shape).toBe("terminal")
-    expect(registry.resolveRequired("control_stop", {kind: "control-stop", hasNext: false})).toBe(base)
-    expect(registry.resolveRequired("control_stop", {kind: "control-stop", hasNext: true}).shape).toBe("command")
-    expect(registry.require("control_stop")).toBe(base)
-  })
+  it('resolves control_stop without changing its terminal base', () => {
+    const registry = createTurboWarpBlockRegistry();
+    const base = registry.require('control_stop');
+    expect(base.shape).toBe('terminal');
+    expect(registry.resolveRequired('control_stop', { kind: 'control-stop', hasNext: false })).toBe(
+      base,
+    );
+    expect(
+      registry.resolveRequired('control_stop', { kind: 'control-stop', hasNext: true }).shape,
+    ).toBe('command');
+    expect(registry.require('control_stop')).toBe(base);
+  });
 
-  it("resolves every procedure call return type and ordered argument", () => {
-    const registry = createTurboWarpBlockRegistry()
-    const argumentsInOrder: ProcedureCallResolveContext["arguments"] = [
-      {id: "number-id", type: "number"},
-      {id: "string-id", type: "string"},
-      {id: "boolean-id", type: "boolean"},
-    ]
-    for (const [returnType, shape] of [["statement", "command"], ["reporter", "reporter"], ["boolean", "boolean"]] as const) {
-      const spec = registry.resolveRequired("procedures_call", {kind: "procedure-call", returnType, arguments: argumentsInOrder})
-      expect(spec.shape).toBe(shape)
-      expect(Object.keys(spec.inputs)).toEqual(["number-id", "string-id", "boolean-id"])
+  it('resolves every procedure call return type and ordered argument', () => {
+    const registry = createTurboWarpBlockRegistry();
+    const argumentsInOrder: ProcedureCallResolveContext['arguments'] = [
+      { id: 'number-id', type: 'number' },
+      { id: 'string-id', type: 'string' },
+      { id: 'boolean-id', type: 'boolean' },
+    ];
+    for (const [returnType, shape] of [
+      ['statement', 'command'],
+      ['reporter', 'reporter'],
+      ['boolean', 'boolean'],
+    ] as const) {
+      const spec = registry.resolveRequired('procedures_call', {
+        kind: 'procedure-call',
+        returnType,
+        arguments: argumentsInOrder,
+      });
+      expect(spec.shape).toBe(shape);
+      expect(Object.keys(spec.inputs)).toEqual(['number-id', 'string-id', 'boolean-id']);
     }
-    const reporter = registry.resolveRequired("procedures_call", {
-      kind: "procedure-call", returnType: "reporter", arguments: argumentsInOrder,
-    })
-    expect(reporter).toMatchObject({shape: "reporter", outputType: "any"})
-    expect(reporter.inputs["number-id"]?.default).toMatchObject({type: "number", value: 1})
-    expect(reporter.inputs["string-id"]?.default).toEqual({kind: "input", type: "string", value: ""})
-    expect(reporter.inputs["boolean-id"]?.default).toBeUndefined()
-  })
+    const reporter = registry.resolveRequired('procedures_call', {
+      kind: 'procedure-call',
+      returnType: 'reporter',
+      arguments: argumentsInOrder,
+    });
+    expect(reporter).toMatchObject({ shape: 'reporter', outputType: 'any' });
+    expect(reporter.inputs['number-id']?.default).toMatchObject({ type: 'number', value: 1 });
+    expect(reporter.inputs['string-id']?.default).toEqual({
+      kind: 'input',
+      type: 'string',
+      value: '',
+    });
+    expect(reporter.inputs['boolean-id']?.default).toBeUndefined();
+  });
 
-  it("resolves prototype reporters using IDs, names, and types", () => {
-    const registry = createTurboWarpBlockRegistry()
+  it('resolves prototype reporters using IDs, names, and types', () => {
+    const registry = createTurboWarpBlockRegistry();
     const context: ProcedurePrototypeResolveContext = {
-      kind: "procedure-prototype",
+      kind: 'procedure-prototype',
       arguments: [
-        {id: "a", name: "count", type: "number"},
-        {id: "b", name: "label", type: "string"},
-        {id: "c", name: "ready?", type: "boolean"},
+        { id: 'a', name: 'count', type: 'number' },
+        { id: 'b', name: 'label', type: 'string' },
+        { id: 'c', name: 'ready?', type: 'boolean' },
       ],
-    }
-    const spec = registry.resolveRequired("procedures_prototype", context)
-    expect(Object.keys(spec.inputs)).toEqual(["a", "b", "c"])
-    expect(spec.inputs["a"]?.default).toMatchObject({value: {opcode: "argument_reporter_string_number", fields: {VALUE: {value: "count"}}}})
-    expect(spec.inputs["b"]?.default).toMatchObject({value: {opcode: "argument_reporter_string_number", fields: {VALUE: {value: "label"}}}})
-    expect(spec.inputs["c"]?.default).toMatchObject({value: {opcode: "argument_reporter_boolean", fields: {VALUE: {value: "ready?"}}}})
-  })
+    };
+    const spec = registry.resolveRequired('procedures_prototype', context);
+    expect(Object.keys(spec.inputs)).toEqual(['a', 'b', 'c']);
+    expect(spec.inputs['a']?.default).toMatchObject({
+      value: { opcode: 'argument_reporter_string_number', fields: { VALUE: { value: 'count' } } },
+    });
+    expect(spec.inputs['b']?.default).toMatchObject({
+      value: { opcode: 'argument_reporter_string_number', fields: { VALUE: { value: 'label' } } },
+    });
+    expect(spec.inputs['c']?.default).toMatchObject({
+      value: { opcode: 'argument_reporter_boolean', fields: { VALUE: { value: 'ready?' } } },
+    });
+  });
 
-  it("rejects missing and mismatched contexts and never mutates base specs", () => {
-    const registry = createTurboWarpBlockRegistry()
-    const callBase = registry.require("procedures_call")
-    expect(() => registry.resolveRequired("procedures_call", undefined)).toThrow(InvalidTurboWarpBlockContextError)
-    expect(() => registry.resolveRequired("control_stop", {kind: "procedure-call", returnType: "statement", arguments: []})).toThrow(InvalidTurboWarpBlockContextError)
-    expect(() => registry.resolveRequired("procedures_call", {kind: "procedure-call"} as never)).toThrow(InvalidTurboWarpBlockContextError)
-    expect(() => registry.resolveRequired("procedures_prototype", {kind: "procedure-prototype", arguments: [{id: "a", type: "number"}]} as never)).toThrow(InvalidTurboWarpBlockContextError)
-    const first = registry.resolveRequired("procedures_call", {kind: "procedure-call", returnType: "statement", arguments: [{id: "x", type: "number"}]})
-    const second = registry.resolveRequired("procedures_call", {kind: "procedure-call", returnType: "boolean", arguments: []})
-    expect(first).not.toBe(second)
-    expect(registry.require("procedures_call")).toBe(callBase)
-    expect(callBase.inputs).toEqual({})
-  })
-})
+  it('rejects missing and mismatched contexts and never mutates base specs', () => {
+    const registry = createTurboWarpBlockRegistry();
+    const callBase = registry.require('procedures_call');
+    expect(() => registry.resolveRequired('procedures_call', undefined)).toThrow(
+      InvalidTurboWarpBlockContextError,
+    );
+    expect(() =>
+      registry.resolveRequired('control_stop', {
+        kind: 'procedure-call',
+        returnType: 'statement',
+        arguments: [],
+      }),
+    ).toThrow(InvalidTurboWarpBlockContextError);
+    expect(() =>
+      registry.resolveRequired('procedures_call', { kind: 'procedure-call' } as never),
+    ).toThrow(InvalidTurboWarpBlockContextError);
+    expect(() =>
+      registry.resolveRequired('procedures_prototype', {
+        kind: 'procedure-prototype',
+        arguments: [{ id: 'a', type: 'number' }],
+      } as never),
+    ).toThrow(InvalidTurboWarpBlockContextError);
+    const first = registry.resolveRequired('procedures_call', {
+      kind: 'procedure-call',
+      returnType: 'statement',
+      arguments: [{ id: 'x', type: 'number' }],
+    });
+    const second = registry.resolveRequired('procedures_call', {
+      kind: 'procedure-call',
+      returnType: 'boolean',
+      arguments: [],
+    });
+    expect(first).not.toBe(second);
+    expect(registry.require('procedures_call')).toBe(callBase);
+    expect(callBase.inputs).toEqual({});
+  });
+});

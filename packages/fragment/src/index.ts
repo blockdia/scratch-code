@@ -1,9 +1,6 @@
-export {analyzeScripts} from "./analysis.js"
-export {DuplicateProcedureDefinitionError} from "./errors.js"
-export {
-  createScratchFragment,
-  SCRATCH_FRAGMENT_VERSION,
-} from "./fragment.js"
+export { analyzeScripts } from './analysis.js';
+export { DuplicateProcedureDefinitionError } from './errors.js';
+export { createScratchFragment, SCRATCH_FRAGMENT_VERSION } from './fragment.js';
 export type {
   CreateScratchFragmentOptions,
   ProcedureDependency,
@@ -12,4 +9,4 @@ export type {
   ScratchFragmentDependencies,
   ScratchFragmentV1,
   ScriptAnalysis,
-} from "./types.js"
+} from './types.js';
