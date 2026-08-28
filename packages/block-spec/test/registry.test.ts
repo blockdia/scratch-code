@@ -1,4 +1,5 @@
 import { describe, expect, it, vi } from 'vitest';
+import { validateScripts } from '@scratch-code/ast';
 
 import {
   BlockSpecRegistry,
@@ -30,6 +31,29 @@ const moveSteps: CommandBlockSpec = {
 };
 
 describe('BlockSpecRegistry', () => {
+  it('is directly compatible with AST semantic validation', () => {
+    const registry = createBlockSpecRegistry().register(moveSteps);
+
+    expect(
+      validateScripts(
+        [
+          {
+            kind: 'script',
+            blocks: [
+              {
+                kind: 'block',
+                opcode: 'motion_movesteps',
+                fields: {},
+                inputs: { STEPS: { kind: 'input', type: 'number', value: 10 } },
+              },
+            ],
+          },
+        ],
+        { registry },
+      ),
+    ).toEqual([]);
+  });
+
   it('registers, queries, enumerates, and unregisters base specs', () => {
     const registry = createBlockSpecRegistry();
 

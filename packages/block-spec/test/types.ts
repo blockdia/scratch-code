@@ -1,6 +1,7 @@
-import type { NumericKind as AstNumericKind } from '@scratch-code/ast';
+import { validateScripts, type NumericKind as AstNumericKind } from '@scratch-code/ast';
 
 import type {
+  BlockSpecRegistry,
   BlockSpec,
   DefaultInput,
   InputSpec,
@@ -87,6 +88,9 @@ const reporterWithoutOutput: BlockSpec = {
   fields: {},
   arguments: [],
 };
+
+declare const registry: BlockSpecRegistry;
+validateScripts([], { registry });
 
 void [
   roundTripNumericKind,

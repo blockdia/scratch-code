@@ -48,3 +48,13 @@ export type { WalkContext, WalkVisitor } from './traversal.js';
 
 export { transformScripts } from './transform.js';
 export type { TransformContext, TransformVisitor } from './transform.js';
+
+export { AstValidationError, assertValidScripts, validateScripts } from './validation.js';
+export type {
+  AstDiagnostic,
+  AstDiagnosticCode,
+  AstDiagnosticSeverity,
+  AstPathSegment,
+  BlockSpecRegistryLike,
+  ValidateScriptsOptions,
+} from './validation.js';

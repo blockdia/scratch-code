@@ -1,6 +1,12 @@
 import assert from 'node:assert/strict';
 
-import { isScript, transformScripts, walk } from '@scratch-code/ast';
+import {
+  assertValidScripts,
+  isScript,
+  transformScripts,
+  validateScripts,
+  walk,
+} from '@scratch-code/ast';
 
 const script = { kind: 'script', blocks: [] };
 let visits = 0;
@@ -21,3 +27,5 @@ const transformed = transformScripts([script], {
 });
 assert.equal(transformed[0].metadata.smoke, true);
 assert.equal(script.metadata, undefined);
+assert.deepEqual(validateScripts([script]), []);
+assert.doesNotThrow(() => assertValidScripts([script]));

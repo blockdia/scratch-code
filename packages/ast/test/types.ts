@@ -9,8 +9,9 @@ import type {
   StringInput,
   TransformContext,
   TransformVisitor,
+  ValidateScriptsOptions,
 } from '../src/index.js';
-import { transformScripts } from '../src/index.js';
+import { assertValidScripts, transformScripts, validateScripts } from '../src/index.js';
 
 const validScript: Script = {
   kind: 'script',
@@ -73,6 +74,12 @@ const transformedScripts: Script[] = transformScripts(
   [validScript] as readonly Script[],
   transformVisitor,
 );
+
+const unknownScripts: unknown = [validScript];
+assertValidScripts(unknownScripts);
+const narrowedScripts: readonly Script[] = unknownScripts;
+const validationOptions: ValidateScriptsOptions = {};
+const diagnostics = validateScripts(unknownScripts, validationOptions);
 
 transformScripts([validScript], {
   // @ts-expect-error transform visitors return an AST node or undefined.
@@ -171,4 +178,6 @@ void [
   dropdownWithId,
   incompletePrototype,
   booleanReturnFlag,
+  narrowedScripts,
+  diagnostics,
 ];

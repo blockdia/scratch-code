@@ -40,6 +40,50 @@ walk(script, {
 });
 ```
 
+## Validation
+
+`validateScripts()` treats its input as untrusted data and returns stable,
+structured diagnostics. With no options it validates only the AST contract:
+node shapes and required values, JSON safety, metadata and mutation shapes, and
+tree ownership (no shared AST nodes or cycles). It does not require block IDs
+and does not reject an open or extension opcode.
+
+```ts
+import { AstValidationError, assertValidScripts, validateScripts } from '@scratch-code/ast';
+
+const diagnostics = validateScripts(possiblyUntrustedValue);
+for (const diagnostic of diagnostics) {
+  console.log(diagnostic.code, diagnostic.path, diagnostic.nodeId);
+}
+
+// This also narrows an unknown value to readonly Script[].
+assertValidScripts(possiblyUntrustedValue);
+```
+
+Every diagnostic has a stable `code`, `severity`, structured `path`, human
+message, and the nearest `metadata.scratch.id` as `nodeId` when available.
+`assertValidScripts()` throws `AstValidationError` when any error is present;
+the error's `diagnostics` property retains the same structured entries.
+
+Supplying a `BlockSpecRegistry` opts into semantic validation. The validator
+uses only the registry's `get()` surface, which avoids a reverse package
+dependency from `@scratch-code/ast` to `@scratch-code/block-spec`:
+
+```ts
+import { validateScripts } from '@scratch-code/ast';
+import { createTurboWarpBlockRegistry } from '@scratch-code/turbowarp-blocks';
+
+const diagnostics = validateScripts(scripts, {
+  registry: createTurboWarpBlockRegistry(),
+});
+```
+
+Semantic validation checks declared fields and inputs, value versus statement
+connection shapes, literal compatibility with `accepts`, procedure mutations,
+and shadow/obscured-shadow placement. In this mode an opcode without a registry
+entry produces `MISSING_BLOCK_SPEC`. The validator is read-only: it never
+materializes defaults, creates IDs, changes shadows, or repairs the input.
+
 ## Immutable transforms
 
 `transformScripts()` is the modifying counterpart to `walk()`. It visits the
@@ -101,11 +145,12 @@ Procedure mutations are normalized as either `procedure-prototype` or
 and must have matching lengths. Call argument IDs correspond to the call block's
 input keys, and `returnType` distinguishes statement, reporter, and boolean calls.
 
-The package does not validate opcodes, execute blocks, render blocks, or convert
-SB3 files. Stable annotations under `metadata.scratch` are limited to source block IDs,
-script coordinates, and numeric shadow kinds. Codec namespaces such as
-`metadata.sb3` and `metadata.scratchblocks` are owned and typed by their codec
-packages.
+Structural validation does not interpret opcodes. Optional registry validation
+checks their declared semantic shape, but the package does not execute blocks,
+render blocks, or convert SB3 files. Stable annotations under
+`metadata.scratch` are limited to source block IDs, script coordinates, and
+numeric shadow kinds. Codec namespaces such as `metadata.sb3` and
+`metadata.scratchblocks` are owned and typed by their codec packages.
 
 `Field.value` is a `JsonValue`. Scratch normally uses strings, but imported
 projects and the VM can retain JSON arrays or objects in historical field data;
