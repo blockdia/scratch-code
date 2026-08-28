@@ -88,28 +88,40 @@ transformScripts([validScript], {
   },
 });
 
-// @ts-expect-error x/y belong to Script scratch metadata, not Block metadata.
 const blockWithPosition: Block = {
   kind: 'block',
   opcode: 'test',
   fields: {},
   inputs: {},
-  metadata: { scratch: { x: 1 } },
+  metadata: {
+    scratch: {
+      // @ts-expect-error x/y belong to Script scratch metadata, not Block metadata.
+      x: 1,
+    },
+  },
 };
 
-// @ts-expect-error source block IDs belong to Block scratch metadata, not Script metadata.
 const scriptWithBlockId: Script = {
   kind: 'script',
   blocks: [],
-  metadata: { scratch: { id: 'block-id' } },
+  metadata: {
+    scratch: {
+      // @ts-expect-error source block IDs belong to Block scratch metadata, not Script metadata.
+      id: 'block-id',
+    },
+  },
 };
 
-// @ts-expect-error numericKind is only valid on a number input.
 const stringWithNumericKind: StringInput = {
   kind: 'input',
   type: 'string',
   value: '1',
-  metadata: { scratch: { numericKind: 'integer' } },
+  metadata: {
+    scratch: {
+      // @ts-expect-error numericKind is only valid on a number input.
+      numericKind: 'integer',
+    },
+  },
 };
 
 // @ts-expect-error Scratch has no boolean literal input.
@@ -118,11 +130,11 @@ const booleanLiteral: Input = { kind: 'input', type: 'boolean', value: true };
 // @ts-expect-error dropdowns are fields, not input literals.
 const dropdownInput: Input = { kind: 'input', type: 'dropdown', value: 'option' };
 
-// @ts-expect-error plain dropdown fields do not carry reference IDs.
 const dropdownWithId: DropdownField = {
   kind: 'field',
   type: 'dropdown',
   value: 'option',
+  // @ts-expect-error plain dropdown fields do not carry reference IDs.
   id: 'id',
 };
 
@@ -134,12 +146,12 @@ const incompletePrototype: ProcedurePrototypeMutation = {
   warp: false,
 };
 
-// @ts-expect-error returnType is the Scratch three-state value, not a boolean.
 const booleanReturnFlag: ProcedureCallMutation = {
   type: 'procedure-call',
   proccode: 'do',
   argumentIds: [],
   warp: false,
+  // @ts-expect-error returnType is the Scratch three-state value, not a boolean.
   returnType: true,
 };
 

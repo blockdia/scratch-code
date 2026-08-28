@@ -9,8 +9,8 @@ const fragment: ScratchFragment = createScratchFragment(scripts, { sourceScripts
 void analysis.procedureCalls;
 void fragment.dependencies.procedures;
 
-// @ts-expect-error v1 has a literal numeric discriminator.
 const wrongVersion: ScratchFragment = {
+  // @ts-expect-error v1 has a literal numeric discriminator.
   version: 2,
   scripts: [],
   dependencies: fragment.dependencies,

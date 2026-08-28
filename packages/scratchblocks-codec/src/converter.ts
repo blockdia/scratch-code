@@ -2,7 +2,6 @@ import type {
   Block as AstBlock,
   Field,
   Input as AstInput,
-  JsonObject,
   ProcedureArgumentDefault,
   ProcedureCallMutation,
   ProcedurePrototypeMutation,
@@ -37,7 +36,6 @@ import type {
   Input as ScratchInput,
   LanguageData,
   Script as ScratchScript,
-  ScriptBlock as ScratchScriptBlock,
 } from 'scratchblocks-plus/syntax';
 
 import {

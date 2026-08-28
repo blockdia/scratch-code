@@ -69,10 +69,10 @@ const hatWithoutStyle: BlockSpec = {
   arguments: [],
 };
 
-// @ts-expect-error non-hat blocks cannot declare a hat style.
 const commandWithHatStyle: BlockSpec = {
   opcode: 'motion_test',
   shape: 'command',
+  // @ts-expect-error non-hat blocks cannot declare a hat style.
   hatStyle: 'standard',
   inputs: {},
   fields: {},

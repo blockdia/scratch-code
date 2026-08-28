@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 
-import type { Block, Script } from '@scratch-code/ast';
+import type { Script } from '@scratch-code/ast';
 import { walk } from '@scratch-code/ast';
 import { createBlockSpecRegistry } from '@scratch-code/block-spec';
 import { serializeSb3Blocks, type Sb3Block } from '@scratch-code/sb3';
