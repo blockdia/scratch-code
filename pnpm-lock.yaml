@@ -54,6 +54,28 @@ importers:
         specifier: workspace:^
         version: link:../ast
 
+  packages/materialize:
+    dependencies:
+      '@scratch-code/ast':
+        specifier: workspace:^
+        version: link:../ast
+      '@scratch-code/block-spec':
+        specifier: workspace:^
+        version: link:../block-spec
+    devDependencies:
+      '@scratch-code/sb3':
+        specifier: workspace:^
+        version: link:../sb3
+      '@scratch-code/scratchblocks-codec':
+        specifier: workspace:^
+        version: link:../scratchblocks-codec
+      '@scratch-code/turbowarp-blocks':
+        specifier: workspace:^
+        version: link:../turbowarp-blocks
+      scratchblocks-plus:
+        specifier: ^2.1.0
+        version: 2.1.0
+
   packages/sb3:
     dependencies:
       '@scratch-code/ast':

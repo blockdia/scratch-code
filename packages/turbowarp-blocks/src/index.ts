@@ -32,4 +32,5 @@ export type {
 } from "./context.js"
 export {InvalidTurboWarpBlockContextError} from "./errors.js"
 export {createTurboWarpBlockRegistry} from "./factory.js"
+export {getTurboWarpBlockResolveContext} from "./resolve-context.js"
 export {turboWarpBlockSpecs} from "./specs.js"

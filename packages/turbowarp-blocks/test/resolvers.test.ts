@@ -3,11 +3,63 @@ import {describe, expect, it} from "vitest"
 import {
   InvalidTurboWarpBlockContextError,
   createTurboWarpBlockRegistry,
+  getTurboWarpBlockResolveContext,
   type ProcedureCallResolveContext,
   type ProcedurePrototypeResolveContext,
 } from "../src/index.js"
 
 describe("TurboWarp dynamic specs", () => {
+  it("extracts resolver contexts from AST blocks", () => {
+    expect(getTurboWarpBlockResolveContext({
+      kind: "block", opcode: "control_stop", inputs: {}, fields: {},
+    }, true)).toEqual({kind: "control-stop", hasNext: true})
+    expect(getTurboWarpBlockResolveContext({
+      kind: "block", opcode: "procedures_call", inputs: {}, fields: {},
+      mutation: {
+        type: "procedure-call", proccode: "mix %n %s %b", argumentIds: ["n", "s", "b"],
+        warp: false, returnType: "reporter",
+      },
+    }, false)).toEqual({
+      kind: "procedure-call", returnType: "reporter",
+      arguments: [
+        {id: "n", type: "number"},
+        {id: "s", type: "string"},
+        {id: "b", type: "boolean"},
+      ],
+    })
+    expect(getTurboWarpBlockResolveContext({
+      kind: "block", opcode: "procedures_prototype", inputs: {}, fields: {},
+      mutation: {
+        type: "procedure-prototype", proccode: "mix %n %s %b",
+        argumentIds: ["n", "s", "b"], argumentNames: ["count", "label", "ready?"],
+        argumentDefaults: [0, "", false], warp: false,
+      },
+    }, false)).toEqual({
+      kind: "procedure-prototype",
+      arguments: [
+        {id: "n", name: "count", type: "number"},
+        {id: "s", name: "label", type: "string"},
+        {id: "b", name: "ready?", type: "boolean"},
+      ],
+    })
+    expect(getTurboWarpBlockResolveContext({
+      kind: "block", opcode: "motion_movesteps", inputs: {}, fields: {},
+    }, false)).toBeUndefined()
+  })
+
+  it("rejects inconsistent AST procedure mutations", () => {
+    expect(() => getTurboWarpBlockResolveContext({
+      kind: "block", opcode: "procedures_call", inputs: {}, fields: {},
+    }, false)).toThrow(InvalidTurboWarpBlockContextError)
+    expect(() => getTurboWarpBlockResolveContext({
+      kind: "block", opcode: "procedures_prototype", inputs: {}, fields: {},
+      mutation: {
+        type: "procedure-prototype", proccode: "test %n", argumentIds: [],
+        argumentNames: [], argumentDefaults: [], warp: false,
+      },
+    }, false)).toThrow(InvalidTurboWarpBlockContextError)
+  })
+
   it("resolves control_stop without changing its terminal base", () => {
     const registry = createTurboWarpBlockRegistry()
     const base = registry.require("control_stop")

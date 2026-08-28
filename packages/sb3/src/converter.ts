@@ -365,12 +365,12 @@ const convertBlock = <TContext>(state: DeserializeState<TContext>, id: string): 
   const mutation = semanticMutation(entry)
   const block: Block = {
     kind: "block", opcode: entry.opcode, inputs: {}, fields: {},
+    ...(entry.shadow ? {shadow: true as const} : {}),
     ...(mutation === undefined ? {} : {mutation}),
     metadata: {scratch: {id}},
   }
   const metadata: Sb3BlockMetadata = {
     version: 1,
-    ...(entry.shadow ? {shadow: true as const} : {}),
     ...(entry.comment === undefined ? {} : {comment: entry.comment}),
     ...(mutation === undefined && entry.mutation !== undefined ? {mutation: cloneJson(entry.mutation)} : {}),
   }
@@ -571,7 +571,7 @@ const serializeChild = (state: SerializeState, input: Input, parentId: string): 
 
 const inputUsesShadow = (input: Input): boolean => {
   if (input.type !== "block") return input.type !== "script" && input.type !== "empty"
-  return getSb3BlockMetadata(input.value)?.shadow === true || primitiveForBlock(input.value) !== undefined
+  return input.value.shadow === true || primitiveForBlock(input.value) !== undefined
 }
 
 const serializeInput = (state: SerializeState, input: Input, parentId: string): Sb3Input | undefined => {
@@ -626,7 +626,7 @@ const serializeSingleBlock = (
   const result: Sb3Block = {
     opcode: block.opcode, next, parent, inputs: {},
     fields: Object.fromEntries(Object.entries(block.fields).map(([name, field]) => [name, serializeField(field)])),
-    shadow: metadata?.shadow === true, topLevel,
+    shadow: block.shadow === true, topLevel,
     ...(metadata?.comment === undefined ? {} : {comment: metadata.comment}),
   }
   if (topLevel) {

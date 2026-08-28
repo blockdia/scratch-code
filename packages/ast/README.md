@@ -45,7 +45,8 @@ walk(script, {
 - Canonical Scratch opcodes remain open strings so extension blocks are valid.
 - Scalar shadow blocks are represented as literals. Numeric shadow variants are
   recorded non-semantically as `metadata.scratch.numericKind`.
-- Menu shadows remain blocks; only Scratch fields use `type: "dropdown"`.
+- Menu and other non-scalar shadows remain blocks with `shadow: true`; only
+  Scratch fields use `type: "dropdown"`.
 - A mode 3 fallback hidden by a connected value lives on that Input as
   `obscuredShadow`; it moves and clones with the Input. If the current value is
   itself the shadow, it is stored only as the current value.

@@ -111,6 +111,8 @@ export interface Script
 /** A semantic Scratch block. Inputs and fields are named by Scratch keys. */
 export interface Block extends AstNodeBase<"block", BlockScratchMetadata> {
   opcode: Opcode
+  /** This block is acting as a Scratch shadow. Omission means a regular block. */
+  shadow?: true
   fields: Record<string, Field>
   inputs: Record<string, Input>
   mutation?: SemanticMutation

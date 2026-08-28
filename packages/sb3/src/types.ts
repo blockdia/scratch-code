@@ -41,7 +41,6 @@ export type Sb3ScriptMetadata = Sb3MetadataBase
 
 /** SB3-only details which cannot be derived from a semantic Block. */
 export interface Sb3BlockMetadata extends Sb3MetadataBase {
-  shadow?: true
   comment?: string
   /** Raw mutation only for opcodes without a modeled semantic mutation. */
   mutation?: JsonObject

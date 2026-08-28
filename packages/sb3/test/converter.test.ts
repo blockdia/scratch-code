@@ -193,7 +193,8 @@ describe("SB3 fidelity", () => {
     })
     const shadowBlock = scripts[0]!.blocks[0]!.inputs["OPERAND"]
     if (shadowBlock?.type !== "block") throw new Error("Expected shadow block")
-    expect(getSb3BlockMetadata(shadowBlock.value)).toEqual({version: 1, shadow: true})
+    expect(shadowBlock.value.shadow).toBe(true)
+    expect(getSb3BlockMetadata(shadowBlock.value)).toBeUndefined()
     expect(shadowBlock.value.metadata?.scratch).not.toHaveProperty("sb3")
     expect((serializeBlocks(scripts)["not"] as {inputs: object}).inputs).toEqual({
       OPERAND: [1, "equals"],

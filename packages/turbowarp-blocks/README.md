@@ -43,8 +43,9 @@ catalog. Runtime codecs do not depend on generated raw source argument data.
 `undefined`. A dynamic definition given missing or mismatched context throws
 `InvalidTurboWarpBlockContextError` rather than silently returning its base.
 
-The base specs remain stable. Extracting these contexts from an AST belongs in
-a converter or SB3 adapter and is intentionally not part of this package.
+The base specs remain stable. Use
+`getTurboWarpBlockResolveContext(block, hasNext)` to extract this minimal
+context from an AST block for consumers such as `@scratch-code/materialize`.
 
 ## Source audit
 
@@ -70,8 +71,7 @@ editor-only blocks, the Scratch Blocks demonstration `extension_*`
 definitions, and VM `coreExample`. It includes every entry in the VM's
 `defaultBuiltinExtensions` table except that example. `speech2text` is not in
 that table and remains outside the built-in catalog. The package does not
-include an SB3 adapter, AST-to-context extractor, or external extension
-definitions.
+include an SB3 adapter or external extension definitions.
 
 ## License
 

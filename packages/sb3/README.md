@@ -29,6 +29,9 @@ keys. The codec never stores the complete target blocks map or raw block/input/
 field snapshots. `metadata.scratch` remains limited to stable IDs, coordinates,
 and numeric kinds.
 
+Non-scalar shadow identity is represented by the codec-independent
+`Block.shadow` flag. `metadata.sb3` does not represent block shadow identity.
+
 Serialization is canonical: empty inputs, including legacy `[1, null]`, are
 omitted; procedure mutations are synthesized from semantic mutations; and an
 input whose current content is itself a shadow is not duplicated as a fallback.
