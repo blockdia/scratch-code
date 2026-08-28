@@ -4,6 +4,14 @@ A small, tree-shaped, JSON-serializable AST for Scratch code. It models block
 content rather than the flat ID graph used by SB3 or rendering-oriented syntax
 trees.
 
+## Installation
+
+```sh
+npm install @scratch-code/ast
+```
+
+This package is ESM-only and requires Node.js 22 or newer.
+
 ```ts
 import type { Script } from '@scratch-code/ast';
 import { walk } from '@scratch-code/ast';

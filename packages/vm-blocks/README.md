@@ -3,6 +3,16 @@
 Convert Scratch VM's hydrated runtime block array to and from the semantic AST
 from `@scratch-code/ast`.
 
+## Installation
+
+```sh
+npm install @scratch-code/vm-blocks @scratch-code/turbowarp-blocks
+```
+
+This package is ESM-only and requires Node.js 22 or newer. A block-spec
+registry is supplied by the caller; the example below uses the TurboWarp
+catalog.
+
 ```ts
 import { createTurboWarpBlockRegistry } from '@scratch-code/turbowarp-blocks';
 import { deserializeVmBlocks, serializeVmBlocks } from '@scratch-code/vm-blocks';

@@ -6,6 +6,14 @@ The package compares AST meaning rather than SB3 encoding or scratchblocks
 presentation. It has no block-registry or codec dependency, so open extension
 opcodes are supported without a catalog.
 
+## Installation
+
+```sh
+npm install @scratch-code/diff
+```
+
+This package is ESM-only and requires Node.js 22 or newer.
+
 ```ts
 import { diffScripts } from '@scratch-code/diff';
 

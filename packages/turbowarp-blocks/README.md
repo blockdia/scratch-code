@@ -7,6 +7,15 @@ TurboWarp `scratch-blocks` fork at revision
 definitions from the built-in extensions at `scratch-vm` revision
 `96ed93bbb5c405b7bf48f673a379f1c595672373`.
 
+## Installation
+
+```sh
+npm install @scratch-code/turbowarp-blocks
+```
+
+This package is ESM-only, requires Node.js 22 or newer, and is licensed under
+GPL-3.0-only.
+
 ```ts
 import { createTurboWarpBlockRegistry } from '@scratch-code/turbowarp-blocks';
 

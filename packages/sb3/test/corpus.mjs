@@ -1,5 +1,5 @@
 import { execFileSync } from 'node:child_process';
-import { readdirSync } from 'node:fs';
+import { readFileSync, readdirSync } from 'node:fs';
 import { basename, resolve } from 'node:path';
 
 import { createTurboWarpBlockRegistry } from '@scratch-code/turbowarp-blocks';
@@ -13,6 +13,15 @@ const directory = process.argv.slice(2).find((argument) => argument !== '--');
 if (!directory) throw new Error('Usage: test:corpus -- /path/to/sb3-projects');
 
 const registry = createTurboWarpBlockRegistry();
+const knownRejections = JSON.parse(
+  readFileSync(
+    new URL('../../../tests/integration/fixtures/known-corpus-rejections.json', import.meta.url),
+    'utf8',
+  ),
+);
+const knownInvalidTargets = new Set(
+  knownRejections.invalidTargets.map(({ project, target }) => `${project}\0${target}`),
+);
 const primitiveOpcodes = { 12: 'data_variable', 13: 'data_listcontents' };
 let checkedProjects = 0;
 let checkedTargets = 0;
@@ -82,6 +91,12 @@ for (const filename of readdirSync(directory)
       firstAst = deserializeSb3Blocks(target.blocks, registry);
     } catch (error) {
       if (!(error instanceof InvalidBlockGraphError)) throw error;
+      const rejectionKey = `${filename}\0${target.name}`;
+      if (!knownInvalidTargets.has(rejectionKey)) {
+        throw new Error(`Unexpected invalid SB3 target ${filename} / ${target.name}.`, {
+          cause: error,
+        });
+      }
       rejectedTargets += 1;
       console.log(`REJECT ${basename(path)} / ${target.name}: ${error.message}`);
       continue;

@@ -2,11 +2,25 @@
   "name": "@scratch-code/turbowarp-blocks",
   "version": "0.1.0",
   "description": "TurboWarp-compatible Scratch block specifications",
+  "author": "Blockdia contributors",
+  "homepage": "https://github.com/blockdia/scratch-code/tree/main/packages/turbowarp-blocks#readme",
+  "bugs": {
+    "url": "https://github.com/blockdia/scratch-code/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/blockdia/scratch-code.git",
+    "directory": "packages/turbowarp-blocks"
+  },
   "license": "GPL-3.0-only",
   "type": "module",
   "sideEffects": false,
   "engines": {
     "node": ">=22"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
   },
   "files": [
     "dist",
@@ -23,6 +37,7 @@
   },
   "scripts": {
     "build": "tsc -p tsconfig.build.json",
+    "prepack": "pnpm build",
     "typecheck": "tsc -p tsconfig.json",
     "test": "vitest run",
     "test:smoke": "node test/smoke.mjs",

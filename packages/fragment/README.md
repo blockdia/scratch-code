@@ -3,6 +3,14 @@
 Analyze semantic Scratch scripts and create versioned, JSON-serializable code
 fragments without consulting SB3, VM Blocks, scratchblocks, or a block registry.
 
+## Installation
+
+```sh
+npm install @scratch-code/fragment
+```
+
+This package is ESM-only and requires Node.js 22 or newer.
+
 ```ts
 import { analyzeScripts, createScratchFragment } from '@scratch-code/fragment';
 

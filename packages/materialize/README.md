@@ -5,6 +5,15 @@ The package inserts default shadows, preserves connected values as mode 3
 inputs, and assigns Scratch VM-compatible IDs to every runtime block, including
 scalar literal inputs, menu blocks, and procedure shadows.
 
+## Installation
+
+```sh
+npm install @scratch-code/materialize @scratch-code/turbowarp-blocks
+```
+
+This package is ESM-only and requires Node.js 22 or newer. The TurboWarp
+catalog is optional; the example below uses it as a ready-made registry.
+
 ```ts
 import { materialize } from '@scratch-code/materialize';
 import {

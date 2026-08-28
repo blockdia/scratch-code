@@ -1,0 +1,71 @@
+{
+  "invalidTargets": [
+    { "project": "Appel v1.4(2).sb3", "target": "Mob" },
+    { "project": "Appel v1.4(2).sb3", "target": "Stencil" },
+    { "project": "Appel v1.4(2).sb3", "target": "menu" },
+    { "project": "Appel v1.4.sb3", "target": "Mob" },
+    { "project": "Appel v1.4.sb3", "target": "Stencil" },
+    { "project": "Appel v1.4.sb3", "target": "menu" },
+    { "project": "Atmospherical Test v0.7 - Multiplayer.sb3", "target": "Stars" },
+    { "project": "Atmospherical Test v0.7 - Multiplayer.sb3", "target": "Asteroid" },
+    { "project": "E.T. End Credits _ Piano Music _ v1.0.sb3", "target": "Bass Clef" },
+    { "project": "Famished Fish v1.1.sb3", "target": "Enemy" },
+    { "project": "Famished Fish v1.1.sb3", "target": "Numbers" },
+    { "project": "Fibonacci Sphere v1.1.sb3", "target": "Joystick" },
+    { "project": "Fish not included v0.2.sb3", "target": "Island Waves" },
+    { "project": "Gauntlet v0.21.sb3", "target": "Player" },
+    { "project": "Generic Red (3 levels).sb3", "target": "Joystick" },
+    { "project": "Getting Over It v1.4.sb3", "target": "Timer" },
+    { "project": "Getting Over It v1.4.sb3", "target": "High Score" },
+    { "project": "Griffpatch's 3D Laser Tag v0.8.sb3", "target": "chat" },
+    { "project": "Layered Snow - Merry Christmas! v1.6.sb3", "target": "Mode" },
+    { "project": "Level EATEN! - v0.12.sb3", "target": "Level" },
+    { "project": "Paper Minecraft v11.6 (Minecraft 2D).sb3", "target": "Tiles" },
+    { "project": "Taco Burp _ Cloud Server 2.sb3", "target": "Projectile" },
+    { "project": "Taco Burp _ Cloud.sb3", "target": "Projectile" },
+    { "project": "Terraria (Stamped) v0.65b.sb3", "target": "Spawner" },
+    { "project": "Terraria (Stamped) v0.65b.sb3", "target": "Health Bar" },
+    { "project": "Terraria (Stamped) v0.65b.sb3", "target": "Digits" },
+    { "project": "Terraria (Stamped) v0.65b.sb3", "target": "Pause" },
+    { "project": "Test.sb3", "target": "Stars" },
+    { "project": "Test.sb3", "target": "Asteroid" },
+    { "project": "Tile Scrolling _ ep6 _ Level Store.sb3", "target": "particles" }
+  ],
+  "invalidVmSubsets": [
+    {
+      "project": "Atmospherical Test v0.7 - Multiplayer.sb3",
+      "target": "Players2",
+      "rootId": "dP)Q0N(3wPKQB1*D2Ln+"
+    },
+    {
+      "project": "Cycles Raytracer v1.0.sb3",
+      "target": "Setup",
+      "rootId": "uU6n,Yf[xNLz,!lySLs1"
+    },
+    {
+      "project": "Generic Red (3 levels).sb3",
+      "target": "Player",
+      "rootId": "lK8j^Tt:hXb2E9U_c,Xu"
+    },
+    {
+      "project": "Scratch Emulator v0.22.0.sb3",
+      "target": "Editor",
+      "rootId": ":l%7=Gcqq/P[5l6eNU~Y"
+    },
+    {
+      "project": "Terraria (Stamped) v0.65b.sb3",
+      "target": "Manage",
+      "rootId": "uDNQ#w!33D/=w^hpGwi;"
+    },
+    {
+      "project": "Terraria (Stamped) v0.65b.sb3",
+      "target": "NPC",
+      "rootId": "%B0R:LB1B,Q9[3DK{I)W"
+    },
+    {
+      "project": "Test.sb3",
+      "target": "Players2",
+      "rootId": "dP)Q0N(3wPKQB1*D2Ln+"
+    }
+  ]
+}

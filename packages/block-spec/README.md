@@ -4,6 +4,14 @@ Semantic Scratch block specifications and an extensible registry. A spec
 describes the connections a block exposes and the initial content used to draw
 empty slots. It does not describe a block instance's current contents.
 
+## Installation
+
+```sh
+npm install @scratch-code/block-spec
+```
+
+This package is ESM-only and requires Node.js 22 or newer.
+
 ```ts
 import { createBlockSpecRegistry, type BlockSpec } from '@scratch-code/block-spec';
 

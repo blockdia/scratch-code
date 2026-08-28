@@ -43,6 +43,43 @@ pnpm test:corpus -- /path/to/scratch-vm /path/to/sb3-projects
 
 The default CI commands do not depend on absolute corpus paths.
 
+## Release
+
+All published packages are public, ESM-only packages under the `@scratch-code`
+scope. A release must be made from a clean `main` checkout after updating every
+package version that should be published.
+
+Before a release, run the external corpus audit against the pinned local VM and
+the project corpus, then run the reproducible package verification:
+
+```sh
+pnpm test:corpus -- /path/to/scratch-vm /path/to/sb3-projects
+pnpm release:verify
+```
+
+`release:verify` runs the complete workspace check, builds every package through
+its `prepack` lifecycle, validates every tarball and transformed dependency, and
+passes each archive through `npm publish --dry-run`. Unexpected corpus
+rejections fail the corpus command; reviewed malformed targets and incomplete
+procedure subsets are recorded in
+`tests/integration/fixtures/known-corpus-rejections.json`.
+
+For the first publication of the scope, sign in to npm with an account that can
+publish public packages for the `scratch-code` organization and has publishing
+2FA enabled. From a clean `main` checkout, publish with:
+
+```sh
+npm login
+npm whoami
+pnpm release:publish
+```
+
+After the packages exist on npm, configure each package's npm Trusted Publisher
+for GitHub repository `blockdia/scratch-code`, workflow `publish.yml`, and
+environment `npm`. Create the matching protected GitHub environment, then use
+the **Publish npm packages** workflow. Its default mode only verifies; enable
+the `publish` input to publish from `main` with OIDC and npm provenance.
+
 ## Playground
 
 The browser playground provides a package index with one focused, lightweight

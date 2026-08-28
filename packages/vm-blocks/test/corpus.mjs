@@ -34,6 +34,20 @@ const originalWarn = console.warn;
 console.warn = () => {};
 const VirtualMachine = vmRequire('./src/index.js');
 const registry = createTurboWarpBlockRegistry();
+const knownRejections = JSON.parse(
+  readFileSync(
+    new URL('../../../tests/integration/fixtures/known-corpus-rejections.json', import.meta.url),
+    'utf8',
+  ),
+);
+const knownInvalidTargets = new Set(
+  knownRejections.invalidTargets.map(({ project, target }) => `${project}\0${target}`),
+);
+const knownInvalidSubsets = new Set(
+  knownRejections.invalidVmSubsets.map(
+    ({ project, target, rootId }) => `${project}\0${target}\0${rootId}`,
+  ),
+);
 let checkedProjects = 0;
 let checkedTargets = 0;
 let checkedBlocks = 0;
@@ -133,6 +147,13 @@ for (const filename of readdirSync(directory)
           checkedSubsetBlocks += subset.length;
         } catch (error) {
           if (!(error instanceof InvalidTurboWarpBlockContextError)) throw error;
+          const rejectionKey = `${filename}\0${target.getName()}\0${root.id}`;
+          if (!knownInvalidSubsets.has(rejectionKey)) {
+            throw new Error(
+              `Unexpected invalid VM subset ${filename} / ${target.getName()} / ${root.id}.`,
+              { cause: error },
+            );
+          }
           rejectedSubsets += 1;
           console.log(
             `REJECT_SUBSET ${basename(path)} / ${target.getName()} / ${root.id} / ${root.opcode}: ${error.message}`,
@@ -143,6 +164,12 @@ for (const filename of readdirSync(directory)
       checkedBlocks += source.length;
     } catch (error) {
       if (!(error instanceof InvalidVmBlocksError)) throw error;
+      const rejectionKey = `${filename}\0${target.getName()}`;
+      if (!knownInvalidTargets.has(rejectionKey)) {
+        throw new Error(`Unexpected invalid VM target ${filename} / ${target.getName()}.`, {
+          cause: error,
+        });
+      }
       rejectedTargets += 1;
       console.log(`REJECT ${basename(path)} / ${target.getName()}: ${error.message}`);
     }

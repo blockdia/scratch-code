@@ -2,11 +2,25 @@
   "name": "@scratch-code/ast",
   "version": "0.1.0",
   "description": "A semantic, tree-shaped AST for Scratch blocks",
+  "author": "Blockdia contributors",
+  "homepage": "https://github.com/blockdia/scratch-code/tree/main/packages/ast#readme",
+  "bugs": {
+    "url": "https://github.com/blockdia/scratch-code/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/blockdia/scratch-code.git",
+    "directory": "packages/ast"
+  },
   "license": "MIT",
   "type": "module",
   "sideEffects": false,
   "engines": {
     "node": ">=22"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
   },
   "files": [
     "dist",
@@ -20,6 +34,7 @@
   },
   "scripts": {
     "build": "tsc -p tsconfig.build.json",
+    "prepack": "pnpm build",
     "typecheck": "tsc -p tsconfig.json",
     "test": "vitest run",
     "test:smoke": "node test/smoke.mjs"
