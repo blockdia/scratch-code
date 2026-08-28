@@ -10,11 +10,23 @@
     "build": "pnpm --recursive build",
     "build:playground": "pnpm --filter @scratch-code/playground build",
     "dev:playground": "pnpm --filter @scratch-code/playground dev",
-    "typecheck": "pnpm --recursive typecheck",
+    "typecheck": "pnpm --recursive typecheck && tsc -p tsconfig.integration.json",
     "test": "pnpm --recursive test",
-    "test:smoke": "pnpm --recursive --if-present run test:smoke"
+    "test:unit": "pnpm --recursive test",
+    "test:smoke": "pnpm --recursive --if-present run test:smoke",
+    "test:integration": "vitest run --config vitest.integration.config.ts",
+    "test:corpus": "node scripts/run-corpus.mjs",
+    "test:all": "pnpm build && pnpm typecheck && pnpm test:unit && pnpm test:smoke && pnpm test:integration"
   },
   "devDependencies": {
+    "@scratch-code/ast": "workspace:^",
+    "@scratch-code/block-spec": "workspace:^",
+    "@scratch-code/materialize": "workspace:^",
+    "@scratch-code/sb3": "workspace:^",
+    "@scratch-code/scratchblocks-codec": "workspace:^",
+    "@scratch-code/turbowarp-blocks": "workspace:^",
+    "@scratch-code/vm-blocks": "workspace:^",
+    "scratchblocks-plus": "^2.1.0",
     "typescript": "^5.9.3",
     "vitest": "^4.0.0"
   }

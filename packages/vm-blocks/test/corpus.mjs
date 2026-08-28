@@ -4,7 +4,13 @@ import {createRequire} from "node:module"
 import {readFileSync, readdirSync} from "node:fs"
 import {basename, resolve} from "node:path"
 
-import {createTurboWarpBlockRegistry, TURBOWARP_VM_SOURCE_REVISION} from "@scratch-code/turbowarp-blocks"
+import {materialize} from "@scratch-code/materialize"
+import {
+  createTurboWarpBlockRegistry,
+  getTurboWarpBlockResolveContext,
+  InvalidTurboWarpBlockContextError,
+  TURBOWARP_VM_SOURCE_REVISION,
+} from "@scratch-code/turbowarp-blocks"
 import {deserializeVmBlocks, InvalidVmBlocksError, serializeVmBlocks} from "../dist/index.js"
 
 const arguments_ = process.argv.slice(2).filter(argument => argument !== "--")
@@ -26,6 +32,41 @@ let checkedTargets = 0
 let checkedBlocks = 0
 let skippedProjects = 0
 let rejectedTargets = 0
+let checkedSubsets = 0
+let checkedSubsetBlocks = 0
+let rejectedSubsets = 0
+
+const rootClosure = (blocks, rootId) => {
+  const byId = new Map(blocks.map(block => [block.id, block]))
+  const included = new Set()
+  const pending = [rootId]
+  while (pending.length > 0) {
+    const id = pending.pop()
+    if (included.has(id)) continue
+    const block = byId.get(id)
+    if (!block) throw new Error(`Subset root references missing block ${JSON.stringify(id)}.`)
+    included.add(id)
+    if (typeof block.next === "string") pending.push(block.next)
+    for (const input of Object.values(block.inputs ?? {})) {
+      if (typeof input.block === "string") pending.push(input.block)
+      if (typeof input.shadow === "string") pending.push(input.shadow)
+    }
+  }
+  return blocks.filter(block => included.has(block.id))
+}
+
+const materializeSubset = scripts => {
+  let next = 1
+  return materialize(scripts, registry, {
+    contextForBlock: (block, {hasNext}) => getTurboWarpBlockResolveContext(block, hasNext),
+    generateBlockId: (_node, usedIds) => {
+      let id
+      do id = `vm-subset-${next++}`
+      while (usedIds.has(id))
+      return id
+    },
+  })
+}
 
 for (const filename of readdirSync(directory).filter(name => name.endsWith(".sb3")).sort()) {
   const path = resolve(directory, filename)
@@ -57,6 +98,28 @@ for (const filename of readdirSync(directory).filter(name => name.endsWith(".sb3
       const second = deserializeVmBlocks(canonical, registry)
       assert.deepEqual(second, first, `${filename} / ${target.getName()}: semantic AST changed`)
       assert.deepEqual(serializeVmBlocks(second), canonical, `${filename} / ${target.getName()}: canonical VM blocks changed`)
+      const root = source.find(block => block.topLevel === true && block.shadow !== true)
+      if (root) {
+        try {
+          const subset = rootClosure(source, root.id)
+          const subsetAst = deserializeVmBlocks(subset, registry)
+          const shareAst = materializeSubset(subsetAst)
+          const shareBlocks = serializeVmBlocks(shareAst)
+          assert.deepEqual(
+            deserializeVmBlocks(shareBlocks, registry),
+            shareAst,
+            `${filename} / ${target.getName()} / ${root.id}: root subset changed`,
+          )
+          checkedSubsets += 1
+          checkedSubsetBlocks += subset.length
+        } catch (error) {
+          if (!(error instanceof InvalidTurboWarpBlockContextError)) throw error
+          rejectedSubsets += 1
+          console.log(
+            `REJECT_SUBSET ${basename(path)} / ${target.getName()} / ${root.id} / ${root.opcode}: ${error.message}`,
+          )
+        }
+      }
       checkedTargets += 1
       checkedBlocks += source.length
     } catch (error) {
@@ -77,6 +140,9 @@ console.log(JSON.stringify({
   checkedBlocks,
   skippedProjects,
   rejectedTargets,
+  checkedSubsets,
+  checkedSubsetBlocks,
+  rejectedSubsets,
 }))
 // Some projects load extension workers which outlive VirtualMachine.quit(). The audit is
 // complete once every VM instance has been quit and the summary has been written.

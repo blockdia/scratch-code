@@ -31,6 +31,7 @@
     "@scratch-code/block-spec": "workspace:^"
   },
   "devDependencies": {
+    "@scratch-code/materialize": "workspace:^",
     "@scratch-code/turbowarp-blocks": "workspace:^"
   },
   "keywords": [

@@ -8,6 +8,30 @@ importers:
 
   .:
     devDependencies:
+      '@scratch-code/ast':
+        specifier: workspace:^
+        version: link:packages/ast
+      '@scratch-code/block-spec':
+        specifier: workspace:^
+        version: link:packages/block-spec
+      '@scratch-code/materialize':
+        specifier: workspace:^
+        version: link:packages/materialize
+      '@scratch-code/sb3':
+        specifier: workspace:^
+        version: link:packages/sb3
+      '@scratch-code/scratchblocks-codec':
+        specifier: workspace:^
+        version: link:packages/scratchblocks-codec
+      '@scratch-code/turbowarp-blocks':
+        specifier: workspace:^
+        version: link:packages/turbowarp-blocks
+      '@scratch-code/vm-blocks':
+        specifier: workspace:^
+        version: link:packages/vm-blocks
+      scratchblocks-plus:
+        specifier: ^2.1.0
+        version: 2.1.0
       typescript:
         specifier: ^5.9.3
         version: 5.9.3
@@ -126,6 +150,9 @@ importers:
         specifier: workspace:^
         version: link:../block-spec
     devDependencies:
+      '@scratch-code/materialize':
+        specifier: workspace:^
+        version: link:../materialize
       '@scratch-code/turbowarp-blocks':
         specifier: workspace:^
         version: link:../turbowarp-blocks

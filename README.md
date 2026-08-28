@@ -12,6 +12,11 @@ TypeScript packages for working with semantic Scratch code.
 - [`@scratch-code/vm-blocks`](./packages/vm-blocks): bidirectional conversion between AST scripts and Scratch VM runtime blocks.
 - [`@scratch-code/scratchblocks-codec`](./packages/scratchblocks-codec): semantic conversion between scratchblocks-plus syntax trees and the AST.
 
+The shared semantic contract is documented in
+[`docs/ast-invariants.md`](./docs/ast-invariants.md). Codec packages are peer
+adapters: their production code does not depend on another codec or consume
+another codec's private metadata.
+
 ## Development
 
 This repository requires Node.js 22 or newer and pnpm 11.
@@ -22,7 +27,19 @@ pnpm build
 pnpm typecheck
 pnpm test
 pnpm test:smoke
+pnpm test:integration
 ```
+
+`tests/integration/fixtures` contains repository-only semantic and wire
+fixtures shared by the codecs; it is not a published package. Run the complete
+local corpus audit explicitly when the pinned VM checkout and SB3 corpus are
+available:
+
+```sh
+pnpm test:corpus -- /path/to/scratch-vm /path/to/sb3-projects
+```
+
+The default CI commands do not depend on absolute corpus paths.
 
 ## Playground
 
